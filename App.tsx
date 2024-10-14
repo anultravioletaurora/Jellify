@@ -1,4 +1,6 @@
 import './gesture-handler';
+import "./global.css";
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import React from 'react';
 
 import Jellify from './components/jellify';
@@ -9,8 +11,8 @@ export default function App(): React.JSX.Element {
   const queryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Jellify />
-    </QueryClientProvider>
+    <GluestackUIProvider mode="light"><QueryClientProvider client={queryClient}>
+        <Jellify />
+      </QueryClientProvider></GluestackUIProvider>
   );
 }
