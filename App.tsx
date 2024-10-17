@@ -1,4 +1,6 @@
 import './gesture-handler';
+import "./global.css";
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import React from 'react';
 import "react-native-url-polyfill/auto";
 
@@ -12,10 +14,10 @@ export default function App(): React.JSX.Element {
 
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <GestureHandlerRootView style={{flex: 1}}>
-          <Jellify />
-      </GestureHandlerRootView>
-    </QueryClientProvider>
+    <GluestackUIProvider mode="light"><QueryClientProvider client={queryClient}>
+        <GestureHandlerRootView style={{flex: 1}}>
+            <Jellify />
+        </GestureHandlerRootView>
+      </QueryClientProvider></GluestackUIProvider>
   );
 }
