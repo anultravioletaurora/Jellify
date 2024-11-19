@@ -17,12 +17,9 @@ import { ActivityIndicator } from "react-native";
 
 export default function ServerLibrary(): React.JSX.Element {
 
-    const [musicLibrary, setMusicLibrary] = useState<JellifyLibrary | undefined>(undefined);
+    const { server, setChangeUsername, libraryName, setLibraryName, libraryId, setLibraryId } = useAuthenticationContext();
 
-    const { server, setUsername, setChangeUsername, libraryName, setLibraryName, libraryId, setLibraryId } = useAuthenticationContext();
-
-    const { apiClient, setApiClient } = useApiClientContext();
-
+    const { apiClient, setAccessToken } = useApiClientContext();
     
     const useLibraries = (api: Api) => useQuery({
         queryKey: [QueryKeys.Libraries, api],
@@ -34,7 +31,7 @@ export default function ServerLibrary(): React.JSX.Element {
     const clearUser = useMutation({
         mutationFn: async () => {
             setChangeUsername(true);
-            setApiClient(undefined)
+            setAccessToken(undefined)
             return await mutateServerCredentials(server!.url);
         }
     });

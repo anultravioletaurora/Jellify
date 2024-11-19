@@ -9,9 +9,9 @@ import { useApiClientContext } from "../jellyfin-api-provider";
 
 export default function Login(): React.JSX.Element {
 
-    const { serverAddress, changeServer, server, username, changeUsername, triggerAuth, setTriggerAuth } = useAuthenticationContext();
+    const { changeServer, server, username, changeUsername, setTriggerAuth } = useAuthenticationContext();
 
-    const { apiClient } = useApiClientContext();
+    const { apiClient, accessToken } = useApiClientContext();
 
     const Stack = createStackNavigator();
 
@@ -27,13 +27,13 @@ export default function Login(): React.JSX.Element {
                         name="ServerAddress"
                         options={{
                             headerShown: false,     
-                            animationTypeForReplace: triggerAuth ? 'push' : 'pop'    
+                            animationTypeForReplace: changeServer ? 'pop' : 'push'    
                         }}
                         component={ServerAddress}
                         />
                     ) : (
                     
-                    ((_.isUndefined(username) || _.isUndefined(apiClient)) || changeUsername) ? (
+                    (_.isUndefined(accessToken) || changeUsername) ? (
                         <Stack.Screen 
                             name="ServerAuthentication" 
                             options={{ 

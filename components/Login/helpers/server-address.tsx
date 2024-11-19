@@ -2,7 +2,7 @@ import React from "react";
 import _ from "lodash";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useMutation } from "@tanstack/react-query";
-import { AsyncStorageKeys } from "../../../enums/async-storage-keys";
+import { MMKVStorageKeys } from "../../../enums/mmkv-storage-keys";
 import { JellifyServer } from "../../../types/JellifyServer";
 import { mutateServer, serverMutation } from "../../../api/mutators/functions/storage";
 import { useApiClientContext } from "../../jellyfin-api-provider";
@@ -40,7 +40,7 @@ export default function ServerAddress(): React.JSX.Element {
         },
         onError: async (error: Error) => {
             console.error("An error occurred connecting to the Jellyfin instance", error);
-            return await AsyncStorage.setItem(AsyncStorageKeys.ServerUrl, "");
+            return await AsyncStorage.setItem(MMKVStorageKeys.ServerUrl, "");
         }
     });
 

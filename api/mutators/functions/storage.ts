@@ -4,7 +4,7 @@ import * as Keychain from "react-native-keychain"
 import { getSystemApi } from "@jellyfin/sdk/lib/utils/api/system-api";
 import { JellifyServer } from "../../../types/JellifyServer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { AsyncStorageKeys } from "../../../enums/async-storage-keys";
+import { MMKVStorageKeys } from "../../../enums/mmkv-storage-keys";
 import { buildApiClient } from "../../client";
 import _ from "lodash";
 
@@ -28,9 +28,9 @@ export const serverMutation = async (serverUrl: string) => {
 export const mutateServer = async (server?: JellifyServer) => {
 
     if (!_.isUndefined(server)) 
-        return await AsyncStorage.setItem(AsyncStorageKeys.ServerUrl, JSON.stringify(server));
+        return await AsyncStorage.setItem(MMKVStorageKeys.ServerUrl, JSON.stringify(server));
 
-    return await AsyncStorage.removeItem(AsyncStorageKeys.ServerUrl);
+    return await AsyncStorage.removeItem(MMKVStorageKeys.ServerUrl);
 }
 
 export const mutateServerCredentials = async (serverUrl: string, credentials?: JellyfinCredentials) => {        

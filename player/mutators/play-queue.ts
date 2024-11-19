@@ -4,7 +4,7 @@
 
 import { useMutation } from "@tanstack/react-query";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { AsyncStorageKeys } from "../../enums/async-storage-keys";
+import { MMKVStorageKeys } from "../../enums/mmkv-storage-keys";
 import { JellifyTrack } from "../../types/JellifyTrack";
 import { add, getQueue, remove, removeUpcomingTracks } from "react-native-track-player/lib/src/trackPlayer";
 import { fetchPlayQueue, storePlayQueue } from "./helpers/storage";
@@ -52,7 +52,7 @@ export const removeFromPlayQueue = useMutation({
     mutationFn: async (indexes: number[]) => {
         // Remove from the player first thing
         remove(indexes);
-        let cachedQueue = await AsyncStorage.getItem(AsyncStorageKeys.PlayQueue);
+        let cachedQueue = await AsyncStorage.getItem(MMKVStorageKeys.PlayQueue);
 
         if (cachedQueue === null) {
             // Warn, not a showstopper as we'll just cache it at the end of this, this should hopefully never happen
