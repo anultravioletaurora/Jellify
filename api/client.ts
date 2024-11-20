@@ -1,1 +1,0 @@
-// TODO: Create client singleton here

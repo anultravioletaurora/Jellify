@@ -1,33 +1,50 @@
-# Jellify
-A music player for Jellyfin powered by React Native. Designed to be lightweight, fast, and support ***extremely*** large music libraries (i.e., > 100K songs)
+# Welcome to your Expo app 👋
 
-While other music players provide a WYSIWYG music player experience, *Jellify* caters to those who want a music player experience similar to what's provided by music streaming services. *Jellify* provides:
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-- Quick access to previously played and favorite tracks
-- An infinitly<sup>TM</sup> customizable home screen
-    - Select from the provided quick filters or build a custom filter
-- Support for Jellyfin mixes
-- Quick access to similar artists and items for discovering music in your library
+## Get started
 
-## Built with:
-### Frontend
-[React Native Reanimated](https://github.com/software-mansion/react-native-reanimated)
-- [Marquee](https://github.com/animate-react-native/marquee)
-[React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)
-- Specifically Material Community Icons
-[React Native CarPlay](https://github.com/birkir/react-native-carplay)
-[React Native InApp Browser](https://github.com/proyecto26/react-native-inappbrowser)
+1. Install dependencies
 
-### Backend
-[Jellyfin SDK](https://typescript-sdk.jellyfin.org/)\
-[Tanstack Query](https://tanstack.com/query/latest/docs/framework/react/react-native)\
-[React Native Track Player](https://github.com/doublesymmetry/react-native-track-player)\
-[React Native Keychain](https://github.com/oblador/react-native-keychain)\
-[React Native Async Storage](https://github.com/react-native-async-storage/async-storage)
+   ```bash
+   npm install
+   ```
 
-### Logging
-[GlitchTip](https://glitchtip.com/) 
-- Captures anonymous logging if and only if the user opts into it. This can be toggled at anytime
+2. Start the app
 
-### Passion
-Love from [me](https://github.com/anultravioletaurora)! I've learned a lot from working on this project (and the many failed attempts before it) and I hope you enjoy using it! 
+   ```bash
+    npx expo start
+   ```
+
+In the output, you'll find options to open the app in a
+
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+
+## Get a fresh project
+
+When you're ready, run:
+
+```bash
+npm run reset-project
+```
+
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+
+## Learn more
+
+To learn more about developing your project with Expo, look at the following resources:
+
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+
+## Join the community
+
+Join our community of developers creating universal apps.
+
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
