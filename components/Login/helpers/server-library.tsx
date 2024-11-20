@@ -7,7 +7,6 @@ import { Heading } from "../../helpers/text";
 import Button from "../../helpers/button";
 import _ from "lodash";
 import { Api } from "@jellyfin/sdk";
-import { fetchMusicLibraries } from "../../../api/queries/functions/libraries";
 import { QueryKeys } from "../../../enums/query-keys";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { ActivityIndicator } from "react-native";
@@ -20,7 +19,7 @@ export default function ServerLibrary(): React.JSX.Element {
     
     const useLibraries = (api: Api) => useQuery({
         queryKey: [QueryKeys.Libraries, api],
-        queryFn: async ({ queryKey }) => await fetchMusicLibraries(queryKey[1] as Api)
+        queryFn: async ({ queryKey }) => {}
     });
     
     const { data : libraries, isPending, refetch } = useLibraries(apiClient!);
@@ -48,7 +47,7 @@ export default function ServerLibrary(): React.JSX.Element {
                 <ActivityIndicator />
             )}
 
-            { !_.isUndefined(libraries) &&
+            {/* { !_.isUndefined(libraries) &&
                 <Select defaultValue="">
                     <Select.Trigger>
                         <Select.Value placeholder="Libraries" />
@@ -85,7 +84,6 @@ export default function ServerLibrary(): React.JSX.Element {
                 Switch User
             </Button>
 
-            <Select value={libraryName}></Select>
-        </View>
-    )
-}
+            <Select value={libraryName}></Select> */
+            }</View>
+    ) }
