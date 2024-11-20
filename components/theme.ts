@@ -1,2 +1,0 @@
-import { createTamagui } from "tamagui";
-
