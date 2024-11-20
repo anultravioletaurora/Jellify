@@ -32,7 +32,32 @@ const JellyfinApiClientContextInitializer = () => {
     }, [
       serverUrl,
       accessToken,
-    ])
+    ]);
+
+    useEffect(() => {
+      if (serverUrl)
+        storage.set(MMKVStorageKeys.ServerUrl, serverUrl);
+      else
+        storage.delete(MMKVStorageKeys.ServerUrl);
+    }, [
+      serverUrl
+    ]);
+
+    useEffect(() => {
+      if (username)
+        storage.set(MMKVStorageKeys.Username, username);
+      else
+        storage.delete(MMKVStorageKeys.Username);
+    }, [
+      username
+    ]);
+
+    useEffect(() => {
+      if (accessToken)
+        storage.set(MMKVStorageKeys.AccessToken, accessToken)
+    }, [
+      accessToken
+    ]);
 
     return { 
       storage,
