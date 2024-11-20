@@ -17,11 +17,10 @@ export default function ServerAddress(): React.JSX.Element {
 
     const useServerMutation = useMutation({
         mutationFn: serverMutation,
-        onSuccess: async (publicSystemInfoResponse, serverUrl) => {
+        onSuccess: async (publicSystemInfoResponse) => {
             if (!!!publicSystemInfoResponse.data.Version)
                 throw new Error("Jellyfin instance did not respond");
     
-            console.debug("REMOVE THIS::onSuccess variable", serverUrl);
             console.log(`Connected to Jellyfin ${publicSystemInfoResponse.data.Version!}`);
     
             let jellifyServer: JellifyServer = {

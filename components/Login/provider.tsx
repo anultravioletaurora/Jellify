@@ -1,12 +1,6 @@
-import React, { createContext, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
-import { useCredentials, useServer } from "../../api/queries/keychain";
+import React, { createContext, ReactNode, SetStateAction, useContext, useState } from "react";
 import _ from "lodash";
-import { SharedWebCredentials } from "react-native-keychain";
 import { JellifyServer } from "../../types/JellifyServer";
-import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
-import { mutateServer, mutateServerCredentials } from "../../api/mutators/functions/storage";
-import { usePublicApi } from "../../api/queries";
-import { Api } from "@jellyfin/sdk";
 
 interface JellyfinAuthenticationContext {
     username: string | undefined;

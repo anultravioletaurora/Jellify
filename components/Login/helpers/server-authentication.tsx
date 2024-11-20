@@ -9,14 +9,13 @@ import { useAuthenticationContext } from "../provider";
 import { Heading } from "../../helpers/text";
 import Button from "../../helpers/button";
 import Input from "../../helpers/input";
-import { mutateServer, mutateServerCredentials } from "../../../api/mutators/functions/storage";
 import { client } from "../../../api/client";
 
 export default function ServerAuthentication(): React.JSX.Element {
     const { username, server, setUsername, setChangeUsername, setChangeServer } = useAuthenticationContext();
     const [password, setPassword] = React.useState<string | undefined>('');
 
-    const { setUsername: setClientContextUsername, setAccessToken } = useApiClientContext();
+    const { setUsername: setClientContextUsername, setServerUrl: setClientContextServerUrl, setAccessToken } = useApiClientContext();
 
     const useApiMutation = useMutation({
         mutationFn: async (credentials: JellyfinCredentials) => {
@@ -54,7 +53,9 @@ export default function ServerAuthentication(): React.JSX.Element {
             <Button
                 onPress={() => {
                     setChangeServer(true);
-                    mutateServerCredentials(server!.url);
+                    setClientContextServerUrl(undefined);
+                    setClientContextUsername(undefined);
+                    setAccessToken(undefined);
                 }}>
                     Switch Server
             </Button>
