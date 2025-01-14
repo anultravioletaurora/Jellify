@@ -9,9 +9,10 @@ import { queryConfig } from "../../api/queries/query.config";
 import { H4, H5, Text } from "../Global/helpers/text";
 import { FlatList } from "react-native";
 import { usePlayerContext } from "../../player/provider";
-import RunTimeTicks from "../Global/helpers/runtimeticks";
+import { RunTimeTicks } from "../Global/helpers/time-codes";
 import Track from "../Global/components/track";
 import { useItemTracks } from "@/api/queries/tracks";
+import { SafeAreaView, useSafeAreaFrame } from "react-native-safe-area-context";
 
 interface AlbumProps {
     album: BaseItemDto,
@@ -20,28 +21,30 @@ interface AlbumProps {
 
 export default function Album(props: AlbumProps): React.JSX.Element {
 
-    const { apiClient, sessionId } = useApiClientContext();
-
+    const { apiClient } = useApiClientContext();
     const { nowPlaying } = usePlayerContext();
+
+    const { width } = useSafeAreaFrame();
 
     const { data: tracks, isLoading } = useItemTracks(props.album.Id!, apiClient!, true);
 
     return (
-        <ScrollView>
+        <SafeAreaView edges={["right", "left"]}>
+            <ScrollView contentInsetAdjustmentBehavior="automatic">
                 <YStack alignItems="center">
                     <CachedImage
                         source={getImageApi(apiClient!)
                             .getItemImageUrlById(
                                 props.album.Id!,
                                 ImageType.Primary,
-                                { ...queryConfig.images})}
-                        imageStyle={{
-                            position: "relative",
-                            width: 300,
-                            height: 300,
-                            borderRadius: 2
-                        }}
-                    />
+                                { ...queryConfig.playerArtwork})}
+                                imageStyle={{
+                                    position: "relative",
+                                    width: width / 1.1,
+                                    height: width / 1.1,
+                                    borderRadius: 2
+                                }}
+                                />
 
                     <H4>{ props.album.Name ?? "Untitled Album" }</H4>
                     <H5>{ props.album.ProductionYear?.toString() ?? "" }</H5>
@@ -51,7 +54,7 @@ export default function Album(props: AlbumProps): React.JSX.Element {
                     extraData={nowPlaying}
                     numColumns={1}
                     renderItem={({ item: track, index }) => {
-
+                        
                         return (
                             <Track
                                 track={track}
@@ -59,18 +62,19 @@ export default function Album(props: AlbumProps): React.JSX.Element {
                                 index={index}
                             />
                         )
-
-                }}/>
+                        
+                    }}/>
 
                 <XStack justifyContent="flex-end">
                     <Text 
                         color={"$gray10"} 
                         style={{ display: "block"}}
-                    >
-                        Total Runtime:
+                        >
+                        Total Runtime: 
                     </Text>
                     <RunTimeTicks>{ props.album.RunTimeTicks }</RunTimeTicks>
                 </XStack>
             </ScrollView>
+        </SafeAreaView>
     )
 }

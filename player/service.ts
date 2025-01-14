@@ -22,4 +22,8 @@ export async function PlaybackService() {
     TrackPlayer.addEventListener(Event.RemotePrevious, async () => {
         await TrackPlayer.skipToPrevious();
     });
+
+    TrackPlayer.addEventListener(Event.RemoteSeek, async (event) => {
+        await TrackPlayer.seekTo(event.position);
+    });
 }

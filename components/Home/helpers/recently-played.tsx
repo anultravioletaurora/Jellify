@@ -8,13 +8,13 @@ import { usePlayerContext } from "../../../player/provider";
 
 export default function RecentlyPlayed(): React.JSX.Element {
 
-    const { playNewQueue } = usePlayerContext();
+    const { usePlayNewQueue } = usePlayerContext();
     const { apiClient, sessionId } = useApiClientContext();
     const { recentTracks } = useHomeContext();
 
     return (
         <View>
-            <H2 marginLeft={15}>Play it again</H2>
+            <H2 marginLeft={"$2"}>Play it again</H2>
             <ScrollView horizontal>
                 { recentTracks && recentTracks.map((recentlyPlayedTrack, index) => {
                     return (
@@ -25,10 +25,11 @@ export default function RecentlyPlayed(): React.JSX.Element {
                             width={150}
                             itemId={recentlyPlayedTrack.AlbumId!}
                             onPress={() => {
-                                playNewQueue.mutate({ 
+                                usePlayNewQueue.mutate({ 
                                     track: recentlyPlayedTrack, 
                                     index: index,
-                                    tracklist: recentTracks
+                                    tracklist: recentTracks,
+                                    queueName: "Recently Played"
                                 });
                             }}
                         />                                

@@ -4,4 +4,5 @@ export interface QueueMutation {
     track: BaseItemDto;
     index: number;
     tracklist: BaseItemDto[];
+    queueName: string;
 }

@@ -1,10 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Player from "./Player/component";
 import { Tabs } from "./tabs";
+import { StackParamList } from "./types";
 
 export default function Navigation(): React.JSX.Element {
 
-  const RootStack = createNativeStackNavigator()
+  const RootStack = createNativeStackNavigator<StackParamList>()
   
     return (
       <RootStack.Navigator>

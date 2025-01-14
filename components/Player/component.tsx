@@ -1,88 +1,36 @@
-import { Event, useTrackPlayerEvents } from "react-native-track-player";
-import { handlePlayerError } from "./helpers/error-handlers";
-import { usePlayerContext } from "../../player/provider";
-import { XStack, YStack } from "tamagui";
-import { CachedImage } from "@georstat/react-native-image-cache";
-import { useApiClientContext } from "../jellyfin-api-provider";
-import { getImageApi } from "@jellyfin/sdk/lib/utils/api";
-import { ImageType } from "@jellyfin/sdk/lib/generated-client/models";
-import { queryConfig } from "../../api/queries/query.config";
-import { Text } from "../Global/helpers/text";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { BottomTabNavigationEventMap } from "@react-navigation/bottom-tabs";
-import { NavigationHelpers, ParamListBase } from "@react-navigation/native";
-import { HorizontalSlider } from "../Global/helpers/slider";
-import PlayPauseButton from "./helpers/buttons";
+import React from "react";
+import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackParamList } from "../types";
+import PlayerScreen from "./screens";
+import Queue from "./screens/queue";
 
-export default function Player({ navigation }: { navigation : NavigationHelpers<ParamListBase, BottomTabNavigationEventMap> }): React.JSX.Element {
+export const PlayerStack = createNativeStackNavigator<StackParamList>();
 
-    const { apiClient } = useApiClientContext();
-    const { queue, playbackState, nowPlaying, useTogglePlayback, progress } = usePlayerContext();
-
+export default function Player({ navigation }: { navigation: NativeStackNavigationProp<StackParamList>}) : React.JSX.Element {
     return (
-        <SafeAreaView>
-            { nowPlaying && (
-                <YStack>
+        <PlayerStack.Navigator
+            id="Player"
+            initialRouteName="Player"
+            screenOptions={{}}
+        >
+            <PlayerStack.Screen
+                name="Player"
+                component={PlayerScreen}
+                options={{
+                    headerShown: false,
+                    headerTitle: "",
+                }}
+            />
 
-                    <XStack justifyContent="center">
+            <PlayerStack.Screen
+                name="Queue"
+                component={Queue}
+                options={{
+                    headerTitle: ""
+                }}
+            />
 
-                        <CachedImage
-                            source={getImageApi(apiClient!)
-                                .getItemImageUrlById(
-                                    nowPlaying!.AlbumId,
-                                    ImageType.Primary,
-                                    { ...queryConfig.playerArtwork }
-                                )
-                            }
-                            imageStyle={{
-                                position: "relative",
-                                alignSelf: "center",
-                                width: 400,
-                                height: 400,
-                                borderRadius: 2
-                            }}
-                            />
-                    </XStack>
-
-                    <XStack margin={10}>
-                        <YStack justifyContent="flex-start" flex={4}>
-                            <Text fontSize={"$6"}>{nowPlaying?.title ?? "Untitled Track"}</Text>
-                            <Text 
-                                fontSize={"$6"}
-                                bold
-                                onPress={() => {
-                                    navigation.navigate("Artist", {
-                                        artistName: nowPlaying.artist,
-                                        artistId: nowPlaying.ArtistId
-                                    })
-                                }}
-                            >
-                                {nowPlaying.artist ?? "Unknown Artist"}</Text>
-                        </YStack>
-
-                        <XStack alignItems="center" flex={1}>
-                            {/* Buttons for favorites, song menu go here */}
-
-                        </XStack>
-                    </XStack>
-
-                    <XStack justifyContent="center" marginTop={10}>
-                        {/* playback progress goes here */}
-                        <HorizontalSlider 
-                            value={progress!.position}
-                            max={progress!.duration}
-                            width={400}
-                        />
-
-                    </XStack>
-
-                    <XStack justifyContent="center">
-                        <PlayPauseButton />
-                    </XStack>
-
-                    
-                </YStack>
-            )}
-        </SafeAreaView>
+        </PlayerStack.Navigator>
     );
 }
+

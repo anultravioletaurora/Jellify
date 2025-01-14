@@ -1,5 +1,6 @@
 import { PitchAlgorithm, RatingType, Track, TrackType } from "react-native-track-player"
 import { QueuingType } from "../enums/queuing-type";
+import { BaseItemDto } from "@jellyfin/sdk/lib/generated-client/models";
 
 export interface JellifyTrack extends Track {
     url: string;
@@ -20,12 +21,7 @@ export interface JellifyTrack extends Track {
     rating?: RatingType | undefined;
     isLiveStream?: boolean | undefined;
 
-    ItemId: string;
-    ArtistId: string;
-    AlbumId: string;
-    Year?: number | null | undefined;
-    IndexNumber?: number | null | undefined;
-    ParentIndexNumber?: number | null | undefined;
+    item: BaseItemDto;
 
     /**
      * Represents the type of queuing for this song, be it that it was

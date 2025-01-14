@@ -12,7 +12,7 @@ const jellifyConfig = createTamagui({
     shorthands,
     tokens,
     themes,
-})
+});
 
 export type JellifyConfig = typeof jellifyConfig
 

@@ -13,7 +13,7 @@ export default function RecentArtists({ navigation }: ProvidedHomeProps): React.
 
     return (
         <View>
-            <H2 marginLeft={15}>Recent Artists</H2>
+            <H2 marginLeft={"$2"}>Recent Artists</H2>
             <FlatList horizontal
                 data={recentArtists}   
                 renderItem={({ item: recentArtist}) => {

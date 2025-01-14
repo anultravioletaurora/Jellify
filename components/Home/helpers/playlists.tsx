@@ -15,7 +15,7 @@ export default function Playlists({ navigation }: ProvidedHomeProps) : React.JSX
 
     return (
         <View>
-            <H2 marginLeft={15}>Your Playlists</H2>
+            <H2 marginLeft={"$2"}>Your Playlists</H2>
             <FlatList horizontal
                 data={playlists}
                 renderItem={({ item: playlist }) => {

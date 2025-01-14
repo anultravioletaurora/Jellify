@@ -1,6 +1,5 @@
 import React, {  } from "react";
-import { Spacer, Spinner, XStack, YStack } from "tamagui";
-import { State, usePlaybackState } from "react-native-track-player";
+import { XStack, YStack } from "tamagui";
 import { usePlayerContext } from "../../player/provider";
 import { BottomTabNavigationEventMap } from "@react-navigation/bottom-tabs";
 import { NavigationHelpers, ParamListBase } from "@react-navigation/native";
@@ -15,16 +14,18 @@ import { queryConfig } from "../../api/queries/query.config";
 import { useApiClientContext } from "../jellyfin-api-provider";
 import TextTicker from 'react-native-text-ticker';
 import PlayPauseButton from "./helpers/buttons";
-import { skipToNext } from "react-native-track-player/lib/src/trackPlayer";
+import { useSafeAreaFrame } from "react-native-safe-area-context";
 
 export function Miniplayer({ navigation }: { navigation : NavigationHelpers<ParamListBase, BottomTabNavigationEventMap> }) : React.JSX.Element {
 
-    const { nowPlaying } = usePlayerContext();
+    const { nowPlaying, useSkip } = usePlayerContext();
 
     const { apiClient } = useApiClientContext();
 
+    const { width } = useSafeAreaFrame();
+
     return (
-        <BlurView>
+        <BlurView overlayColor={Colors.Background}>
             { nowPlaying && (
 
                 <XStack 
@@ -35,7 +36,7 @@ export function Miniplayer({ navigation }: { navigation : NavigationHelpers<Para
                     onPress={() => navigation.navigate("Player")}
                 >
                     <YStack
-                        alignContent="flex-start"
+                        alignContent="center"
                         flex={1}>
                         <CachedImage
                             source={getImageApi(apiClient!)
@@ -47,8 +48,8 @@ export function Miniplayer({ navigation }: { navigation : NavigationHelpers<Para
                             }
                             imageStyle={{
                                 position: "relative",
-                                width: 60,
-                                height: 60,
+                                width: width / 7,
+                                height: width / 7,
                                 borderRadius: 2,
                             }}
                         />
@@ -56,7 +57,7 @@ export function Miniplayer({ navigation }: { navigation : NavigationHelpers<Para
                     </YStack>
 
 
-                    <YStack alignContent="flex-start" flex={4}>
+                    <YStack alignContent="flex-start" flex={4} maxWidth={"$20"}>
                         <TextTicker 
                             duration={5000}
                             loop
@@ -72,7 +73,7 @@ export function Miniplayer({ navigation }: { navigation : NavigationHelpers<Para
                             repeatSpacer={20}
                             marqueeDelay={1000} 
                         >
-                            <Text>{nowPlaying?.artist ?? ""}</Text>
+                            <Text color={Colors.Primary}>{nowPlaying?.artist ?? ""}</Text>
                         </TextTicker>
                     </YStack>
                     
@@ -84,8 +85,8 @@ export function Miniplayer({ navigation }: { navigation : NavigationHelpers<Para
 
                         <Icon 
                             large
-                            name="fast-forward" 
-                            onPress={() => skipToNext()}
+                            name="skip-next" 
+                            onPress={() => useSkip.mutate(undefined)}
                             />
                     </XStack>
                 </XStack>

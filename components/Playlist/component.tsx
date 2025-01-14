@@ -5,13 +5,14 @@ import { ScrollView, XStack, YStack } from "tamagui";
 import { useApiClientContext } from "../jellyfin-api-provider";
 import { usePlayerContext } from "@/player/provider";
 import { useItemTracks } from "@/api/queries/tracks";
-import RunTimeTicks from "../Global/helpers/runtimeticks";
+import { RunTimeTicks } from "../Global/helpers/time-codes";
 import { H4, H5, Text } from "../Global/helpers/text";
 import Track from "../Global/components/track";
 import { FlatList } from "react-native";
 import { queryConfig } from "@/api/queries/query.config";
 import { getImageApi } from "@jellyfin/sdk/lib/utils/api/image-api";
 import { CachedImage } from "@georstat/react-native-image-cache";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface PlaylistProps { 
     playlist: BaseItemDto;
@@ -22,12 +23,13 @@ export default function Playlist(props: PlaylistProps): React.JSX.Element {
 
     const { apiClient, sessionId } = useApiClientContext();
 
-    const { playNewQueue, nowPlaying } = usePlayerContext();
+    const { nowPlaying } = usePlayerContext();
 
     const { data: tracks, isLoading } = useItemTracks(props.playlist.Id!, apiClient!);
 
     return (
-        <ScrollView>
+        <SafeAreaView edges={["right", "left"]}>
+            <ScrollView contentInsetAdjustmentBehavior="automatic">
                 <YStack alignItems="center">
                     <CachedImage
                         source={getImageApi(apiClient!)
@@ -57,6 +59,8 @@ export default function Playlist(props: PlaylistProps): React.JSX.Element {
                                 track={track}
                                 tracklist={tracks!}
                                 index={index}
+                                queueName={props.playlist.Name ?? "Untitled Playlist"}
+                                showArtwork
                             />
                         )
 
@@ -72,5 +76,6 @@ export default function Playlist(props: PlaylistProps): React.JSX.Element {
                     <RunTimeTicks>{ props.playlist.RunTimeTicks }</RunTimeTicks>
                 </XStack>
             </ScrollView>
+        </SafeAreaView>
     )
 }
