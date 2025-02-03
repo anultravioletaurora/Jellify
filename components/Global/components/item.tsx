@@ -2,7 +2,7 @@ import { usePlayerContext } from "../../../player/provider";
 import { StackParamList } from "../../../components/types";
 import { BaseItemDto } from "@jellyfin/sdk/lib/generated-client/models";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Separator, Spacer, useTheme, View, XStack, YStack } from "tamagui";
+import { getTokens, Separator, Spacer, View, XStack, YStack } from "tamagui";
 import { Text } from "../helpers/text";
 import { useSafeAreaFrame } from "react-native-safe-area-context";
 import BlurhashedImage from "./blurhashed-image";
@@ -23,8 +23,6 @@ export default function Item({
     const { usePlayNewQueue } = usePlayerContext();
 
     const { width } = useSafeAreaFrame();
-
-    const theme = useTheme();
 
     return (
         <View flex={1}>
@@ -106,7 +104,7 @@ export default function Item({
                     { item.UserData?.IsFavorite ? (
                         <Icon 
                             small
-                            color={theme.telemagenta.val}
+                            color={getTokens().color.telemagenta.val}
                             name="heart"
                         />
                     ) : (
@@ -119,7 +117,9 @@ export default function Item({
                         <Spacer />
                     )}
 
-                    <Icon  
+                    {(item.Type === 'Audio' || item.Type === 'MusicAlbum') ? (
+
+                        <Icon  
                         name="dots-vertical"
                         onPress={() => {
                             navigation.push("Details", {
@@ -127,7 +127,10 @@ export default function Item({
                                 isNested: false
                             })
                         }} 
-                    />
+                        />
+                    ) : (
+                        <Spacer />
+                    )}
                 </XStack>
             </XStack>
         </View>

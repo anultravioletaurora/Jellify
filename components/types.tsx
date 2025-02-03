@@ -18,6 +18,7 @@ export type StackParamList = {
 
     Settings: undefined;
     AccountDetails: undefined;
+    DevTools: undefined;
 
     Tabs: undefined;
 
@@ -68,3 +69,5 @@ export type GenresProps = NativeStackScreenProps<StackParamList, "Genres">;
 export type DetailsProps = NativeStackScreenProps<StackParamList, "Details">;
 
 export type AccountDetailsProps = NativeStackScreenProps<StackParamList, "AccountDetails">;
+
+export type DevToolsProps = NativeStackScreenProps<StackParamList, 'DevTools'>;

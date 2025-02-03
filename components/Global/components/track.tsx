@@ -1,6 +1,6 @@
 import { usePlayerContext } from "../../../player/provider";
 import React from "react";
-import { Separator, Spacer, useTheme, View, XStack, YStack } from "tamagui";
+import { getTokens, Separator, Spacer, Theme, useTheme, XStack, YStack } from "tamagui";
 import { Text } from "../helpers/text";
 import { RunTimeTicks } from "../helpers/time-codes";
 import { BaseItemDto } from "@jellyfin/sdk/lib/generated-client/models";
@@ -13,13 +13,15 @@ import BlurhashedImage from "./blurhashed-image";
 
 interface TrackProps {
     track: BaseItemDto;
-    tracklist: BaseItemDto[];
     navigation: NativeStackNavigationProp<StackParamList>;
+    tracklist?: BaseItemDto[] | undefined;
     index?: number | undefined;
     queueName?: string | undefined;
     showArtwork?: boolean | undefined;
     onPress?: () => void | undefined;
-    isNested?: boolean | undefined
+    onLongPress?: () => void | undefined;
+    isNested?: boolean | undefined;
+    invertedColors?: boolean | undefined;
 }
 
 export default function Track({
@@ -30,18 +32,19 @@ export default function Track({
     queueName,
     showArtwork,
     onPress,
-    isNested
+    onLongPress,
+    isNested,
+    invertedColors,
 } : TrackProps) : React.JSX.Element {
 
+    const theme = useTheme();
     const { width } = useSafeAreaFrame();
-    const { nowPlaying, usePlayNewQueue } = usePlayerContext();
+    const { nowPlaying, queue, usePlayNewQueue } = usePlayerContext();
 
     const isPlaying = nowPlaying?.item.Id === track.Id;
 
-    const theme = useTheme();
-
     return (
-        <View>
+        <Theme name={invertedColors ? "inverted_purple" : undefined}>
             <Separator />
             <XStack 
                 alignContent="center"
@@ -54,18 +57,21 @@ export default function Track({
                         usePlayNewQueue.mutate({
                             track,
                             index,
-                            tracklist,
+                            tracklist: tracklist ?? queue.map((track) => track.item),
                             queueName: queueName ? queueName : track.Album ? track.Album! : "Queue",
                             queuingType: QueuingType.FromSelection
                         });
                     }
                 }}
-                onLongPress={() => {
-                    navigation.push("Details", {
-                        item: track,
-                        isNested: isNested
-                    })
-                }}
+                onLongPress={
+                    onLongPress ? () => onLongPress() 
+                    : () => {
+                        navigation.push("Details", {
+                            item: track,
+                            isNested: isNested
+                        })
+                    }
+                }
                 paddingVertical={"$2"}
                 marginHorizontal={"$1"}
             >
@@ -83,7 +89,7 @@ export default function Track({
                         />
                     ) : (
                     <Text 
-                        color={isPlaying ? theme.telemagenta : theme.color}
+                        color={isPlaying ? getTokens().color.telemagenta : theme.color}
                     >
                         { track.IndexNumber?.toString() ?? "" }
                     </Text>
@@ -93,7 +99,7 @@ export default function Track({
                 <YStack alignContent="center" justifyContent="flex-start" flex={5}>
                     <Text 
                         bold
-                        color={isPlaying ? theme.telemagenta : theme.color}
+                        color={isPlaying ? getTokens().color.telemagenta : theme.color}
                         lineBreakStrategyIOS="standard"
                         numberOfLines={1}
                     >
@@ -122,7 +128,7 @@ export default function Track({
                         minWidth={24}
                     >
                         { track.UserData?.IsFavorite ? (
-                            <Icon small name="heart" color={theme.telemagenta.val} />
+                            <Icon small name="heart" color={getTokens().color.telemagenta.val} />
                         ) : (
                             <Spacer />
                         )}
@@ -152,6 +158,7 @@ export default function Track({
                     </YStack>
                 </XStack>
             </XStack>
-        </View>
+            <Separator />
+        </Theme>
     )
 }

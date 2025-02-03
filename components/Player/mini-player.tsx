@@ -1,5 +1,5 @@
 import React, {  } from "react";
-import { useTheme, View, XStack, YStack } from "tamagui";
+import { getTokens, useTheme, View, XStack, YStack } from "tamagui";
 import { usePlayerContext } from "../../player/provider";
 import { BottomTabNavigationEventMap } from "@react-navigation/bottom-tabs";
 import { NavigationHelpers, ParamListBase } from "@react-navigation/native";
@@ -56,7 +56,7 @@ export function Miniplayer({ navigation }: { navigation : NavigationHelpers<Para
                         </TextTicker>
 
                         <TextTicker {...TextTickerConfig}>
-                            <Text color={theme.telemagenta}>{nowPlaying?.artist ?? ""}</Text>
+                            <Text color={getTokens().color.telemagenta}>{nowPlaying?.artist ?? ""}</Text>
                         </TextTicker>
                     </YStack>
                     

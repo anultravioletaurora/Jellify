@@ -29,5 +29,4 @@ export const useItemTracks = (itemId: string, sort: boolean = false) => useQuery
             return response.data.Items ? response.data.Items! : [];
         })
     },
-    staleTime: QueryConfig.staleTime.oneDay
 })

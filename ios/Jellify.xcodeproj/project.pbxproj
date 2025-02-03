@@ -9,10 +9,9 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* JellifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* JellifyTests.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		1A54BD4268E3B9223ACD0ACE /* libPods-Jellify-JellifyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3FC2EF41A48FB4677060580 /* libPods-Jellify-JellifyTests.a */; };
 		217EBE16A3E8C5FBF476C905 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F757EB73303E0AC21EF34F64 /* PrivacyInfo.xcprivacy */; };
-		445DD5C8B4E05137BA74B472 /* libPods-Jellify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BDC69D4A828E041848E705 /* libPods-Jellify.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		A60C9AA87213BE8A7EE6AE6B /* libPods-Jellify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1D914BAD4BACAA4285B842 /* libPods-Jellify.a */; };
 		CF620D0C2CF2BB210045E433 /* Aileron-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF620CFC2CF2BB1F0045E433 /* Aileron-Italic.otf */; };
 		CF620D0D2CF2BB210045E433 /* Aileron-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF620CFD2CF2BB1F0045E433 /* Aileron-Thin.otf */; };
 		CF620D0E2CF2BB210045E433 /* Aileron-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF620CFE2CF2BB1F0045E433 /* Aileron-HeavyItalic.otf */; };
@@ -59,6 +58,7 @@
 		CF98CA472D3E99E0003D88B7 /* CarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF98CA452D3E99DF003D88B7 /* CarScene.swift */; };
 		CF98CA482D3E99E0003D88B7 /* PhoneScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF98CA462D3E99DF003D88B7 /* PhoneScene.swift */; };
 		CF98CA492D3E99E0003D88B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF98CA442D3E99DF003D88B7 /* AppDelegate.swift */; };
+		F6D5705AF0F241CFACB48120 /* libPods-Jellify-JellifyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2E0D6CB45A7D6D19B1B471 /* libPods-Jellify-JellifyTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,11 +79,12 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Jellify/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Jellify/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = Jellify/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		35BDC69D4A828E041848E705 /* libPods-Jellify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jellify.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B6622EAB81CD73F7F18C4A4 /* Pods-Jellify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jellify.debug.xcconfig"; path = "Target Support Files/Pods-Jellify/Pods-Jellify.debug.xcconfig"; sourceTree = "<group>"; };
-		47F8F23DBB1E6482816F1E11 /* Pods-Jellify-JellifyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jellify-JellifyTests.debug.xcconfig"; path = "Target Support Files/Pods-Jellify-JellifyTests/Pods-Jellify-JellifyTests.debug.xcconfig"; sourceTree = "<group>"; };
-		61D59F7A2E3DAFA5DF396506 /* Pods-Jellify-JellifyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jellify-JellifyTests.release.xcconfig"; path = "Target Support Files/Pods-Jellify-JellifyTests/Pods-Jellify-JellifyTests.release.xcconfig"; sourceTree = "<group>"; };
+		1B1D914BAD4BACAA4285B842 /* libPods-Jellify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jellify.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BD286321789880B3BB12D97 /* Pods-Jellify-JellifyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jellify-JellifyTests.debug.xcconfig"; path = "Target Support Files/Pods-Jellify-JellifyTests/Pods-Jellify-JellifyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4677ABFB0B4DF49E35B2E856 /* Pods-Jellify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jellify.debug.xcconfig"; path = "Target Support Files/Pods-Jellify/Pods-Jellify.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Jellify/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9F2E0D6CB45A7D6D19B1B471 /* libPods-Jellify-JellifyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jellify-JellifyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE67D68B5188F802B7E5EDD9 /* Pods-Jellify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jellify.release.xcconfig"; path = "Target Support Files/Pods-Jellify/Pods-Jellify.release.xcconfig"; sourceTree = "<group>"; };
 		CF620CFC2CF2BB1F0045E433 /* Aileron-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aileron-Italic.otf"; path = "../assets/fonts/Aileron-Italic.otf"; sourceTree = "<group>"; };
 		CF620CFD2CF2BB1F0045E433 /* Aileron-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aileron-Thin.otf"; path = "../assets/fonts/Aileron-Thin.otf"; sourceTree = "<group>"; };
 		CF620CFE2CF2BB1F0045E433 /* Aileron-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aileron-HeavyItalic.otf"; path = "../assets/fonts/Aileron-HeavyItalic.otf"; sourceTree = "<group>"; };
@@ -132,8 +133,7 @@
 		CF98CA442D3E99DF003D88B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF98CA452D3E99DF003D88B7 /* CarScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarScene.swift; sourceTree = "<group>"; };
 		CF98CA462D3E99DF003D88B7 /* PhoneScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneScene.swift; sourceTree = "<group>"; };
-		D0DF149772F72EE36A16DED9 /* Pods-Jellify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jellify.release.xcconfig"; path = "Target Support Files/Pods-Jellify/Pods-Jellify.release.xcconfig"; sourceTree = "<group>"; };
-		E3FC2EF41A48FB4677060580 /* libPods-Jellify-JellifyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jellify-JellifyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA9643C989B96B543B38CB6B /* Pods-Jellify-JellifyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jellify-JellifyTests.release.xcconfig"; path = "Target Support Files/Pods-Jellify-JellifyTests/Pods-Jellify-JellifyTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F757EB73303E0AC21EF34F64 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Jellify/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,7 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A54BD4268E3B9223ACD0ACE /* libPods-Jellify-JellifyTests.a in Frameworks */,
+				F6D5705AF0F241CFACB48120 /* libPods-Jellify-JellifyTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				445DD5C8B4E05137BA74B472 /* libPods-Jellify.a in Frameworks */,
+				A60C9AA87213BE8A7EE6AE6B /* libPods-Jellify.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,8 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				35BDC69D4A828E041848E705 /* libPods-Jellify.a */,
-				E3FC2EF41A48FB4677060580 /* libPods-Jellify-JellifyTests.a */,
+				1B1D914BAD4BACAA4285B842 /* libPods-Jellify.a */,
+				9F2E0D6CB45A7D6D19B1B471 /* libPods-Jellify-JellifyTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -254,10 +254,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B6622EAB81CD73F7F18C4A4 /* Pods-Jellify.debug.xcconfig */,
-				D0DF149772F72EE36A16DED9 /* Pods-Jellify.release.xcconfig */,
-				47F8F23DBB1E6482816F1E11 /* Pods-Jellify-JellifyTests.debug.xcconfig */,
-				61D59F7A2E3DAFA5DF396506 /* Pods-Jellify-JellifyTests.release.xcconfig */,
+				4677ABFB0B4DF49E35B2E856 /* Pods-Jellify.debug.xcconfig */,
+				BE67D68B5188F802B7E5EDD9 /* Pods-Jellify.release.xcconfig */,
+				1BD286321789880B3BB12D97 /* Pods-Jellify-JellifyTests.debug.xcconfig */,
+				EA9643C989B96B543B38CB6B /* Pods-Jellify-JellifyTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -311,12 +311,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "JellifyTests" */;
 			buildPhases = (
-				1ECAB9805E862FBBEC2A87E4 /* [CP] Check Pods Manifest.lock */,
+				DF14AF96ECCF0CD980648469 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				6C60F96DEF837320134B37EA /* [CP] Embed Pods Frameworks */,
-				3FE3CC1F6C902845DB001FF9 /* [CP] Copy Pods Resources */,
+				E3B92A29A99C56A5F979DEF5 /* [CP] Embed Pods Frameworks */,
+				9CF6FF99E4F767CF8859AEC1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -332,13 +332,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Jellify" */;
 			buildPhases = (
-				307C2C88C87D3ECD7996604B /* [CP] Check Pods Manifest.lock */,
+				7A77CD9289109BCDE601BE24 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				ED95B28BB20B2A35D6318E80 /* [CP] Embed Pods Frameworks */,
-				6EB5E38F20F67ADA10AC38F1 /* [CP] Copy Pods Resources */,
+				F1247BE43B252D12F2F1196D /* [CP] Embed Pods Frameworks */,
+				BF5CE9D95F01EA869FBAF787 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -464,29 +464,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		1ECAB9805E862FBBEC2A87E4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Jellify-JellifyTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		307C2C88C87D3ECD7996604B /* [CP] Check Pods Manifest.lock */ = {
+		7A77CD9289109BCDE601BE24 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -508,7 +486,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3FE3CC1F6C902845DB001FF9 /* [CP] Copy Pods Resources */ = {
+		9CF6FF99E4F767CF8859AEC1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -525,24 +503,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jellify-JellifyTests/Pods-Jellify-JellifyTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6C60F96DEF837320134B37EA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Jellify-JellifyTests/Pods-Jellify-JellifyTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Jellify-JellifyTests/Pods-Jellify-JellifyTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jellify-JellifyTests/Pods-Jellify-JellifyTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6EB5E38F20F67ADA10AC38F1 /* [CP] Copy Pods Resources */ = {
+		BF5CE9D95F01EA869FBAF787 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -559,7 +520,46 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jellify/Pods-Jellify-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ED95B28BB20B2A35D6318E80 /* [CP] Embed Pods Frameworks */ = {
+		DF14AF96ECCF0CD980648469 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Jellify-JellifyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3B92A29A99C56A5F979DEF5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jellify-JellifyTests/Pods-Jellify-JellifyTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jellify-JellifyTests/Pods-Jellify-JellifyTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jellify-JellifyTests/Pods-Jellify-JellifyTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1247BE43B252D12F2F1196D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -611,7 +611,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 47F8F23DBB1E6482816F1E11 /* Pods-Jellify-JellifyTests.debug.xcconfig */;
+			baseConfigurationReference = 1BD286321789880B3BB12D97 /* Pods-Jellify-JellifyTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -640,7 +640,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61D59F7A2E3DAFA5DF396506 /* Pods-Jellify-JellifyTests.release.xcconfig */;
+			baseConfigurationReference = EA9643C989B96B543B38CB6B /* Pods-Jellify-JellifyTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -666,7 +666,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B6622EAB81CD73F7F18C4A4 /* Pods-Jellify.debug.xcconfig */;
+			baseConfigurationReference = 4677ABFB0B4DF49E35B2E856 /* Pods-Jellify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -699,7 +699,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0DF149772F72EE36A16DED9 /* Pods-Jellify.release.xcconfig */;
+			baseConfigurationReference = BE67D68B5188F802B7E5EDD9 /* Pods-Jellify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -811,7 +811,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -896,7 +899,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;

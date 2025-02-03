@@ -1,4 +1,4 @@
-import { BaseItemDto } from "@jellyfin/sdk/lib/generated-client/models";
+import { BaseItemDto, ImageType } from "@jellyfin/sdk/lib/generated-client/models";
 import { JellifyTrack } from "../types/JellifyTrack";
 import { RatingType, TrackType } from "react-native-track-player";
 import { QueuingType } from "../enums/queuing-type";
@@ -35,7 +35,7 @@ export function mapDtoToTrack(item: BaseItemDto, queuingType?: QueuingType) : Je
         album: item.Album,
         artist: item.Artists?.join(", "),
         duration: item.RunTimeTicks,
-        artwork: getImageApi(Client.api!).getItemImageUrlById(item.Id!),
+        artwork: getImageApi(Client.api!).getItemImageUrlById(item.Id!, ImageType.Primary, { width: 300, height: 300 }),
 
         rating: isFavorite ? RatingType.Heart : undefined,
         item,

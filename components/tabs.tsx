@@ -7,7 +7,7 @@ import Favorites from "./Favorites/component";
 import Settings from "./Settings/stack";
 import { Discover } from "./Discover/component";
 import { Miniplayer } from "./Player/mini-player";
-import { Separator, useTheme } from "tamagui";
+import { getTokens, Separator } from "tamagui";
 import { usePlayerContext } from "../player/provider";
 import SearchStack from "./Search/stack";
 
@@ -15,7 +15,6 @@ const Tab = createBottomTabNavigator();
 
 export function Tabs() : React.JSX.Element {
 
-    const theme = useTheme();
     const isDarkMode = useColorScheme() === 'dark';
 
     const { showMiniplayer } = usePlayerContext();
@@ -23,8 +22,8 @@ export function Tabs() : React.JSX.Element {
     return (
             <Tab.Navigator
                 screenOptions={{
-                    tabBarActiveTintColor: theme.telemagenta.val,
-                    tabBarInactiveTintColor: theme.borderColor.val
+                    tabBarActiveTintColor: getTokens().color.telemagenta.val,
+                    tabBarInactiveTintColor: getTokens().color.amethyst.val
                 }}
                 tabBar={(props) => (
                     <>

@@ -62,12 +62,13 @@ export function ItemCard(props: CardProps) {
                     alignItems="center"
                     width={dimensions.width}
                 >
-                    <H5 
+                    <Text 
+                        bold
                         lineBreakStrategyIOS="standard"
                         numberOfLines={1}
                     >
                         { props.caption }
-                    </H5>
+                    </Text>
             
                     { props.subCaption && (
                         <Text

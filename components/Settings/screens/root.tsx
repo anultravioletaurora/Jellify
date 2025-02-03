@@ -22,7 +22,6 @@ export default function Root({
                 alignSelf="center" 
                 bordered 
                 width={width / 1.5} 
-                size="$5"
             >
                 <YGroup.Item>
                     <ListItem
@@ -32,6 +31,17 @@ export default function Root({
                         subTitle="Everything is about you, man"
                         onPress={() => {
                             navigation.push("AccountDetails")
+                        }}
+                    />
+                </YGroup.Item>
+                <YGroup.Item>
+                    <ListItem
+                        hoverTheme
+                        pressTheme
+                        title="Developer Tools"
+                        subTitle="Nerds rule!"
+                        onPress={() => {
+                            navigation.push("DevTools");
                         }}
                     />
                 </YGroup.Item>

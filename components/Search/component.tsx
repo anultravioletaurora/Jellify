@@ -23,12 +23,15 @@ export default function Search({
         queryFn: () => fetchSearchResults(searchString)
     })
 
-    const search = useCallback(
-        debounce(() => {
-            refetch();
-        }, 750),
-        []
-    );
+    const search = useCallback(() => {
+
+        let timeout : NodeJS.Timeout;
+        
+        return () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => refetch, 1000)
+        }
+    }, []);
 
     const handleSearchStringUpdate = (value: string | undefined) => {
         setSearchString(value)

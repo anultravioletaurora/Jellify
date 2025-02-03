@@ -16,7 +16,8 @@ import { trigger } from "react-native-haptic-feedback";
 import { getQueue, pause, seekTo, skip, skipToNext, skipToPrevious } from "react-native-track-player/lib/src/trackPlayer";
 import { convertRunTimeTicksToSeconds } from "../helpers/runtimeticks";
 import Client from "../api/client";
-import { AddToQueueMutation, QueueMutation } from "./interfaces";
+import { AddToQueueMutation, QueueMutation, QueueOrderMutation } from "./interfaces";
+import { Section } from "../components/Player/types";
 
 interface PlayerContext {
     showPlayer: boolean;
@@ -28,7 +29,10 @@ interface PlayerContext {
     nowPlaying: JellifyTrack | undefined;
     queue: JellifyTrack[];
     queueName: string | undefined;
+    getQueueSectionData: () => Section[];
     useAddToQueue: UseMutationResult<void, Error, AddToQueueMutation, unknown>;
+    useClearQueue: UseMutationResult<void, Error, void, unknown>;
+    useReorderQueue: UseMutationResult<void, Error, QueueOrderMutation, unknown>;
     useTogglePlayback: UseMutationResult<void, Error, number | undefined, unknown>;
     useSeekTo: UseMutationResult<void, Error, number, unknown>;
     useSkip: UseMutationResult<void, Error, number | undefined, unknown>;
@@ -64,6 +68,15 @@ const PlayerContextInitializer = () => {
         }
 
         TrackPlayer.play();
+    }
+
+    const getQueueSectionData : () => Section[] = () => {
+        return Object.keys(QueuingType).map((type) => {
+            return {
+                title: type,
+                data: queue.filter(track => track.QueuingType === type)
+            } as Section
+        });
     }
     
     const resetQueue = async (hideMiniplayer?: boolean | undefined) => {
@@ -101,13 +114,30 @@ const PlayerContextInitializer = () => {
     //#region Hooks
     const useAddToQueue = useMutation({
         mutationFn: async (mutation: AddToQueueMutation) => {
-            trigger("impactMedium");
+            trigger("effectDoubleClick");
 
             if (mutation.queuingType === QueuingType.PlayingNext)
                 return addToNext([mapDtoToTrack(mutation.track, mutation.queuingType)]);
 
             else
                 return addToQueue([mapDtoToTrack(mutation.track, mutation.queuingType)])
+        }
+    });
+
+    const useClearQueue = useMutation({
+        mutationFn: async () => {
+            trigger("effectDoubleClick")
+
+            await TrackPlayer.removeUpcomingTracks();
+
+            setQueue(await getQueue() as JellifyTrack[]);
+        }
+    });
+
+    const useReorderQueue = useMutation({
+        mutationFn: async (mutation : QueueOrderMutation) => {
+            setQueue(mutation.newOrder);
+            await TrackPlayer.move(mutation.from, mutation.to);
         }
     })
 
@@ -123,7 +153,7 @@ const PlayerContextInitializer = () => {
 
     const useSeekTo = useMutation({
         mutationFn: async (position: number) => {
-            trigger('impactMedium');
+            trigger('impactLight');
             await seekTo(position);
 
             handlePlaybackProgressUpdated(Client.sessionId, playStateApi, nowPlaying!, { 
@@ -166,7 +196,7 @@ const PlayerContextInitializer = () => {
 
     const usePlayNewQueue = useMutation({
         mutationFn: async (mutation: QueueMutation) => {
-            trigger("impactMedium");
+            trigger("effectDoubleClick");
 
             setIsSkipping(true);
 
@@ -286,7 +316,10 @@ const PlayerContextInitializer = () => {
         nowPlaying,
         queue,
         queueName,
+        getQueueSectionData,
         useAddToQueue,
+        useClearQueue,
+        useReorderQueue,
         useTogglePlayback,
         useSeekTo,
         useSkip,
@@ -309,7 +342,44 @@ export const PlayerContext = createContext<PlayerContext>({
     nowPlaying: undefined,
     queue: [],
     queueName: undefined,
+    getQueueSectionData: () => [],
     useAddToQueue: {
+        mutate: () => {},
+        mutateAsync: async () => {},
+        data: undefined,
+        error: null,
+        variables: undefined,
+        isError: false,
+        isIdle: true,
+        isPaused: false,
+        isPending: false,
+        isSuccess: false,
+        status: "idle",
+        reset: () => {},
+        context: {},
+        failureCount: 0,
+        failureReason: null,
+        submittedAt: 0
+    },
+    useClearQueue: {
+        mutate: () => {},
+        mutateAsync: async () => {},
+        data: undefined,
+        error: null,
+        variables: undefined,
+        isError: false,
+        isIdle: true,
+        isPaused: false,
+        isPending: false,
+        isSuccess: false,
+        status: "idle",
+        reset: () => {},
+        context: {},
+        failureCount: 0,
+        failureReason: null,
+        submittedAt: 0
+    },
+    useReorderQueue: {
         mutate: () => {},
         mutateAsync: async () => {},
         data: undefined,
@@ -433,7 +503,10 @@ export const PlayerProvider: ({ children }: { children: ReactNode }) => React.JS
         nowPlaying,
         queue, 
         queueName,
+        getQueueSectionData,
         useAddToQueue,
+        useClearQueue,
+        useReorderQueue,
         useTogglePlayback,
         useSeekTo,
         useSkip,
@@ -453,7 +526,10 @@ export const PlayerProvider: ({ children }: { children: ReactNode }) => React.JS
         nowPlaying,
         queue,
         queueName,
+        getQueueSectionData,
         useAddToQueue,
+        useClearQueue,
+        useReorderQueue,
         useTogglePlayback,
         useSeekTo,
         useSkip,

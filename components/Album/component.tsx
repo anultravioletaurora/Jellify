@@ -31,38 +31,32 @@ export default function Album({
             )
         }
     })
-
-    const { nowPlaying, nowPlayingIsFavorite } = usePlayerContext();
-
     const { width } = useSafeAreaFrame();
 
-    const { data: tracks, isLoading, refetch } = useItemTracks(album.Id!, true);
-
-    useEffect(() => {
-        refetch();
-    }, [
-        nowPlayingIsFavorite
-    ])
+    const { data: tracks } = useItemTracks(album.Id!, true);
 
     return (
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <YStack 
-                alignItems="center" 
-                alignContent="center"
-                minHeight={width / 1.1}
-            >
-                <BlurhashedImage
-                    item={album}
-                    width={width / 1.1}
-                />
-
-                <H4>{ album.Name ?? "Untitled Album" }</H4>
-                <H5>{ album.ProductionYear?.toString() ?? "" }</H5>
-            </YStack>
             <FlatList
+                contentInsetAdjustmentBehavior="automatic"
                 data={tracks}
-                extraData={nowPlaying}
                 numColumns={1}
+                ListHeaderComponent={() => (
+                    <YStack 
+                        alignItems="center" 
+                        alignContent="center"
+                        minHeight={width / 1.1}
+                    >
+                        <BlurhashedImage
+                            item={album}
+                            width={width / 1.1}
+                            height={width / 1.1}
+                        />
+
+                        <H5>{ album.Name ?? "Untitled Album" }</H5>
+                        <Text>{ album.ProductionYear?.toString() ?? "" }</Text>
+                    </YStack>
+
+                )}
                 renderItem={({ item: track, index }) => {
                     
                     return (
@@ -74,41 +68,44 @@ export default function Album({
                         />
                     )
                     
-                }}/>
+                }}
+                ListFooterComponent={() => (
+                    <YStack justifyContent="flex-start">
+                        <XStack flex={1} marginTop={"$3"} justifyContent="flex-end">
+                            <Text 
+                                color={"$borderColor"} 
+                                style={{ display: "block"}}
+                                marginRight={"$1"}
+                                >
+                                Total Runtime: 
+                            </Text>
+                            <RunTimeTicks>{ album.RunTimeTicks }</RunTimeTicks>
+                        </XStack>
 
-            <XStack marginTop={"$3"} justifyContent="flex-end">
-                <Text 
-                    color={"$borderColor"} 
-                    style={{ display: "block"}}
-                    marginRight={"$1"}
-                    >
-                    Total Runtime: 
-                </Text>
-                <RunTimeTicks>{ album.RunTimeTicks }</RunTimeTicks>
-            </XStack>
-
-            <YStack justifyContent="flex-start">
-                <H3>Album Artists</H3>
-                <FlatList
-                    horizontal
-                    data={album.ArtistItems}
-                    renderItem={({ index, item: artist }) => {
-                        return (
-                            <Avatar
-                                circular
-                                item={artist}
-                                width={width / 4}
-                                onPress={() => {
-                                    navigation.push("Artist", {
-                                        artist
-                                    });
-                                }}
-                                subheading={artist.Name ?? "Unknown Artist"}
+                        <H3>Album Artists</H3>
+                        <FlatList
+                            horizontal
+                            data={album.ArtistItems}
+                            renderItem={({ index, item: artist }) => {
+                                return (
+                                    <Avatar
+                                        circular
+                                        item={artist}
+                                        width={width / 4}
+                                        onPress={() => {
+                                            navigation.push("Artist", {
+                                                artist
+                                            });
+                                        }}
+                                        subheading={artist.Name ?? "Unknown Artist"}
+                                    />
+                                )
+                            }}
                             />
-                        )
-                    }}
-                    />
-            </YStack>
-        </ScrollView>
+                    </YStack>
+
+                )}
+            />
+
     )
 }

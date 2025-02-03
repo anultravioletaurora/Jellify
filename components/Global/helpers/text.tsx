@@ -24,31 +24,58 @@ export function Label(props: LabelProps): React.JSX.Element {
 
 export function H1({ children }: { children: string }): React.JSX.Element {
     return (
-        <TamaguiH1 marginBottom={10}>{ children }</TamaguiH1>
+        <TamaguiH1 
+            fontWeight={900}
+            marginBottom={10}
+        >
+            { children }
+        </TamaguiH1>
     )
 }
 
 export function H2(props: TamaguiTextProps): React.JSX.Element {
     return (
-        <TamaguiH2 marginVertical={7} {...props}>{ props.children }</TamaguiH2>
+        <TamaguiH2 
+            fontWeight={900}
+            marginVertical={7} 
+            {...props}
+        >
+            { props.children }
+        </TamaguiH2>
     )
 }
 
-export function H3({ children }: { children: string }): React.JSX.Element {
+export function H3(props: TamaguiTextProps): React.JSX.Element {
     return (
-        <TamaguiH3 marginVertical={5}>{ children }</TamaguiH3>
+        <TamaguiH3
+            fontWeight={800}
+            marginVertical={5}
+            {...props}
+        >
+            { props.children }
+        </TamaguiH3>
     )
 }
 
-export function H4({ children }: { children: string }): React.JSX.Element {
+export function H4(props: TamaguiTextProps): React.JSX.Element {
     return (
-        <TamaguiH4 marginVertical={3}>{children}</TamaguiH4>
+        <TamaguiH4 
+            fontWeight={800}
+            marginVertical={3}
+        >
+            { props.children }
+        </TamaguiH4>
     )
 }
 
 export function H5({ children }: { children: string }): React.JSX.Element {
     return (
-        <TamaguiH5 marginVertical={2}>{ children }</TamaguiH5>
+        <TamaguiH5 
+            fontWeight={800}
+            marginVertical={2}
+        >
+            { children }
+        </TamaguiH5>
     )
 }
 

@@ -5,7 +5,7 @@ import { usePlayerContext } from "../../../player/provider";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, useSafeAreaFrame } from "react-native-safe-area-context";
-import { YStack, XStack, Spacer, useTheme } from "tamagui";
+import { YStack, XStack, Spacer, getTokens } from "tamagui";
 import PlayPauseButton from "../helpers/buttons";
 import { H5, Text } from "../../../components/Global/helpers/text";
 import Icon from "../../../components/Global/helpers/icon";
@@ -35,11 +35,9 @@ export default function PlayerScreen({ navigation }: { navigation: NativeStackNa
 
     const { width } = useSafeAreaFrame();
 
-    const theme = useTheme();
-
     // Prevent gesture event to close player if we're seeking
     useEffect(() => {
-        navigation.setOptions({ gestureEnabled: !seeking });
+        navigation.getParent()!.setOptions({ gestureEnabled: !seeking });
     }, [
         navigation,
         seeking
@@ -47,7 +45,7 @@ export default function PlayerScreen({ navigation }: { navigation: NativeStackNa
 
     useEffect(() => {
         if (!seeking)
-            setProgressState(Math.floor(progress!.position))
+            setProgressState(Math.round(progress!.position))
     }, [
         progress
     ]);
@@ -64,7 +62,7 @@ export default function PlayerScreen({ navigation }: { navigation: NativeStackNa
                     >
                         <Text>Playing from</Text>
                         <TextTicker {...TextTickerConfig}>
-                            <H5>{ queueName ?? "Queue"}</H5>
+                            <Text bold>{ queueName ?? "Queue"}</Text>
                         </TextTicker>
                     </YStack>
 
@@ -96,7 +94,7 @@ export default function PlayerScreen({ navigation }: { navigation: NativeStackNa
                             <TextTicker {...TextTickerConfig}>
                                 <Text 
                                     fontSize={"$6"}
-                                    color={theme.telemagenta}
+                                    color={getTokens().color.telemagenta}
                                     onPress={() => {
                                         if (nowPlaying!.item.ArtistItems) {
                                             navigation.navigate("Artist", {
