@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Player from "./Player/stack";
 import { Tabs } from "./tabs";
 import { StackParamList } from "./types";
+import DetailsScreen from "./ItemDetail/screen";
 
 export default function Navigation(): React.JSX.Element {
 

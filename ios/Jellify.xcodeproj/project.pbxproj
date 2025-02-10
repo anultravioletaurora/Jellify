@@ -10,7 +10,7 @@
 		00E356F31AD99517003FC87E /* JellifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* JellifyTests.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		217EBE16A3E8C5FBF476C905 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F757EB73303E0AC21EF34F64 /* PrivacyInfo.xcprivacy */; };
-		39F789314461ACFE49759514 /* libPods-Jellify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7960C5FCBB2DC63D15C0068 /* libPods-Jellify.a */; };
+		65183FEBA3A0385468EEE474 /* libPods-Jellify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCCB62E5035EDB84FBFFEF80 /* libPods-Jellify.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		CF620D0C2CF2BB210045E433 /* Aileron-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF620CFC2CF2BB1F0045E433 /* Aileron-Italic.otf */; };
 		CF620D0D2CF2BB210045E433 /* Aileron-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF620CFD2CF2BB1F0045E433 /* Aileron-Thin.otf */; };
@@ -96,10 +96,10 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Jellify/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Jellify/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = Jellify/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		19D89019FA3E02946F0AD48C /* Pods-Jellify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jellify.release.xcconfig"; path = "Target Support Files/Pods-Jellify/Pods-Jellify.release.xcconfig"; sourceTree = "<group>"; };
-		6CA4CE28FCA19FCA60025E66 /* Pods-Jellify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jellify.debug.xcconfig"; path = "Target Support Files/Pods-Jellify/Pods-Jellify.debug.xcconfig"; sourceTree = "<group>"; };
+		40944FC15F605FB8B5481246 /* Pods-Jellify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jellify.release.xcconfig"; path = "Target Support Files/Pods-Jellify/Pods-Jellify.release.xcconfig"; sourceTree = "<group>"; };
+		4F140A2D704C966548855727 /* Pods-Jellify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jellify.debug.xcconfig"; path = "Target Support Files/Pods-Jellify/Pods-Jellify.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Jellify/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B7960C5FCBB2DC63D15C0068 /* libPods-Jellify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jellify.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCCB62E5035EDB84FBFFEF80 /* libPods-Jellify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jellify.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF620CFC2CF2BB1F0045E433 /* Aileron-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aileron-Italic.otf"; path = "../assets/fonts/Aileron-Italic.otf"; sourceTree = "<group>"; };
 		CF620CFD2CF2BB1F0045E433 /* Aileron-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aileron-Thin.otf"; path = "../assets/fonts/Aileron-Thin.otf"; sourceTree = "<group>"; };
 		CF620CFE2CF2BB1F0045E433 /* Aileron-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aileron-HeavyItalic.otf"; path = "../assets/fonts/Aileron-HeavyItalic.otf"; sourceTree = "<group>"; };
@@ -182,7 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39F789314461ACFE49759514 /* libPods-Jellify.a in Frameworks */,
+				65183FEBA3A0385468EEE474 /* libPods-Jellify.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				B7960C5FCBB2DC63D15C0068 /* libPods-Jellify.a */,
+				BCCB62E5035EDB84FBFFEF80 /* libPods-Jellify.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -284,8 +284,8 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6CA4CE28FCA19FCA60025E66 /* Pods-Jellify.debug.xcconfig */,
-				19D89019FA3E02946F0AD48C /* Pods-Jellify.release.xcconfig */,
+				4F140A2D704C966548855727 /* Pods-Jellify.debug.xcconfig */,
+				40944FC15F605FB8B5481246 /* Pods-Jellify.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -375,13 +375,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Jellify" */;
 			buildPhases = (
-				B50451BE5B86DB61D5BD62F6 /* [CP] Check Pods Manifest.lock */,
+				9740262A13E5F3D06B299BFA /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				39025CD587D7489E1C4A30E0 /* [CP] Embed Pods Frameworks */,
-				8E1795DCA9525FF603E0D375 /* [CP] Copy Pods Resources */,
+				2F99E19A6E30E1F7DD3DC421 /* [CP] Embed Pods Frameworks */,
+				C7ED952A7D0852FD5CE75BDB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -525,7 +525,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		39025CD587D7489E1C4A30E0 /* [CP] Embed Pods Frameworks */ = {
+		2F99E19A6E30E1F7DD3DC421 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -542,24 +542,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jellify/Pods-Jellify-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8E1795DCA9525FF603E0D375 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Jellify/Pods-Jellify-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Jellify/Pods-Jellify-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jellify/Pods-Jellify-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B50451BE5B86DB61D5BD62F6 /* [CP] Check Pods Manifest.lock */ = {
+		9740262A13E5F3D06B299BFA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -579,6 +562,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7ED952A7D0852FD5CE75BDB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jellify/Pods-Jellify-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jellify/Pods-Jellify-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jellify/Pods-Jellify-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -669,7 +669,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6CA4CE28FCA19FCA60025E66 /* Pods-Jellify.debug.xcconfig */;
+			baseConfigurationReference = 4F140A2D704C966548855727 /* Pods-Jellify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -677,7 +677,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Jack Caulfield (66Z9J9NX2X)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Jack Caulfield (66Z9J9NX2X)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = WAH9CZ8BPG;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WAH9CZ8BPG;
 				ENABLE_BITCODE = NO;
@@ -707,7 +707,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19D89019FA3E02946F0AD48C /* Pods-Jellify.release.xcconfig */;
+			baseConfigurationReference = 40944FC15F605FB8B5481246 /* Pods-Jellify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -715,7 +715,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = WAH9CZ8BPG;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WAH9CZ8BPG;
 				INFOPLIST_FILE = Jellify/Info.plist;

@@ -27,14 +27,6 @@ export function Discover(): React.JSX.Element {
             
             <DiscoverStack.Group screenOptions={{ presentation: "modal"}}>
                 <DiscoverStack.Screen
-                    name="Player" 
-                    component={Player} 
-                    options={{
-                    headerShown: false
-                    }}
-                />
-
-                <DiscoverStack.Screen
                     name="Details"
                     component={DetailsScreen}
                     options={{
@@ -42,7 +34,6 @@ export function Discover(): React.JSX.Element {
                     }}
                 />
             </DiscoverStack.Group>
-
         </DiscoverStack.Navigator>
     )
 }

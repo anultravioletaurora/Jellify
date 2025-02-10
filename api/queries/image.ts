@@ -12,6 +12,4 @@ export const useItemImage = (itemId: string, imageType: ImageType = ImageType.Pr
         Math.ceil(height / 100) * 100 // So these keys need to match
     ],
     queryFn: () => fetchItemImage(itemId, imageType, width, height),
-    staleTime: 1000 * 60, // One minute, these are stored on disk anyways
-    gcTime: 1000 * 60 * 60 // One hour, could be less maybe?
 });

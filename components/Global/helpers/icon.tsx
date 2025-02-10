@@ -9,7 +9,8 @@ const regularSize = 36;
 const largeSize = 48
 
 export default function Icon({ 
-    name, onPress, 
+    name, 
+    onPress, 
     small, 
     large, 
     color 

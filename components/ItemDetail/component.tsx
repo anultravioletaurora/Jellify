@@ -9,6 +9,8 @@ import { Text } from "../Global/helpers/text";
 import FavoriteButton from "../Global/components/favorite-button";
 import { useEffect } from "react";
 import { trigger } from "react-native-haptic-feedback";
+import TextTicker from "react-native-text-ticker";
+import { TextTickerConfig } from "../Player/component.config";
 
 export default function ItemDetail({ 
     item, 
@@ -82,39 +84,44 @@ export default function ItemDetail({
                     <YStack 
                         marginLeft={"$0.5"} 
                         alignItems="flex-start"
+                        alignContent="flex-start"
                         justifyContent="flex-start"
                         flex={3}
-                        >
-                        <Text textAlign="center" bold fontSize={"$6"}>
-                            { item.Name ?? "Untitled Track" }
-                        </Text>
+                    >
+                        <TextTicker {...TextTickerConfig}>
+                            <Text bold fontSize={"$6"}>
+                                { item.Name ?? "Untitled Track" }
+                            </Text>
+                        </TextTicker>
 
-                        <Text 
-                            textAlign="center"
-                            fontSize={"$6"} 
-                            color={getTokens().color.telemagenta}
-                            onPress={() => {
-                                if (item.ArtistItems) {
-                                    
-                                    if (isNested)
-                                        navigation.getParent()!.goBack();
-                                    
-                                    navigation.goBack();
-                                    navigation.navigate("Artist", {
-                                        artist: item.ArtistItems[0]
-                                    });
-                                }
-                            }}>
-                            { item.Artists?.join(", ") ?? "Unknown Artist"}
-                        </Text>
-                            
-                        <Text 
-                            textAlign="center"
-                            fontSize={"$6"} 
-                            color={"$borderColor"}
-                            >
-                            { item.Album ?? "" }
-                        </Text>
+                        <TextTicker {...TextTickerConfig}>
+                            <Text 
+                                fontSize={"$6"} 
+                                color={getTokens().color.telemagenta}
+                                onPress={() => {
+                                    if (item.ArtistItems) {
+                                        
+                                        if (isNested)
+                                            navigation.getParent()!.goBack();
+                                        
+                                        navigation.goBack();
+                                        navigation.navigate("Artist", {
+                                            artist: item.ArtistItems[0]
+                                        });
+                                    }
+                                }}>
+                                { item.Artists?.join(", ") ?? "Unknown Artist"}
+                            </Text>
+                        </TextTicker>
+
+                        <TextTicker {...TextTickerConfig}>
+                            <Text 
+                                fontSize={"$6"} 
+                                color={"$borderColor"}
+                                >
+                                { item.Album ?? "" }
+                            </Text>
+                        </TextTicker>        
                     </YStack>
 
                     <YStack 

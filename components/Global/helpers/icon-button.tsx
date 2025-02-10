@@ -10,6 +10,7 @@ interface IconButtonProps {
     title?: string | undefined;
     circular?: boolean | undefined;
     size?: number;
+    largeIcon?: boolean | undefined;
 }
 
 export default function IconButton({
@@ -17,7 +18,8 @@ export default function IconButton({
     onPress,
     title,
     circular,
-    size
+    size,
+    largeIcon
 } : IconButtonProps) : React.JSX.Element {
 
     return (
@@ -25,7 +27,7 @@ export default function IconButton({
             <TouchableOpacity>
                 <Square
                     animation={"bouncy"}
-                    borderRadius={!circular ? 2 : undefined}
+                    borderRadius={!circular ? "$4" : undefined}
                     circular={circular}
                     elevate
                     hoverStyle={{ scale: 0.925 }}
@@ -38,7 +40,8 @@ export default function IconButton({
                     backgroundColor={"$background"}
                     >
                         <Icon 
-                            large
+                            large={largeIcon}
+                            small={!!!largeIcon}
                             name={name} 
                             color={"$color"}
                         />

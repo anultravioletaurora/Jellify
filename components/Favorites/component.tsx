@@ -31,6 +31,7 @@ export default function FavoritesScreen({
                             onPress={() => {
                                 navigation.navigate(item.name)
                             }}
+                            largeIcon
                         />
                     )
                 }}

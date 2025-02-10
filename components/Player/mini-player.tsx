@@ -1,4 +1,4 @@
-import React, {  } from "react";
+import React, { useMemo } from "react";
 import { getTokens, useTheme, View, XStack, YStack } from "tamagui";
 import { usePlayerContext } from "../../player/provider";
 import { BottomTabNavigationEventMap } from "@react-navigation/bottom-tabs";
@@ -44,21 +44,28 @@ export function Miniplayer({ navigation }: { navigation : NavigationHelpers<Para
 
                     </YStack>
 
+                        {/** Memoize TextTickers otherwise they won't animate due to the progress being updated in the PlayerContext */}
+                        { useMemo(() => {
+                            return (
+                                <YStack 
+                                    alignContent="flex-start" 
+                                    marginLeft={"$2"}
+                                    flex={4} 
+                                    maxWidth={"$20"}
+                                >
+                                    <TextTicker {...TextTickerConfig}>
+                                        <Text bold>{nowPlaying?.title ?? "Nothing Playing"}</Text>
+                                    </TextTicker>
 
-                    <YStack 
-                        alignContent="flex-start" 
-                        marginLeft={"$2"}
-                        flex={4} 
-                        maxWidth={"$20"}
-                    >
-                        <TextTicker {...TextTickerConfig}>
-                            <Text bold>{nowPlaying?.title ?? "Nothing Playing"}</Text>
-                        </TextTicker>
+                                    <TextTicker {...TextTickerConfig}>
+                                        <Text color={getTokens().color.telemagenta}>{nowPlaying?.artist ?? ""}</Text>
+                                    </TextTicker>
 
-                        <TextTicker {...TextTickerConfig}>
-                            <Text color={getTokens().color.telemagenta}>{nowPlaying?.artist ?? ""}</Text>
-                        </TextTicker>
-                    </YStack>
+                                </YStack>
+                            )
+                        }, [
+                            nowPlaying
+                        ])}
                     
                     <XStack 
                         justifyContent="flex-end" 
