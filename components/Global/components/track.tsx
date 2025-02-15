@@ -10,19 +10,22 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../../../components/types";
 import { QueuingType } from "../../../enums/queuing-type";
 import BlurhashedImage from "./blurhashed-image";
+import { Queue } from "../../../player/types/queue-item";
 
 interface TrackProps {
     track: BaseItemDto;
     navigation: NativeStackNavigationProp<StackParamList>;
     tracklist?: BaseItemDto[] | undefined;
     index?: number | undefined;
-    queueName?: string | undefined;
+    queue: Queue;
     showArtwork?: boolean | undefined;
     onPress?: () => void | undefined;
     onLongPress?: () => void | undefined;
     isNested?: boolean | undefined;
     invertedColors?: boolean | undefined;
-    prependElement?: React.JSX.Element | undefined
+    prependElement?: React.JSX.Element | undefined;
+    showRemove?: boolean | undefined;
+    onRemove?: () => void | undefined;
 }
 
 export default function Track({
@@ -30,18 +33,20 @@ export default function Track({
     tracklist,
     navigation,
     index,
-    queueName,
+    queue,
     showArtwork,
     onPress,
     onLongPress,
     isNested,
     invertedColors,
-    prependElement
+    prependElement,
+    showRemove,
+    onRemove
 } : TrackProps) : React.JSX.Element {
 
     const theme = useTheme();
     const { width } = useSafeAreaFrame();
-    const { nowPlaying, queue, usePlayNewQueue } = usePlayerContext();
+    const { nowPlaying, playQueue, usePlayNewQueue } = usePlayerContext();
 
     const isPlaying = nowPlaying?.item.Id === track.Id;
 
@@ -58,8 +63,8 @@ export default function Track({
                         usePlayNewQueue.mutate({
                             track,
                             index,
-                            tracklist: tracklist ?? queue.map((track) => track.item),
-                            queueName: queueName ? queueName : track.Album ? track.Album! : "Queue",
+                            tracklist: tracklist ?? playQueue.map((track) => track.item),
+                            queue,
                             queuingType: QueuingType.FromSelection
                         });
                     }
@@ -74,8 +79,9 @@ export default function Track({
                     }
                 }
                 paddingVertical={"$2"}
-                marginHorizontal={"$2"}
+                marginHorizontal={"$1"}
             >
+
                 { prependElement && (
                     <YStack 
                         alignContent="center"
@@ -85,17 +91,18 @@ export default function Track({
                         { prependElement }
                     </YStack>
                 )}
+
                 <XStack 
                     alignContent="center" 
                     justifyContent="center" 
-                    flex={showArtwork ? 3 : 1}
+                    flex={showArtwork ? 2 : 1}
                     minHeight={showArtwork ? width / 9 : "unset"}
                 >
                     { showArtwork ? (
                         <BlurhashedImage
                             item={track}
                             width={width / 9}
-                            cornered
+                            borderRadius={2}
                         />
                     ) : (
                     <Text 
@@ -134,7 +141,7 @@ export default function Track({
                     alignItems="center"
                     justifyContent="space-between" 
                     alignContent="center" 
-                    flex={4}
+                    flex={3}
                 >
                     <YStack
                         alignContent="center"
@@ -160,12 +167,18 @@ export default function Track({
                         justifyContent="center"
                     >
                         <Icon 
-                            name="dots-vertical" 
+                            name={showRemove ? "close" : "dots-vertical"} 
                             onPress={() => {
-                                navigation.navigate("Details", {
-                                    item: track,
-                                    isNested: isNested
-                                });
+                                if (!!showRemove) {
+                                    if (onRemove)
+                                        onRemove()
+                                }
+                                else {
+                                    navigation.navigate("Details", {
+                                        item: track,
+                                        isNested: isNested
+                                    });
+                                }
                             }} 
                         />
 

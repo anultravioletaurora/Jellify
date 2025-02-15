@@ -18,7 +18,7 @@ interface LabelProps {
 
 export function Label(props: LabelProps): React.JSX.Element {
     return (
-        <TamaguiLabel htmlFor={props.htmlFor} justifyContent="flex-end">{ props.children }</TamaguiLabel>
+        <TamaguiLabel fontWeight={600} htmlFor={props.htmlFor} justifyContent="flex-end">{ props.children }</TamaguiLabel>
     )
 }
 
@@ -36,7 +36,7 @@ export function H1({ children }: { children: string }): React.JSX.Element {
 export function H2(props: TamaguiTextProps): React.JSX.Element {
     return (
         <TamaguiH2 
-            fontWeight={900}
+            fontWeight={800}
             marginVertical={7} 
             {...props}
         >

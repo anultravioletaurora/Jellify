@@ -10,6 +10,8 @@ import { clientPersister } from './constants/storage';
 import { queryClient } from './constants/query-client';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+// export const backgroundRuntime = createWorkletRuntime('background');
+
 export default function App(): React.JSX.Element {
   
   const isDarkMode = useColorScheme() === 'dark';

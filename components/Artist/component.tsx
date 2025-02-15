@@ -1,15 +1,18 @@
 import { ScrollView, YStack } from "tamagui";
-import { useArtistAlbums } from "../../api/queries/artist";
 import { FlatList } from "react-native";
 import { ItemCard } from "../Global/components/item-card";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../types";
 import { H2 } from "../Global/helpers/text";
 import { useState } from "react";
-import { BaseItemDto } from "@jellyfin/sdk/lib/generated-client/models";
+import { BaseItemDto, BaseItemKind, ItemSortBy, SortOrder } from "@jellyfin/sdk/lib/generated-client/models";
 import { useSafeAreaFrame } from "react-native-safe-area-context";
 import FavoriteButton from "../Global/components/favorite-button";
 import BlurhashedImage from "../Global/components/blurhashed-image";
+import { useQuery } from "@tanstack/react-query";
+import { QueryKeys } from "../../enums/query-keys";
+import Client from "../../api/client";
+import { getItemsApi } from "@jellyfin/sdk/lib/utils/api";
 
 interface ArtistProps {
     artist: BaseItemDto
@@ -35,14 +38,36 @@ export default function Artist({
 
     const bannerHeight = height / 6;
 
-    const { data: albums } = useArtistAlbums(artist.Id!);
+    const { data: albums } = useQuery({
+        queryKey: [QueryKeys.ArtistAlbums, artist.Id!],
+        queryFn: ({ queryKey }) => {
+            return getItemsApi(Client.api!).getItems({
+                includeItemTypes: [BaseItemKind.MusicAlbum],
+                recursive: true,
+                excludeItemIds: [queryKey[1] as string],
+                sortBy: [
+                    ItemSortBy.PremiereDate,
+                    ItemSortBy.ProductionYear,
+                    ItemSortBy.SortName
+                ],
+                sortOrder: [SortOrder.Descending],
+                artistIds: [queryKey[1] as string],
+            })
+            .then((response) => {
+                return response.data.Items ? response.data.Items! : [];
+            })
+        }
+    });
 
     return (
         <ScrollView 
+            alignContent="center"
             contentInsetAdjustmentBehavior="automatic"
-            alignContent="center">
+            removeClippedSubviews
+        >
             <YStack alignContent="center" justifyContent="center" minHeight={bannerHeight}>
                 <BlurhashedImage
+                    borderRadius={0}
                     item={artist}
                     width={width}
                 />
@@ -62,7 +87,7 @@ export default function Artist({
                                 caption={album.Name}
                                 subCaption={album.ProductionYear?.toString()}
                                 width={(width / 1.1) / columns}
-                                cornered 
+                                squared 
                                 item={album}
                                 onPress={() => {
                                     navigation.navigate('Album', {
@@ -72,6 +97,9 @@ export default function Artist({
                             />
                         )
                     }}
+                    style={{
+                        overflow: 'hidden' // Prevent unnecessary memory usage
+                    }} 
                 />
         </ScrollView>
     )

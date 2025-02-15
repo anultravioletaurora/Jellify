@@ -5,7 +5,7 @@ import { ScrollView } from "tamagui";
 export default function Index() : React.JSX.Element {
     return (
         <SafeAreaView>
-            <ScrollView>
+            <ScrollView removeClippedSubviews>
                 
             </ScrollView>
         </SafeAreaView>

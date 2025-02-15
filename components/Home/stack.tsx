@@ -3,11 +3,12 @@ import { HomeProvider } from "./provider";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StackParamList } from "../types";
 import { ArtistScreen } from "../Artist/screens";
-import { AlbumScreen } from "../Album/screens";
+import { AlbumScreen } from "../Album";
 import { PlaylistScreen } from "../Playlist/screens";
 import { ProvidedHome } from "./component";
 import DetailsScreen from "../ItemDetail/screen";
-import Player from "../Player/stack";
+import AddPlaylist from "../Library/components/add-playlist";
+import ArtistsScreen from "../Artists/screen";
 
 const HomeStack = createNativeStackNavigator<StackParamList>();
 
@@ -25,10 +26,10 @@ export default function Home(): React.JSX.Element {
                         name="Home" 
                         component={ProvidedHome} 
                         options={{
-                            headerLargeTitle: true,
-                            headerLargeTitleStyle: {
-                                fontFamily: 'Aileron-Bold'
-                            }
+                            // headerLargeTitle: true,
+                            // headerLargeTitleStyle: {
+                            //     fontFamily: 'Aileron-Bold'
+                            // }
                         }}
                     />
 
@@ -42,6 +43,11 @@ export default function Home(): React.JSX.Element {
                                 fontFamily: 'Aileron-Bold'
                             }
                         })}
+                    />
+
+                    <HomeStack.Screen
+                        name="Artists"
+                        component={ArtistsScreen}
                     />
 
                     <HomeStack.Screen
@@ -63,6 +69,7 @@ export default function Home(): React.JSX.Element {
                     />
 
                 </HomeStack.Group>
+
                 <HomeStack.Group screenOptions={{ presentation: 'modal' }}>
                     <HomeStack.Screen
                         name="Details"

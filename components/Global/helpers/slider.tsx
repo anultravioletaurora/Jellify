@@ -48,7 +48,17 @@ export function HorizontalSlider({
             <JellifySliderTrack size="$4">
                 <JellifyActiveSliderTrack size={"$4"} />
             </JellifySliderTrack>
-            <JellifySliderThumb circular index={0} size={"$1"} />
+            <JellifySliderThumb 
+                circular
+                index={0}
+                size={"$2"}
+                hitSlop={{
+                    top: 35,
+                    right: 70,
+                    bottom: 70,
+                    left: 70
+                }}
+            />
         </TamaguiSlider>
     )
 }

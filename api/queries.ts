@@ -13,6 +13,4 @@ export const useApi = (serverUrl?: string, username?: string, password?: string,
 
         return createApi(serverUrl, username, password, accessToken)
     },
-    gcTime: 1000,
-    refetchInterval: false
 })

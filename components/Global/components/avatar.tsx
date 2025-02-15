@@ -1,8 +1,10 @@
 import type { AvatarProps as TamaguiAvatarProps } from "tamagui";
 import { Avatar as TamaguiAvatar, YStack } from "tamagui"
 import { Text } from "../helpers/text"
-import { useItemImage } from "../../../api/queries/image";
 import { BaseItemDto, ImageType } from "@jellyfin/sdk/lib/generated-client/models";
+import { useQuery } from "@tanstack/react-query";
+import { QueryKeys } from "../../../enums/query-keys";
+import { fetchItemImage } from "../../../api/queries/functions/images";
 
 interface AvatarProps extends TamaguiAvatarProps {
     item: BaseItemDto,
@@ -17,7 +19,19 @@ export default function Avatar({
     ...props
 }: AvatarProps): React.JSX.Element {
 
-    const { data } = useItemImage(item.Id!, imageType, typeof (props.width) === 'number' ? props.width : 100)
+    const { data } = useQuery({
+        queryKey: [
+            QueryKeys.ItemImage, 
+            item.Id!, 
+            imageType, 
+            Math.ceil(150 / 100) * 100, // Images are fetched at a higher, generic resolution
+            Math.ceil(150 / 100) * 100 // So these keys need to match
+        ],
+        queryFn: () => fetchItemImage(item.Id!, imageType ?? ImageType.Primary, 150, 150),
+        retry: 2,
+        gcTime: (1000 * 60), // 1 minute
+        staleTime: (1000 * 60) // 1 minute,
+    });
 
     return (
         <YStack alignItems="center" marginHorizontal={10}>

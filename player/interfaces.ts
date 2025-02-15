@@ -1,12 +1,13 @@
 import { JellifyTrack } from "../types/JellifyTrack";
 import { QueuingType } from "../enums/queuing-type";
 import { BaseItemDto } from "@jellyfin/sdk/lib/generated-client/models";
+import { Queue } from "./types/queue-item";
 
 export interface QueueMutation { 
     track: BaseItemDto;
     index?: number | undefined;
     tracklist: BaseItemDto[];
-    queueName: string;
+    queue: Queue;
     queuingType?: QueuingType | undefined;
 }
 

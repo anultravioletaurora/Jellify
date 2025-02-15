@@ -1,14 +1,14 @@
-import _ from "lodash"
-import ServerAuthentication from "./helpers/server-authentication";
-import ServerAddress from "./helpers/server-address";
+import _, { isUndefined } from "lodash"
+import ServerAuthentication from "./screens/server-authentication";
+import ServerAddress from "./screens/server-address";
 import { createStackNavigator } from "@react-navigation/stack";
-import ServerLibrary from "./helpers/server-library";
+import ServerLibrary from "./screens/server-library";
 import { useAuthenticationContext } from "./provider";
 import { useEffect } from "react";
 
 export default function Login(): React.JSX.Element {
 
-    const { user, server, triggerAuth, setTriggerAuth } = useAuthenticationContext();
+    const { user, server, setTriggerAuth } = useAuthenticationContext();
 
     const Stack = createStackNavigator();
 
@@ -17,40 +17,40 @@ export default function Login(): React.JSX.Element {
     });
 
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-            {
-                (_.isUndefined(server)) ? (
+        <Stack.Navigator 
+            initialRouteName={
+                isUndefined(server) 
+                ? "ServerAddress" 
+                : isUndefined(user)
+                ? "ServerAuthentication"
+                : "LibrarySelection"
+            }
+            screenOptions={{ headerShown: false }}
+        >
                     <Stack.Screen
                         name="ServerAddress"
                         options={{
                             headerShown: false,     
-                            animationTypeForReplace: triggerAuth ? 'push' : 'pop'    
                         }}
                         component={ServerAddress}
                         />
-                    ) : (
                     
-                    (_.isUndefined(user)) ? (
                         <Stack.Screen 
                             name="ServerAuthentication" 
                             options={{ 
                                 headerShown: false, 
-                                animationTypeForReplace: 'push'
                             }} 
+                            initialParams={{ server }}
+                            //@ts-ignore
                             component={ServerAuthentication} 
                         />
-                    ) : (
                         <Stack.Screen 
                             name="LibrarySelection" 
                             options={{ 
                                 headerShown: false, 
-                                animationTypeForReplace: 'push'
                             }} 
                             component={ServerLibrary}
                         />
-                    )
-                )
-            }
         </Stack.Navigator>
     );
 }

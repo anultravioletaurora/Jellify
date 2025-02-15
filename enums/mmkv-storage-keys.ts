@@ -3,5 +3,6 @@ export enum MMKVStorageKeys {
     Server = "SERVER",
     User = "USER",
     Library = "LIBRARY",
-    NowPlaying = "NowPlaying"
+    NowPlaying = "NowPlaying",
+    Queue = "Queue"
 }

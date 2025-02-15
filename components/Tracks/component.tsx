@@ -1,12 +1,17 @@
-import { useFavoriteTracks } from "../../api/queries/favorites";
 import { StackParamList } from "../types";
 import { FlatList, RefreshControl } from "react-native";
 import Track from "../Global/components/track";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { fetchFavoriteTracks } from "../../api/queries/functions/favorites";
+import { QueryKeys } from "../../enums/query-keys";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Tracks({ navigation }: { navigation: NativeStackNavigationProp<StackParamList> }) : React.JSX.Element {
 
-    const { data: tracks, refetch, isPending } = useFavoriteTracks();
+    const { data: tracks, refetch, isPending } = useQuery({
+        queryKey: [QueryKeys.FavoriteTracks],
+        queryFn: () => fetchFavoriteTracks()
+    });
 
     return (
         <FlatList
@@ -26,11 +31,14 @@ export default function Tracks({ navigation }: { navigation: NativeStackNavigati
                         showArtwork
                         track={track}
                         tracklist={tracks?.slice(index, index + 50) ?? []}
-                        queueName="Favorite Tracks"
+                        queue="Favorite Tracks"
                     />
 
                 )
             }}
+            style={{
+                overflow: 'hidden' // Prevent unnecessary memory usage
+            }} 
         />
     )
 }

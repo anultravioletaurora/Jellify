@@ -12,6 +12,7 @@ export default function Button(props: ButtonProps): React.JSX.Element {
     return (
         <TamaguiButton 
             disabled={props.disabled}
+            bordered
             marginVertical={30}
             onPress={props.onPress}
         >

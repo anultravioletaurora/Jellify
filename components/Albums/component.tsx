@@ -1,11 +1,16 @@
-import { useFavoriteAlbums } from "../../api/queries/favorites";
 import { AlbumsProps } from "../types";
 import { useSafeAreaFrame } from "react-native-safe-area-context";
 import { ItemCard } from "../Global/components/item-card";
 import { FlatList, RefreshControl } from "react-native";
+import { useQuery } from "@tanstack/react-query";
+import { QueryKeys } from "../../enums/query-keys";
+import { fetchFavoriteAlbums } from "../../api/queries/functions/favorites";
 
 export default function Albums({ navigation }: AlbumsProps) : React.JSX.Element {
-    const { data: albums, refetch, isPending } = useFavoriteAlbums();
+    const { data: albums, refetch, isPending } = useQuery({
+        queryKey: [QueryKeys.FavoriteAlbums],
+        queryFn: () => fetchFavoriteAlbums()
+    });
 
     const { width } = useSafeAreaFrame();
 
@@ -26,7 +31,7 @@ export default function Albums({ navigation }: AlbumsProps) : React.JSX.Element 
                             item={album}
                             caption={album.Name ?? "Untitled Album"}
                             subCaption={album.ProductionYear?.toString() ?? ""}
-                            cornered
+                            squared
                             onPress={() => {
                                 navigation.navigate("Album", { album })
                             }}
@@ -34,6 +39,9 @@ export default function Albums({ navigation }: AlbumsProps) : React.JSX.Element 
                         />
                     )
                 }}
+                style={{
+                    overflow: 'hidden' // Prevent unnecessary memory usage
+                }} 
             />
         )
     }

@@ -12,7 +12,7 @@ import { FadeIn, FadeOut, ReduceMotion, SequencedTransition } from "react-native
 export default function Queue({ navigation }: { navigation: NativeStackNavigationProp<StackParamList>}): React.JSX.Element {
 
     const { width } = useSafeAreaFrame();
-    const { queue, useClearQueue, useRemoveFromQueue, useReorderQueue, useSkip, nowPlaying } = usePlayerContext();
+    const { playQueue, queue, useClearQueue, useRemoveFromQueue, useReorderQueue, useSkip, nowPlaying } = usePlayerContext();
 
     navigation.setOptions({
         headerRight: () => {
@@ -24,12 +24,12 @@ export default function Queue({ navigation }: { navigation: NativeStackNavigatio
         }
     })
 
-    const scrollIndex = queue.findIndex(queueItem => queueItem.item.Id! === nowPlaying!.item.Id!)
+    const scrollIndex = playQueue.findIndex(queueItem => queueItem.item.Id! === nowPlaying!.item.Id!)
 
     return (
         <DraggableFlatList
             contentInsetAdjustmentBehavior="automatic"
-            data={queue}
+            data={playQueue}
             dragHitSlop={{ left: -50 }} // https://github.com/computerjazz/react-native-draggable-flatlist/issues/336
             extraData={nowPlaying}
             // enableLayoutAnimationExperimental
@@ -54,6 +54,7 @@ export default function Queue({ navigation }: { navigation: NativeStackNavigatio
 
                 return (
                     <Track
+                        queue={queue}
                         navigation={navigation}
                         track={queueItem.item}
                         index={getIndex()}
@@ -66,17 +67,17 @@ export default function Queue({ navigation }: { navigation: NativeStackNavigatio
                             drag();
                         }}
                         isNested
-                        prependElement={(
-                            <Icon 
-                                small 
-                                color={getTokens().color.amethyst.val} 
-                                name="close-circle-outline" 
-                                onPress={() => useRemoveFromQueue.mutate(index!)} 
-                            />
-                        )}
+                        showRemove
+                        onRemove={() => {
+                            if (index)
+                                useRemoveFromQueue.mutate(index)
+                        }}
                     />
                 )
             }}
+            style={{
+                overflow: 'hidden' // Prevent unnecessary memory usage
+            }} 
         />
     )
 }
