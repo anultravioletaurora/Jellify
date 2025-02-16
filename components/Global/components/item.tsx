@@ -52,7 +52,7 @@ export default function Item({
                             usePlayNewQueue.mutate({
                                 track: item,
                                 tracklist: [item],
-                                queueName,
+                                queue: "Search",
                                 queuingType: QueuingType.FromSelection
                             })
                             break;
@@ -69,7 +69,7 @@ export default function Item({
                 paddingVertical={"$2"}
                 marginHorizontal={"$1"}
             >
-                <BlurhashedImage item={item} width={width / 9} />
+                <BlurhashedImage item={item} width={width / 9} borderRadius={item.Type === 'MusicArtist' ? width / 9 : 2}/>
 
                 <YStack 
                     marginLeft={"$1"}

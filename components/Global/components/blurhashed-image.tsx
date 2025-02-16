@@ -1,16 +1,18 @@
 import { BaseItemDto, ImageType } from "@jellyfin/sdk/lib/generated-client/models";
-import { useItemImage } from "../../../api/queries/image";
 import { Blurhash } from "react-native-blurhash";
 import { View } from "tamagui";
 import { isEmpty } from "lodash";
 import { Image } from "react-native";
+import { QueryKeys } from "../../../enums/query-keys";
+import { useQuery } from "@tanstack/react-query";
+import { fetchItemImage } from "../../../api/queries/functions/images";
 
 interface BlurhashLoadingProps {
     item: BaseItemDto;
     width: number;
     height?: number;
     type?: ImageType; 
-    cornered?: boolean | undefined
+    borderRadius?: number | undefined
 }
 
 export default function BlurhashedImage({ 
@@ -18,10 +20,19 @@ export default function BlurhashedImage({
     width, 
     height,
     type,
-    cornered
+    borderRadius
 } : BlurhashLoadingProps) : React.JSX.Element {
 
-    const { data: image, isSuccess } = useItemImage(item.Id!, type, width, height ?? width);
+    const { data: image, isSuccess } = useQuery({
+        queryKey: [
+            QueryKeys.ItemImage, 
+            item.AlbumId ? item.AlbumId : item.Id!, 
+            type ?? ImageType.Primary, 
+            Math.ceil(width / 100) * 100, // Images are fetched at a higher, generic resolution
+            Math.ceil(height ?? width / 100) * 100 // So these keys need to match
+        ],
+        queryFn: () => fetchItemImage(item.AlbumId ? item.AlbumId : item.Id!, type ?? ImageType.Primary, width, height ?? width),
+    });
 
     const blurhash = !isEmpty(item.ImageBlurHashes) 
         && !isEmpty(type ? item.ImageBlurHashes[type] : item.ImageBlurHashes.Primary) 
@@ -29,7 +40,7 @@ export default function BlurhashedImage({
         : undefined;
 
     return (
-        <View minHeight={height ?? width} minWidth={width} borderRadius={cornered ? 2: 25}>
+        <View minHeight={height ?? width} minWidth={width} borderRadius={borderRadius ? borderRadius : 25}>
 
             { isSuccess ? (
                 <Image 
@@ -39,7 +50,7 @@ export default function BlurhashedImage({
                     style={{
                         height: height ?? width,
                         width,
-                        borderRadius: cornered ? 2 : 25,
+                        borderRadius: borderRadius ? borderRadius : 25,
                         resizeMode: "contain"
                     }} 
                 />
@@ -47,7 +58,7 @@ export default function BlurhashedImage({
                 <Blurhash blurhash={blurhash!} style={{ 
                     height: height ?? width, 
                     width: width,
-                    borderRadius: cornered ? 2 : 25 
+                    borderRadius: borderRadius ? borderRadius : 25 
                 }} />
             )
         }

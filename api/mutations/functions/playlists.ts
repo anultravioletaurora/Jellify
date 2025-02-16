@@ -1,6 +1,6 @@
 import { BaseItemDto, MediaType } from "@jellyfin/sdk/lib/generated-client/models";
 import Client from "../../../api/client";
-import { getPlaylistsApi } from "@jellyfin/sdk/lib/utils/api";
+import { getLibraryApi, getPlaylistsApi } from "@jellyfin/sdk/lib/utils/api";
 
 export async function addToPlaylist(track: BaseItemDto, playlist: BaseItemDto) {
 
@@ -40,14 +40,25 @@ export async function reorderPlaylist(playlistId: string, itemId: string, to: nu
 }
 
 export async function createPlaylist(name: string) {
-    console.debug("Creating new playlist");
+    console.debug("Creating new playlist...");
 
     return getPlaylistsApi(Client.api!)
         .createPlaylist({
-            name,
             userId: Client.user!.id,
-            mediaType: MediaType.Audio
+            mediaType: MediaType.Audio,
+            createPlaylistDto: {
+                Name: name
+            }
         });
+}
+
+export async function deletePlaylist(playlistId: string) {
+    console.debug("Deleting playlist...");
+
+    return getLibraryApi(Client.api!)
+        .deleteItem({
+            itemId: playlistId
+        })
 }
 
 /**
@@ -59,14 +70,15 @@ export async function createPlaylist(name: string) {
  * @param playlistId The Jellyfin ID of the playlist to update
  * @returns 
  */
-export async function updatePlaylist(playlistId: string, name: string) {
+export async function updatePlaylist(playlistId: string, name: string, trackIds: string[]) {
     console.debug("Updating playlist");
 
     return getPlaylistsApi(Client.api!)
         .updatePlaylist({
             playlistId,
             updatePlaylistDto: {
-                Name: name
+                Name: name,
+                Ids: trackIds
             }
         });
 }

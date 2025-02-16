@@ -1,5 +1,5 @@
 import './gesture-handler';
-import React from 'react';
+import React, { useState } from 'react';
 import "react-native-url-polyfill/auto";
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client'
 import Jellify from './components/jellify';
@@ -9,13 +9,43 @@ import jellifyConfig from './tamagui.config';
 import { clientPersister } from './constants/storage';
 import { queryClient } from './constants/query-client';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { createWorkletRuntime } from 'react-native-reanimated';
+import TrackPlayer, { IOSCategory, IOSCategoryOptions } from 'react-native-track-player';
+import { CAPABILITIES } from './player/constants';
 
 // export const backgroundRuntime = createWorkletRuntime('background');
 
 export default function App(): React.JSX.Element {
   
+  const [playerIsReady, setPlayerIsReady] = useState<boolean>(false);
   const isDarkMode = useColorScheme() === 'dark';
+
+  TrackPlayer.setupPlayer({
+    autoHandleInterruptions: true,
+    maxCacheSize: 1000 * 100, // 100MB, TODO make this adjustable
+    iosCategory: IOSCategory.Playback,
+    iosCategoryOptions: [
+        IOSCategoryOptions.AllowAirPlay,
+        IOSCategoryOptions.AllowBluetooth,
+    ]
+  })
+  .then(() => TrackPlayer.updateOptions({
+    progressUpdateEventInterval: 1,
+    capabilities: CAPABILITIES,
+    notificationCapabilities: CAPABILITIES,
+    compactCapabilities: CAPABILITIES,
+    // ratingType: RatingType.Heart,
+    // likeOptions: {
+    //     isActive: false,
+    //     title: "Favorite"
+    // },
+    // dislikeOptions: {
+    //     isActive: true,
+    //     title: "Unfavorite"
+    // }
+  }))
+  .finally(() => {
+    setPlayerIsReady(true);
+  });
 
   return (
     <PersistQueryClientProvider 
@@ -26,7 +56,9 @@ export default function App(): React.JSX.Element {
       <GestureHandlerRootView>
         <TamaguiProvider config={jellifyConfig}>
           <Theme name={isDarkMode ? 'dark' : 'light'}>
+            { playerIsReady && (
               <Jellify />
+            )}
           </Theme>
         </TamaguiProvider>
       </GestureHandlerRootView>

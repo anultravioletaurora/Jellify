@@ -3,7 +3,7 @@ import { ImageFormat } from "@jellyfin/sdk/lib/generated-client/models";
 export const QueryConfig = {
     limits: {
         recents: 50, // TODO: Adjust this when we add a list navigator to the end of the recents
-        search: 25,
+        search: 50, // TODO: make this a paginated search so limits don't even matter
     },
     images: {
         height: 300,

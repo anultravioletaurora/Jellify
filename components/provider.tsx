@@ -3,6 +3,7 @@ import { isUndefined } from "lodash";
 import { createContext, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
 import { CarPlay } from "react-native-carplay";
 import CarPlayNavigation from "./CarPlay/Navigation";
+import CarPlayNowPlaying from "./CarPlay/NowPlaying";
 
 interface JellifyContext {
     loggedIn: boolean;
@@ -27,8 +28,12 @@ const JellifyContextInitializer = () => {
   
       function onConnect() {
         setCarPlayConnected(true);
-        CarPlay.setRootTemplate(CarPlayNavigation, true);
-        CarPlay.enableNowPlaying(true);
+
+        if (loggedIn) {
+            CarPlay.setRootTemplate(CarPlayNavigation, true);
+            CarPlay.pushTemplate(CarPlayNowPlaying, true);
+            CarPlay.enableNowPlaying(true); // https://github.com/birkir/react-native-carplay/issues/185
+        }
       }
   
       function onDisconnect() {

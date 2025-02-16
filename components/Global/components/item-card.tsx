@@ -1,9 +1,7 @@
 import React from "react";
 import type { CardProps as TamaguiCardProps } from "tamagui"
-import { H5, Card as TamaguiCard, View } from "tamagui";
-import { BaseItemDto, ImageType } from "@jellyfin/sdk/lib/generated-client/models";
-import invert from "invert-color"
-import { Blurhash } from "react-native-blurhash"
+import { getToken, Card as TamaguiCard, View } from "tamagui";
+import { BaseItemDto } from "@jellyfin/sdk/lib/generated-client/models";
 import { Text } from "../helpers/text";
 import BlurhashedImage from "./blurhashed-image";
 
@@ -11,7 +9,7 @@ interface CardProps extends TamaguiCardProps {
     caption?: string | null | undefined;
     subCaption?: string | null | undefined;
     item: BaseItemDto;
-    cornered?: boolean;
+    squared?: boolean;
 }
 
 export function ItemCard(props: CardProps) {
@@ -27,7 +25,8 @@ export function ItemCard(props: CardProps) {
             >
             <TamaguiCard 
                 size="$4" 
-                borderRadius={props.cornered ? 2 : 25}
+                backgroundColor={getToken("$color.amethyst")}
+                borderRadius={props.squared ? 2 : dimensions.width}
                 animation="bouncy"
                 hoverStyle={props.onPress ? { scale: 0.925 } : {}}
                 pressStyle={props.onPress ? { scale: 0.875 } : {}}
@@ -38,7 +37,7 @@ export function ItemCard(props: CardProps) {
                 <TamaguiCard.Header>
                 </TamaguiCard.Header>
                 <TamaguiCard.Footer padded>
-                    { props.item.Type === 'MusicArtist' && (
+                    {/* { props.item.Type === 'MusicArtist' && (
                         <BlurhashedImage
                             cornered
                             item={props.item}
@@ -46,14 +45,14 @@ export function ItemCard(props: CardProps) {
                             width={logoDimensions.width}
                             height={logoDimensions.height}
                             />
-                        )}
+                        )} */}
                 </TamaguiCard.Footer>
                 <TamaguiCard.Background>
                 <BlurhashedImage
                         item={props.item}
                         width={dimensions.width}
                         height={dimensions.height}
-                        cornered={props.cornered}
+                        borderRadius={props.squared ? 2 : dimensions.width}
                     />
                 </TamaguiCard.Background>
             </TamaguiCard>

@@ -8,3 +8,5 @@ export const cardDimensions = {
         height: 150
     }
 }
+
+export const horizontalCardLimit = 20

@@ -1,13 +1,11 @@
 import { StackParamList } from "../types";
 import { ScrollView, RefreshControl } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { YStack, XStack, Separator } from "tamagui";
 import Playlists from "./helpers/playlists";
 import RecentArtists from "./helpers/recent-artists";
 import RecentlyPlayed from "./helpers/recently-played";
 import { useHomeContext } from "./provider";
 import { H3 } from "../Global/helpers/text";
-import Avatar from "../Global/components/avatar";
 import Client from "../../api/client";
 import { usePlayerContext } from "../../player/provider";
 import { useEffect } from "react";
@@ -30,15 +28,16 @@ export function ProvidedHome({
     ])
 
     return (
-        <SafeAreaView edges={["top", "right", "left"]}>
             <ScrollView 
                 contentInsetAdjustmentBehavior="automatic"
                 refreshControl={
                     <RefreshControl 
-                        refreshing={refetching} 
-                        onRefresh={onRefetch}
+                    refreshing={refetching} 
+                    onRefresh={onRefetch}
                     />
-                }>
+                }
+                removeClippedSubviews // Save memory usage
+            >
                 <YStack alignContent='flex-start'>
                     <XStack margin={"$2"}>
                         <H3>{`Hi, ${Client.user!.name}`}</H3>
@@ -57,6 +56,5 @@ export function ProvidedHome({
                     <Playlists navigation={navigation}/>
                 </YStack>
             </ScrollView>
-        </SafeAreaView>
     );
 }

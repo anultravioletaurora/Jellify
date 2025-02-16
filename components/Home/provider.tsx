@@ -1,6 +1,8 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
-import { useRecentlyPlayed, useRecentlyPlayedArtists } from "../../api/queries/recently-played";
 import { BaseItemDto } from "@jellyfin/sdk/lib/generated-client/models";
+import { useQuery } from "@tanstack/react-query";
+import { QueryKeys } from "../../enums/query-keys";
+import { fetchRecentlyPlayed, fetchRecentlyPlayedArtists } from "../../api/queries/functions/recents";
 
 interface HomeContext {
     refreshing: boolean;
@@ -12,8 +14,14 @@ interface HomeContext {
 const HomeContextInitializer = () => {
     const [refreshing, setRefreshing] = useState<boolean>(false);
 
-    const { data : recentTracks, refetch : refetchRecentTracks } = useRecentlyPlayed();
-    const { data : recentArtists, refetch : refetchRecentArtists } = useRecentlyPlayedArtists();
+    const { data : recentTracks, refetch : refetchRecentTracks } = useQuery({
+        queryKey: [QueryKeys.RecentlyPlayed],
+        queryFn: () => fetchRecentlyPlayed()
+    });
+    const { data : recentArtists, refetch : refetchRecentArtists } = useQuery({
+        queryKey: [QueryKeys.RecentlyPlayedArtists],
+        queryFn: () => fetchRecentlyPlayedArtists()
+    });
 
     const onRefresh = async () => {
         await Promise.all([

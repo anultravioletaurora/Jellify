@@ -59,7 +59,10 @@ export default function ItemDetail({
     }
 
     return (
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <ScrollView 
+            contentInsetAdjustmentBehavior="automatic"
+            removeClippedSubviews
+        >
             <YStack 
                 alignItems="center" 
                 flex={1}
@@ -126,7 +129,7 @@ export default function ItemDetail({
 
                     <YStack 
                         flex={1}
-                        alignContent="center"
+                        alignItems="flex-end"
                         justifyContent="center"
                     >
                         <FavoriteButton item={item} />

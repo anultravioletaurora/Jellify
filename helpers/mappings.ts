@@ -34,7 +34,7 @@ export function mapDtoToTrack(item: BaseItemDto, queuingType?: QueuingType) : Je
         album: item.Album,
         artist: item.Artists?.join(", "),
         duration: item.RunTimeTicks,
-        artwork: getImageApi(Client.api!).getItemImageUrlById(item.Id!, ImageType.Primary, { width: 300, height: 300 }),
+        artwork: item.AlbumId ? getImageApi(Client.api!).getItemImageUrlById(item.AlbumId, ImageType.Primary, { width: 300, height: 300 }) : undefined,
 
         rating: isFavorite ? RatingType.Heart : undefined,
         item,

@@ -17,7 +17,10 @@ export default function Root({
     const { width } = useSafeAreaFrame();
 
     return (
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <ScrollView 
+            contentInsetAdjustmentBehavior="automatic"
+            removeClippedSubviews
+        >
             <YGroup 
                 alignSelf="center" 
                 bordered 
