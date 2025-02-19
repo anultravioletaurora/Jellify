@@ -15,6 +15,7 @@ export default function PlayPauseButton({ size }: { size?: number | undefined })
             button = (
                 <IconButton 
                     circular 
+                    largeIcon
                     size={size}
                     name="pause" 
                     onPress={() => useTogglePlayback.mutate(undefined)} 
@@ -33,6 +34,7 @@ export default function PlayPauseButton({ size }: { size?: number | undefined })
             button = (
                 <IconButton 
                     circular 
+                    largeIcon
                     size={size}
                     name="play" 
                     onPress={() => useTogglePlayback.mutate(undefined)} 

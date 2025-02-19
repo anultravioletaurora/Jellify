@@ -35,14 +35,14 @@ export default function Item({
                 onPress={() => {
                     switch (item.Type) {
                         case ("MusicArtist") : {
-                            navigation.push("Artist", {
+                            navigation.navigate("Artist", {
                                 artist: item
                             })
                             break;
                         }
 
                         case ("MusicAlbum") : {
-                            navigation.push("Album", {
+                            navigation.navigate("Album", {
                                 album: item
                             })
                             break;
@@ -52,7 +52,7 @@ export default function Item({
                             usePlayNewQueue.mutate({
                                 track: item,
                                 tracklist: [item],
-                                queueName,
+                                queue: "Search",
                                 queuingType: QueuingType.FromSelection
                             })
                             break;
@@ -61,7 +61,7 @@ export default function Item({
 
                 }}
                 onLongPress={() => {
-                    navigation.push("Details", {
+                    navigation.navigate("Details", {
                         item,
                         isNested: false
                     })
@@ -69,7 +69,7 @@ export default function Item({
                 paddingVertical={"$2"}
                 marginHorizontal={"$1"}
             >
-                <BlurhashedImage item={item} width={width / 9} />
+                <BlurhashedImage item={item} width={width / 9} borderRadius={item.Type === 'MusicArtist' ? width / 9 : 2}/>
 
                 <YStack 
                     marginLeft={"$1"}
@@ -122,7 +122,7 @@ export default function Item({
                         <Icon  
                         name="dots-vertical"
                         onPress={() => {
-                            navigation.push("Details", {
+                            navigation.navigate("Details", {
                                 item,
                                 isNested: false
                             })

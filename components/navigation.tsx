@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Player from "./Player/stack";
 import { Tabs } from "./tabs";
 import { StackParamList } from "./types";
+import DetailsScreen from "./ItemDetail/screen";
 
 export default function Navigation(): React.JSX.Element {
 
@@ -9,7 +10,6 @@ export default function Navigation(): React.JSX.Element {
   
     return (
       <RootStack.Navigator>
-        <RootStack.Group>
           <RootStack.Screen 
             name="Tabs" 
             component={Tabs}
@@ -17,16 +17,14 @@ export default function Navigation(): React.JSX.Element {
               headerShown: false
             }}
           />
-        </RootStack.Group>
-        <RootStack.Group screenOptions={{ presentation: 'modal' }}>
           <RootStack.Screen 
             name="Player" 
             component={Player} 
             options={{
-               headerShown: false
+               headerShown: false,
+               presentation: 'modal'
             }}
           />
-        </RootStack.Group>
     </RootStack.Navigator>
     )
 }

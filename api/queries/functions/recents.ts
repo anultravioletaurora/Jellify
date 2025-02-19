@@ -2,8 +2,29 @@ import { BaseItemDto, BaseItemKind, ItemSortBy, SortOrder } from "@jellyfin/sdk/
 import { getItemsApi } from "@jellyfin/sdk/lib/utils/api/items-api";
 import { QueryConfig } from "../query.config";
 import Client from "../../client";
+import { getUserLibraryApi } from "@jellyfin/sdk/lib/utils/api";
 
-export function fetchRecentlyPlayed(): Promise<BaseItemDto[]> {
+export function fetchRecentlyAdded(offset?: number | undefined) : Promise<BaseItemDto[]> {
+    return new Promise(async (resolve, reject) => {
+
+        if (!!!Client.api)
+            return reject("Client not set")
+
+        if (!!!Client.library)
+            return reject("Library not set")
+        else
+            getUserLibraryApi(Client.api)
+                .getLatestMedia({
+                    parentId: Client.library.musicLibraryId,
+                    limit: QueryConfig.limits.recents,
+                })
+                .then(({ data }) => {
+                    resolve(data);
+                });
+    })
+}
+
+export function fetchRecentlyPlayed(offset?: number | undefined): Promise<BaseItemDto[]> {
 
     console.debug("Fetching recently played items");
 
@@ -13,6 +34,7 @@ export function fetchRecentlyPlayed(): Promise<BaseItemDto[]> {
             includeItemTypes: [
                 BaseItemKind.Audio
             ],
+            startIndex: offset,
             limit: QueryConfig.limits.recents,
             parentId: Client.library!.musicLibraryId, 
             recursive: true,
@@ -39,8 +61,8 @@ export function fetchRecentlyPlayed(): Promise<BaseItemDto[]> {
     })
 }
 
-export function fetchRecentlyPlayedArtists() : Promise<BaseItemDto[]> {
-    return fetchRecentlyPlayed()
+export function fetchRecentlyPlayedArtists(offset?: number | undefined) : Promise<BaseItemDto[]> {
+    return fetchRecentlyPlayed(offset)
         .then((tracks) => {
             return getItemsApi(Client.api!)
                 .getItems({ 

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
 
   static var shared: AppDelegate { return UIApplication.shared.delegate as! AppDelegate }
 
-  func sourceURL(for bridge: RCTBridge!) -> URL! {
+  func sourceURL(for bridge: RCTBridge) -> URL? {
     #if DEBUG
     return RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index");
     #else

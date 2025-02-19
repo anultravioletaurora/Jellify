@@ -1,10 +1,12 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Root from "./screens/root";
+import Root from "./component";
 import AccountDetails from "./screens/account-details";
 import DevToolsScreen from "./screens/dev-tools";
+import DetailsScreen from "../ItemDetail/screen";
+import { StackParamList } from "../types";
 
-export const SettingsStack = createNativeStackNavigator();
+export const SettingsStack = createNativeStackNavigator<StackParamList>();
 
 export default function Settings(): React.JSX.Element {
     return (
@@ -43,6 +45,16 @@ export default function Settings(): React.JSX.Element {
                     }    
                 }}
             />
+
+            <SettingsStack.Group screenOptions={{ presentation: 'modal'}}>
+                <SettingsStack.Screen
+                    name="Details"
+                    component={DetailsScreen}
+                    options={{
+                        headerShown: false
+                    }}
+                />
+            </SettingsStack.Group>
         </SettingsStack.Navigator>
     )
 }

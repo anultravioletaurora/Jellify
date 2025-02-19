@@ -1,8 +1,7 @@
 name: build-ios
 on:    
-  push:
-    branches-ignore:
-      - "main"
+  pull_request:
+
 jobs:
   build-ios:
     runs-on: macos-latest

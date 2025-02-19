@@ -40,4 +40,6 @@ export enum QueryKeys {
     SearchSuggestions = "SearchSuggestions",
     FavoritePlaylists = "FavoritePlaylists",
     UserViews = "UserViews",
+    Audio = "Audio",
+    RecentlyAdded = "RecentlyAdded",
 }

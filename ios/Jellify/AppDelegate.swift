@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
     initializeFlipper(with: application)
     self.bridge = RCTBridge.init(delegate: self, launchOptions: launchOptions)
     self.rootView = RCTRootView.init(bridge: self.bridge!, moduleName: "Jellify", initialProperties: nil)
+    super.application(application, didFinishLaunchingWithOptions: launchOptions)
     return true
   }
 

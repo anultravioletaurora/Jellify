@@ -37,19 +37,28 @@ export function HorizontalSlider({
     
     return (
         <TamaguiSlider 
-            size="$4" 
-            width={width} 
-            value={value ? [value] : []}
-            max={max} 
-            step={1}
-            orientation="horizontal"
-            marginHorizontal={10}
-            { ...props }
+        width={width} 
+        value={value ? [value] : []}
+        max={max} 
+        step={1}
+        orientation="horizontal"
+        marginHorizontal={10}
+        { ...props }
         >
-            <JellifySliderTrack>
-                <JellifyActiveSliderTrack />
+            <JellifySliderTrack size="$4">
+                <JellifyActiveSliderTrack size={"$4"} />
             </JellifySliderTrack>
-            <JellifySliderThumb circular index={0} size={"$3"} />
+            <JellifySliderThumb 
+                circular
+                index={0}
+                size={"$2"}
+                hitSlop={{
+                    top: 35,
+                    right: 70,
+                    bottom: 70,
+                    left: 70
+                }}
+            />
         </TamaguiSlider>
     )
 }

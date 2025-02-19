@@ -1,5 +1,5 @@
-import React, {  } from "react";
-import { getTokens, useTheme, View, XStack, YStack } from "tamagui";
+import React, { useMemo } from "react";
+import { getToken, getTokens, useTheme, View, XStack, YStack } from "tamagui";
 import { usePlayerContext } from "../../player/provider";
 import { BottomTabNavigationEventMap } from "@react-navigation/bottom-tabs";
 import { NavigationHelpers, ParamListBase } from "@react-navigation/native";
@@ -26,55 +26,63 @@ export function Miniplayer({ navigation }: { navigation : NavigationHelpers<Para
         }}>
             { nowPlaying && (
 
-                <XStack 
-                    alignItems="center"
-                    margin={0}
-                    padding={0}
-                    height={"$6"} 
-                    onPress={() => navigation.navigate("Player")}
-                >
-                    <YStack
-                        alignContent="center"
-                        flex={1}>
-                            <BlurhashedImage
-                                item={nowPlaying!.item}
-                                width={width / 7}
-                                cornered
-                            />
+                    useMemo(() => {
+                        return (
+                            <XStack 
+                                alignItems="center"
+                                margin={0}
+                                padding={0}
+                                height={"$6"} 
+                                onPress={() => navigation.navigate("Player")}
+                            >
+                                <YStack
+                                    justify="center"
+                                    alignItems="flex-start"
+                                    flex={1}>
+                                        <BlurhashedImage
+                                            item={nowPlaying!.item}
+                                            width={getToken("$12")}
+                                            borderRadius={2}
+                                        />
 
-                    </YStack>
+                                </YStack>
 
+                                <YStack 
+                                    alignContent="flex-start" 
+                                    marginLeft={"$2"}
+                                    flex={4} 
+                                    maxWidth={"$20"}
+                                    >
+                                    <TextTicker {...TextTickerConfig}>
+                                        <Text bold>{nowPlaying?.title ?? "Nothing Playing"}</Text>
+                                    </TextTicker>
 
-                    <YStack 
-                        alignContent="flex-start" 
-                        marginLeft={"$2"}
-                        flex={4} 
-                        maxWidth={"$20"}
-                    >
-                        <TextTicker {...TextTickerConfig}>
-                            <Text bold>{nowPlaying?.title ?? "Nothing Playing"}</Text>
-                        </TextTicker>
+                                    <TextTicker {...TextTickerConfig}>
+                                        <Text color={getTokens().color.telemagenta}>{nowPlaying?.artist ?? ""}</Text>
+                                    </TextTicker>
 
-                        <TextTicker {...TextTickerConfig}>
-                            <Text color={getTokens().color.telemagenta}>{nowPlaying?.artist ?? ""}</Text>
-                        </TextTicker>
-                    </YStack>
-                    
-                    <XStack 
-                        justifyContent="flex-end" 
-                        flex={2}
-                    >
-                        <PlayPauseButton />
+                                </YStack>
+                                
+                                <XStack 
+                                justifyContent="flex-end" 
+                                flex={2}
+                                >
+                                    <PlayPauseButton />
 
-                        <Icon 
-                            large
-                            color={theme.borderColor.val}
-                            name="skip-next" 
-                            onPress={() => useSkip.mutate(undefined)}
-                            />
-                    </XStack>
-                </XStack>
-            )}
+                                    <Icon 
+                                        large
+                                        color={theme.borderColor.val}
+                                        name="skip-next" 
+                                        onPress={() => useSkip.mutate(undefined)}
+                                    />
+                                </XStack>
+                            </XStack>
+                        )
+                    }, [
+                        nowPlaying
+                    ])
+                )
+            }        
         </View>
     )
 }

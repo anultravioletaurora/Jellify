@@ -6,8 +6,9 @@ import { StackParamList } from "../types";
 import { QueryKeys } from "../../enums/query-keys";
 import { fetchSearchResults } from "../../api/queries/functions/search";
 import { useQuery } from "@tanstack/react-query";
-import { FlatList, useColorScheme } from "react-native";
+import { FlatList } from "react-native";
 import { Text } from "../Global/helpers/text";
+import { fetchSearchSuggestions } from "../../api/queries/functions/suggestions";
 
 export default function Search({ 
     navigation
@@ -15,13 +16,17 @@ export default function Search({
     navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
 
-    const isDarkMode = useColorScheme() === 'dark';
     const [searchString, setSearchString] = useState<string | undefined>(undefined);
 
-    const { data: items, refetch, isFetched, isFetching } = useQuery({
+    const { data: items, refetch, isFetching } = useQuery({
         queryKey: [QueryKeys.Search, searchString],
         queryFn: () => fetchSearchResults(searchString)
-    })
+    });
+
+    const { data } = useQuery({
+        queryKey: [QueryKeys.SearchSuggestions],
+        queryFn: () => fetchSearchSuggestions()
+    });
 
     const search = useCallback(() => {
 
@@ -54,11 +59,9 @@ export default function Search({
             )}
             data={items}
             refreshing={isFetching}
-            renderItem={({ index, item }) => {
-                return (
-                    <Item item={item} queueName={searchString ?? "Search"} navigation={navigation} />
-                )
-            }} 
+            renderItem={({ item }) => 
+                <Item item={item} queueName={searchString ?? "Search"} navigation={navigation} />
+            }
         />
     )
 }

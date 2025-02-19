@@ -3,11 +3,11 @@ import { JellifyTrack } from "../types/JellifyTrack";
 import { storage } from "../constants/storage";
 import { MMKVStorageKeys } from "../enums/mmkv-storage-keys";
 import { findPlayNextIndexStart, findPlayQueueIndexStart } from "./helpers/index";
-import TrackPlayer, { Event, Progress, State, Track, usePlaybackState, useProgress, useTrackPlayerEvents } from "react-native-track-player";
-import _, { isEqual, isUndefined } from "lodash";
+import TrackPlayer, { Event, Progress, State, usePlaybackState, useProgress, useTrackPlayerEvents } from "react-native-track-player";
+import { isEqual, isUndefined } from "lodash";
 import { getPlaystateApi } from "@jellyfin/sdk/lib/utils/api";
 import { handlePlaybackProgressUpdated, handlePlaybackState } from "./handlers";
-import { useSetupPlayer, useUpdateOptions } from "../player/hooks";
+import { useUpdateOptions } from "../player/hooks";
 import { UPDATE_INTERVAL } from "./config";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { mapDtoToTrack } from "../helpers/mappings";
@@ -18,17 +18,17 @@ import { convertRunTimeTicksToSeconds } from "../helpers/runtimeticks";
 import Client from "../api/client";
 import { AddToQueueMutation, QueueMutation, QueueOrderMutation } from "./interfaces";
 import { Section } from "../components/Player/types";
+import { Queue } from "./types/queue-item";
+
+import * as Burnt from "burnt";
 
 interface PlayerContext {
-    showPlayer: boolean;
-    setShowPlayer: React.Dispatch<SetStateAction<boolean>>;
-    showMiniplayer: boolean;
-    setShowMiniplayer: React.Dispatch<SetStateAction<boolean>>;
+    initialized: boolean;
     nowPlayingIsFavorite: boolean;
     setNowPlayingIsFavorite: React.Dispatch<SetStateAction<boolean>>;
     nowPlaying: JellifyTrack | undefined;
-    queue: JellifyTrack[];
-    queueName: string | undefined;
+    playQueue: JellifyTrack[];
+    queue: Queue;
     getQueueSectionData: () => Section[];
     useAddToQueue: UseMutationResult<void, Error, AddToQueueMutation, unknown>;
     useClearQueue: UseMutationResult<void, Error, void, unknown>;
@@ -40,24 +40,26 @@ interface PlayerContext {
     usePrevious: UseMutationResult<void, Error, void, unknown>;
     usePlayNewQueue: UseMutationResult<void, Error, QueueMutation, unknown>;
     playbackState: State | undefined;
-    progress: Progress | undefined;
 }
 
 const PlayerContextInitializer = () => {
 
-    const queueJson = storage.getString(MMKVStorageKeys.PlayQueue);
+    const nowPlayingJson = storage.getString(MMKVStorageKeys.NowPlaying)
+    const playQueueJson = storage.getString(MMKVStorageKeys.PlayQueue);
+    const queueJson = storage.getString(MMKVStorageKeys.Queue)
 
     const playStateApi = getPlaystateApi(Client.api!)
     
     //#region State
-    const [showPlayer, setShowPlayer] = useState<boolean>(false);
-    const [showMiniplayer, setShowMiniplayer] = useState<boolean>(false);
+    const [initialized, setInitialized] = useState<boolean>(false);
 
     const [nowPlayingIsFavorite, setNowPlayingIsFavorite] = useState<boolean>(false);
-    const [nowPlaying, setNowPlaying] = useState<JellifyTrack | undefined>(undefined);
+    const [nowPlaying, setNowPlaying] = useState<JellifyTrack | undefined>(nowPlayingJson ? JSON.parse(nowPlayingJson) : undefined);
     const [isSkipping, setIsSkipping] = useState<boolean>(false);
-    const [queue, setQueue] = useState<JellifyTrack[]>(queueJson ? JSON.parse(queueJson) : []);
-    const [queueName, setQueueName] = useState<string | undefined>(undefined);
+
+    const [playQueue, setPlayQueue] = useState<JellifyTrack[]>(playQueueJson ? JSON.parse(playQueueJson) : []);
+    
+    const [queue, setQueue] = useState<Queue>(queueJson ? JSON.parse(queueJson) : 'Queue');
     //#endregion State
 
     
@@ -75,53 +77,58 @@ const PlayerContextInitializer = () => {
         return Object.keys(QueuingType).map((type) => {
             return {
                 title: type,
-                data: queue.filter(track => track.QueuingType === type)
+                data: playQueue.filter(track => track.QueuingType === type)
             } as Section
         });
     }
     
     const resetQueue = async (hideMiniplayer?: boolean | undefined) => {
         console.debug("Clearing queue")
-        await TrackPlayer.reset();
-        setQueue([]);
-        
-        setShowMiniplayer(!hideMiniplayer)
+        await TrackPlayer.setQueue([]);
+        setPlayQueue([]);        
     }
     
     const addToQueue = async (tracks: JellifyTrack[]) => {
-        const insertIndex = await findPlayQueueIndexStart(queue);
+        const insertIndex = await findPlayQueueIndexStart(playQueue);
         console.debug(`Adding ${tracks.length} to queue at index ${insertIndex}`)
         
         await TrackPlayer.add(tracks, insertIndex);
         
-        setQueue(await getQueue() as JellifyTrack[])
-        
-        setShowMiniplayer(true);
+        setPlayQueue(await getQueue() as JellifyTrack[])
     }
 
     const addToNext = async (tracks: JellifyTrack[]) => {
-        const insertIndex = await findPlayNextIndexStart(queue);
+        const insertIndex = await findPlayNextIndexStart(playQueue);
 
         console.debug(`Adding ${tracks.length} to queue at index ${insertIndex}`);
 
         await TrackPlayer.add(tracks, insertIndex);
 
-        setQueue(await getQueue() as JellifyTrack[]);
-
-        setShowMiniplayer(true);
+        setPlayQueue(await getQueue() as JellifyTrack[]);
     }
     //#endregion Functions
     
     //#region Hooks
     const useAddToQueue = useMutation({
         mutationFn: async (mutation: AddToQueueMutation) => {
-            trigger("effectDoubleClick");
-
+            
             if (mutation.queuingType === QueuingType.PlayingNext)
                 return addToNext([mapDtoToTrack(mutation.track, mutation.queuingType)]);
-
+            
             else
-                return addToQueue([mapDtoToTrack(mutation.track, mutation.queuingType)])
+            return addToQueue([mapDtoToTrack(mutation.track, mutation.queuingType)])
+        },
+        onSuccess: (data, { queuingType }) => {
+            trigger("notificationSuccess");
+
+            Burnt.alert({
+                title: queuingType === QueuingType.PlayingNext ? "Playing next" : "Added to Queue",
+                duration: 1,
+                preset: 'done'
+            });
+        },
+        onError: () => {
+            trigger("notificationError")
         }
     });
 
@@ -131,7 +138,7 @@ const PlayerContextInitializer = () => {
 
             await TrackPlayer.remove([index]);
 
-            setQueue(await TrackPlayer.getQueue() as JellifyTrack[])
+            setPlayQueue(await TrackPlayer.getQueue() as JellifyTrack[])
         }
     })
 
@@ -141,13 +148,13 @@ const PlayerContextInitializer = () => {
 
             await TrackPlayer.removeUpcomingTracks();
 
-            setQueue(await getQueue() as JellifyTrack[]);
+            setPlayQueue(await getQueue() as JellifyTrack[]);
         }
     });
 
     const useReorderQueue = useMutation({
         mutationFn: async (mutation : QueueOrderMutation) => {
-            setQueue(mutation.newOrder);
+            setPlayQueue(mutation.newOrder);
             await TrackPlayer.move(mutation.from, mutation.to);
         }
     })
@@ -180,13 +187,13 @@ const PlayerContextInitializer = () => {
             trigger("impactMedium")
             if (!isUndefined(index)) {
                 setIsSkipping(true);
-                setNowPlaying(queue[index]);
+                setNowPlaying(playQueue[index]);
                 await skip(index);
                 setIsSkipping(false);
             }
             else {
-                const nowPlayingIndex = queue.findIndex((track) => track.item.Id === nowPlaying!.item.Id);
-                setNowPlaying(queue[nowPlayingIndex + 1])
+                const nowPlayingIndex = playQueue.findIndex((track) => track.item.Id === nowPlaying!.item.Id);
+                setNowPlaying(playQueue[nowPlayingIndex + 1])
                 await skipToNext();
             }
         }
@@ -196,10 +203,10 @@ const PlayerContextInitializer = () => {
         mutationFn: async () => {
             trigger("impactMedium");
 
-            const nowPlayingIndex = queue.findIndex((track) => track.item.Id === nowPlaying!.item.Id);
+            const nowPlayingIndex = playQueue.findIndex((track) => track.item.Id === nowPlaying!.item.Id);
 
             if (nowPlayingIndex > 0) {
-                setNowPlaying(queue[nowPlayingIndex - 1])
+                setNowPlaying(playQueue[nowPlayingIndex - 1])
                 await skipToPrevious();
             }
         }
@@ -219,7 +226,7 @@ const PlayerContextInitializer = () => {
                 return mapDtoToTrack(track, QueuingType.FromSelection)
             }));
             
-            setQueueName(mutation.queueName);
+            setQueue(mutation.queue);
         },
         onSuccess: async (data, mutation: QueueMutation) => {
             setIsSkipping(false);
@@ -234,9 +241,8 @@ const PlayerContextInitializer = () => {
     //#endregion
 
     //#region RNTP Setup
-    const isPlayerReady = useSetupPlayer().isSuccess;
+    
     const { state: playbackState } = usePlaybackState();
-    const progress = useProgress(UPDATE_INTERVAL);
 
     useTrackPlayerEvents([
         Event.RemoteLike,
@@ -260,7 +266,7 @@ const PlayerContextInitializer = () => {
             }
 
             case (Event.PlaybackState) : {
-                handlePlaybackState(Client.sessionId, playStateApi, await TrackPlayer.getActiveTrack() as JellifyTrack, event.state, progress);
+                handlePlaybackState(Client.sessionId, playStateApi, await TrackPlayer.getActiveTrack() as JellifyTrack, event.state);
                 break;
             }
             case (Event.PlaybackProgressUpdated) : {
@@ -270,7 +276,7 @@ const PlayerContextInitializer = () => {
 
             case (Event.PlaybackActiveTrackChanged) : {
 
-                if (!isSkipping) {
+                if (initialized && !isSkipping) {
                     const activeTrack = await TrackPlayer.getActiveTrack() as JellifyTrack | undefined;
                     if (activeTrack && !isEqual(activeTrack, nowPlaying)) {    
                         setNowPlaying(activeTrack);
@@ -296,37 +302,54 @@ const PlayerContextInitializer = () => {
                 }
             }
         }
-    })
+    });
 
+    //#endregion RNTP Setup
 
+    //#region useEffects
     useEffect(() => {
-        if (!showMiniplayer)
-            setNowPlaying(undefined);
+        storage.set(MMKVStorageKeys.Queue, JSON.stringify(queue))
     }, [
-        showMiniplayer
+        queue
     ])
 
     useEffect(() => {
-        if (isPlayerReady)
-          console.debug("Player is ready")
-        else
-          console.warn("Player could not be setup")
-      }, [
-        isPlayerReady
-      ])
-    //#endregion RNTP Setup
+        if (initialized && playQueue)
+            storage.set(MMKVStorageKeys.PlayQueue, JSON.stringify(playQueue))
+    }, [
+        playQueue
+    ])
+
+    useEffect(() => {
+        if (initialized && nowPlaying)
+            storage.set(MMKVStorageKeys.NowPlaying, JSON.stringify(nowPlaying))
+    }, [
+        nowPlaying
+    ])
+
+    useEffect(() => {
+        if (!initialized && playQueue.length > 0 && nowPlaying) {
+            TrackPlayer.setQueue(playQueue)
+                .then(() => {
+                    TrackPlayer.skip(playQueue.findIndex(track => track.item.Id! === nowPlaying.item.Id!));
+                });
+        }
+
+        setInitialized(true);
+    }, [
+        playQueue,
+        nowPlaying
+    ])
+    //#endregion useEffects
 
     //#region return
     return {
-        showPlayer,
-        setShowPlayer,
-        showMiniplayer,
-        setShowMiniplayer,
+        initialized,
         nowPlayingIsFavorite,
         setNowPlayingIsFavorite,
         nowPlaying,
+        playQueue,
         queue,
-        queueName,
         getQueueSectionData,
         useAddToQueue,
         useClearQueue,
@@ -338,22 +361,18 @@ const PlayerContextInitializer = () => {
         usePrevious,
         usePlayNewQueue,
         playbackState,
-        progress,
     }
     //#endregion return
 }
 
 //#region Create PlayerContext
 export const PlayerContext = createContext<PlayerContext>({
-    showPlayer: false,
-    setShowPlayer: () => {},
-    showMiniplayer: false,
-    setShowMiniplayer: () => {},
+    initialized: false,
     nowPlayingIsFavorite: false,
     setNowPlayingIsFavorite: () => {},
     nowPlaying: undefined,
-    queue: [],
-    queueName: undefined,
+    playQueue: [],
+    queue: "Recently Played",
     getQueueSectionData: () => [],
     useAddToQueue: {
         mutate: () => {},
@@ -518,21 +537,17 @@ export const PlayerContext = createContext<PlayerContext>({
         submittedAt: 0
     },
     playbackState: undefined,
-    progress: undefined,
 });
 //#endregion Create PlayerContext
 
 export const PlayerProvider: ({ children }: { children: ReactNode }) => React.JSX.Element = ({ children }: { children: ReactNode }) => {
     const { 
-        showPlayer, 
-        setShowPlayer, 
-        showMiniplayer, 
-        setShowMiniplayer, 
+        initialized,
         nowPlayingIsFavorite,
         setNowPlayingIsFavorite,
         nowPlaying,
-        queue, 
-        queueName,
+        playQueue, 
+        queue,
         getQueueSectionData,
         useAddToQueue,
         useClearQueue,
@@ -544,19 +559,15 @@ export const PlayerProvider: ({ children }: { children: ReactNode }) => React.JS
         usePrevious,
         usePlayNewQueue,
         playbackState,
-        progress
     } = PlayerContextInitializer();
 
     return <PlayerContext.Provider value={{
-        showPlayer,
-        setShowPlayer,
-        showMiniplayer,
-        setShowMiniplayer,
+        initialized,
         nowPlayingIsFavorite,
         setNowPlayingIsFavorite,
         nowPlaying,
+        playQueue,
         queue,
-        queueName,
         getQueueSectionData,
         useAddToQueue,
         useClearQueue,
@@ -568,7 +579,6 @@ export const PlayerProvider: ({ children }: { children: ReactNode }) => React.JS
         usePrevious,
         usePlayNewQueue,
         playbackState,
-        progress
     }}>
         { children }
     </PlayerContext.Provider>

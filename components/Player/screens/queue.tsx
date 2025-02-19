@@ -6,13 +6,20 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useSafeAreaFrame } from "react-native-safe-area-context";
 import DraggableFlatList from "react-native-draggable-flatlist";
 import { trigger } from "react-native-haptic-feedback";
-import { getTokens, Separator } from "tamagui";
-import { FadeIn, FadeOut, ReduceMotion, SequencedTransition } from "react-native-reanimated";
+import { Separator } from "tamagui";
 
 export default function Queue({ navigation }: { navigation: NativeStackNavigationProp<StackParamList>}): React.JSX.Element {
 
     const { width } = useSafeAreaFrame();
-    const { queue, useClearQueue, useRemoveFromQueue, useReorderQueue, useSkip, nowPlaying } = usePlayerContext();
+    const { 
+        playQueue, 
+        queue, 
+        useClearQueue, 
+        useRemoveFromQueue, 
+        useReorderQueue, 
+        useSkip, 
+        nowPlaying 
+    } = usePlayerContext();
 
     navigation.setOptions({
         headerRight: () => {
@@ -22,14 +29,14 @@ export default function Queue({ navigation }: { navigation: NativeStackNavigatio
                 }}/>
             )
         }
-    })
+    });
 
-    const scrollIndex = queue.findIndex(queueItem => queueItem.item.Id! === nowPlaying!.item.Id!)
+    const scrollIndex = playQueue.findIndex(queueItem => queueItem.item.Id! === nowPlaying!.item.Id!)
 
     return (
         <DraggableFlatList
             contentInsetAdjustmentBehavior="automatic"
-            data={queue}
+            data={playQueue}
             dragHitSlop={{ left: -50 }} // https://github.com/computerjazz/react-native-draggable-flatlist/issues/336
             extraData={nowPlaying}
             // enableLayoutAnimationExperimental
@@ -48,35 +55,30 @@ export default function Queue({ navigation }: { navigation: NativeStackNavigatio
             onDragEnd={({ data, from, to}) => {
                 useReorderQueue.mutate({ newOrder: data, from, to });
             }}
-            renderItem={({ item: queueItem, getIndex, drag, isActive }) => {
-
-                const index = getIndex();
-
-                return (
-                    <Track
-                        navigation={navigation}
-                        track={queueItem.item}
-                        index={getIndex()}
-                        showArtwork
-                        onPress={() => {
-                            useSkip.mutate(index);
-                        }}
-                        onLongPress={() => {
-                            trigger('impactLight');
-                            drag();
-                        }}
-                        isNested
-                        prependElement={(
-                            <Icon 
-                                small 
-                                color={getTokens().color.amethyst.val} 
-                                name="close-circle-outline" 
-                                onPress={() => useRemoveFromQueue.mutate(index!)} 
-                            />
-                        )}
-                    />
-                )
-            }}
+            renderItem={({ item: queueItem, getIndex, drag, isActive }) =>
+                                
+                <Track
+                    queue={queue}
+                    navigation={navigation}
+                    track={queueItem.item}
+                    index={getIndex()}
+                    showArtwork
+                    onPress={() => {
+                        useSkip.mutate(getIndex());
+                    }}
+                    onLongPress={() => {
+                        trigger('impactLight');
+                        drag();
+                    }}
+                    isNested
+                    showRemove
+                    onRemove={() => {
+                        if (getIndex())
+                            useRemoveFromQueue.mutate(getIndex()!)
+                    }}
+                />
+                    
+            }
         />
     )
 }

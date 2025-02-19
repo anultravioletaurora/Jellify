@@ -1,8 +1,6 @@
 name: build-android
-on:    
-  push:
-    branches-ignore:
-      - "main"
+on:
+  pull_request:
 jobs:
   build-android:
     runs-on: macos-latest

@@ -6,7 +6,7 @@
 > **jellify** (verb) - *to make gelatinous* <br>
 [see also](https://www.merriam-webster.com/dictionary/jellify)
 
-*Jellify* is a music player for [Jellyfin](https://jellyfin.org/) built with [React Native](https://reactnative.dev/). *Jellify* provides a user experience that feels familar to other popular music apps and a has featureset to match
+*Jellify* is a free and open source music player for [Jellyfin](https://jellyfin.org/). Built with [React Native](https://reactnative.dev/), *Jellify* provides a user experience that feels familar to other popular music apps and a has featureset to match
 
 > *Jellify* requires a connection to a [Jellyfin](https://jellyfin.org/) server to work.
 
@@ -39,19 +39,48 @@ This app was designed with me and my dad in mind, since I wanted to give him a s
 
 ## 👀 Lemme see!
 ### Home
-![Jellify Home](screenshots/home.png)
+Home
 
-### Favorites / Library
-![Favorites](screenshots/favorites.png)
+<img src="screenshots/playlist.png" alt="Jellify Home" width="275" height="600">
 
-![Favorite Artists](screenshots/favorite_artists.png)
+### Library
+Library
 
-![Album](screenshots/album.png)
+<img src="screenshots/library.png" alt="Library" width="275" height="600">
+
+Library Artists
+
+<img src="screenshots/library_artists.png" alt="Library Artists" width="275" height="600">
+
+Artist
+
+<img src="screenshots/artist.png" alt="Artist" width="275" height="600">
+
+Album
+
+<img src="screenshots/album.png" alt="Album" width="275" height="600">
+
+Track Options
+ 
+<img src="screenshots/track_options.png" alt="Track Options" width="275" height="600">
+
+Playlist
+
+<img src="screenshots/playlist.png" alt="Playlist" width="275" height="600">
+
+### Search
+<img src="screenshots/search.png" alt="Search" width="275" height="600">
 
 ### Player
-![Player](screenshots/player.png)
+<img src="screenshots/player.png" alt="Player" width="275" height="600">
 
-![Queue](screenshots/player_queue.png)
+<img src="screenshots/player_queue.png" alt="Queue" width="275" height="600">
+
+### CarPlay (Sneak Preview)
+<img src="screenshots/carplay_nowplaying.jpeg" alt="Now Playing (CarPlay)" width="500" height="350">
+
+### On the Server
+<img src="https://github.com/user-attachments/assets/741884a2-b9b7-4081-b3a0-6655d08071dc" alt="Playback Tracking" width="300" height="200">
 
 ## 🏗 Built with:
 ### 🎨 Frontend
@@ -70,12 +99,16 @@ This app was designed with me and my dad in mind, since I wanted to give him a s
 [React Native MMKV](https://github.com/mrousavy/react-native-mmkv)\
 [React Native File Access](https://github.com/alpha0010/react-native-file-access)
 
+### 👩‍💻 Monitoring
+[GlitchTip](https://glitchtip.com/)
+
 ### 💜 Love from Wisconsin 🧀
 This is undoubtedly a passion project of [mine](https://github.com/anultravioletaurora), and I've learned a lot from working on it (and the many failed attempts before it). I hope you enjoy using it! Feature requests and bug reports are welcome :)
+
 
 ## 🙏 Special Thanks To
 - The [Jellyfin Team](https://jellyfin.org/) for their amazing server software, SDKs, and documentation
 - All contributors of [Finamp](https://github.com/jmshrv/finamp). *Jellify* draws inspiration and wisdom from it, and is another fantastic music app for Jellyfin
 - The folks in the [Margelo Community Discord](https://discord.com/invite/6CSHz2qAvA) for their assistance
 - Tony, Trevor, [Laine](https://github.com/lainie-ftw) and [Jordan](https://github.com/jordanbleu) for their testing and feedback from the early stages of development
-- Alyssa, for your artistic abilities and the artwork you made for *Jellify*. It gave it the flair it undoubtedly needed
+- [Alyssa](https://www.instagram.com/uhh.lyssarae?igsh=MTRmczExempnbjBwZw==), for your design knowledge and for making the artwork for *Jellify*. You’ve been instrumental in shaping it’s user experience

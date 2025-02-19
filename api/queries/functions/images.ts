@@ -2,28 +2,23 @@ import { ImageFormat, ImageType } from "@jellyfin/sdk/lib/generated-client/model
 import { getImageApi } from "@jellyfin/sdk/lib/utils/api"
 import _ from "lodash"
 import Client from "../../../api/client"
-import { Dirs, FileSystem } from 'react-native-file-access'
 
-export function fetchItemImage(itemId: string, imageType: ImageType, width: number, height: number) {
+export function fetchItemImage(itemId: string, imageType: ImageType) {
     
     return new Promise<string>(async (resolve, reject) => {
 
-        // Make sure images folder exists in cache, create if it doesn't
-        if (!(await FileSystem.exists(`${Dirs.CacheDir}/images`)))
-            await FileSystem.mkdir(`${Dirs.CacheDir}/images`)
+        console.debug("Fetching item image");
 
-        const existingImage = await FileSystem.exists(getImageFilePath(itemId, width, height, imageType));
-
-        if (existingImage)
-            resolve(await FileSystem.readFile(getImageFilePath(itemId, width, height, imageType)));
+        if (!!!Client.api) 
+            return reject("Client instance not set")
         else
             getImageApi(Client.api!)
                 .getItemImage({
                     itemId,
                     imageType,
-                    width: Math.ceil(width / 100) * 100 * 2, // Round to the nearest 100 for simplicity and to avoid 
-                    height: Math.ceil(height / 100) * 100 * 2, // redundant images in storage, then double it to make sure it's crispy
-                    format: ImageFormat.Png
+                    width: 1000, // We just care about one big nice image 
+                    height: 1000, // to keep in cache to use for all instants of
+                    format: ImageFormat.Png // the image
                 },
                 {
                     responseType: 'blob',
@@ -32,23 +27,15 @@ export function fetchItemImage(itemId: string, imageType: ImageType, width: numb
 
                 if (response.status < 300) {
 
-
-                    FileSystem.writeFile(getImageFilePath(itemId, width, height, imageType), await blobToBase64(response.data))
-                    .then(async () => {
-                        resolve(await FileSystem.readFile(getImageFilePath(itemId, width, height, imageType)));
-                    })
+                    return resolve(await blobToBase64(response.data))
                 } else {
-                    reject();
+                    return reject("Invalid image response");
                 }
             }).catch((error) => {
                 console.error(error);
                 reject(error);
             })
     });
-}
-
-function getImageFilePath(itemId: string, width: number, height: number, imageType: ImageType) {
-    return `${Dirs.CacheDir}/images/${itemId}_${imageType}_${width}x${height}.png`
 }
 
 function blobToBase64(blob : Blob) {

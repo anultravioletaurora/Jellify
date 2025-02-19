@@ -3,7 +3,7 @@ import { JellifyTrack } from "../types/JellifyTrack";
 import { PlaystateApi } from "@jellyfin/sdk/lib/generated-client/api/playstate-api";
 import { convertSecondsToRunTimeTicks } from "../helpers/runtimeticks";
 
-export async function handlePlaybackState(sessionId: string, playstateApi: PlaystateApi, track: JellifyTrack, state: State, progress: Progress) {
+export async function handlePlaybackState(sessionId: string, playstateApi: PlaystateApi, track: JellifyTrack, state: State) {
     switch (state) {            
         case (State.Playing) : {
             console.debug("Report playback started")
@@ -11,7 +11,6 @@ export async function handlePlaybackState(sessionId: string, playstateApi: Plays
                 playbackStartInfo: {
                     SessionId: sessionId,
                     ItemId: track.item.Id,
-                    PositionTicks: convertSecondsToRunTimeTicks(progress.position)
                 }
             });
             break;
@@ -25,7 +24,6 @@ export async function handlePlaybackState(sessionId: string, playstateApi: Plays
                 playbackStopInfo: {
                     SessionId: sessionId,
                     ItemId: track.item.Id,
-                    PositionTicks: convertSecondsToRunTimeTicks(progress.position)
                 }
             });
             break;

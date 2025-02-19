@@ -8,16 +8,20 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { JellifyDarkTheme, JellifyLightTheme } from "./theme";
 import { PlayerProvider } from "../player/provider";
 import { useColorScheme } from "react-native";
-import { PortalProvider } from "tamagui";
+import { PortalProvider } from "@tamagui/portal";
 import { JellifyProvider, useJellifyContext } from "./provider";
+import { ToastProvider } from "@tamagui/toast";
+import SafeToastViewport from "./Global/components/toast-area-view-port";
 
 export default function Jellify(): React.JSX.Element {
 
   return (
     <PortalProvider shouldAddRootHost>
-      <JellifyProvider>
-        <App />
-      </JellifyProvider>
+      <ToastProvider burntOptions={{ from: 'top'}}>
+        <JellifyProvider>
+          <App />
+        </JellifyProvider>
+      </ToastProvider>
     </PortalProvider>
   );
 }
@@ -35,10 +39,11 @@ function App(): React.JSX.Element {
             <Navigation />
           </PlayerProvider>
          ) : (
-          <JellyfinAuthenticationProvider>
+           <JellyfinAuthenticationProvider>
             <Login /> 
           </JellyfinAuthenticationProvider>
         )}
+        <SafeToastViewport />
       </SafeAreaProvider>
     </NavigationContainer>
   )
