@@ -70,7 +70,7 @@ export default function TrackOptions({
             queryClient.invalidateQueries({
                 queryKey: [QueryKeys.UserPlaylists]
             });
-
+            
             queryClient.invalidateQueries({
                 queryKey: [QueryKeys.ItemTracks, playlist.Id!],
             });                                    

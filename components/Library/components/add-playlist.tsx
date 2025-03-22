@@ -37,7 +37,7 @@ export default function AddPlaylist({
 
             // Refresh user playlists component in library
             queryClient.invalidateQueries({
-                queryKey: [QueryKeys.FavoritePlaylists]
+                queryKey: [QueryKeys.UserPlaylists]
             });
         },
         onError: () => {

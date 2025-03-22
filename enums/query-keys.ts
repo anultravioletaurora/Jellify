@@ -27,7 +27,24 @@ export enum QueryKeys {
     ArtistImage = "ArtistImage",
     PlaybackStateChange = "PlaybackStateChange",
     Player = "Player",
+
+    /**
+     * Query representing the fetching of a user's created playlist.
+     * 
+     * This differs from "Favorite Playlists", which are playlists
+     * that exist on the server not created by the user that the user 
+     * has favorited
+     * 
+     * Invalidation occurs by providing this query key 
+     */
     UserPlaylists = "UserPlaylists",
+
+    /**
+     * Query representing the fetching of tracks for an album or playlist.
+     * 
+     * Invalidation occurs when the ID of the album or playlist is provided
+     * as a query key
+     */
     ItemTracks = "ItemTracks",
     RefreshHome = "RefreshHome",
     FavoriteArtists = "FavoriteArtists",

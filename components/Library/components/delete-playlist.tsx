@@ -32,12 +32,15 @@ export default function DeletePlaylist(
                 preset: 'done'
             });
 
-            // Refresh user playlists component in library
+            // Refresh favorite playlists component in library
             queryClient.invalidateQueries({
                 queryKey: [QueryKeys.FavoritePlaylists]
             });
             
-            
+            // Refresh home screen user playlists
+            queryClient.invalidateQueries({
+                queryKey: [QueryKeys.UserPlaylists]
+            });
         },
         onError: () => {
             trigger("notificationError");

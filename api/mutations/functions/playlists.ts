@@ -47,7 +47,9 @@ export async function createPlaylist(name: string) {
             userId: Client.user!.id,
             mediaType: MediaType.Audio,
             createPlaylistDto: {
-                Name: name
+                Name: name,
+                IsPublic: false,
+                MediaType: MediaType.Audio
             }
         });
 }

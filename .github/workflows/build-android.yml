@@ -21,6 +21,10 @@ jobs:
       
       - name: 🚀 Run fastlane build
         run: npm run fastlane:android:build
+
+      - name: Debug
+        run: ls
+        working-directory: android
         # env:
         #   # FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
         #   APPSTORE_CONNECT_API_KEY_JSON: ${{ secrets.APPSTORE_CONNECT_API_KEY_JSON }}

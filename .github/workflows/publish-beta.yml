@@ -1,4 +1,4 @@
-name: publish-ios-beta
+name: publish-beta
 on:
   push:
     branches:

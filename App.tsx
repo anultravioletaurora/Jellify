@@ -12,6 +12,9 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import TrackPlayer, { IOSCategory, IOSCategoryOptions } from 'react-native-track-player';
 import { CAPABILITIES } from './player/constants';
 import { createWorkletRuntime } from 'react-native-reanimated';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { JellifyDarkTheme, JellifyLightTheme } from './components/theme';
 
 export const backgroundRuntime = createWorkletRuntime('background');
 
@@ -49,20 +52,25 @@ export default function App(): React.JSX.Element {
   });
 
   return (
-    <PersistQueryClientProvider 
-      client={queryClient} 
-      persistOptions={{ 
-        persister: clientPersister,
-    }}>
-      <GestureHandlerRootView>
-        <TamaguiProvider config={jellifyConfig}>
-          <Theme name={isDarkMode ? 'dark' : 'light'}>
-            { playerIsReady && (
-              <Jellify />
-            )}
-          </Theme>
-        </TamaguiProvider>
-      </GestureHandlerRootView>
-    </PersistQueryClientProvider>
+    <SafeAreaProvider>
+      <NavigationContainer theme={isDarkMode ? JellifyDarkTheme : JellifyLightTheme}>
+
+      <PersistQueryClientProvider 
+        client={queryClient} 
+        persistOptions={{ 
+          persister: clientPersister,
+      }}>
+        <GestureHandlerRootView>
+          <TamaguiProvider config={jellifyConfig}>
+            <Theme name={isDarkMode ? 'dark' : 'light'}>
+              { playerIsReady && (
+                <Jellify />
+              )}
+            </Theme>
+          </TamaguiProvider>
+        </GestureHandlerRootView>
+      </PersistQueryClientProvider>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
