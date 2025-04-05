@@ -3,7 +3,8 @@ import CarPlayHome from "./Home";
 import CarPlayDiscover from "./Discover";
 
 const CarPlayNavigation : TabBarTemplate = new TabBarTemplate({
-    title: 'Navigation',
+    id: "Tabs",
+    title: 'Tabs',
     templates: [
         CarPlayHome,
         CarPlayDiscover
