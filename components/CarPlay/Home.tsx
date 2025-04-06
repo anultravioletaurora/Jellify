@@ -14,9 +14,9 @@ const CarPlayHome : ListTemplate = new ListTemplate({
         {
             header: `Hi ${Client.user?.name ?? "there"}`,
             items: [
-                { id: QueryKeys.RecentlyPlayedArtists, text: 'Recent Artists' },
-                { id: QueryKeys.RecentlyPlayed, text: 'Recently Played'},
-                { id: QueryKeys.UserPlaylists, text: 'Your Playlists'}
+                { text: 'Recent Artists' },
+                { text: 'Recently Played'},
+                { text: 'Your Playlists'}
             ]
         }
     ],

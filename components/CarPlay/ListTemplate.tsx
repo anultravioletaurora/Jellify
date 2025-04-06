@@ -18,5 +18,8 @@ export default function ListItemTemplate(items: BaseItemDto[] | undefined) : Lis
                 }) ?? []
             }
         ],
+        async onItemSelect(e) {
+            console.debug("Item selected", e)
+        }
     })
 }
