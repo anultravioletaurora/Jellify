@@ -7,7 +7,6 @@ import { BaseItemDto } from "@jellyfin/sdk/lib/generated-client/models";
 import ListItemTemplate from "./ListTemplate";
 
 const CarPlayHome : ListTemplate = new ListTemplate({
-    id: 'Home',
     title: "Home",
     tabTitle: "Home",
     sections: [
