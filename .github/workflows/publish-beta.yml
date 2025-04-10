@@ -48,6 +48,7 @@ jobs:
       - name: 🔢 Set artifact version numbers
         run: |
           # Move the iOS IPA
+          mkdir artifacts
           mv ./ios/Jellify.ipa ./artifacts/Jellify-${{ env.VERSION_NUMBER }}.ipa
 
           # Move and rename all android release APKs
