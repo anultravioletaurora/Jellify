@@ -165,7 +165,7 @@ export default function Track({
                         <Icon 
                             name={showRemove ? "close" : "dots-horizontal"} 
                             onPress={() => {
-                                if (!!showRemove) {
+                                if (showRemove) {
                                     if (onRemove)
                                         onRemove()
                                 }

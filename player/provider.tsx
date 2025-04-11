@@ -307,7 +307,7 @@ const PlayerContextInitializer = () => {
 
                         await useUpdateOptions(nowPlayingIsFavorite);
 
-                    } else if (!!!activeTrack) {
+                    } else if (!activeTrack) {
                         setNowPlaying(undefined)
                         setNowPlayingIsFavorite(false);
                     } else {

@@ -9,7 +9,7 @@ export function fetchMusicLibraries(): Promise<BaseItemDto[]> {
     return new Promise(async (resolve, reject) => {
         console.debug("Fetching music libraries from Jellyfin");
         
-        let libraries = await getItemsApi(Client.api!).getItems({ 
+        const libraries = await getItemsApi(Client.api!).getItems({ 
             includeItemTypes: ['CollectionFolder'] 
         });
 
@@ -18,7 +18,7 @@ export function fetchMusicLibraries(): Promise<BaseItemDto[]> {
             return reject("No libraries found on Jellyfin");
         }
 
-        let musicLibraries = libraries.data.Items!.filter(library => 
+        const musicLibraries = libraries.data.Items!.filter(library => 
             library.CollectionType == 'music');
         
         return resolve(musicLibraries);
@@ -29,7 +29,7 @@ export function fetchPlaylistLibrary(): Promise<BaseItemDto> {
     return new Promise(async (resolve, reject) => {
         console.debug("Fetching playlist library from Jellyfin");
         
-        let libraries = await getItemsApi(Client.api!).getItems({ 
+        const libraries = await getItemsApi(Client.api!).getItems({ 
             includeItemTypes: ['ManualPlaylistsFolder'], 
             excludeItemTypes: ['CollectionFolder'] 
         });
@@ -41,7 +41,7 @@ export function fetchPlaylistLibrary(): Promise<BaseItemDto> {
 
         console.debug("Playlist libraries", libraries.data.Items!)
 
-        let playlistLibrary = libraries.data.Items!.filter(library => 
+        const playlistLibrary = libraries.data.Items!.filter(library => 
             library.CollectionType == 'playlists'
         )[0];
 

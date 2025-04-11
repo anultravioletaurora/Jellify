@@ -27,7 +27,7 @@ export default function Icon({
 }) : React.JSX.Element {
     
     const theme = useTheme();
-    let size = extraLarge? extraLargeSize : large ? largeSize : small ? smallSize : regularSize
+    const size = extraLarge? extraLargeSize : large ? largeSize : small ? smallSize : regularSize
     
     return (
         <MaterialCommunityIcons 

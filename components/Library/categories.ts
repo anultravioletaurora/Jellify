@@ -6,7 +6,7 @@ interface CategoryRoute {
     params?: {
         query: QueryKeys
     };
-};
+}
 
 const Categories : CategoryRoute[] = [
     { name: "Artists", iconName: "microphone-variant", params: { query: QueryKeys.FavoriteArtists } },

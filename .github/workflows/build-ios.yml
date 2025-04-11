@@ -20,6 +20,9 @@ jobs:
       - name: 🟢 Run npm run init
         run: npm run init
       
+      - name: 🍫 Install CocoaPods
+        run: npm run pod:install
+
       - name: 🚀 Run fastlane build
         run: npm run fastlane:ios:build
         env:

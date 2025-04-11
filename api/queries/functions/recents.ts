@@ -7,10 +7,10 @@ import { getUserLibraryApi } from "@jellyfin/sdk/lib/utils/api";
 export function fetchRecentlyAdded(limit: number = QueryConfig.limits.recents, offset?: number | undefined) : Promise<BaseItemDto[]> {
     return new Promise(async (resolve, reject) => {
 
-        if (!!!Client.api)
+        if (!Client.api)
             return reject("Client not set")
 
-        if (!!!Client.library)
+        if (!Client.library)
             return reject("Library not set")
         else
             getUserLibraryApi(Client.api)

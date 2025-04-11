@@ -41,7 +41,7 @@ export default function IconButton({
                     >
                         <Icon 
                             large={largeIcon}
-                            small={!!!largeIcon}
+                            small={!largeIcon}
                             name={name} 
                             color={"$color"}
                         />

@@ -36,7 +36,7 @@ export default function Avatar({
     return (
         <YStack alignItems="center" marginHorizontal={10}>
             <TamaguiAvatar 
-                borderRadius={!!!props.circular ? 4 : 'unset'}
+                borderRadius={!props.circular ? 4 : 'unset'}
                 {...props}
             >
                 <TamaguiAvatar.Image src={data} />

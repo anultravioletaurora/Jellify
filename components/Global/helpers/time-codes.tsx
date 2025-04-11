@@ -7,10 +7,10 @@ export function RunTimeSeconds({ children }: { children: number }) : React.JSX.E
 }
 
 export function RunTimeTicks({ children } : { children?: number | null | undefined }) : React.JSX.Element {
-    if (!!!children) 
+    if (!children) 
         return <Text>0:00</Text>
 
-    let time = calculateRunTimeFromTicks(children);
+    const time = calculateRunTimeFromTicks(children);
 
     return (
         <Text 

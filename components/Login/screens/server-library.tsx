@@ -24,7 +24,7 @@ export default function ServerLibrary(): React.JSX.Element {
     const { data : libraries, isError, isPending, isSuccess, refetch } = useQuery({
         queryKey: [QueryKeys.UserViews],
         queryFn: () => fetchUserViews()
-    });;
+    });
 
     useEffect(() => {
         if (!isPending && isSuccess)
@@ -70,7 +70,7 @@ export default function ServerLibrary(): React.JSX.Element {
                 <Text>Unable to load libraries</Text>
             )}
 
-            <Button disabled={!!!libraryId}
+            <Button disabled={!libraryId}
                 onPress={() => {
                     Client.setLibrary({
                         musicLibraryId: libraryId!,

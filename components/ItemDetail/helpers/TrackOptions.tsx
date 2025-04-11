@@ -41,13 +41,13 @@ export default function TrackOptions({
     const { data: album, isSuccess: albumFetchSuccess } = useQuery({
         queryKey: [QueryKeys.Item, track.AlbumId!],
         queryFn: () => fetchItem(track.AlbumId!)
-    });;
+    });
 
     const { data: playlists, isPending : playlistsFetchPending, isSuccess: playlistsFetchSuccess, refetch } = useQuery({
             queryKey: [QueryKeys.UserPlaylists],
             queryFn: () => fetchUserPlaylists()
         });
-    ;
+    
 
     const { useAddToQueue } = usePlayerContext();
 

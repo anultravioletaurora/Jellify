@@ -6,7 +6,7 @@ interface CategoryRoute {
     params?: {
         query: QueryKeys
     };
-};
+}
 
 const Categories : CategoryRoute[] = [
     { name: "Account", iconName: "account-key-outline" },

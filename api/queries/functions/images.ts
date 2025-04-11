@@ -8,7 +8,7 @@ export function fetchItemImage(itemId: string, imageType: ImageType, width: numb
     return new Promise<string>(async (resolve, reject) => {
         console.debug("Fetching item image");
 
-        if (!!!Client.api) 
+        if (!Client.api) 
             return reject("Client instance not set")
         else
             getImageApi(Client.api)

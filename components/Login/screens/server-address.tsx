@@ -39,17 +39,17 @@ export default function ServerAddress({
 
             console.debug(`Connecting to ${useHttps ? https : http}${serverAddress}`);
 
-            let jellyfin = new Jellyfin(JellyfinInfo);
+            const jellyfin = new Jellyfin(JellyfinInfo);
 
-            if (!!!serverAddress) 
+            if (!serverAddress) 
                 throw new Error("Server address was empty");
 
-            let api = jellyfin.createApi(`${useHttps ? https : http}${serverAddress}`);
+            const api = jellyfin.createApi(`${useHttps ? https : http}${serverAddress}`);
 
             return getSystemApi(api).getPublicSystemInfo();
         },
         onSuccess: (publicSystemInfoResponse) => {
-            if (!!!publicSystemInfoResponse.data.Version)
+            if (!publicSystemInfoResponse.data.Version)
                 throw new Error("Jellyfin instance did not respond");
     
             console.log(`Connected to Jellyfin ${publicSystemInfoResponse.data.Version!}`);

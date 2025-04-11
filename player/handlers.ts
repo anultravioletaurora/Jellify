@@ -57,5 +57,5 @@ export async function handlePlaybackProgressUpdated(sessionId: string, playstate
         //         PositionTicks: convertSecondsToRunTimeTicks(progress.position)
         //     }
         // });
-    };
+    }
 }
