@@ -718,7 +718,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development: Jack Caulfield (66Z9J9NX2X)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Jack Caulfield (66Z9J9NX2X)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 119;
+				CURRENT_PROJECT_VERSION = 120;
 				DEVELOPMENT_TEAM = WAH9CZ8BPG;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WAH9CZ8BPG;
 				ENABLE_BITCODE = NO;
@@ -728,7 +728,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.10.93;
+				MARKETING_VERSION = 0.10.95;
 				NEW_SETTING = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -759,7 +759,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 119;
+				CURRENT_PROJECT_VERSION = 120;
 				DEVELOPMENT_TEAM = WAH9CZ8BPG;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WAH9CZ8BPG;
 				INFOPLIST_FILE = Jellify/Info.plist;
@@ -768,7 +768,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.10.93;
+				MARKETING_VERSION = 0.10.95;
 				NEW_SETTING = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
