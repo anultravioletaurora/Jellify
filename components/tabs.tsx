@@ -40,6 +40,8 @@ export function Tabs(): React.JSX.Element {
 								<Miniplayer navigation={props.navigation} />
 							</>
 						)}
+						<InternetConnectionWatcher />
+
 						<BottomTabBar {...props} />
 					</>
 				)}
@@ -111,7 +113,6 @@ export function Tabs(): React.JSX.Element {
 					}}
 				/>
 			</Tab.Navigator>
-			<InternetConnectionWatcher />
 		</View>
 	)
 }
