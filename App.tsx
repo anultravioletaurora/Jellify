@@ -16,6 +16,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { NavigationContainer } from '@react-navigation/native'
 import { JellifyDarkTheme, JellifyLightTheme } from './components/theme'
 import { requestStoragePermission } from './helpers/permisson-helpers'
+import ErrorBoundary from './components/ErrorBoundary'
 
 export const backgroundRuntime = createWorkletRuntime('background')
 
@@ -54,32 +55,37 @@ export default function App(): React.JSX.Element {
 		console.log('playerIsReady', track)
 	}
 	getActiveTrack()
+	const [reloader, setReloader] = useState(0)
+
+	const handleRetry = () => setReloader((r) => r + 1)
 
 	return (
 		<SafeAreaProvider>
-			<NavigationContainer theme={isDarkMode ? JellifyDarkTheme : JellifyLightTheme}>
-				<PersistQueryClientProvider
-					client={queryClient}
-					persistOptions={{
-						persister: clientPersister,
+			<ErrorBoundary reloader={reloader} onRetry={handleRetry}>
+				<NavigationContainer theme={isDarkMode ? JellifyDarkTheme : JellifyLightTheme}>
+					<PersistQueryClientProvider
+						client={queryClient}
+						persistOptions={{
+							persister: clientPersister,
 
-						/**
-						 * Infinity, since data can remain the
-						 * same forever on the server
-						 */
-						maxAge: Infinity,
-						buster: '0.10.99',
-					}}
-				>
-					<GestureHandlerRootView>
-						<TamaguiProvider config={jellifyConfig}>
-							<Theme name={isDarkMode ? 'dark' : 'light'}>
-								{playerIsReady && <Jellify />}
-							</Theme>
-						</TamaguiProvider>
-					</GestureHandlerRootView>
-				</PersistQueryClientProvider>
-			</NavigationContainer>
+							/**
+							 * Infinity, since data can remain the
+							 * same forever on the server
+							 */
+							maxAge: Infinity,
+							buster: '0.10.99',
+						}}
+					>
+						<GestureHandlerRootView>
+							<TamaguiProvider config={jellifyConfig}>
+								<Theme name={isDarkMode ? 'dark' : 'light'}>
+									{playerIsReady && <Jellify />}
+								</Theme>
+							</TamaguiProvider>
+						</GestureHandlerRootView>
+					</PersistQueryClientProvider>
+				</NavigationContainer>
+			</ErrorBoundary>
 		</SafeAreaProvider>
 	)
 }
