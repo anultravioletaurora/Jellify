@@ -24,7 +24,8 @@ export default class ErrorBoundary extends React.Component<Props, State> {
 	}
 
 	componentDidCatch(error: Error, info: React.ErrorInfo) {
-		if (this.props.onError) this.props.onError(error, info)
+		if (__DEV__) return
+		this.setState({ hasError: true, error })
 	}
 
 	componentDidUpdate(prevProps: Props) {
@@ -41,6 +42,7 @@ export default class ErrorBoundary extends React.Component<Props, State> {
 
 	render() {
 		if (this.state.hasError) {
+			console.log('this.state.hasError', this.state.hasError)
 			return (
 				<View style={styles.container}>
 					<Text style={styles.emoji}>🎵😵‍💫</Text>
@@ -51,9 +53,9 @@ export default class ErrorBoundary extends React.Component<Props, State> {
 					<TouchableOpacity style={styles.button} onPress={this.handleRetry}>
 						<Text style={styles.buttonText}>Retry</Text>
 					</TouchableOpacity>
-					{__DEV__ && this.state.error && (
+					{/* {__DEV__ && this.state.error && (
 						<Text style={styles.devError}>{this.state.error.toString()}</Text>
-					)}
+					)} */}
 				</View>
 			)
 		}
