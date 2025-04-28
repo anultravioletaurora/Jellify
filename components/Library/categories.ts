@@ -7,19 +7,15 @@ interface CategoryRoute {
 	name: any // ¯\_(ツ)_/¯
 	iconName: string
 	params?: {
-		query?: QueryKeys
 		queue?: Queue
 		tracks?: BaseItemDto[]
+		artists?: BaseItemDto[]
 	}
 }
 
 const Categories: CategoryRoute[] = [
-	{
-		name: 'Artists',
-		iconName: 'microphone-variant',
-		params: { query: QueryKeys.FavoriteArtists },
-	},
-	{ name: 'Albums', iconName: 'music-box-multiple', params: { query: QueryKeys.FavoriteAlbums } },
+	{ name: 'Artists', iconName: 'microphone-variant', params: {} },
+	{ name: 'Albums', iconName: 'music-box-multiple', params: {} },
 	{ name: 'Tracks', iconName: 'music-note', params: { queue: 'Favorite Tracks' } },
 	{ name: 'Playlists', iconName: 'playlist-music' },
 ]

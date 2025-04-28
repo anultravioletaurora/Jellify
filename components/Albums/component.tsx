@@ -1,26 +1,18 @@
 import { AlbumsProps } from '../types'
-import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import { ItemCard } from '../Global/components/item-card'
 import { FlatList, RefreshControl } from 'react-native'
 import { useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../enums/query-keys'
 import { fetchFavoriteAlbums } from '../../api/queries/functions/favorites'
-import { fetchRecentlyAdded } from '../../api/queries/functions/recents'
-import { QueryConfig } from '../../api/queries/query.config'
 
 export default function Albums({ navigation, route }: AlbumsProps): React.JSX.Element {
-	const fetchRecentlyAddedAlbums = route.params.query === QueryKeys.RecentlyAdded
-
 	const {
 		data: albums,
 		refetch,
 		isPending,
 	} = useQuery({
-		queryKey: [route.params.query],
-		queryFn: () =>
-			fetchRecentlyAddedAlbums
-				? fetchRecentlyAdded(QueryConfig.limits.recents * 4, QueryConfig.limits.recents)
-				: fetchFavoriteAlbums(),
+		queryKey: [QueryKeys.FavoriteAlbums],
+		queryFn: fetchFavoriteAlbums,
 	})
 
 	return (
@@ -31,7 +23,7 @@ export default function Albums({ navigation, route }: AlbumsProps): React.JSX.El
 			}}
 			contentInsetAdjustmentBehavior='automatic'
 			numColumns={2}
-			data={albums}
+			data={route.params.albums ? route.params.albums : albums ? albums : []}
 			refreshControl={<RefreshControl refreshing={isPending} onRefresh={refetch} />}
 			renderItem={({ index, item: album }) => (
 				<ItemCard

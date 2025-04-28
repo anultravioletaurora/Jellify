@@ -18,6 +18,7 @@ import Client from '../api/client'
 import { getPlaystateApi } from '@jellyfin/sdk/lib/utils/api'
 import { useNetworkContext } from '../components/Network/provider'
 import { useQueueContext } from './queue-provider'
+import { PlaystateApi } from '@jellyfin/sdk/lib/generated-client/api/playstate-api'
 
 interface PlayerContext {
 	nowPlaying: JellifyTrack | undefined
@@ -30,7 +31,9 @@ interface PlayerContext {
 const PlayerContextInitializer = () => {
 	const nowPlayingJson = storage.getString(MMKVStorageKeys.NowPlaying)
 
-	const playStateApi = getPlaystateApi(Client.api!)
+	let playStateApi: PlaystateApi | undefined
+
+	if (Client.api) getPlaystateApi(Client.api)
 
 	//#region State
 	const [nowPlaying, setNowPlaying] = useState<JellifyTrack | undefined>(

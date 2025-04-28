@@ -24,7 +24,6 @@ export default function Index({
 				paddingBottom={'$15'}
 				refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} />}
 			>
-				<H2>{`Recently added`}</H2>
 				<RecentlyAdded navigation={navigation} />
 			</ScrollView>
 		</SafeAreaView>

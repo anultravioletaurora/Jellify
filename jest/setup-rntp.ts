@@ -1,30 +1,11 @@
-// https://github.com/react-native-device-info/react-native-device-info/issues/1360
-import mockRNDeviceInfo from 'react-native-device-info/jest/react-native-device-info-mock'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-jest.mock('../api/client')
-
-jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter')
-
-jest.mock('react-native-device-info', () => mockRNDeviceInfo)
-
-jest.mock('react-native-haptic-feedback', () => {
-	return {
-		default: {
-			trigger: jest.fn(),
-		},
-	}
-})
-
-jest.mock('burnt', () => {
-	return {
-		default: {
-			alert: jest.fn(),
-		},
-	}
-})
+import * as TrackPlayer from 'react-native-track-player'
 
 // https://github.com/doublesymmetry/react-native-track-player/issues/501
 jest.mock('react-native-track-player', () => {
+	const listeners = new Map()
+
 	return {
 		__esModule: true,
 		default: {
@@ -68,6 +49,12 @@ jest.mock('react-native-track-player', () => {
 			buffered: 150,
 			duration: 200,
 		}),
+		usePlaybackState: () => 'playing',
+
+		// eslint-disable @typescript-eslint/no-explicit-any
+		useTrackPlayerEvents: (events: TrackPlayer.Event[], handler: (variables: any) => void) => {
+			eventHandler = handler
+		},
 		Capability: {
 			Play: 1,
 			PlayFromId: 2,
@@ -108,5 +95,18 @@ jest.mock('react-native-track-player', () => {
 			Record: 'record',
 			PlayAndRecord: 'playAndRecord',
 		},
+		Event: {
+			PlaybackActiveTrackChanged: 'playbackActiveTrackChanged',
+		},
+	}
+})
+
+export let eventHandler: any
+
+beforeEach(() => {
+	const player = TrackPlayer as any
+
+	player.useTrackPlayerEvents = (events: Event[], handler: (variables: any) => void) => {
+		eventHandler = handler
 	}
 })

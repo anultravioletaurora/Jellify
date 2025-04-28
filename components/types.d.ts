@@ -34,7 +34,7 @@ export type StackParamList = {
 		artists: BaseItemDto[] | undefined
 	}
 	Albums: {
-		query: QueryKeys.FavoriteAlbums | QueryKeys.RecentlyAdded
+		albums: BaseItemDto[] | undefined
 	}
 	Tracks: {
 		tracks: BaseItemDto[] | undefined

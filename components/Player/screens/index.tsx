@@ -22,7 +22,7 @@ export default function PlayerScreen({
 }: {
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
-	const { nowPlayingIsFavorite, setNowPlayingIsFavorite, nowPlaying } = usePlayerContext()
+	const { nowPlaying } = usePlayerContext()
 
 	const { queueRef } = useQueueContext()
 
@@ -155,10 +155,7 @@ export default function PlayerScreen({
 
 								<Spacer />
 
-								<FavoriteButton
-									item={nowPlaying!.item}
-									onToggle={() => setNowPlayingIsFavorite(!nowPlayingIsFavorite)}
-								/>
+								<FavoriteButton item={nowPlaying!.item} />
 							</XStack>
 						</XStack>
 
