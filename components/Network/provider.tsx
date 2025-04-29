@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext } from 'react'
+import React, { createContext, ReactNode, useContext, useState } from 'react'
 import { JellifyDownload } from '../../types/JellifyDownload'
 import { useMutation, UseMutationResult, useQuery, useQueryClient } from '@tanstack/react-query'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
@@ -13,11 +13,13 @@ interface NetworkContext {
 	useRemoveDownload: UseMutationResult<void, Error, BaseItemDto, unknown>
 	downloadedTracks: JellifyDownload[] | undefined
 	activeDownloads: DownloadProgress[] | undefined
-	networkStatus: networkStatusTypes | undefined
+	networkStatus: keyof typeof networkStatusTypes | null
+	setNetworkStatus: (status: keyof typeof networkStatusTypes | null) => void
 }
 
 const NetworkContextInitializer = () => {
 	const queryClient = useQueryClient()
+	const [networkStatus, setNetworkStatus] = useState<keyof typeof networkStatusTypes | null>(null)
 
 	const useDownload = useMutation({
 		mutationFn: (trackItem: BaseItemDto) => {
@@ -42,10 +44,6 @@ const NetworkContextInitializer = () => {
 		},
 	})
 
-	const { data: networkStatus } = useQuery<networkStatusTypes>({
-		queryKey: [QueryKeys.NetworkStatus],
-	})
-
 	const { data: activeDownloads } = useQuery<DownloadProgress[]>({
 		queryKey: ['downloads'],
 		initialData: [],
@@ -63,6 +61,7 @@ const NetworkContextInitializer = () => {
 		activeDownloads,
 		downloadedTracks,
 		networkStatus,
+		setNetworkStatus,
 	}
 }
 
@@ -105,7 +104,8 @@ const NetworkContext = createContext<NetworkContext>({
 	},
 	downloadedTracks: [],
 	activeDownloads: [],
-	networkStatus: networkStatusTypes.ONLINE,
+	networkStatus: null,
+	setNetworkStatus: () => {},
 })
 
 export const NetworkContextProvider: ({
@@ -113,8 +113,14 @@ export const NetworkContextProvider: ({
 }: {
 	children: ReactNode
 }) => React.JSX.Element = ({ children }: { children: ReactNode }) => {
-	const { useDownload, useRemoveDownload, downloadedTracks, activeDownloads, networkStatus } =
-		NetworkContextInitializer()
+	const {
+		useDownload,
+		useRemoveDownload,
+		downloadedTracks,
+		activeDownloads,
+		networkStatus,
+		setNetworkStatus,
+	} = NetworkContextInitializer()
 
 	return (
 		<NetworkContext.Provider
@@ -124,6 +130,7 @@ export const NetworkContextProvider: ({
 				activeDownloads,
 				downloadedTracks,
 				networkStatus,
+				setNetworkStatus,
 			}}
 		>
 			{children}

@@ -13,6 +13,7 @@ import Animated, {
 
 import { QueryKeys } from '../../enums/query-keys'
 import { Text } from '../Global/helpers/text'
+import { useNetworkContext } from './provider'
 
 const internetConnectionWatcher = {
 	NO_INTERNET: 'You are offline',
@@ -27,7 +28,7 @@ export enum networkStatusTypes {
 const isAndroid = Platform.OS === 'android'
 
 const InternetConnectionWatcher = () => {
-	const [networkStatus, setNetworkStatus] = useState<keyof typeof networkStatusTypes | null>(null)
+	const { networkStatus, setNetworkStatus } = useNetworkContext()
 	const lastNetworkStatus = useRef<keyof typeof networkStatusTypes | null>()
 	const queryClient = useQueryClient()
 

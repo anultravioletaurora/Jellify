@@ -8,6 +8,7 @@ import { FlatList } from 'react-native'
 import IconCard from '../Global/helpers/icon-card'
 import Categories from './categories'
 import { StorageBar } from '../Storage'
+import { AutoDownloadToggle } from '../Network/AutoDownloadToggle'
 
 export default function Root({
 	navigation,
@@ -35,6 +36,7 @@ export default function Root({
 			ListFooterComponent={
 				<>
 					<StorageBar />
+					<AutoDownloadToggle />
 					<SignOut />
 				</>
 			}
