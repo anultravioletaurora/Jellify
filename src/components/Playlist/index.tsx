@@ -184,6 +184,8 @@ export default function Playlist({ playlist, navigation }: PlaylistProps): React
 					onRemove={() =>
 						useRemoveFromPlaylist.mutate({ playlist, track, index: getIndex()! })
 					}
+					showDragHandle={editing}
+					dragHandle={editing ? drag : undefined}
 				/>
 			)}
 			ListFooterComponent={

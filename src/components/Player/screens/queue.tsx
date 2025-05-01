@@ -91,6 +91,8 @@ export default function Queue({
 						onRemove={() => {
 							if (getIndex()) useRemoveFromQueue.mutate(getIndex()!)
 						}}
+						showDragHandle={true}
+						dragHandle={drag}
 					/>
 				)}
 			/>

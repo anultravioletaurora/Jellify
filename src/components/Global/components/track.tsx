@@ -34,6 +34,8 @@ interface TrackProps {
 	prependElement?: React.JSX.Element | undefined
 	showRemove?: boolean | undefined
 	onRemove?: () => void | undefined
+	dragHandle?: (() => void) | undefined // Optional drag handle trigger
+	showDragHandle?: boolean | undefined // Show drag handle
 }
 
 export default function Track({
@@ -50,6 +52,8 @@ export default function Track({
 	prependElement,
 	showRemove,
 	onRemove,
+	dragHandle,
+	showDragHandle,
 }: TrackProps): React.JSX.Element {
 	const theme = useTheme()
 	const { nowPlaying, useStartPlayback } = usePlayerContext()
@@ -104,6 +108,19 @@ export default function Track({
 				}
 				paddingVertical={'$2'}
 			>
+				{/* Drag handle, only if enabled */}
+				{showDragHandle && dragHandle && (
+					<YStack alignContent='center' justifyContent='center' marginRight={'$2'}>
+						<Icon
+							name='drag-vertical'
+							size={22}
+							color={getTokens().color.amethyst}
+							onPress={dragHandle}
+							accessibilityLabel='Reorder'
+						/>
+					</YStack>
+				)}
+
 				{prependElement && (
 					<YStack alignContent='center' justifyContent='center' flex={1}>
 						{prependElement}
