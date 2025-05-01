@@ -11,7 +11,8 @@ import { QueryKeys } from '../../enums/query-keys'
 import { getImageApi, getItemsApi } from '@jellyfin/sdk/lib/utils/api'
 import Client from '../../api/client'
 import { ItemCard } from '../Global/components/item-card'
-import { Image } from 'expo-image'
+// import { Image } from 'expo-image'
+import FastImage from 'react-native-fast-image'
 import { groupBy, isEqual } from 'lodash'
 
 export function AlbumScreen({ route, navigation }: HomeAlbumProps): React.JSX.Element {
@@ -83,8 +84,8 @@ export function AlbumScreen({ route, navigation }: HomeAlbumProps): React.JSX.El
 			}}
 			ListHeaderComponent={
 				<YStack marginTop={'$2'} minHeight={getToken('$20') + getToken('$15')}>
-					<Image
-						source={getImageApi(Client.api!).getItemImageUrlById(album.Id!)}
+					<FastImage
+						source={{ uri: getImageApi(Client.api!).getItemImageUrlById(album.Id!) }}
 						style={{
 							borderRadius: getToken('$5'),
 							width: getToken('$20') + getToken('$15'),

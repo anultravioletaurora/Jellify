@@ -10,7 +10,6 @@
 		00E356F31AD99517003FC87E /* JellifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* JellifyTests.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		217EBE16A3E8C5FBF476C905 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F757EB73303E0AC21EF34F64 /* PrivacyInfo.xcprivacy */; };
-		66BC9C5D1B536CD0799EEC89 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DE980BB8253E3C5F2207CE /* ExpoModulesProvider.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		92C580068317633958E4B0F9 /* libPods-Jellify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4912CEDF8E675A9B3515C88E /* libPods-Jellify.a */; };
 		CF620D0C2CF2BB210045E433 /* Aileron-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF620CFC2CF2BB1F0045E433 /* Aileron-Italic.otf */; };
@@ -82,7 +81,6 @@
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = Jellify/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		4912CEDF8E675A9B3515C88E /* libPods-Jellify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jellify.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Jellify/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		82DE980BB8253E3C5F2207CE /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Jellify/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		A4403789D3D6FBE6706E62B4 /* Pods-Jellify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jellify.release.xcconfig"; path = "Target Support Files/Pods-Jellify/Pods-Jellify.release.xcconfig"; sourceTree = "<group>"; };
 		ACD0D4797EFB0AA1C5B6FC7D /* Pods-Jellify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jellify.debug.xcconfig"; path = "Target Support Files/Pods-Jellify/Pods-Jellify.debug.xcconfig"; sourceTree = "<group>"; };
 		CF620CFC2CF2BB1F0045E433 /* Aileron-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aileron-Italic.otf"; path = "../assets/fonts/Aileron-Italic.otf"; sourceTree = "<group>"; };
@@ -216,22 +214,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		56E1F4734630BBAE3738C238 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				7466A2DFBB2DB18C07F6CEC6 /* Jellify */,
-			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
-		7466A2DFBB2DB18C07F6CEC6 /* Jellify */ = {
-			isa = PBXGroup;
-			children = (
-				82DE980BB8253E3C5F2207CE /* ExpoModulesProvider.swift */,
-			);
-			name = Jellify;
-			sourceTree = "<group>";
-		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,7 +247,6 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
-				56E1F4734630BBAE3738C238 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -376,7 +357,6 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Jellify" */;
 			buildPhases = (
 				B44EEE05F9243658C0ACC188 /* [CP] Check Pods Manifest.lock */,
-				41245AA25E9CF87045F16E79 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
@@ -545,25 +525,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jellify/Pods-Jellify-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		41245AA25E9CF87045F16E79 /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-Jellify/expo-configure-project.sh\"\n";
-		};
 		B44EEE05F9243658C0ACC188 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -604,7 +565,6 @@
 				CF98CA472D3E99E0003D88B7 /* CarScene.swift in Sources */,
 				CF98CA482D3E99E0003D88B7 /* PhoneScene.swift in Sources */,
 				CF98CA492D3E99E0003D88B7 /* AppDelegate.swift in Sources */,
-				66BC9C5D1B536CD0799EEC89 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

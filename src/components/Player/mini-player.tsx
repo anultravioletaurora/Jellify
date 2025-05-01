@@ -1,5 +1,5 @@
 import React from 'react'
-import { getToken, getTokens, useTheme, View, XStack, YStack } from 'tamagui'
+import { getToken, getTokens, Image, useTheme, View, XStack, YStack } from 'tamagui'
 import { usePlayerContext } from '../../player/player-provider'
 import { BottomTabNavigationEventMap } from '@react-navigation/bottom-tabs'
 import { NavigationHelpers, ParamListBase } from '@react-navigation/native'
@@ -8,7 +8,7 @@ import { Text } from '../Global/helpers/text'
 import TextTicker from 'react-native-text-ticker'
 import PlayPauseButton from './helpers/buttons'
 import { TextTickerConfig } from './component.config'
-import { Image } from 'expo-image'
+import FastImage from 'react-native-fast-image'
 import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import Client from '../../api/client'
 import { useQueueContext } from '../../player/queue-provider'
@@ -44,17 +44,12 @@ export function Miniplayer({
 						minHeight={'$12'}
 						marginLeft={'$2'}
 					>
-						<Image
-							source={getImageApi(Client.api!).getItemImageUrlById(
-								nowPlaying!.item.AlbumId!,
-							)}
-							placeholder={
-								nowPlaying &&
-								nowPlaying.item.ImageBlurHashes &&
-								nowPlaying.item.ImageBlurHashes.Primary
-									? nowPlaying.item.ImageBlurHashes.Primary[0]
-									: undefined
-							}
+						<FastImage
+							source={{
+								uri: getImageApi(Client.api!).getItemImageUrlById(
+									nowPlaying!.item.AlbumId!,
+								),
+							}}
 							style={{
 								width: getToken('$12'),
 								height: getToken('$12'),

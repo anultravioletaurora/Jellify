@@ -9,7 +9,7 @@ import { trigger } from 'react-native-haptic-feedback'
 import { queryClient } from '../../../constants/query-client'
 import { QueryKeys } from '../../../enums/query-keys'
 
-import * as Burnt from 'burnt'
+// import * as Burnt from 'burnt'
 
 export default function DeletePlaylist({
 	navigation,
@@ -22,12 +22,12 @@ export default function DeletePlaylist({
 
 			navigation.goBack()
 			navigation.goBack()
-			Burnt.alert({
-				title: `Playlist deleted`,
-				message: `Deleted ${playlist.Name ?? 'Untitled Playlist'}`,
-				duration: 1,
-				preset: 'done',
-			})
+			// Burnt.alert({
+			// 	title: `Playlist deleted`,
+			// 	message: `Deleted ${playlist.Name ?? 'Untitled Playlist'}`,
+			// 	duration: 1,
+			// 	preset: 'done',
+			// })
 
 			// Refresh favorite playlists component in library
 			queryClient.invalidateQueries({

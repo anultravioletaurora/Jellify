@@ -16,7 +16,7 @@ import { QueryKeys } from '../../enums/query-keys'
 import { getImageApi, getItemsApi } from '@jellyfin/sdk/lib/utils/api'
 import Client from '../../api/client'
 import { RefreshControl } from 'react-native'
-import { Image } from 'expo-image'
+import FastImage from 'react-native-fast-image'
 
 interface PlaylistProps {
 	playlist: BaseItemDto
@@ -144,8 +144,8 @@ export default function Playlist({ playlist, navigation }: PlaylistProps): React
 			ItemSeparatorComponent={() => <Separator />}
 			ListHeaderComponent={
 				<YStack alignItems='center' marginTop={'$4'}>
-					<Image
-						source={getImageApi(Client.api!).getItemImageUrlById(playlist.Id!)}
+					<FastImage
+						source={{ uri: getImageApi(Client.api!).getItemImageUrlById(playlist.Id!) }}
 						style={{
 							borderRadius: getToken('$5'),
 							width: getToken('$20') + getToken('$15'),

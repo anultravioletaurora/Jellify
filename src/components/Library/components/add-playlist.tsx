@@ -10,8 +10,8 @@ import { createPlaylist } from '../../../api/mutations/functions/playlists'
 import { trigger } from 'react-native-haptic-feedback'
 import { queryClient } from '../../../constants/query-client'
 import { QueryKeys } from '../../../enums/query-keys'
-
-import * as Burnt from 'burnt'
+import Toast from 'react-native-toast-message'
+// import * as Burnt from 'burnt'
 
 export default function AddPlaylist({
 	navigation,
@@ -25,11 +25,16 @@ export default function AddPlaylist({
 		onSuccess: (data, { name }) => {
 			trigger('notificationSuccess')
 
-			Burnt.alert({
-				title: `Playlist created`,
-				message: `Created playlist ${name}`,
-				duration: 1,
-				preset: 'done',
+			// Burnt.alert({
+			// 	title: `Playlist created`,
+			// 	message: `Created playlist ${name}`,
+			// 	duration: 1,
+			// 	preset: 'done',
+			// })
+			Toast.show({
+				text1: 'Playlist created',
+				text2: `Created playlist ${name}`,
+				type: 'success',
 			})
 
 			navigation.goBack()

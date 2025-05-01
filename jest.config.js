@@ -1,6 +1,6 @@
 // https://docs.swmansion.com/react-native-gesture-handler/docs/guides/testing
 module.exports = {
-	preset: 'jest-expo',
+	preset: 'react-native',
 	setupFiles: ['./node_modules/react-native-gesture-handler/jestSetup.js'],
 	setupFilesAfterEnv: [
 		'./jest/setup.ts',
@@ -11,6 +11,7 @@ module.exports = {
 		'./jest/setup-rnfs.ts',
 		'./jest/setup-rntp.ts',
 		'./tamagui.config.ts',
+		'./jest/setup-native-modules.ts',
 	],
 	extensionsToTreatAsEsm: ['.ts', '.tsx'],
 	transformIgnorePatterns: [

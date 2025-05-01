@@ -27,12 +27,12 @@ import { QueryKeys } from '../../../enums/query-keys'
 import { fetchItem } from '../../../api/queries/functions/item'
 import { fetchUserPlaylists } from '../../../api/queries/functions/playlists'
 
-import * as Burnt from 'burnt'
-import { Image } from 'expo-image'
 import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import Client from '../../../api/client'
 import { useNetworkContext } from '../../../components/Network/provider'
 import { useQueueContext } from '../../../player/queue-provider'
+import Toast from 'react-native-toast-message'
+import FastImage from 'react-native-fast-image'
 
 interface TrackOptionsProps {
 	track: BaseItemDto
@@ -77,10 +77,14 @@ export default function TrackOptions({
 			return addToPlaylist(track, playlist)
 		},
 		onSuccess: (data, { playlist }) => {
-			Burnt.alert({
-				title: `Added to playlist`,
-				duration: 1,
-				preset: 'done',
+			// Burnt.alert({
+			// 	title: `Added to playlist`,
+			// 	duration: 1,
+			// 	preset: 'done',
+			// })
+			Toast.show({
+				text1: 'Added to playlist',
+				type: 'success',
 			})
 
 			trigger('notificationSuccess')
@@ -94,10 +98,14 @@ export default function TrackOptions({
 			})
 		},
 		onError: () => {
-			Burnt.alert({
-				title: `Unable to add`,
-				duration: 1,
-				preset: 'error',
+			// Burnt.alert({
+			// 	title: `Unable to add`,
+			// 	duration: 1,
+			// 	preset: 'error',
+			// })
+			Toast.show({
+				text1: 'Unable to add',
+				type: 'error',
 			})
 
 			trigger('notificationError')
@@ -206,10 +214,12 @@ export default function TrackOptions({
 									>
 										<XStack alignItems='center'>
 											<YStack flex={1}>
-												<Image
-													source={getImageApi(
-														Client.api!,
-													).getItemImageUrlById(playlist.Id!)}
+												<FastImage
+													source={{
+														uri: getImageApi(
+															Client.api!,
+														).getItemImageUrlById(playlist.Id!),
+													}}
 													style={{
 														borderRadius: getToken('$1.5'),
 														width: getToken('$12'),

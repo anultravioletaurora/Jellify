@@ -6,7 +6,7 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import { YStack } from 'tamagui'
 import Albums from './albums'
 import SimilarArtists from './similar'
-import { Image } from 'expo-image'
+import FastImage from 'react-native-fast-image'
 import {
 	createMaterialTopTabNavigator,
 	MaterialTopTabBar,
@@ -37,11 +37,13 @@ export default function ArtistNavigation(): React.JSX.Element {
 			tabBar={(props) => (
 				<>
 					<Animated.View style={[animatedBannerStyle]}>
-						<Image
-							source={getImageApi(Client.api!).getItemImageUrlById(
-								artist.Id!,
-								ImageType.Backdrop,
-							)}
+						<FastImage
+							source={{
+								uri: getImageApi(Client.api!).getItemImageUrlById(
+									artist.Id!,
+									ImageType.Backdrop,
+								),
+							}}
 							style={{ width: width, height: '100%' }}
 						/>
 					</Animated.View>

@@ -7,7 +7,6 @@ import { PlayerProvider } from '../player/player-provider'
 import { useColorScheme } from 'react-native'
 import { PortalProvider } from '@tamagui/portal'
 import { JellifyProvider, useJellifyContext } from './provider'
-import { ToastProvider } from '@tamagui/toast'
 import { JellifyUserDataProvider } from './user-data-provider'
 import { NetworkContextProvider } from './Network/provider'
 import { QueueProvider } from '../player/queue-provider'
@@ -22,11 +21,9 @@ export default function Jellify(): React.JSX.Element {
 
 	return (
 		<PortalProvider shouldAddRootHost>
-			<ToastProvider burntOptions={{ from: 'top' }}>
-				<JellifyProvider>
-					<App />
-				</JellifyProvider>
-			</ToastProvider>
+			<JellifyProvider>
+				<App />
+			</JellifyProvider>
 		</PortalProvider>
 	)
 }

@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 import { trigger } from 'react-native-haptic-feedback'
 import TextTicker from 'react-native-text-ticker'
 import { TextTickerConfig } from '../Player/component.config'
-import { Image } from 'expo-image'
+import FastImage from 'react-native-fast-image'
 import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import Client from '../../api/client'
 import Icon from '../Global/helpers/icon'
@@ -81,10 +81,12 @@ export default function ItemDetail({
 
 					<Spacer />
 
-					<Image
-						source={getImageApi(Client.api!).getItemImageUrlById(
-							item.Type === 'Audio' ? item.AlbumId! : item.Id!,
-						)}
+					<FastImage
+						source={{
+							uri: getImageApi(Client.api!).getItemImageUrlById(
+								item.Type === 'Audio' ? item.AlbumId! : item.Id!,
+							),
+						}}
 						style={{
 							width: getToken('$20') + getToken('$20') + getToken('$5'),
 							height: getToken('$20') + getToken('$20') + getToken('$5'),

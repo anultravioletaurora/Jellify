@@ -15,12 +15,12 @@ import TrackPlayer, { Event, useTrackPlayerEvents } from 'react-native-track-pla
 import { findPlayQueueIndexStart } from './helpers'
 import { getQueue, play, seekTo } from 'react-native-track-player/lib/src/trackPlayer'
 import { trigger } from 'react-native-haptic-feedback'
-import * as Burnt from 'burnt'
+// import * as Burnt from 'burnt'
 import { markItemPlayed } from '../api/mutations/functions/item'
 import { filterTracksOnNetworkStatus } from './helpers/queue'
 import { SKIP_TO_PREVIOUS_THRESHOLD } from './config'
 import { isUndefined } from 'lodash'
-
+import Toast from 'react-native-toast-message'
 interface QueueContext {
 	queueRef: Queue
 	playQueue: JellifyTrack[]
@@ -194,10 +194,14 @@ const QueueContextInitailizer = () => {
 		onSuccess: (data, { queuingType }) => {
 			trigger('notificationSuccess')
 
-			Burnt.alert({
-				title: queuingType === QueuingType.PlayingNext ? 'Playing next' : 'Added to queue',
-				duration: 0.5,
-				preset: 'done',
+			// Burnt.alert({
+			// 	title: queuingType === QueuingType.PlayingNext ? 'Playing next' : 'Added to queue',
+			// 	duration: 0.5,
+			// 	preset: 'done',
+			// })
+			Toast.show({
+				text1: queuingType === QueuingType.PlayingNext ? 'Playing next' : 'Added to queue',
+				type: 'success',
 			})
 		},
 		onError: () => {

@@ -12,14 +12,13 @@ import { JellifyUser } from '../../../types/JellifyUser'
 import { ServerAuthenticationProps } from '../../../components/types'
 import Input from '../../../components/Global/helpers/input'
 import Icon from '../../../components/Global/helpers/icon'
-import { useToastController } from '@tamagui/toast'
-import Toast from '../../../components/Global/components/toast'
+// import Toast from '../../../components/Global/components/toast'
 
 export default function ServerAuthentication({
 	route,
 	navigation,
 }: ServerAuthenticationProps): React.JSX.Element {
-	const toast = useToastController()
+	// const toast = useToastController()
 
 	const [username, setUsername] = useState<string | undefined>(undefined)
 	const [password, setPassword] = React.useState<string | undefined>(undefined)
@@ -60,7 +59,7 @@ export default function ServerAuthentication({
 		onError: async (error: Error) => {
 			console.error('An error occurred connecting to the Jellyfin instance', error)
 
-			toast.show('Sign in failed', {})
+			// toast.show('Sign in failed', {})
 			return Promise.reject(`An error occured signing into ${Client.server!.name}`)
 		},
 	})
@@ -133,7 +132,7 @@ export default function ServerAuthentication({
 						</Button>
 					)}
 				</XStack>
-				<Toast />
+				{/* <Toast /> */}
 			</YStack>
 		</SafeAreaView>
 	)

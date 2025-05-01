@@ -16,9 +16,9 @@ import { useAuthenticationContext } from '../provider'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { StackParamList } from '../../../components/types'
 
-import * as Burnt from 'burnt'
+// import * as Burnt from 'burnt'
 import { Image } from 'react-native'
-
+import Toast from 'react-native-toast-message'
 export default function ServerAddress({
 	navigation,
 }: {
@@ -69,10 +69,17 @@ export default function ServerAddress({
 			Client.signOut()
 			setServer(undefined)
 
-			Burnt.toast({
-				title: 'Unable to connect',
-				preset: 'error',
-				// message: `Unable to connect to Jellyfin at ${useHttps ? https : http}${serverAddress}`,
+			// Burnt.toast({
+			// 	title: 'Unable to connect',
+			// 	preset: 'error',
+			// 	// message: `Unable to connect to Jellyfin at ${useHttps ? https : http}${serverAddress}`,
+			// })
+			Toast.show({
+				text1: 'Unable to connect',
+				text2: `Unable to connect to Jellyfin at ${
+					useHttps ? https : http
+				}${serverAddress}`,
+				type: 'error',
 			})
 		},
 	})

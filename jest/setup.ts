@@ -9,11 +9,3 @@ jest.mock('react-native-haptic-feedback', () => {
 		},
 	}
 })
-
-jest.mock('burnt', () => {
-	return {
-		default: {
-			alert: jest.fn(),
-		},
-	}
-})

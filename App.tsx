@@ -17,6 +17,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { JellifyDarkTheme, JellifyLightTheme } from './src/components/theme'
 import { requestStoragePermission } from './src/helpers/permisson-helpers'
 import ErrorBoundary from './src/components/ErrorBoundary'
+import Toast from 'react-native-toast-message'
 
 export const backgroundRuntime = createWorkletRuntime('background')
 
@@ -84,6 +85,7 @@ export default function App(): React.JSX.Element {
 							</TamaguiProvider>
 						</GestureHandlerRootView>
 					</PersistQueryClientProvider>
+					<Toast />
 				</NavigationContainer>
 			</ErrorBoundary>
 		</SafeAreaProvider>

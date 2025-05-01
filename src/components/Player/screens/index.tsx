@@ -11,7 +11,7 @@ import TextTicker from 'react-native-text-ticker'
 import { TextTickerConfig } from '../component.config'
 import Scrubber from '../helpers/scrubber'
 import Controls from '../helpers/controls'
-import { Image } from 'expo-image'
+import FastImage from 'react-native-fast-image'
 import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import Client from '../../../api/client'
 import { useQueueContext } from '../../../player/queue-provider'
@@ -74,17 +74,12 @@ export default function PlayerScreen({
 										alignContent='center'
 										minHeight={'$20'}
 									>
-										<Image
-											source={getImageApi(Client.api!).getItemImageUrlById(
-												nowPlaying!.item.AlbumId!,
-											)}
-											placeholder={
-												nowPlaying &&
-												nowPlaying.item.ImageBlurHashes &&
-												nowPlaying.item.ImageBlurHashes.Primary
-													? nowPlaying.item.ImageBlurHashes.Primary[0]
-													: undefined
-											}
+										<FastImage
+											source={{
+												uri: getImageApi(Client.api!).getItemImageUrlById(
+													nowPlaying!.item.AlbumId!,
+												),
+											}}
 											style={{
 												borderRadius: getToken('$4'),
 												width:

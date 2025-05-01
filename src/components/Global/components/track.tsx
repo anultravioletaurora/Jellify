@@ -10,7 +10,7 @@ import { StackParamList } from '../../../components/types'
 import { QueuingType } from '../../../enums/queuing-type'
 import { Queue } from '../../../player/types/queue-item'
 import FavoriteIcon from './favorite-icon'
-import { Image } from 'expo-image'
+import FastImage from 'react-native-fast-image'
 import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import Client from '../../../api/client'
 import { networkStatusTypes } from '../../../components/Network/internetConnectionWatcher'
@@ -135,8 +135,10 @@ export default function Track({
 					minHeight={showArtwork ? '$4' : 'unset'}
 				>
 					{showArtwork ? (
-						<Image
-							source={getImageApi(Client.api!).getItemImageUrlById(track.AlbumId!)}
+						<FastImage
+							source={{
+								uri: getImageApi(Client.api!).getItemImageUrlById(track.AlbumId!),
+							}}
 							style={{
 								width: getToken('$12'),
 								height: getToken('$12'),

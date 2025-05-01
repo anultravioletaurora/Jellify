@@ -4,10 +4,10 @@ import { getUserLibraryApi } from '@jellyfin/sdk/lib/utils/api'
 import { useMutation } from '@tanstack/react-query'
 import { createContext, ReactNode, SetStateAction, useContext } from 'react'
 
-import * as Burnt from 'burnt'
 import { trigger } from 'react-native-haptic-feedback'
 import { queryClient } from '../constants/query-client'
 import { QueryKeys } from '../enums/query-keys'
+import Toast from 'react-native-toast-message'
 
 interface SetFavoriteMutation {
 	item: BaseItemDto
@@ -27,10 +27,14 @@ const JellifyUserDataContextInitializer = () => {
 			})
 		},
 		onSuccess: ({ data }, { item, setFavorite, onToggle }) => {
-			Burnt.alert({
-				title: `Added favorite`,
-				duration: 1,
-				preset: 'heart',
+			// Burnt.alert({
+			// 	title: `Added favorite`,
+			// 	duration: 1,
+			// 	preset: 'heart',
+			// })
+			Toast.show({
+				text1: 'Added favorite',
+				type: 'success',
 			})
 
 			trigger('notificationSuccess')
@@ -50,12 +54,15 @@ const JellifyUserDataContextInitializer = () => {
 			})
 		},
 		onSuccess: ({ data }, { item, setFavorite, onToggle }) => {
-			Burnt.alert({
-				title: `Removed favorite`,
-				duration: 1,
-				preset: 'done',
+			// Burnt.alert({
+			// 	title: `Removed favorite`,
+			// 	duration: 1,
+			// 	preset: 'done',
+			// })
+			Toast.show({
+				text1: 'Removed favorite',
+				type: 'error',
 			})
-
 			trigger('notificationSuccess')
 			setFavorite(false)
 
