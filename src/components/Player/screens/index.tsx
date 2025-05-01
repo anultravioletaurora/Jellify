@@ -75,7 +75,7 @@ export default function PlayerScreen({
 												{
 													// If the Queue is a BaseItemDto, display the name of it
 													typeof queueRef === 'object'
-														? queueRef.Name ?? 'Untitled'
+														? (queueRef.Name ?? 'Untitled')
 														: queueRef
 												}
 											</Text>

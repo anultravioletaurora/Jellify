@@ -1370,30 +1370,6 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-blurhash (2.1.1):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.11.18.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-hermes
-    - React-ImageManager
-    - React-jsi
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-renderercss
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - Yoga
   - react-native-carplay (2.4.1-beta.0):
     - React
   - react-native-mmkv (3.2.0):
@@ -2178,7 +2154,6 @@ DEPENDENCIES:
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
   - react-native-background-actions (from `../node_modules/react-native-background-actions`)
   - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
-  - react-native-blurhash (from `../node_modules/react-native-blurhash`)
   - react-native-carplay (from `../node_modules/react-native-carplay`)
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
@@ -2317,8 +2292,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-background-actions"
   react-native-blur:
     :path: "../node_modules/@react-native-community/blur"
-  react-native-blurhash:
-    :path: "../node_modules/react-native-blurhash"
   react-native-carplay:
     :path: "../node_modules/react-native-carplay"
   react-native-mmkv:
@@ -2456,7 +2429,6 @@ SPEC CHECKSUMS:
   React-microtasksnativemodule: c8ed30f8ec30affbc73411c54207bd67b1125bbb
   react-native-background-actions: 48e6bad9e2a47e3b04858634c5a05ea11062f680
   react-native-blur: 06d0f9906ecd6cde3a42de16c6cd829a2bf0710c
-  react-native-blurhash: 773f3726f5932f05917a3f4828648f155f087c7d
   react-native-carplay: 8f388f6f73e5e0f73ed154ad8794371343ee20c0
   react-native-mmkv: d3cc73d2554fafa20dc5b86386359034d1faf8ff
   react-native-netinfo: cec9c4e86083cb5b6aba0e0711f563e2fbbff187

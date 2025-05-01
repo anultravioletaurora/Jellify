@@ -57,6 +57,6 @@ export function isFavoriteItem(item: BaseItemDto): boolean {
 	return isUndefined(item.UserData)
 		? false
 		: isUndefined(item.UserData.IsFavorite)
-		? false
-		: item.UserData.IsFavorite
+			? false
+			: item.UserData.IsFavorite
 }

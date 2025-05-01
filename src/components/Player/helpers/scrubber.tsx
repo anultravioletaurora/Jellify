@@ -49,7 +49,7 @@ export default function Scrubber(): React.JSX.Element {
 					value={position}
 					max={
 						progress && progress.duration > 0
-							? progress.duration * ProgressMultiplier
+							? Math.floor(progress.duration * ProgressMultiplier)
 							: 1
 					}
 					width={getToken('$20') + getToken('$20')}
@@ -72,11 +72,11 @@ export default function Scrubber(): React.JSX.Element {
 								Math.floor(value / ProgressMultiplier) > -1 &&
 								Math.floor(value / ProgressMultiplier) < progress.duration
 							)
-								setPosition(value)
+								setPosition(Math.floor(value))
 						},
 						onSlideEnd: (event, value) => {
 							trigger('notificationSuccess')
-							setPosition(value)
+							setPosition(Math.floor(value))
 							useSeekTo.mutate(Math.floor(value / ProgressMultiplier))
 							setSeeking(false)
 						},

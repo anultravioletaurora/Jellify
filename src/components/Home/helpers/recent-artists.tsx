@@ -30,7 +30,9 @@ export default function RecentArtists({
 			</XStack>
 
 			<HorizontalCardList
-				data={recentArtists?.length ?? 0 > 10 ? recentArtists!.slice(0, 10) : recentArtists}
+				data={
+					(recentArtists?.length ?? 0 > 10) ? recentArtists!.slice(0, 10) : recentArtists
+				}
 				renderItem={({ item: recentArtist }) => (
 					<ItemCard
 						item={recentArtist}

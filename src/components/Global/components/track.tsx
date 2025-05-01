@@ -104,7 +104,7 @@ export default function Track({
 									item: track,
 									isNested: isNested,
 								})
-						  }
+							}
 				}
 				paddingVertical={'$2'}
 			>
@@ -159,10 +159,10 @@ export default function Track({
 							isPlaying
 								? getTokens().color.telemagenta
 								: isOffline
-								? isDownloaded
-									? theme.color
-									: '$purpleGray'
-								: theme.color
+									? isDownloaded
+										? theme.color
+										: '$purpleGray'
+									: theme.color
 						}
 						lineBreakStrategyIOS='standard'
 						numberOfLines={1}

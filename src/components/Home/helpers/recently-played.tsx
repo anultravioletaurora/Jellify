@@ -40,7 +40,7 @@ export default function RecentlyPlayed({
 				<HorizontalCardList
 					squared
 					data={
-						recentTracks?.length ?? 0 > 10 ? recentTracks!.slice(0, 10) : recentTracks
+						(recentTracks?.length ?? 0 > 10) ? recentTracks!.slice(0, 10) : recentTracks
 					}
 					renderItem={({ index, item: recentlyPlayedTrack }) => (
 						<ItemCard
