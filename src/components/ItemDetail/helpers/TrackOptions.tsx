@@ -17,7 +17,7 @@ import { QueuingType } from '../../../enums/queuing-type'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import IconButton from '../../../components/Global/helpers/icon-button'
 import { Text } from '../../../components/Global/helpers/text'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { AddToPlaylistMutation } from '../types'
 import { addToPlaylist } from '../../../api/mutations/playlists'
@@ -27,12 +27,13 @@ import { QueryKeys } from '../../../enums/query-keys'
 import { fetchItem } from '../../../api/queries/item'
 import { fetchUserPlaylists } from '../../../api/queries/playlists'
 
-import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
+import { getImageApi, getItemsApi } from '@jellyfin/sdk/lib/utils/api'
 import Client from '../../../api/client'
 import { useNetworkContext } from '../../../components/Network/provider'
 import { useQueueContext } from '../../../player/queue-provider'
 import Toast from 'react-native-toast-message'
 import FastImage from 'react-native-fast-image'
+import Icon from '../../../components/Global/helpers/icon'
 
 interface TrackOptionsProps {
 	track: BaseItemDto
@@ -67,6 +68,39 @@ export default function TrackOptions({
 		queryFn: () => fetchUserPlaylists(),
 	})
 
+	// Fetch all playlist tracks to check if the current track is already in any playlists
+	const playlistsWithTracks = useQuery({
+		queryKey: [QueryKeys.PlaylistItemCheckCache, playlists?.map((p) => p.Id).join(',')],
+		enabled: !!playlists && playlists.length > 0,
+		queryFn: async () => {
+			const playlistContents = await Promise.all(
+				playlists!.map(async (playlist) => {
+					const response = await getItemsApi(Client.api!).getItems({
+						parentId: playlist.Id!,
+					})
+					return {
+						playlistId: playlist.Id!,
+						tracks: response.data.Items || [],
+					}
+				}),
+			)
+			return playlistContents
+		},
+	})
+
+	// Check if a track is in a playlist
+	const isTrackInPlaylist = useMemo(() => {
+		if (!playlistsWithTracks.data) return {}
+
+		const result: Record<string, boolean> = {}
+		playlistsWithTracks.data.forEach((playlistData) => {
+			result[playlistData.playlistId] = playlistData.tracks.some(
+				(playlistTrack) => playlistTrack.Id === track.Id,
+			)
+		})
+		return result
+	}, [playlistsWithTracks.data, track.Id])
+
 	const { useAddToQueue } = useQueueContext()
 
 	const { width } = useSafeAreaFrame()
@@ -77,11 +111,6 @@ export default function TrackOptions({
 			return addToPlaylist(track, playlist)
 		},
 		onSuccess: (data, { playlist }) => {
-			// Burnt.alert({
-			// 	title: `Added to playlist`,
-			// 	duration: 1,
-			// 	preset: 'done',
-			// })
 			Toast.show({
 				text1: 'Added to playlist',
 				type: 'success',
@@ -96,13 +125,13 @@ export default function TrackOptions({
 			queryClient.invalidateQueries({
 				queryKey: [QueryKeys.ItemTracks, playlist.Id!],
 			})
+
+			// Invalidate our playlist check cache
+			queryClient.invalidateQueries({
+				queryKey: [QueryKeys.PlaylistItemCheckCache],
+			})
 		},
 		onError: () => {
-			// Burnt.alert({
-			// 	title: `Unable to add`,
-			// 	duration: 1,
-			// 	preset: 'error',
-			// })
 			Toast.show({
 				text1: 'Unable to add',
 				type: 'error',
@@ -191,7 +220,7 @@ export default function TrackOptions({
 
 			<Spacer />
 
-			{playlistsFetchPending && <Spinner />}
+			{(playlistsFetchPending || playlistsWithTracks.isFetching) && <Spinner />}
 
 			{!playlistsFetchPending && playlistsFetchSuccess && (
 				<>
@@ -201,15 +230,21 @@ export default function TrackOptions({
 
 					<YGroup separator={<Separator />}>
 						{playlists?.map((playlist) => {
+							const isInPlaylist = isTrackInPlaylist[playlist.Id!]
+
 							return (
 								<YGroup.Item key={playlist.Id!}>
 									<ListItem
 										hoverTheme
+										disabled={isInPlaylist}
+										opacity={isInPlaylist ? 0.7 : 1}
 										onPress={() => {
-											useAddToPlaylist.mutate({
-												track,
-												playlist,
-											})
+											if (!isInPlaylist) {
+												useAddToPlaylist.mutate({
+													track,
+													playlist,
+												})
+											}
 										}}
 									>
 										<XStack alignItems='center'>
@@ -233,10 +268,17 @@ export default function TrackOptions({
 													{playlist.Name ?? 'Untitled Playlist'}
 												</Text>
 
-												<Text color={getTokens().color.amethyst}>{`${
+												<Text color={getTokens().color.amethyst.val}>{`${
 													playlist.ChildCount ?? 0
 												} tracks`}</Text>
 											</YStack>
+
+											{isInPlaylist && (
+												<Icon
+													name='check'
+													color={getTokens().color.telemagenta.val}
+												/>
+											)}
 										</XStack>
 									</ListItem>
 								</YGroup.Item>
