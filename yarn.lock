@@ -7542,11 +7542,6 @@ react-native-background-actions@^4.0.1:
   dependencies:
     eventemitter3 "^4.0.7"
 
-react-native-blurhash@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-blurhash/-/react-native-blurhash-2.1.1.tgz#c8079881422664691b387e43b020b846dfd196e6"
-  integrity sha512-b1aA5Tn31pPbqmaWnhJv7zSuN6o9M1t4yHciPunfP89LDkH2dvDIynvkE00Hen4Vmt6SnyXViSYH34MyvTvRiA==
-
 react-native-carplay@^2.4.1-beta.0:
   version "2.4.1-beta.0"
   resolved "https://registry.yarnpkg.com/react-native-carplay/-/react-native-carplay-2.4.1-beta.0.tgz#985c44e4eae622e7d2cf17c5b996a0182dbf5a52"
@@ -7666,10 +7661,9 @@ react-native-toast-message@^2.3.0:
   resolved "https://registry.yarnpkg.com/react-native-toast-message/-/react-native-toast-message-2.3.0.tgz#c25fb40d7af4388f6a798efbfca479d53916ed00"
   integrity sha512-d7LldTK1ei1Bl7RFhoOYw8hVQ4oKPQHORYI//xR9Pyz3HxSlFlvQbueE5X3KLoemRRgBrOUg3zY6DxXnxrVLRg==
 
-react-native-track-player@4.1.1:
+"react-native-track-player@git+https://github.com/riteshshukla04/react-native-track-player#APM":
   version "4.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-track-player/-/react-native-track-player-4.1.1.tgz#96f8688f270c5a01bc597b6331843b191402502b"
-  integrity sha512-E5N/eK/+HtAVJUAzXpm1cWz8ROheV9jb0TI6h2bM+333U+DWibTTnT2T1122FkCoXLXIYavtm2FR2if+5jH8cA==
+  resolved "git+https://github.com/riteshshukla04/react-native-track-player#867785387fe6686b669a255df72e17e928b20251"
 
 react-native-url-polyfill@^2.0.0:
   version "2.0.0"

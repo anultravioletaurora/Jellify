@@ -4,12 +4,12 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { getTokens, Separator, Spacer, View, XStack, YStack } from 'tamagui'
 import { Text } from '../helpers/text'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
-import BlurhashedImage from './blurhashed-image'
 import Icon from '../helpers/icon'
 import { QueuingType } from '../../../enums/queuing-type'
 import { RunTimeTicks } from '../helpers/time-codes'
 import { useQueueContext } from '../../../player/queue-provider'
 import { usePlayerContext } from '../../../player/player-provider'
+import ItemImage from './image'
 
 export default function Item({
 	item,
@@ -75,11 +75,9 @@ export default function Item({
 				paddingVertical={'$2'}
 				marginHorizontal={'$1'}
 			>
-				<BlurhashedImage
-					item={item}
-					width={width / 9}
-					borderRadius={item.Type === 'MusicArtist' ? width / 9 : 2}
-				/>
+				<YStack flex={1}>
+					<ItemImage item={item} height={'$12'} width={'$12'} />
+				</YStack>
 
 				<YStack
 					marginLeft={'$1'}
@@ -97,7 +95,7 @@ export default function Item({
 					)}
 				</YStack>
 
-				<XStack justifyContent='space-between' alignItems='center' flex={1}>
+				<XStack justifyContent='space-between' alignItems='center' flex={2}>
 					{item.UserData?.IsFavorite ? (
 						<Icon small color={getTokens().color.telemagenta.val} name='heart' />
 					) : (

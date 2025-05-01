@@ -82,7 +82,7 @@ function AlbumTrackListHeader(
 	return (
 		<YStack marginTop={'$4'} alignItems='center'>
 			<XStack justifyContent='center'>
-				<ItemImage item={album} width={getToken('$20')} height={getToken('$20')} />
+				<ItemImage item={album} width={'$20'} height={'$20'} />
 
 				<Spacer />
 
@@ -91,7 +91,8 @@ function AlbumTrackListHeader(
 						lineBreakStrategyIOS='standard'
 						textAlign='center'
 						numberOfLines={5}
-						maxWidth={width / 2}
+						minWidth={width / 2.25}
+						maxWidth={width / 2.25}
 					>
 						{album.Name ?? 'Untitled Album'}
 					</H5>

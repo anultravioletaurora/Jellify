@@ -17,9 +17,9 @@ jobs:
         with:
           node-version: 20
 
-      - name: 🤖 Run yarn init-android
-        run: yarn init-android
-    
+      - name: 🍎 Run yarn init-ios:new-arch
+        run: yarn init-ios:new-arch
+      
       - name: ➕ Version Up
         run: yarn react-native bump-version --type patch  
           
@@ -33,9 +33,6 @@ jobs:
       - name: 🚀 Run Android fastlane build
         run: yarn fastlane:android:build
           
-      - name: 🍎 Run yarn init-ios:new-arch
-        run: yarn init-ios:new-arch
-
       - name: 🚀 Run iOS fastlane build and publish to TestFlight
         run: yarn fastlane:ios:beta
         env:

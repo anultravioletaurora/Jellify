@@ -1,3 +1,6 @@
+/**
+ * An enum of all the keys of query functions.
+ */
 export enum QueryKeys {
 	AddToQueue = 'ADD_TO_QUEUE',
 	AlbumTracks = 'ALBUM_TRACKS',
@@ -7,7 +10,7 @@ export enum QueryKeys {
 	Credentials = 'CREDENTIALS',
 
 	/**
-	 * @deprecated Expo Image is being used instead of
+	 * @deprecated React Native Fast Image is being used instead of
 	 * querying for the images with Tanstack
 	 */
 	ItemImage = 'IMAGE_BY_ITEM_ID',

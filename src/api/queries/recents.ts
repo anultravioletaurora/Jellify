@@ -28,6 +28,12 @@ export async function fetchRecentlyAdded(
 		})
 }
 
+/**
+ * Fetches recently played tracks for a user from the Jellyfin server.
+ * @param limit The number of items to fetch. Defaults to 50
+ * @param offset The offset of the items to fetch.
+ * @returns The recently played items.
+ */
 export async function fetchRecentlyPlayed(
 	limit: number = QueryConfig.limits.recents,
 	offset?: number | undefined,
@@ -56,6 +62,13 @@ export async function fetchRecentlyPlayed(
 		})
 }
 
+/**
+ * Fetches recently played artists for a user from the Jellyfin server,
+ * referencing the recently played tracks.
+ * @param limit The number of items to fetch. Defaults to 50
+ * @param offset The offset of the items to fetch.
+ * @returns The recently played artists.
+ */
 export function fetchRecentlyPlayedArtists(
 	limit: number = QueryConfig.limits.recents,
 	offset?: number | undefined,

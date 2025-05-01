@@ -5,7 +5,6 @@ module.exports = {
 	setupFilesAfterEnv: [
 		'./jest/setup.ts',
 		'./jest/setup-carplay.ts',
-		'./jest/setup-blurhash.ts',
 		'./jest/setup-device-info.js', // JS to prevent Typescript implicit any warning
 		'./jest/setup-reanimated.ts',
 		'./jest/setup-rnfs.ts',
