@@ -15,8 +15,8 @@ import TrackPlayer, { Event, useTrackPlayerEvents } from 'react-native-track-pla
 import { findPlayQueueIndexStart } from './helpers'
 import { getQueue, play, seekTo } from 'react-native-track-player/lib/src/trackPlayer'
 import { trigger } from 'react-native-haptic-feedback'
-// import * as Burnt from 'burnt'
-import { markItemPlayed } from '../api/mutations/functions/item'
+
+import { markItemPlayed } from '../api/mutations/item'
 import { filterTracksOnNetworkStatus } from './helpers/queue'
 import { SKIP_TO_PREVIOUS_THRESHOLD } from './config'
 import { isUndefined } from 'lodash'
@@ -136,6 +136,11 @@ const QueueContextInitailizer = () => {
 
 		TrackPlayer.add([playNextTrack], currentIndex + 1)
 		setPlayQueue((await getQueue()) as JellifyTrack[])
+
+		Toast.show({
+			text1: 'Playing next',
+			type: 'success',
+		})
 	}
 
 	const playInQueue = async (items: BaseItemDto[]) => {

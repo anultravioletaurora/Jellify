@@ -84,6 +84,10 @@ export type StackParamList = {
 		isNested: boolean | undefined
 	}
 	Offline: undefined
+	InstantMix: {
+		item: BaseItemDto
+		mix: BaseItemDto[]
+	}
 }
 
 export type ServerAddressProps = NativeStackScreenProps<StackParamList, 'ServerAddress'>
@@ -133,5 +137,7 @@ export type AccountDetailsProps = NativeStackScreenProps<StackParamList, 'Accoun
 export type ServerDetailsProps = NativeStackScreenProps<StackParamList, 'Server'>
 export type PlaybackDetailsProps = NativeStackScreenProps<StackParamList, 'Playback'>
 export type LabsProps = NativeStackScreenProps<StackParamList, 'Labs'>
+
+export type InstantMixProps = NativeStackScreenProps<StackParamList, 'InstantMix'>
 
 export type useState<T> = [T, React.Dispatch<T>]

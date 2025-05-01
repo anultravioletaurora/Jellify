@@ -12,6 +12,7 @@ import PlaylistsScreen from '../Playlists/screen'
 import AddPlaylist from './components/add-playlist'
 import DeletePlaylist from './components/delete-playlist'
 import { ArtistScreen } from '../Artist'
+import InstantMix from '../InstantMix/component'
 
 const Stack = createNativeStackNavigator<StackParamList>()
 
@@ -63,6 +64,14 @@ export default function LibraryStack(): React.JSX.Element {
 				options={({ route }) => ({
 					headerShown: true,
 					headerTitle: '',
+				})}
+			/>
+
+			<Stack.Screen
+				name='InstantMix'
+				component={InstantMix}
+				options={({ route }) => ({
+					title: route.params.item.Name ? `${route.params.item.Name} Mix` : 'Instant Mix',
 				})}
 			/>
 

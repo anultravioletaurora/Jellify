@@ -8,7 +8,7 @@ import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import Client from '../../../api/client'
 import { useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../../enums/query-keys'
-import { fetchMediaInfo } from '../../../api/queries/functions/media'
+import { fetchMediaInfo } from '../../../api/queries/media'
 
 interface CardProps extends TamaguiCardProps {
 	caption?: string | null | undefined

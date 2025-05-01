@@ -7,7 +7,7 @@ const tokens = createTokens({
 	color: {
 		danger: '#ff9966',
 		purpleDark: '#0C0622',
-		success: '#c1fefe',
+		success: '#99ffcc',
 		purple: '#100538',
 		purpleGray: '#66617B',
 		amethyst: '#7E72AF',

@@ -1,5 +1,5 @@
 import { getItemsApi, getSuggestionsApi } from '@jellyfin/sdk/lib/utils/api'
-import Client from '../../../api/client'
+import Client from '../client'
 import { BaseItemDto, BaseItemKind } from '@jellyfin/sdk/lib/generated-client/models'
 
 export async function fetchSearchSuggestions(): Promise<BaseItemDto[]> {

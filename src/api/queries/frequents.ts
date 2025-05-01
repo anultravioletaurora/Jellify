@@ -1,4 +1,4 @@
-import Client from '../../../api/client'
+import Client from '../client'
 import {
 	BaseItemDto,
 	BaseItemKind,
@@ -6,7 +6,6 @@ import {
 	SortOrder,
 } from '@jellyfin/sdk/lib/generated-client/models'
 import { getItemsApi } from '@jellyfin/sdk/lib/utils/api'
-import { reject } from 'lodash'
 
 export function fetchFrequentlyPlayed(): Promise<BaseItemDto[]> {
 	return new Promise((resolve, reject) => {

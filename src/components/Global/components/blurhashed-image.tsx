@@ -5,7 +5,7 @@ import { isEmpty } from 'lodash'
 import { Image } from 'react-native'
 import { QueryKeys } from '../../../enums/query-keys'
 import { useQuery } from '@tanstack/react-query'
-import { fetchItemImage } from '../../../api/queries/functions/images'
+import { fetchItemImage } from '../../../api/queries/images'
 
 interface BlurhashLoadingProps {
 	item: BaseItemDto

@@ -1,5 +1,5 @@
 import { BaseItemDto, MediaType } from '@jellyfin/sdk/lib/generated-client/models'
-import Client from '../../../api/client'
+import Client from '../client'
 import { getLibraryApi, getPlaylistsApi } from '@jellyfin/sdk/lib/utils/api'
 
 export async function addToPlaylist(track: BaseItemDto, playlist: BaseItemDto) {

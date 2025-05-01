@@ -31,11 +31,6 @@ export default function RecentlyAdded({
 			<HorizontalCardList
 				squared
 				data={recentlyAdded?.length ?? 0 > 10 ? recentlyAdded!.slice(0, 10) : recentlyAdded}
-				onSeeMore={() => {
-					navigation.navigate('Albums', {
-						albums: recentlyAdded,
-					})
-				}}
 				renderItem={({ item }) => (
 					<ItemCard
 						caption={item.Name}

@@ -9,6 +9,7 @@ import DetailsScreen from '../ItemDetail/screen'
 import ArtistsScreen from '../Artists/screen'
 import TracksScreen from '../Tracks/screen'
 import { ArtistScreen } from '../Artist'
+import InstantMix from '../InstantMix/component'
 
 const Stack = createNativeStackNavigator<StackParamList>()
 
@@ -57,6 +58,16 @@ export default function Home(): React.JSX.Element {
 						options={({ route }) => ({
 							headerShown: true,
 							headerTitle: '',
+						})}
+					/>
+
+					<Stack.Screen
+						name='InstantMix'
+						component={InstantMix}
+						options={({ route }) => ({
+							title: route.params.item.Name
+								? `${route.params.item.Name} Mix`
+								: 'Instant Mix',
 						})}
 					/>
 				</Stack.Group>

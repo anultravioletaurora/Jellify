@@ -1,7 +1,7 @@
 import { StackParamList } from '../../../components/types'
 import { usePlayerContext } from '../../../player/player-provider'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { SafeAreaView, useSafeAreaFrame } from 'react-native-safe-area-context'
 import { YStack, XStack, Spacer, getTokens, getToken } from 'tamagui'
 import { Text } from '../../../components/Global/helpers/text'
@@ -15,17 +15,32 @@ import FastImage from 'react-native-fast-image'
 import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import Client from '../../../api/client'
 import { useQueueContext } from '../../../player/queue-provider'
-
+import Toast from 'react-native-toast-message'
+import JellifyToastConfig from '../../../constants/toast.config'
+import { useColorScheme } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native'
 export default function PlayerScreen({
 	navigation,
 }: {
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
+	const [showToast, setShowToast] = useState(true)
+
+	const isDarkMode = useColorScheme() === 'dark'
+
 	const { nowPlaying } = usePlayerContext()
 
 	const { queueRef } = useQueueContext()
 
 	const { width, height } = useSafeAreaFrame()
+
+	useFocusEffect(
+		useCallback(() => {
+			setShowToast(true)
+
+			return () => setShowToast(false)
+		}, []),
+	)
 
 	return (
 		<SafeAreaView edges={['right', 'left']}>
@@ -201,6 +216,7 @@ export default function PlayerScreen({
 					</YStack>
 				</>
 			)}
+			{showToast && <Toast config={JellifyToastConfig(isDarkMode)} />}
 		</SafeAreaView>
 	)
 }

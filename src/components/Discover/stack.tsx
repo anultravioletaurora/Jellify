@@ -7,6 +7,7 @@ import Albums from '../Albums/component'
 import { AlbumScreen } from '../Album'
 import { ArtistScreen } from '../Artist'
 import { DiscoverProvider } from './provider'
+import InstantMix from '../InstantMix/component'
 
 export const DiscoverStack = createNativeStackNavigator<StackParamList>()
 
@@ -46,6 +47,16 @@ export function Discover(): React.JSX.Element {
 				/>
 
 				<DiscoverStack.Screen name='Albums' component={Albums} />
+
+				<DiscoverStack.Screen
+					name='InstantMix'
+					component={InstantMix}
+					options={({ route }) => ({
+						title: route.params.item.Name
+							? `${route.params.item.Name} Mix`
+							: 'Instant Mix',
+					})}
+				/>
 
 				<DiscoverStack.Group screenOptions={{ presentation: 'modal' }}>
 					<DiscoverStack.Screen

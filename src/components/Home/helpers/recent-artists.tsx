@@ -40,6 +40,7 @@ export default function RecentArtists({
 								artist: recentArtist,
 							})
 						}}
+						size={'$12'}
 					></ItemCard>
 				)}
 			/>

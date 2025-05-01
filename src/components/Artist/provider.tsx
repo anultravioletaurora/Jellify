@@ -1,4 +1,4 @@
-import fetchSimilar from '../../api/queries/functions/similar'
+import fetchSimilar from '../../api/queries/similar'
 import Client from '../../api/client'
 import { QueryKeys } from '../../enums/query-keys'
 import {

@@ -2,16 +2,10 @@ import React, { createContext, ReactNode, useContext, useState } from 'react'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../enums/query-keys'
-import {
-	fetchRecentlyPlayed,
-	fetchRecentlyPlayedArtists,
-} from '../../api/queries/functions/recents'
+import { fetchRecentlyPlayed, fetchRecentlyPlayedArtists } from '../../api/queries/recents'
 import { queryClient } from '../../constants/query-client'
-import { QueryConfig } from '../../api/queries/query.config'
-import {
-	fetchFrequentlyPlayed,
-	fetchFrequentlyPlayedArtists,
-} from '../../api/queries/functions/frequents'
+import QueryConfig from '../../api/queries/query.config'
+import { fetchFrequentlyPlayed, fetchFrequentlyPlayedArtists } from '../../api/queries/frequents'
 
 interface HomeContext {
 	refreshing: boolean

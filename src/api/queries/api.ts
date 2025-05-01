@@ -1,5 +1,5 @@
 import { Api } from '@jellyfin/sdk'
-import { JellyfinInfo } from '../../info'
+import { JellyfinInfo } from '../info'
 import _ from 'lodash'
 
 export function createApi(

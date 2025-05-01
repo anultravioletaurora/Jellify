@@ -1,9 +1,11 @@
 import { ImageFormat } from '@jellyfin/sdk/lib/generated-client/models'
 
-export const QueryConfig = {
+const QueryConfig = {
 	limits: {
-		recents: 20,
+		recents: 50,
+		instantMix: 50,
 		search: 50, // TODO: make this a paginated search so limits don't even matter
+		similar: 20,
 	},
 	images: {
 		height: 300,
@@ -31,3 +33,5 @@ export const QueryConfig = {
 		oneFortnight: 1000 * 60 * 60 * 24 * 7 * 14, // 14 Days
 	},
 }
+
+export default QueryConfig

@@ -17,7 +17,7 @@ import { networkStatusTypes } from '../../../components/Network/internetConnecti
 import { useNetworkContext } from '../../../components/Network/provider'
 import { useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../../enums/query-keys'
-import { fetchMediaInfo } from '../../../api/queries/functions/media'
+import { fetchMediaInfo } from '../../../api/queries/media'
 import { useQueueContext } from '../../../player/queue-provider'
 
 interface TrackProps {

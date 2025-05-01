@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import { isUndefined } from 'lodash'
 import { getTokens, Spinner } from 'tamagui'
 import { QueryKeys } from '../../../enums/query-keys'
-import { fetchUserData } from '../../../api/queries/functions/favorites'
+import { fetchUserData } from '../../../api/queries/favorites'
 import { useJellifyUserDataContext } from '../../../components/user-data-provider'
 
 interface SetFavoriteMutation {

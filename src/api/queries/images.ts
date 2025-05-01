@@ -1,7 +1,7 @@
 import { ImageFormat, ImageType } from '@jellyfin/sdk/lib/generated-client/models'
 import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import _ from 'lodash'
-import Client from '../../../api/client'
+import Client from '../client'
 
 export async function fetchItemImage(
 	itemId: string,

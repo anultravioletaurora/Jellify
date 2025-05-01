@@ -18,6 +18,7 @@ import { JellifyDarkTheme, JellifyLightTheme } from './src/components/theme'
 import { requestStoragePermission } from './src/helpers/permisson-helpers'
 import ErrorBoundary from './src/components/ErrorBoundary'
 import Toast from 'react-native-toast-message'
+import JellifyToastConfig from './src/constants/toast.config'
 
 export const backgroundRuntime = createWorkletRuntime('background')
 
@@ -85,7 +86,7 @@ export default function App(): React.JSX.Element {
 							</TamaguiProvider>
 						</GestureHandlerRootView>
 					</PersistQueryClientProvider>
-					<Toast />
+					<Toast config={JellifyToastConfig(isDarkMode)} />
 				</NavigationContainer>
 			</ErrorBoundary>
 		</SafeAreaProvider>

@@ -45,6 +45,7 @@ export default function FrequentArtists({
 								artist,
 							})
 						}}
+						size={'$12'}
 					/>
 				)}
 			/>

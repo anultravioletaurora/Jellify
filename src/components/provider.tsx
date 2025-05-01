@@ -62,6 +62,12 @@ const JellifyContext = createContext<JellifyContext>({
 	carPlayConnected: false,
 })
 
+/**
+ * Top level provider for Jellify. Provides the {@link JellifyContext} to all children, containing
+ * whether the user is logged in, and whether the carplay is connected
+ * @param children The children to render
+ * @returns The {@link JellifyProvider} component
+ */
 export const JellifyProvider: ({ children }: { children: ReactNode }) => React.JSX.Element = ({
 	children,
 }: {

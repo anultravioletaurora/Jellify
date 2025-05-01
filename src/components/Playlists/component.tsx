@@ -4,7 +4,7 @@ import { ItemCard } from '../Global/components/item-card'
 import { FavoritePlaylistsProps } from '../types'
 import Icon from '../Global/helpers/icon'
 import { getToken } from 'tamagui'
-import { fetchFavoritePlaylists } from '../../api/queries/functions/favorites'
+import { fetchFavoritePlaylists } from '../../api/queries/favorites'
 import { QueryKeys } from '../../enums/query-keys'
 import { useQuery } from '@tanstack/react-query'
 

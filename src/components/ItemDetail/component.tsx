@@ -14,7 +14,9 @@ import FastImage from 'react-native-fast-image'
 import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import Client from '../../api/client'
 import Icon from '../Global/helpers/icon'
-import { Platform } from 'react-native'
+import { Platform, useColorScheme } from 'react-native'
+import JellifyToastConfig from '../../constants/toast.config'
+import Toast from 'react-native-toast-message'
 
 export default function ItemDetail({
 	item,
@@ -31,7 +33,7 @@ export default function ItemDetail({
 		trigger('impactMedium')
 	}, [item])
 
-	const { width } = useSafeAreaFrame()
+	const isDarkMode = useColorScheme() === 'dark'
 
 	switch (item.Type) {
 		case 'Audio': {
@@ -151,6 +153,7 @@ export default function ItemDetail({
 
 				{options ?? <View />}
 			</YStack>
+			<Toast config={JellifyToastConfig(isDarkMode)} />
 		</ScrollView>
 	)
 }

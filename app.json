@@ -1,7 +1,4 @@
 {
 	"name": "Jellify",
-	"displayName": "Jellify",
-	"expo": {
-		"newArchEnabled": true
-	}
+	"displayName": "Jellify"
 }

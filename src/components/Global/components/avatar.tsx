@@ -4,7 +4,7 @@ import { Text } from '../helpers/text'
 import { BaseItemDto, ImageType } from '@jellyfin/sdk/lib/generated-client/models'
 import { useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../../enums/query-keys'
-import { fetchItemImage } from '../../../api/queries/functions/images'
+import { fetchItemImage } from '../../../api/queries/images'
 
 interface AvatarProps extends TamaguiAvatarProps {
 	item: BaseItemDto

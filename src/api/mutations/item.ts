@@ -1,4 +1,4 @@
-import Client from '../../../api/client'
+import Client from '../client'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { getItemsApi } from '@jellyfin/sdk/lib/utils/api'
 import { isUndefined } from 'lodash'

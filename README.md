@@ -5,7 +5,6 @@
 [![Latest Version](https://img.shields.io/github/package-json/version/anultravioletaurora/jellify?label=Latest%20Version&color=indigo)](https://github.com/anultravioletaurora/Jellify/releases)
 [![publish-beta](https://github.com/anultravioletaurora/Jellify/actions/workflows/publish-beta.yml/badge.svg?branch=main)](https://github.com/anultravioletaurora/Jellify/actions/workflows/publish-beta.yml) [![Sponsors](https://img.shields.io/github/sponsors/anultravioletaurora?label=Project%20Sponsors&color=magenta)](https://github.com/sponsors/anultravioletaurora)
 
-
 ## 🔗 Quick Links
 
 [TestFlight](https://testflight.apple.com/join/etVSc7ZQ)
@@ -121,21 +120,19 @@ Playlist
 ### 🎨 Frontend
 
 [Tamagui](https://tamagui.dev/)\
-[Burnt](https://github.com/nandorojo/burnt)\
 [React Navigation](https://reactnavigation.org/)\
 [React Native CarPlay](https://github.com/birkir/react-native-carplay)\
 [React Native Draggable Flatlist](https://github.com/computerjazz/react-native-draggable-flatlist)\
 [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)\
+[React Native Toast Message](https://github.com/calintamas/react-native-toast-message)\
 [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)
 
 - Specifically using [Material Community Icons](https://oblador.github.io/react-native-vector-icons/#MaterialCommunityIcons)
 
 ### 🎛️ Backend
 
-[Expo SDK](https://expo.dev/)\
 [Jellyfin SDK](https://typescript-sdk.jellyfin.org/)\
 [Tanstack Query](https://tanstack.com/query/latest/docs/framework/react/react-native)\
-[React Native Boost](https://github.com/kuatsu/react-native-boost)\
 [React Native File Access](https://github.com/alpha0010/react-native-file-access)\
 [React Native MMKV](https://github.com/mrousavy/react-native-mmkv)\
 [React Native Track Player](https://github.com/doublesymmetry/react-native-track-player)\

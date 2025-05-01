@@ -3,7 +3,7 @@ import { getToken, Spacer, YStack } from 'tamagui'
 import Icon from '../helpers/icon'
 import { useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../../enums/query-keys'
-import { fetchUserData } from '../../../api/queries/functions/favorites'
+import { fetchUserData } from '../../../api/queries/favorites'
 import { useEffect, useState } from 'react'
 
 export default function FavoriteIcon({ item }: { item: BaseItemDto }): React.JSX.Element {

@@ -4,13 +4,12 @@ import { StackParamList } from '../types'
 import PlayerScreen from './screens'
 import Queue from './screens/queue'
 import DetailsScreen from '../ItemDetail/screen'
-import { AlbumScreen } from '../Album'
 
 export const PlayerStack = createNativeStackNavigator<StackParamList>()
 
 export default function Player(): React.JSX.Element {
 	return (
-		<PlayerStack.Navigator initialRouteName='Player' screenOptions={{}}>
+		<PlayerStack.Navigator initialRouteName='Player'>
 			<PlayerStack.Screen
 				name='Player'
 				component={PlayerScreen}

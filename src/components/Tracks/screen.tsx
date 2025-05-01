@@ -5,7 +5,7 @@ import { FlatList } from 'react-native'
 import { Separator } from 'tamagui'
 import { useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../enums/query-keys'
-import { fetchFavoriteTracks } from '../../api/queries/functions/favorites'
+import { fetchFavoriteTracks } from '../../api/queries/favorites'
 
 export default function TracksScreen({ route, navigation }: TracksProps): React.JSX.Element {
 	const { data: favoriteTracks } = useQuery({

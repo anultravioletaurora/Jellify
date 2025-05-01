@@ -1,3 +1,4 @@
+import { TextProps } from 'tamagui'
 import { convertRunTimeTicksToSeconds } from '../../../helpers/runtimeticks'
 import { Text } from './text'
 import React from 'react'
@@ -8,15 +9,17 @@ export function RunTimeSeconds({ children }: { children: number }): React.JSX.El
 
 export function RunTimeTicks({
 	children,
+	props,
 }: {
 	children?: number | null | undefined
+	props?: TextProps | undefined
 }): React.JSX.Element {
 	if (!children) return <Text>0:00</Text>
 
 	const time = calculateRunTimeFromTicks(children)
 
 	return (
-		<Text style={{ display: 'block' }} color='$borderColor'>
+		<Text {...props} style={{ display: 'block' }} color='$borderColor'>
 			{time}
 		</Text>
 	)

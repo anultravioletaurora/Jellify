@@ -1,4 +1,4 @@
-import Client from '../../client'
+import Client from '../client'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { getUserViewsApi } from '@jellyfin/sdk/lib/utils/api'
 import { getItemsApi } from '@jellyfin/sdk/lib/utils/api/items-api'

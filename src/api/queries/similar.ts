@@ -1,10 +1,10 @@
-import Client from '../../../api/client'
+import Client from '../client'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { getLibraryApi } from '@jellyfin/sdk/lib/utils/api'
-
+import QueryConfig from './query.config'
 export default function fetchSimilar(
 	itemId: string,
-	limit: number = 10,
+	limit: number = QueryConfig.limits.similar,
 	startIndex: number = 0,
 ): Promise<BaseItemDto[]> {
 	return new Promise((resolve, reject) => {

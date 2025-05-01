@@ -9,7 +9,7 @@ import Client from '../../../api/client'
 import { useJellifyContext } from '../../provider'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { QueryKeys } from '../../../enums/query-keys'
-import { fetchUserViews } from '../../../api/queries/functions/libraries'
+import { fetchUserViews } from '../../../api/queries/libraries'
 import { useQuery } from '@tanstack/react-query'
 
 export default function ServerLibrary(): React.JSX.Element {

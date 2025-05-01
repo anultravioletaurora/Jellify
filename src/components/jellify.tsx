@@ -1,35 +1,35 @@
 import _ from 'lodash'
-import React, { useEffect } from 'react'
+import React from 'react'
 import Navigation from './navigation'
 import Login from './Login/component'
 import { JellyfinAuthenticationProvider } from './Login/provider'
 import { PlayerProvider } from '../player/player-provider'
 import { useColorScheme } from 'react-native'
-import { PortalProvider } from '@tamagui/portal'
 import { JellifyProvider, useJellifyContext } from './provider'
 import { JellifyUserDataProvider } from './user-data-provider'
 import { NetworkContextProvider } from './Network/provider'
 import { QueueProvider } from '../player/queue-provider'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import Toast from 'react-native-toast-message'
+import JellifyToastConfig from '../constants/toast.config'
 
+/**
+ * The main component for the Jellify app. Children are wrapped in the {@link JellifyProvider}
+ * @returns The {@link Jellify} component
+ */
 export default function Jellify(): React.JSX.Element {
-	const insets = useSafeAreaInsets()
-
-	useEffect(() => {
-		console.debug(insets)
-	}, [insets])
+	const isDarkMode = useColorScheme() === 'dark'
 
 	return (
-		<PortalProvider shouldAddRootHost>
-			<JellifyProvider>
-				<App />
-			</JellifyProvider>
-		</PortalProvider>
+		<JellifyProvider>
+			<App />
+		</JellifyProvider>
 	)
 }
-
+/**
+ * The main component for the Jellify app. Depends on {@link useJellifyContext} hook to determine if the user is logged in
+ * @returns The {@link App} component
+ */
 function App(): React.JSX.Element {
-	const isDarkMode = useColorScheme() === 'dark'
 	const { loggedIn } = useJellifyContext()
 
 	return loggedIn ? (
