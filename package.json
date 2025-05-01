@@ -1,6 +1,6 @@
 {
   "name": "jellify",
-  "version": "0.11.17",
+  "version": "0.11.18",
   "private": true,
   "scripts": {
     "init-ios": "echo 'Please run `yarn init-ios:new-arch` to enable the new architecture'",
