@@ -41,7 +41,7 @@ export default function Albums({
 										convertRunTimeTicksToSeconds(album.RunTimeTicks ?? 0) /
 											60 <=
 											30)),
-					  )
+						)
 					: []
 			}
 			numColumns={2} // TODO: Make this adjustable

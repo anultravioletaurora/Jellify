@@ -38,7 +38,7 @@ export default function FrequentlyPlayedTracks({
 
 			<HorizontalCardList
 				data={
-					frequentlyPlayed?.length ?? 0 > 10
+					(frequentlyPlayed?.length ?? 0 > 10)
 						? frequentlyPlayed!.slice(0, 10)
 						: frequentlyPlayed
 				}

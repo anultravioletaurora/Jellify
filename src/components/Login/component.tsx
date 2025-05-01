@@ -21,8 +21,8 @@ export default function Login(): React.JSX.Element {
 				isUndefined(server)
 					? 'ServerAddress'
 					: isUndefined(user)
-					? 'ServerAuthentication'
-					: 'LibrarySelection'
+						? 'ServerAuthentication'
+						: 'LibrarySelection'
 			}
 			screenOptions={{ headerShown: false }}
 		>

@@ -48,12 +48,12 @@ export async function fetchAlbumDiscs(
 											? isEqual(
 													discNumber,
 													(track.ParentIndexNumber ?? 0).toString(),
-											  )
+												)
 											: track,
 									),
 								}
 							},
-					  )
+						)
 					: [{ title: '1', data: [] }]
 
 				resolve(discs)

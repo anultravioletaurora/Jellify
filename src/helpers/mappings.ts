@@ -89,7 +89,7 @@ export function mapDtoToTrack(
 			? getImageApi(Client.api!).getItemImageUrlById(item.AlbumId, ImageType.Primary, {
 					width: 300,
 					height: 300,
-			  })
+				})
 			: undefined,
 
 		rating: isFavorite ? RatingType.Heart : undefined,

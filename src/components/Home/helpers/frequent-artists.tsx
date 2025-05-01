@@ -32,7 +32,7 @@ export default function FrequentArtists({
 
 			<HorizontalCardList
 				data={
-					frequentArtists?.length ?? 0 > 10
+					(frequentArtists?.length ?? 0 > 10)
 						? frequentArtists!.slice(0, 10)
 						: frequentArtists
 				}

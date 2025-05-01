@@ -1,6 +1,6 @@
 {
   "name": "jellify",
-  "version": "0.11.20",
+  "version": "0.11.21",
   "private": true,
   "scripts": {
     "init-android": "yarn",
@@ -76,9 +76,9 @@
     "tamagui": "^1.126.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.2",
-    "@babel/preset-env": "^7.25.3",
-    "@babel/runtime": "^7.25.0",
+    "@babel/core": "^7.27.1",
+    "@babel/preset-env": "^7.27.1",
+    "@babel/runtime": "^7.27.1",
     "@react-native-community/cli-platform-android": "18.0.0",
     "@react-native-community/cli-platform-ios": "18.0.0",
     "@react-native/babel-preset": "0.79.1",
@@ -100,10 +100,10 @@
     "husky": "^9.1.7",
     "jest": "^29.6.3",
     "jscodeshift": "^0.15.2",
-    "lint-staged": "^15.5.0",
+    "lint-staged": "^15.5.1",
     "patch-package": "8.0.0",
-    "prettier": "^2.8.8",
-    "react-dom": "^19.1.0",
+    "prettier": "^3.5.3",
+    "react-dom": "^19.0.0",
     "react-native-cli-bump-version": "^1.5.1",
     "react-test-renderer": "19.0.0",
     "typescript": "5.8.3"
