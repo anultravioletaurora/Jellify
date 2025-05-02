@@ -56,7 +56,6 @@
 		"react-native-carplay": "^2.4.1-beta.0",
 		"react-native-device-info": "^14.0.4",
 		"react-native-draggable-flatlist": "^4.0.2",
-		"react-native-draglist": "^3.9.5",
 		"react-native-fast-image": "^8.6.3",
 		"react-native-fs": "^2.20.0",
 		"react-native-gesture-handler": "^2.25.0",

@@ -8014,11 +8014,6 @@ react-native-draggable-flatlist@^4.0.2:
   dependencies:
     "@babel/preset-typescript" "^7.17.12"
 
-react-native-draglist@^3.9.5:
-  version "3.9.5"
-  resolved "https://registry.yarnpkg.com/react-native-draglist/-/react-native-draglist-3.9.5.tgz#fbc1dab0223d79c42cb60844d04f4c8a7f35f0d0"
-  integrity sha512-hij5+iti9Ww1dG2i5GsA17URfWGYHbI0P6i99Hr/IiBq5VBJZUW+sCJBY+4o4WCGgptLcOJNU+7rvwO/Hy8dSw==
-
 react-native-fast-image@^8.6.3:
   version "8.6.3"
   resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-8.6.3.tgz#6edc3f9190092a909d636d93eecbcc54a8822255"
