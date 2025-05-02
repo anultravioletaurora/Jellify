@@ -42,6 +42,10 @@ export default function Scrubber(): React.JSX.Element {
 			setPosition(Math.floor(progress.position * ProgressMultiplier))
 	}, [progress.position])
 
+	useEffect(() => {
+		if (useSeekTo.isIdle) setSeeking(false)
+	}, [useSeekTo.isIdle])
+
 	return (
 		<YStack>
 			<GestureDetector gesture={scrubGesture}>

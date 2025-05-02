@@ -112,7 +112,7 @@ const QueueContextInitailizer = () => {
 		 * then our useEffect won't fire - this ensures
 		 * it does
 		 */
-		setCurrentIndex(-1)
+		// setCurrentIndex(-1)
 
 		const availableAudioItems = filterTracksOnNetworkStatus(
 			networkStatus,
@@ -199,8 +199,6 @@ const QueueContextInitailizer = () => {
 
 	const skip = async (index?: number | undefined) => {
 		trigger('impactMedium')
-
-		setCurrentIndex(-1)
 
 		console.debug(
 			`Skip to next triggered. Index is ${`using ${
@@ -309,7 +307,10 @@ const QueueContextInitailizer = () => {
 	 * Store current index in storage when it changes
 	 */
 	useEffect(() => {
-		storage.set(MMKVStorageKeys.CurrentIndex, currentIndex)
+		if (currentIndex !== -1) {
+			console.debug(`Storing current index ${currentIndex}`)
+			storage.set(MMKVStorageKeys.CurrentIndex, currentIndex)
+		}
 	}, [currentIndex])
 
 	//#endregion useEffect(s)
