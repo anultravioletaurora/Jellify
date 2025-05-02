@@ -90,7 +90,6 @@ export default function Queue({
 						</YStack>
 
 						<Track
-							invertedColors={isActive}
 							queue={queueRef}
 							navigation={navigation}
 							track={queueItem.item}
@@ -101,12 +100,10 @@ export default function Queue({
 								console.debug(`Skip triggered on index ${index}`)
 								useSkip.mutate(index)
 							}}
-							// onLongPress={() => {
-							// 	navigation.navigate('Details', {
-							// 		item: queueItem.item,
-							// 		isNested: true,
-							// 	})
-							// }}
+							onLongPress={() => {
+								trigger('impactLight')
+								drag()
+							}}
 							isNested
 							showRemove
 							onRemove={() => {
