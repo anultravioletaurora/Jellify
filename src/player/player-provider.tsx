@@ -150,6 +150,21 @@ const PlayerContextInitializer = () => {
 			setNowPlaying(playQueue[currentIndex])
 		}
 	}, [currentIndex])
+
+	// Prefetch next track for gapless playback
+	useEffect(() => {
+		if (currentIndex > -1) {
+			const nextIndex = currentIndex + 1
+			if (nextIndex < playQueue.length) {
+				const nextTrack = playQueue[nextIndex]
+				const isAlreadyDownloaded =
+					downloadedTracks?.some((d) => d.item.Id === nextTrack.item.Id) ?? false
+				if (!isAlreadyDownloaded && networkStatus === networkStatusTypes.ONLINE) {
+					useDownload.mutate(nextTrack.item)
+				}
+			}
+		}
+	}, [currentIndex, downloadedTracks, networkStatus, playQueue])
 	//#endregion useEffects
 
 	//#region return
