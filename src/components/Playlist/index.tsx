@@ -172,21 +172,28 @@ export default function Playlist({ playlist, navigation }: PlaylistProps): React
 			}}
 			refreshing={isPending}
 			renderItem={({ item: track, getIndex, drag }) => (
-				<Track
-					navigation={navigation}
-					track={track}
-					tracklist={tracks!}
-					index={getIndex() ?? 0}
-					queue={playlist}
-					showArtwork
-					onLongPress={editing ? drag : undefined}
-					showRemove={editing}
-					onRemove={() =>
-						useRemoveFromPlaylist.mutate({ playlist, track, index: getIndex()! })
-					}
-					showDragHandle={editing}
-					dragHandle={editing ? drag : undefined}
-				/>
+				<XStack alignItems='center'>
+					{editing && <Icon name='drag' onPress={drag} />}
+
+					<Track
+						navigation={navigation}
+						track={track}
+						tracklist={tracks!}
+						index={getIndex() ?? 0}
+						queue={playlist}
+						showArtwork
+						onLongPress={() => {
+							navigation.navigate('Details', {
+								item: track,
+								isNested: false,
+							})
+						}}
+						showRemove={editing}
+						onRemove={() =>
+							useRemoveFromPlaylist.mutate({ playlist, track, index: getIndex()! })
+						}
+					/>
+				</XStack>
 			)}
 			ListFooterComponent={
 				<XStack justifyContent='flex-end'>

@@ -267,20 +267,30 @@ const QueueContextInitailizer = () => {
 	//#endregion Hooks
 
 	//#region useEffect(s)
+
 	/**
-	 * Update RNTP Queue when our queue
-	 * is updated
+	 * Store play queue in storage when it changes
 	 */
 	useEffect(() => {
 		storage.set(MMKVStorageKeys.PlayQueue, JSON.stringify(playQueue))
 	}, [playQueue])
 
+	/**
+	 * Store queue ref in storage when it changes
+	 */
 	useEffect(() => {
 		storage.set(MMKVStorageKeys.Queue, JSON.stringify(queueRef))
 	}, [queueRef])
 
+	/**
+	 * Store current index in storage when it changes
+	 */
+	useEffect(() => {
+		storage.set(MMKVStorageKeys.CurrentIndex, currentIndex)
+	}, [currentIndex])
 	//#endregion useEffect(s)
 
+	//#region Return
 	return {
 		queueRef,
 		playQueue,
@@ -294,6 +304,7 @@ const QueueContextInitailizer = () => {
 		useSkip,
 		usePrevious,
 	}
+	//#endregion Return
 }
 
 export const QueueContext = createContext<QueueContext>({

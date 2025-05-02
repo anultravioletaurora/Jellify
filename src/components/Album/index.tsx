@@ -7,16 +7,14 @@ import Track from '../Global/components/track'
 import FavoriteButton from '../Global/components/favorite-button'
 import { useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../enums/query-keys'
-import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
-import Client from '../../api/client'
 import { ItemCard } from '../Global/components/item-card'
 import { fetchAlbumDiscs } from '../../api/queries/item'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import InstantMixButton from '../Global/components/instant-mix-button'
-import FastImage from 'react-native-fast-image'
 import ItemImage from '../Global/components/image'
 import React from 'react'
+import IconButton from '../Global/helpers/icon-button'
 
 /**
  * The screen for an Album's track list
@@ -133,7 +131,7 @@ function AlbumTrackListHeader(
 				horizontal
 				keyExtractor={(item) => item.Id!}
 				data={album.AlbumArtists}
-				renderItem={({ index, item: artist }) => (
+				renderItem={({ item: artist }) => (
 					<ItemCard
 						size={'$10'}
 						item={artist}

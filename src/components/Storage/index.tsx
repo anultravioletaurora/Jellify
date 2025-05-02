@@ -5,7 +5,7 @@ import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-na
 import { deleteAudioCache } from '../Network/offlineModeUtils'
 import { useNetworkContext } from '../Network/provider'
 import Icon from '../Global/helpers/icon'
-import { View } from 'tamagui'
+import { getToken, View } from 'tamagui'
 import { Text } from '../Global/helpers/text'
 
 // 🔹 Single Download Item with animated progress bar
@@ -118,7 +118,7 @@ export default function StorageBar(): React.JSX.Element {
 
 			{/* Delete All Downloads */}
 			<Pressable style={styles.deleteButton} onPress={deleteAllDownloads}>
-				<Icon name='delete-outline' small color='#ff4d4f' />
+				<Icon name='delete-outline' small color={getToken('$danger')} />
 				<Text style={styles.deleteText}> Delete Downloads</Text>
 			</Pressable>
 		</View>
