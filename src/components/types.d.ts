@@ -4,7 +4,9 @@ import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-naviga
 import { Queue } from '../player/types/queue-item'
 
 export type StackParamList = {
-	Login: undefined
+	Login: {
+		screen: keyof StackParamList
+	}
 	ServerAddress: undefined
 	ServerAuthentication: undefined
 
@@ -50,7 +52,7 @@ export type StackParamList = {
 	Labs: undefined
 
 	Tabs: {
-		screen: string
+		screen: keyof StackParamList
 		params: object
 	}
 

@@ -35,13 +35,6 @@ export interface TrackProps {
 	prependElement?: React.JSX.Element | undefined
 	showRemove?: boolean | undefined
 	onRemove?: () => void | undefined
-
-	/**
-	 * Optional prepend element function.
-	 * If provided, function will be called when the user
-	 * presses the prepend element.
-	 */
-	prependOnPress?: (() => void) | undefined
 }
 
 export default function Track({

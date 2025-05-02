@@ -21,9 +21,16 @@ export default function SignOut(): React.JSX.Element {
 						console.error('Error clearing TrackPlayer', error)
 					})
 					.finally(() => {
-						signOut()
-						navigation.navigate('ServerAddress', undefined, {
-							pop: true,
+						navigation.reset({
+							index: 0,
+							routes: [
+								{
+									name: 'Login',
+									params: {
+										screen: 'ServerAddress',
+									},
+								},
+							],
 						})
 					})
 			}}

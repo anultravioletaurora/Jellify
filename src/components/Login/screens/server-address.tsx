@@ -24,7 +24,11 @@ export default function ServerAddress({
 	const [useHttps, setUseHttps] = useState<boolean>(true)
 	const [serverAddress, setServerAddress] = useState<string | undefined>(undefined)
 
-	const { server, setServer } = useJellifyContext()
+	const { server, setServer, signOut } = useJellifyContext()
+
+	useEffect(() => {
+		signOut()
+	}, [])
 
 	const useServerMutation = useMutation({
 		mutationFn: () => {
