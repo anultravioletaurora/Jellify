@@ -75,14 +75,9 @@ export default function TrackOptions({
 	const useAddToPlaylist = useMutation({
 		mutationFn: ({ track, playlist }: AddToPlaylistMutation) => {
 			trigger('impactLight')
-			return addToPlaylist(api, playlist, track)
+			return addToPlaylist(api, user, track, playlist)
 		},
 		onSuccess: (data, { playlist }) => {
-			// Burnt.alert({
-			// 	title: `Added to playlist`,
-			// 	duration: 1,
-			// 	preset: 'done',
-			// })
 			Toast.show({
 				text1: 'Added to playlist',
 				type: 'success',
@@ -99,11 +94,6 @@ export default function TrackOptions({
 			})
 		},
 		onError: () => {
-			// Burnt.alert({
-			// 	title: `Unable to add`,
-			// 	duration: 1,
-			// 	preset: 'error',
-			// })
 			Toast.show({
 				text1: 'Unable to add',
 				type: 'error',

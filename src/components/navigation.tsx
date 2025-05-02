@@ -10,10 +10,10 @@ const RootStack = createNativeStackNavigator<StackParamList>()
 export default function Navigation(): React.JSX.Element {
 	const theme = useTheme()
 
-	const { loggedIn } = useJellifyContext()
+	const { api, library } = useJellifyContext()
 
 	return (
-		<RootStack.Navigator initialRouteName={loggedIn ? 'Tabs' : 'Login'}>
+		<RootStack.Navigator initialRouteName={api && library ? 'Tabs' : 'Login'}>
 			<RootStack.Screen
 				name='Tabs'
 				component={Tabs}

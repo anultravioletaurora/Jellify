@@ -2,7 +2,7 @@ import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { ListTemplate } from 'react-native-carplay'
 import uuid from 'react-native-uuid'
 
-const RecentArtistsTemplate = (items: BaseItemDto[]) =>
+const ArtistsTemplate = (items: BaseItemDto[]) =>
 	new ListTemplate({
 		id: uuid.v4(),
 		sections: [
@@ -19,4 +19,4 @@ const RecentArtistsTemplate = (items: BaseItemDto[]) =>
 		onItemSelect: async (item) => {},
 	})
 
-export default RecentArtistsTemplate
+export default ArtistsTemplate

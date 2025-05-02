@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from 'react
 import { JellifyTrack } from '../types/JellifyTrack'
 import { storage } from '../constants/storage'
 import { MMKVStorageKeys } from '../enums/mmkv-storage-keys'
-import {
+import TrackPlayer, {
 	Event,
 	Progress,
 	State,
@@ -34,11 +34,19 @@ interface PlayerContext {
 
 const PlayerContextInitializer = () => {
 	const { api, sessionId } = useJellifyContext()
+	const { playQueue, currentIndex, queueRef } = useQueueContext()
 
 	const nowPlayingJson = storage.getString(MMKVStorageKeys.NowPlaying)
 
+	/**
+	 * A Jellyfin {@link PlaystateApi} instance. Used to report playback state and progress
+	 * to Jellyfin.
+	 */
 	let playStateApi: PlaystateApi | undefined
 
+	/**
+	 * Initialize the {@link playStateApi} instance.
+	 */
 	if (!isUndefined(api)) playStateApi = getPlaystateApi(api)
 
 	//#region State
@@ -46,7 +54,7 @@ const PlayerContextInitializer = () => {
 		nowPlayingJson ? JSON.parse(nowPlayingJson) : undefined,
 	)
 
-	const { playQueue, currentIndex } = useQueueContext()
+	const [initialized, setInitialized] = useState<boolean>(false)
 
 	//#endregion State
 
@@ -56,6 +64,10 @@ const PlayerContextInitializer = () => {
 			await handlePlaybackState(sessionId, playStateApi, nowPlaying, state)
 	}
 
+	/**
+	 * A function to handle reporting playback progress to Jellyfin. Does nothing if
+	 * the {@link playStateApi} or {@link nowPlaying} are not defined.
+	 */
 	const handlePlaybackProgressUpdated = async (progress: Progress) => {
 		if (playStateApi && nowPlaying)
 			await handlePlaybackProgress(sessionId, playStateApi, nowPlaying, progress)
@@ -64,10 +76,16 @@ const PlayerContextInitializer = () => {
 	//#endregion Functions
 
 	//#region Hooks
+	/**
+	 * A mutation to handle starting playback
+	 */
 	const useStartPlayback = useMutation({
 		mutationFn: play,
 	})
 
+	/**
+	 * A mutation to handle toggling the playback state
+	 */
 	const useTogglePlayback = useMutation({
 		mutationFn: () => {
 			trigger('impactMedium')
@@ -76,6 +94,9 @@ const PlayerContextInitializer = () => {
 		},
 	})
 
+	/**
+	 * A mutation to handle seeking to a specific position in the track
+	 */
 	const useSeekTo = useMutation({
 		mutationFn: async (position: number) => {
 			trigger('impactLight')
@@ -83,6 +104,9 @@ const PlayerContextInitializer = () => {
 		},
 	})
 
+	/**
+	 * A mutation to handle seeking to a specific position in the track
+	 */
 	const useSeekBy = useMutation({
 		mutationFn: async (seekSeconds: number) => {
 			trigger('clockTick')
@@ -91,10 +115,16 @@ const PlayerContextInitializer = () => {
 		},
 	})
 
+	/**
+	 * A mutation to handle reporting playback state to Jellyfin
+	 */
 	const usePlaybackStateChanged = useMutation({
 		mutationFn: async (state: State) => handlePlaybackStateChanged(state),
 	})
 
+	/**
+	 * A mutation to handle reporting playback progress to Jellyfin
+	 */
 	const usePlaybackProgressUpdated = useMutation({
 		mutationFn: async (progress: Progress) => handlePlaybackProgressUpdated(progress),
 	})
@@ -105,18 +135,16 @@ const PlayerContextInitializer = () => {
 	const { state: playbackState } = usePlaybackState()
 	const { useDownload, downloadedTracks, networkStatus } = useNetworkContext()
 
+	/**
+	 * Use the {@link useTrackPlayerEvents} hook to listen for events from the player.
+	 *
+	 * This is use to report playback status to Jellyfin, and as such the player context
+	 * is only concerned about the playback state and progress.
+	 */
 	useTrackPlayerEvents(
 		[Event.RemoteLike, Event.RemoteDislike, Event.PlaybackProgressUpdated, Event.PlaybackState],
 		(event) => {
 			switch (event.type) {
-				case Event.RemoteLike: {
-					break
-				}
-
-				case Event.RemoteDislike: {
-					break
-				}
-
 				case Event.PlaybackState: {
 					usePlaybackStateChanged.mutate(event.state)
 					break
@@ -143,17 +171,42 @@ const PlayerContextInitializer = () => {
 	//#endregion RNTP Setup
 
 	//#region useEffects
-
+	/**
+	 * Store the now playing track in storage when it changes
+	 */
 	useEffect(() => {
 		if (nowPlaying) storage.set(MMKVStorageKeys.NowPlaying, JSON.stringify(nowPlaying))
 	}, [nowPlaying])
 
+	/**
+	 * Set the now playing track to the track at the current index in the play queue
+	 */
 	useEffect(() => {
 		if (currentIndex > -1 && playQueue.length > currentIndex) {
 			console.debug(`Setting now playing to queue index ${currentIndex}`)
 			setNowPlaying(playQueue[currentIndex])
 		}
 	}, [currentIndex])
+
+	/**
+	 * Initialize the player. This is used to load the queue from the {@link QueueProvider}
+	 * and set it to the player if we have already completed the onboarding process
+	 * and the user has a valid queue in storage
+	 */
+	useEffect(() => {
+		console.debug('Initialized', initialized)
+		console.debug('Play queue length', playQueue.length)
+		console.debug('Current index', currentIndex)
+		if (playQueue.length > 0 && currentIndex > -1 && !initialized) {
+			TrackPlayer.setQueue(playQueue)
+			TrackPlayer.skip(currentIndex)
+			console.debug('Loaded queue from storage')
+			setInitialized(true)
+		} else if (queueRef === 'Recently Played' && currentIndex === -1) {
+			console.debug('Not loading queue as it is empty')
+			setInitialized(true)
+		}
+	}, [])
 	//#endregion useEffects
 
 	//#region return
@@ -169,6 +222,12 @@ const PlayerContextInitializer = () => {
 }
 
 //#region Create PlayerContext
+/**
+ * Context for the player. This is used to provide the player context to the
+ * player components.
+ * @param param0 The default {@link PlayerContext}
+ * @returns The default {@link PlayerContext}
+ */
 export const PlayerContext = createContext<PlayerContext>({
 	nowPlaying: undefined,
 	playbackState: undefined,
@@ -247,6 +306,12 @@ export const PlayerContext = createContext<PlayerContext>({
 })
 //#endregion Create PlayerContext
 
+/**
+ * Provider for the player context. This is used to provide player controls and the currently
+ * playing track to child components.
+ * @param param0 The {@link ReactNode} to render
+ * @returns A {@link ReactNode}
+ */
 export const PlayerProvider: ({ children }: { children: ReactNode }) => React.JSX.Element = ({
 	children,
 }: {
@@ -257,4 +322,9 @@ export const PlayerProvider: ({ children }: { children: ReactNode }) => React.JS
 	return <PlayerContext.Provider value={context}>{children}</PlayerContext.Provider>
 }
 
+/**
+ * Hook to use the player context. This is used to get the player context from the
+ * {@link PlayerProvider}.
+ * @returns The {@link PlayerContext}
+ */
 export const usePlayerContext = () => useContext(PlayerContext)

@@ -37,16 +37,19 @@ interface QueueContext {
 }
 
 const QueueContextInitailizer = () => {
+	const currentIndexJson = storage.getString(MMKVStorageKeys.CurrentIndex)
 	const queueRefJson = storage.getString(MMKVStorageKeys.Queue)
 	const playQueueJson = storage.getString(MMKVStorageKeys.PlayQueue)
 
 	const queueRefInit = queueRefJson ? JSON.parse(queueRefJson) : 'Recently Played'
 	const playQueueInit = playQueueJson ? JSON.parse(playQueueJson) : []
 
-	const [queueRef, setQueueRef] = useState<Queue>(queueRefInit)
 	const [playQueue, setPlayQueue] = useState<JellifyTrack[]>(playQueueInit)
+	const [queueRef, setQueueRef] = useState<Queue>(queueRefInit)
 
-	const [currentIndex, setCurrentIndex] = useState<number>(-1)
+	const [currentIndex, setCurrentIndex] = useState<number>(
+		currentIndexJson ? JSON.parse(currentIndexJson) : -1,
+	)
 
 	const { api, sessionId, user } = useJellifyContext()
 	const { downloadedTracks, networkStatus } = useNetworkContext()
@@ -101,6 +104,7 @@ const QueueContextInitailizer = () => {
 		queuingRef: Queue,
 		startIndex: number = 0,
 	) => {
+		trigger('impactLight')
 		console.debug(`Queuing ${audioItems.length} items`)
 
 		/**
@@ -287,7 +291,6 @@ const QueueContextInitailizer = () => {
 	//#endregion Hooks
 
 	//#region useEffect(s)
-
 	/**
 	 * Store play queue in storage when it changes
 	 */
@@ -308,6 +311,7 @@ const QueueContextInitailizer = () => {
 	useEffect(() => {
 		storage.set(MMKVStorageKeys.CurrentIndex, currentIndex)
 	}, [currentIndex])
+
 	//#endregion useEffect(s)
 
 	//#region Return

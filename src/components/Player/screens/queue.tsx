@@ -19,7 +19,6 @@ export default function Queue({
 }: {
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
-	const { width } = useSafeAreaFrame()
 	const { nowPlaying } = usePlayerContext()
 
 	const {
@@ -48,8 +47,6 @@ export default function Queue({
 		(queueItem) => queueItem.item.Id! === nowPlaying!.item.Id!,
 	)
 
-	const [isReordering, setIsReordering] = useState(false)
-
 	return (
 		<Animated.View>
 			<DraggableFlatList
@@ -57,13 +54,12 @@ export default function Queue({
 				data={playQueue}
 				dragHitSlop={{
 					left: -50, // https://github.com/computerjazz/react-native-draggable-flatlist/issues/336
-					right: isReordering ? -(width * 0.95 - 20) : width,
 				}}
 				extraData={nowPlaying}
 				// enableLayoutAnimationExperimental
 				getItemLayout={(data, index) => ({
-					length: width / 9,
-					offset: (width / 9) * index,
+					length: 20,
+					offset: (20 / 9) * index,
 					index,
 				})}
 				initialScrollIndex={scrollIndex !== -1 ? scrollIndex : 0}
@@ -79,13 +75,12 @@ export default function Queue({
 					// setIsReordering(true)
 				}}
 				onDragEnd={({ data, from, to }) => {
-					setIsReordering(false)
 					useReorderQueue.mutate({ newOrder: data, from, to })
 				}}
 				renderItem={({ item: queueItem, getIndex, drag, isActive }) => (
 					<XStack
 						alignItems='center'
-						onPress={(event) => {
+						onLongPress={(event) => {
 							trigger('impactLight')
 							drag()
 						}}
@@ -106,12 +101,12 @@ export default function Queue({
 								console.debug(`Skip triggered on index ${index}`)
 								useSkip.mutate(index)
 							}}
-							onLongPress={() => {
-								navigation.navigate('Details', {
-									item: queueItem.item,
-									isNested: true,
-								})
-							}}
+							// onLongPress={() => {
+							// 	navigation.navigate('Details', {
+							// 		item: queueItem.item,
+							// 		isNested: true,
+							// 	})
+							// }}
 							isNested
 							showRemove
 							onRemove={() => {

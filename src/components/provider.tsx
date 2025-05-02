@@ -12,19 +12,64 @@ import { Api } from '@jellyfin/sdk/lib/api'
 import { JellyfinInfo } from '../api/info'
 import uuid from 'react-native-uuid'
 
+/**
+ * The context for the Jellify provider.
+ */
 interface JellifyContext {
+	/**
+	 * Whether the user is logged in.
+	 */
 	loggedIn: boolean
+
+	/**
+	 * The {@link Api} client.
+	 */
 	api: Api | undefined
+
+	/**
+	 * The connected {@link JellifyServer} object.
+	 */
 	server: JellifyServer | undefined
+
+	/**
+	 * The signed in {@link JellifyUser} object.
+	 */
 	user: JellifyUser | undefined
+
+	/**
+	 * The selected{@link JellifyLibrary} object.
+	 */
 	library: JellifyLibrary | undefined
-	triggerAuth: boolean
+
+	/**
+	 * Whether CarPlay / Android Auto is connected.
+	 */
 	carPlayConnected: boolean
+
+	/**
+	 * The ID for the current session.
+	 */
 	sessionId: string
+
+	/**
+	 * The function to set the context {@link JellifyServer}.
+	 */
 	setServer: React.Dispatch<SetStateAction<JellifyServer | undefined>>
+
+	/**
+	 * The function to set the context {@link JellifyUser}.
+	 */
 	setUser: React.Dispatch<SetStateAction<JellifyUser | undefined>>
+
+	/**
+	 * The function to set the context {@link JellifyLibrary}.
+	 */
 	setLibrary: React.Dispatch<SetStateAction<JellifyLibrary | undefined>>
-	setTriggerAuth: React.Dispatch<SetStateAction<boolean>>
+
+	/**
+	 * The function to sign out of Jellify. This will clear the context
+	 * and remove all data from the device.
+	 */
 	signOut: () => void
 }
 
@@ -32,10 +77,11 @@ const JellifyContextInitializer = () => {
 	const userJson = storage.getString(MMKVStorageKeys.User)
 	const serverJson = storage.getString(MMKVStorageKeys.Server)
 	const libraryJson = storage.getString(MMKVStorageKeys.Library)
+	const apiJson = storage.getString(MMKVStorageKeys.Api)
 
 	const sessionId = uuid.v4()
 
-	const [api, setApi] = useState<Api | undefined>(undefined)
+	const [api, setApi] = useState<Api | undefined>(apiJson ? JSON.parse(apiJson) : undefined)
 	const [server, setServer] = useState<JellifyServer | undefined>(
 		serverJson ? JSON.parse(serverJson) : undefined,
 	)
@@ -45,8 +91,6 @@ const JellifyContextInitializer = () => {
 	const [library, setLibrary] = useState<JellifyLibrary | undefined>(
 		libraryJson ? JSON.parse(libraryJson) : undefined,
 	)
-
-	const [triggerAuth, setTriggerAuth] = useState<boolean>(true)
 
 	const [loggedIn, setLoggedIn] = useState<boolean>(false)
 
@@ -66,6 +110,11 @@ const JellifyContextInitializer = () => {
 
 		setLoggedIn(!isUndefined(server) && !isUndefined(user) && !isUndefined(library))
 	}, [server, user, library])
+
+	useEffect(() => {
+		if (api) storage.set(MMKVStorageKeys.Api, JSON.stringify(api))
+		else storage.delete(MMKVStorageKeys.Api)
+	}, [api])
 
 	useEffect(() => {
 		if (server) storage.set(MMKVStorageKeys.Server, JSON.stringify(server))
@@ -115,12 +164,10 @@ const JellifyContextInitializer = () => {
 		server,
 		user,
 		library,
-		triggerAuth,
 		sessionId,
 		setServer,
 		setUser,
 		setLibrary,
-		setTriggerAuth,
 		carPlayConnected,
 		signOut,
 	}
@@ -132,12 +179,10 @@ const JellifyContext = createContext<JellifyContext>({
 	server: undefined,
 	user: undefined,
 	library: undefined,
-	triggerAuth: false,
 	sessionId: '',
 	setServer: () => {},
 	setUser: () => {},
 	setLibrary: () => {},
-	setTriggerAuth: () => {},
 	carPlayConnected: false,
 	signOut: () => {},
 })
