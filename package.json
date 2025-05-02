@@ -1,6 +1,6 @@
 {
 	"name": "jellify",
-	"version": "0.11.22",
+	"version": "0.11.23",
 	"private": true,
 	"scripts": {
 		"init-android": "yarn",

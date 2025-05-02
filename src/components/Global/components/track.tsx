@@ -115,7 +115,7 @@ export default function Track({
 				<XStack
 					alignContent='center'
 					justifyContent='center'
-					flex={showArtwork ? 2 : 1}
+					flex={1}
 					marginHorizontal={'$2'}
 					minHeight={showArtwork ? '$4' : 'unset'}
 				>

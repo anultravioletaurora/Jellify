@@ -47,6 +47,8 @@ export default function Queue({
 		(queueItem) => queueItem.item.Id! === nowPlaying!.item.Id!,
 	)
 
+	const [isReordering, setIsReordering] = useState(false)
+
 	return (
 		<Animated.View>
 			<DraggableFlatList
@@ -75,6 +77,7 @@ export default function Queue({
 					// setIsReordering(true)
 				}}
 				onDragEnd={({ data, from, to }) => {
+					setIsReordering(false)
 					useReorderQueue.mutate({ newOrder: data, from, to })
 				}}
 				renderItem={({ item: queueItem, getIndex, drag, isActive }) => (

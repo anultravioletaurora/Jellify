@@ -282,6 +282,7 @@ const QueueContextInitailizer = () => {
 	//#endregion Hooks
 
 	//#region useEffect(s)
+
 	/**
 	 * Store play queue in storage when it changes
 	 */
