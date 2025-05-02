@@ -21,7 +21,6 @@ import { PlaystateApi } from '@jellyfin/sdk/lib/generated-client/api/playstate-a
 import { networkStatusTypes } from '../components/Network/internetConnectionWatcher'
 import { useJellifyContext } from '../components/provider'
 import { isUndefined } from 'lodash'
-import uuid from 'react-native-uuid'
 
 interface PlayerContext {
 	nowPlaying: JellifyTrack | undefined
