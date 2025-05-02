@@ -12,6 +12,11 @@ import { isUndefined } from 'lodash'
 import { JellifyDownload } from '../types/JellifyDownload'
 import { queryClient } from '../constants/query-client'
 import { QueryKeys } from '../enums/query-keys'
+import { MMKV } from 'react-native-mmkv'
+
+// Add MMKV instance for settings
+const settingsMMKV = new MMKV({ id: 'settings' })
+const QUALITY_KEY = 'downloadQuality'
 
 /**
  * The container that the Jellyfin server will attempt to transcode to
@@ -38,7 +43,16 @@ export function mapDtoToTrack(
 	downloadedTracks: JellifyDownload[],
 	queuingType?: QueuingType,
 ): JellifyTrack {
-	const urlParams = {
+	// Read selected quality from MMKV
+	let selectedQuality = '192'
+	try {
+		const stored = settingsMMKV.getString(QUALITY_KEY)
+		if (stored) selectedQuality = stored
+	} catch {
+		// ignore errors when reading download quality from MMKV
+	}
+
+	const urlParams: Record<string, string> = {
 		Container: item.Container!,
 		TranscodingContainer: transcodingContainer,
 		EnableRemoteMedia: 'true',
@@ -46,6 +60,11 @@ export function mapDtoToTrack(
 		api_key: Client.api!.accessToken,
 		StartTimeTicks: '0',
 		PlaySessionId: Client.sessionId,
+	}
+
+	// If not 'original', add audio bitrate param
+	if (selectedQuality !== 'original') {
+		urlParams['AudioBitRate'] = (parseInt(selectedQuality, 10) * 1000).toString()
 	}
 
 	console.debug(`Mapping BaseItemDTO to Track object`)

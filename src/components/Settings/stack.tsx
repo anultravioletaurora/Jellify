@@ -7,6 +7,7 @@ import DetailsScreen from '../ItemDetail/screen'
 import { StackParamList } from '../types'
 import PlaybackDetails from './screens/playback-details'
 import ServerDetails from './screens/server-details'
+import DownloadsDetails from './screens/downloads-details'
 
 export const SettingsStack = createNativeStackNavigator<StackParamList>()
 
@@ -50,6 +51,8 @@ export default function Settings(): React.JSX.Element {
 					},
 				}}
 			/>
+
+			<SettingsStack.Screen name='Downloads' component={DownloadsDetails} />
 
 			<SettingsStack.Group screenOptions={{ presentation: 'modal' }}>
 				<SettingsStack.Screen

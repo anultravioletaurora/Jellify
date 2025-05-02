@@ -14,6 +14,7 @@ const Categories: CategoryRoute[] = [
 	{ name: 'Server', iconName: 'server-network' },
 	{ name: 'Playback', iconName: 'disc-player' },
 	{ name: 'Labs', iconName: 'flask-outline' },
+	{ name: 'Downloads', iconName: 'download' }, // Added Downloads category
 ]
 
 export default Categories
