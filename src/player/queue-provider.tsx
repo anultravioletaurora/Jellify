@@ -37,7 +37,7 @@ interface QueueContext {
 }
 
 const QueueContextInitailizer = () => {
-	const currentIndexJson = storage.getString(MMKVStorageKeys.CurrentIndex)
+	const currentIndexValue = storage.getNumber(MMKVStorageKeys.CurrentIndex)
 	const queueRefJson = storage.getString(MMKVStorageKeys.Queue)
 	const playQueueJson = storage.getString(MMKVStorageKeys.PlayQueue)
 
@@ -48,7 +48,7 @@ const QueueContextInitailizer = () => {
 	const [queueRef, setQueueRef] = useState<Queue>(queueRefInit)
 
 	const [currentIndex, setCurrentIndex] = useState<number>(
-		currentIndexJson ? JSON.parse(currentIndexJson) : -1,
+		!isUndefined(currentIndexValue) ? currentIndexValue : -1,
 	)
 
 	const { api, sessionId, user } = useJellifyContext()
@@ -106,13 +106,6 @@ const QueueContextInitailizer = () => {
 	) => {
 		trigger('impactLight')
 		console.debug(`Queuing ${audioItems.length} items`)
-
-		/**
-		 * If the start index matches the current index,
-		 * then our useEffect won't fire - this ensures
-		 * it does
-		 */
-		// setCurrentIndex(-1)
 
 		const availableAudioItems = filterTracksOnNetworkStatus(
 			networkStatus,

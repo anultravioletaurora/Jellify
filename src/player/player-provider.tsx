@@ -186,7 +186,7 @@ const PlayerContextInitializer = () => {
 			console.debug(`Setting now playing to queue index ${currentIndex}`)
 			setNowPlaying(playQueue[currentIndex])
 		}
-	}, [currentIndex])
+	}, [currentIndex, playQueue])
 
 	/**
 	 * Initialize the player. This is used to load the queue from the {@link QueueProvider}
