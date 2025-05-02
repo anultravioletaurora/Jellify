@@ -10,6 +10,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import FrequentArtists from './helpers/frequent-artists'
 import FrequentlyPlayedTracks from './helpers/frequent-tracks'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import DownloadedTracks from './helpers/downloaded-tracks'
 
 export function ProvidedHome({
 	navigation,
@@ -17,7 +18,6 @@ export function ProvidedHome({
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
 	const { refreshing: refetching, onRefresh } = useHomeContext()
-
 	const insets = useSafeAreaInsets()
 
 	return (
@@ -31,6 +31,7 @@ export function ProvidedHome({
 					<H3>{`Hi, ${Client.user!.name}`}</H3>
 				</XStack>
 
+				<DownloadedTracks navigation={navigation} />
 				<Separator marginVertical={'$2'} />
 
 				<RecentArtists navigation={navigation} />
