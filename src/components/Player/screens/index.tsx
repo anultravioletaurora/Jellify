@@ -1,7 +1,7 @@
 import { StackParamList } from '../../../components/types'
 import { usePlayerContext } from '../../../player/player-provider'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { SafeAreaView, useSafeAreaFrame } from 'react-native-safe-area-context'
 import { YStack, XStack, Spacer, getTokens, getToken } from 'tamagui'
 import { Text } from '../../../components/Global/helpers/text'
@@ -18,7 +18,13 @@ import Toast from 'react-native-toast-message'
 import JellifyToastConfig from '../../../constants/toast.config'
 import { useColorScheme } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
+
+import TrackPlayer from 'react-native-track-player'
+import { JellifyShuffle, PLAY_AFTER_SHUFFLE } from '../../../helpers/shuffle'
+import { JellifyTrack } from '../../../types/JellifyTrack'
+import { QueuingType } from '../../../enums/queuing-type'
 import { useJellifyContext } from '../../provider'
+
 export default function PlayerScreen({
 	navigation,
 }: {
@@ -30,11 +36,31 @@ export default function PlayerScreen({
 
 	const isDarkMode = useColorScheme() === 'dark'
 
-	const { nowPlaying } = usePlayerContext()
+	const { nowPlaying, useStartPlayback } = usePlayerContext()
 
-	const { queueRef } = useQueueContext()
+	const { queueRef, useLoadNewQueue } = useQueueContext()
 
 	const { width, height } = useSafeAreaFrame()
+
+	const shuffle = () => {
+		TrackPlayer.getQueue().then((queue) => {
+			const shuffled = JellifyShuffle(queue as JellifyTrack[])
+			const baseItemDtoArr = shuffled.map((track) => track.item)
+			useLoadNewQueue.mutate(
+				{
+					tracklist: baseItemDtoArr,
+					track: baseItemDtoArr[PLAY_AFTER_SHUFFLE],
+					queue: 'Shuffle',
+					queuingType: QueuingType.Shuffle,
+				},
+				{
+					onSuccess: () => {
+						useStartPlayback.mutate()
+					},
+				},
+			)
+		})
+	}
 
 	useFocusEffect(
 		useCallback(() => {
@@ -203,7 +229,12 @@ export default function PlayerScreen({
 
 								<Spacer />
 
-								<Spacer />
+								<Icon
+									name='shuffle'
+									onPress={() => {
+										shuffle()
+									}}
+								/>
 
 								<Spacer />
 

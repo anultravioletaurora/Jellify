@@ -7,6 +7,7 @@ import { QueryClient } from '@tanstack/react-query'
 import { JellifyDownload } from '../../types/JellifyDownload'
 import DownloadProgress from '../../types/DownloadProgress'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
+import TrackPlayer from 'react-native-track-player'
 
 export async function downloadJellyfinFile(
 	url: string,
