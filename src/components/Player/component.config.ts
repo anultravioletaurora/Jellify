@@ -16,4 +16,4 @@ export const TextTickerConfig: TextTickerProps = {
  * We're going to move the decimal place over so that Tamagui's slider
  * can be more precise
  */
-export const ProgressMultiplier = 10 ^ 5
+export const ProgressMultiplier = 10 ** 5
