@@ -33,7 +33,7 @@ interface PlayerContext {
 
 const PlayerContextInitializer = () => {
 	const { api, sessionId } = useJellifyContext()
-	const { playQueue, currentIndex, queueRef } = useQueueContext()
+	const { playQueue, currentIndex, queueRef, skipping } = useQueueContext()
 
 	const nowPlayingJson = storage.getString(MMKVStorageKeys.NowPlaying)
 
@@ -181,11 +181,11 @@ const PlayerContextInitializer = () => {
 	 * Set the now playing track to the track at the current index in the play queue
 	 */
 	useEffect(() => {
-		if (currentIndex > -1 && playQueue.length > currentIndex) {
+		if (currentIndex > -1 && playQueue.length > currentIndex && !skipping) {
 			console.debug(`Setting now playing to queue index ${currentIndex}`)
 			setNowPlaying(playQueue[currentIndex])
 		}
-	}, [currentIndex, playQueue])
+	}, [currentIndex, playQueue, skipping])
 
 	/**
 	 * Initialize the player. This is used to load the queue from the {@link QueueProvider}

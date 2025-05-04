@@ -22,17 +22,75 @@ import { SKIP_TO_PREVIOUS_THRESHOLD } from './config'
 import { isUndefined } from 'lodash'
 import Toast from 'react-native-toast-message'
 import { useJellifyContext } from '../components/provider'
+
+/**
+ * @description The context for managing the queue
+ */
 interface QueueContext {
+	/**
+	 * @description The reference to the queue, be it a {@link BaseItemDto} or a string
+	 */
 	queueRef: Queue
+
+	/**
+	 * @description The queue of {@link JellifyTrack}s
+	 */
 	playQueue: JellifyTrack[]
+
+	/**
+	 * @description The index of the current track in the queue
+	 */
 	currentIndex: number
+
+	/**
+	 * @description Whether the queue is skipping to a different track. This is used to prevent
+	 * flickering of a different track when the user is loading a new queue
+	 */
+	skipping: boolean
+
+	/**
+	 * @description Fetches the section data for the queue
+	 */
 	fetchQueueSectionData: () => Section[]
+
+	/**
+	 * @description A hook that adds a track to the queue
+	 */
 	useAddToQueue: UseMutationResult<void, Error, AddToQueueMutation, unknown>
+
+	/**
+	 * @description Loads a queue of tracks
+	 */
+	loadQueue: (audioItems: BaseItemDto[], queuingRef: Queue, startIndex: number) => Promise<void>
+
+	/**
+	 * @description A hook that loads a new queue of tracks
+	 */
 	useLoadNewQueue: UseMutationResult<void, Error, QueueMutation, unknown>
+
+	/**
+	 * @description A hook that removes upcoming tracks from the queue
+	 */
 	useRemoveUpcomingTracks: UseMutationResult<void, Error, void, unknown>
+
+	/**
+	 * @description A hook that removes a track from the queue
+	 */
 	useRemoveFromQueue: UseMutationResult<void, Error, number, unknown>
+
+	/**
+	 * @description A hook that reorders the queue
+	 */
 	useReorderQueue: UseMutationResult<void, Error, QueueOrderMutation, unknown>
+
+	/**
+	 * @description A hook that skips to the next track
+	 */
 	useSkip: UseMutationResult<void, Error, number | undefined, unknown>
+
+	/**
+	 * @description A hook that skips to the previous track
+	 */
 	usePrevious: UseMutationResult<void, Error, void, unknown>
 }
 
@@ -44,6 +102,7 @@ const QueueContextInitailizer = () => {
 	const queueRefInit = queueRefJson ? JSON.parse(queueRefJson) : 'Recently Played'
 	const playQueueInit = playQueueJson ? JSON.parse(playQueueJson) : []
 
+	//#region State
 	const [playQueue, setPlayQueue] = useState<JellifyTrack[]>(playQueueInit)
 	const [queueRef, setQueueRef] = useState<Queue>(queueRefInit)
 
@@ -51,8 +110,15 @@ const QueueContextInitailizer = () => {
 		!isUndefined(currentIndexValue) ? currentIndexValue : -1,
 	)
 
+	const [skipping, setSkipping] = useState<boolean>(false)
+
+	//#endregion State
+
+	//#region Context
 	const { api, sessionId, user } = useJellifyContext()
 	const { downloadedTracks, networkStatus } = useNetworkContext()
+
+	//#endregion Context
 
 	useTrackPlayerEvents([Event.PlaybackActiveTrackChanged], ({ index }) => {
 		if (!isUndefined(index)) setCurrentIndex(index)
@@ -107,6 +173,8 @@ const QueueContextInitailizer = () => {
 		trigger('impactLight')
 		console.debug(`Queuing ${audioItems.length} items`)
 
+		setSkipping(true)
+
 		const availableAudioItems = filterTracksOnNetworkStatus(
 			networkStatus,
 			audioItems,
@@ -128,6 +196,8 @@ const QueueContextInitailizer = () => {
 		await TrackPlayer.setQueue(queue)
 		setPlayQueue(queue)
 		await TrackPlayer.skip(startIndex)
+
+		setSkipping(false)
 
 		console.debug(`Queued ${queue.length} tracks, starting at ${startIndex}`)
 
@@ -314,7 +384,9 @@ const QueueContextInitailizer = () => {
 		queueRef,
 		playQueue,
 		currentIndex,
+		skipping,
 		fetchQueueSectionData,
+		loadQueue,
 		useAddToQueue,
 		useLoadNewQueue,
 		useRemoveFromQueue,
@@ -330,7 +402,9 @@ export const QueueContext = createContext<QueueContext>({
 	queueRef: 'Recently Played',
 	playQueue: [],
 	currentIndex: -1,
+	skipping: false,
 	fetchQueueSectionData: () => [],
+	loadQueue: async () => {},
 	useAddToQueue: {
 		mutate: () => {},
 		mutateAsync: async () => {},

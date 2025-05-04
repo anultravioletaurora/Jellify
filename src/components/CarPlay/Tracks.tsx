@@ -7,8 +7,11 @@ import CarPlayNowPlaying from './NowPlaying'
 import { queryClient } from '../../constants/query-client'
 import { QueryKeys } from '../../enums/query-keys'
 import { Api } from '@jellyfin/sdk'
+import React from 'react'
+import { QueueContext } from '../../player/queue-provider'
+import { Queue } from '../../player/types/queue-item'
 
-const TracksTemplate = (api: Api, sessionId: string, items: BaseItemDto[]) =>
+const TracksTemplate = (api: Api, sessionId: string, items: BaseItemDto[], queuingRef: Queue) =>
 	new ListTemplate({
 		id: uuid.v4(),
 		sections: [
@@ -23,20 +26,11 @@ const TracksTemplate = (api: Api, sessionId: string, items: BaseItemDto[]) =>
 			},
 		],
 		onItemSelect: async (item) => {
-			await TrackPlayer.setQueue(
-				items.map((item) =>
-					mapDtoToTrack(
-						api,
-						sessionId,
-						item,
-						queryClient.getQueryData([QueryKeys.AudioCache]) ?? [],
-					),
-				),
-			)
+			const { loadQueue } = React.useContext(QueueContext)
 
-			await TrackPlayer.skip(item.index)
+			console.debug(`loadQueue ${loadQueue}`)
 
-			await TrackPlayer.play()
+			await loadQueue(items, queuingRef, 0)
 
 			CarPlay.pushTemplate(CarPlayNowPlaying)
 		},

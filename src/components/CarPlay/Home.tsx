@@ -23,7 +23,7 @@ const CarPlayHome = (api: Api, user: JellifyUser, sessionId: string) =>
 				header: 'Recents',
 				items: [
 					{ id: QueryKeys.RecentlyPlayedArtists, text: 'Recent Artists' },
-					{ id: QueryKeys.RecentlyPlayed, text: 'Recently Played' },
+					{ id: QueryKeys.RecentlyPlayed, text: 'Play it again' },
 				],
 			},
 			{
@@ -52,7 +52,7 @@ const CarPlayHome = (api: Api, user: JellifyUser, sessionId: string) =>
 					// Recent Tracks
 					const items =
 						queryClient.getQueryData<BaseItemDto[]>([QueryKeys.RecentlyPlayed]) ?? []
-					CarPlay.pushTemplate(TracksTemplate(api, sessionId, items))
+					CarPlay.pushTemplate(TracksTemplate(api, sessionId, items, 'Recently Played'))
 					break
 				}
 
@@ -68,7 +68,7 @@ const CarPlayHome = (api: Api, user: JellifyUser, sessionId: string) =>
 					// On Repeat
 					const items =
 						queryClient.getQueryData<BaseItemDto[]>([QueryKeys.FrequentlyPlayed]) ?? []
-					CarPlay.pushTemplate(TracksTemplate(api, sessionId, items))
+					CarPlay.pushTemplate(TracksTemplate(api, sessionId, items, 'On Repeat'))
 					break
 				}
 			}
