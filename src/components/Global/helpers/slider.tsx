@@ -7,6 +7,7 @@ import {
 	getTokens,
 	getToken,
 } from 'tamagui'
+import { Platform } from 'react-native'
 
 interface SliderProps {
 	value?: number | undefined
@@ -22,11 +23,23 @@ const JellifyActiveSliderTrack = styled(Slider.TrackActive, {
 const JellifySliderThumb = styled(Slider.Thumb, {
 	backgroundColor: getToken('$color.purpleDark'),
 	borderColor: getToken('$color.amethyst'),
+	shadowColor: '#000',
+	shadowOffset: { width: 0, height: 1 },
+	shadowOpacity: 0.25,
+	shadowRadius: 2,
+	elevation: 2,
+	// Improve performance when pressing
+	pressStyle: {
+		scale: 1.2,
+	},
+	// Optimize for better touch response
+	borderWidth: 2,
 })
 
 const JellifySliderTrack = styled(Slider.Track, {
 	backgroundColor: getToken('$color.amethyst'),
 })
+
 export function HorizontalSlider({ value, max, width, props }: SliderProps): React.JSX.Element {
 	return (
 		<TamaguiSlider
@@ -44,7 +57,8 @@ export function HorizontalSlider({ value, max, width, props }: SliderProps): Rea
 			<JellifySliderThumb
 				circular
 				index={0}
-				size={'$1'}
+				size={'$1.5'}
+				// Increase hit slop for better touch handling
 				hitSlop={{
 					top: 35,
 					right: 70,
