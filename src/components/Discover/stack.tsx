@@ -8,10 +8,13 @@ import { AlbumScreen } from '../Album'
 import { ArtistScreen } from '../Artist'
 import { DiscoverProvider } from './provider'
 import InstantMix from '../InstantMix/component'
+import { useTheme } from 'tamagui'
 
 export const DiscoverStack = createNativeStackNavigator<StackParamList>()
 
 export function Discover(): React.JSX.Element {
+	const theme = useTheme()
+
 	return (
 		<DiscoverProvider>
 			<DiscoverStack.Navigator initialRouteName='Discover' screenOptions={{}}>
@@ -32,7 +35,7 @@ export function Discover(): React.JSX.Element {
 					options={({ route }) => ({
 						title: route.params.artist.Name ?? 'Unknown Artist',
 						headerTitleStyle: {
-							fontFamily: 'Aileron-Bold',
+							color: theme.background.val,
 						},
 					})}
 				/>
@@ -42,7 +45,9 @@ export function Discover(): React.JSX.Element {
 					component={AlbumScreen}
 					options={({ route }) => ({
 						title: route.params.album.Name ?? 'Untitled Album',
-						headerTitle: '',
+						headerTitleStyle: {
+							color: theme.background.val,
+						},
 					})}
 				/>
 

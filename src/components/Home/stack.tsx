@@ -10,10 +10,13 @@ import ArtistsScreen from '../Artists/screen'
 import TracksScreen from '../Tracks/screen'
 import { ArtistScreen } from '../Artist'
 import InstantMix from '../InstantMix/component'
+import { getToken, getTokens, useTheme } from 'tamagui'
 
 const Stack = createNativeStackNavigator<StackParamList>()
 
 export default function Home(): React.JSX.Element {
+	const theme = useTheme()
+
 	return (
 		<HomeProvider>
 			<Stack.Navigator initialRouteName='Home' screenOptions={{ headerShown: true }}>
@@ -26,7 +29,7 @@ export default function Home(): React.JSX.Element {
 						options={({ route }) => ({
 							title: route.params.artist.Name ?? 'Unknown Artist',
 							headerTitleStyle: {
-								fontFamily: 'Aileron-Bold',
+								color: theme.background.val,
 							},
 						})}
 					/>
@@ -48,7 +51,9 @@ export default function Home(): React.JSX.Element {
 						component={AlbumScreen}
 						options={({ route }) => ({
 							title: route.params.album.Name ?? 'Untitled Album',
-							headerTitle: '',
+							headerTitleStyle: {
+								color: theme.background.val,
+							},
 						})}
 					/>
 
@@ -57,7 +62,9 @@ export default function Home(): React.JSX.Element {
 						component={PlaylistScreen}
 						options={({ route }) => ({
 							headerShown: true,
-							headerTitle: '',
+							headerTitleStyle: {
+								color: theme.background.val,
+							},
 						})}
 					/>
 

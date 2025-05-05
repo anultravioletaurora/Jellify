@@ -3,7 +3,7 @@ import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import { isUndefined } from 'lodash'
 import { StyleProp } from 'react-native'
 import FastImage, { ImageStyle } from 'react-native-fast-image'
-import { FontSizeTokens, getFontSizeToken, getToken, getTokenValue, Token } from 'tamagui'
+import { FontSizeTokens, getFontSizeToken, getToken, getTokenValue, Token, useTheme } from 'tamagui'
 import { useJellifyContext } from '../../provider'
 interface ImageProps {
 	item: BaseItemDto
@@ -21,7 +21,7 @@ export default function ItemImage({
 	style,
 }: ImageProps): React.JSX.Element {
 	const { api } = useJellifyContext()
-
+	const theme = useTheme()
 	return (
 		<FastImage
 			source={{ uri: getImageApi(api!).getItemImageUrlById(item.Id!) }}
@@ -34,6 +34,7 @@ export default function ItemImage({
 					? getTokenValue(height)
 					: getToken('$12') + getToken('$5'),
 				alignSelf: 'center',
+				backgroundColor: theme.borderColor.val,
 				...style,
 			}}
 		/>

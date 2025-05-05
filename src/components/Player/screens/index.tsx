@@ -3,7 +3,7 @@ import { usePlayerContext } from '../../../player/player-provider'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import React, { useCallback, useMemo, useState } from 'react'
 import { SafeAreaView, useSafeAreaFrame } from 'react-native-safe-area-context'
-import { YStack, XStack, Spacer, getTokens, getToken } from 'tamagui'
+import { YStack, XStack, Spacer, getTokens, getToken, useTheme } from 'tamagui'
 import { Text } from '../../../components/Global/helpers/text'
 import Icon from '../../../components/Global/helpers/icon'
 import FavoriteButton from '../../Global/components/favorite-button'
@@ -35,6 +35,8 @@ export default function PlayerScreen({
 	const { queueRef } = useQueueContext()
 
 	const { width, height } = useSafeAreaFrame()
+
+	const theme = useTheme()
 
 	useFocusEffect(
 		useCallback(() => {
@@ -114,6 +116,7 @@ export default function PlayerScreen({
 												},
 												maxHeight: width / 1.1,
 												maxWidth: width / 1.1,
+												backgroundColor: theme.borderColor.val,
 											}}
 										/>
 									</XStack>

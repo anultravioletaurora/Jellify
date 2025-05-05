@@ -13,10 +13,12 @@ import AddPlaylist from './components/add-playlist'
 import DeletePlaylist from './components/delete-playlist'
 import { ArtistScreen } from '../Artist'
 import InstantMix from '../InstantMix/component'
-
+import { useTheme } from 'tamagui'
 const Stack = createNativeStackNavigator<StackParamList>()
 
 export default function LibraryStack(): React.JSX.Element {
+	const theme = useTheme()
+
 	return (
 		<Stack.Navigator initialRouteName='Library'>
 			<Stack.Screen
@@ -36,7 +38,7 @@ export default function LibraryStack(): React.JSX.Element {
 				options={({ route }) => ({
 					title: route.params.artist.Name ?? 'Unknown Artist',
 					headerTitleStyle: {
-						fontFamily: 'Aileron-Bold',
+						color: theme.background.val,
 					},
 				})}
 			/>
@@ -48,7 +50,10 @@ export default function LibraryStack(): React.JSX.Element {
 				component={AlbumScreen}
 				options={({ route }) => ({
 					headerShown: true,
-					headerTitle: '',
+					title: route.params.album.Name ?? 'Untitled Album',
+					headerTitleStyle: {
+						color: theme.background.val,
+					},
 				})}
 			/>
 
@@ -63,7 +68,10 @@ export default function LibraryStack(): React.JSX.Element {
 				component={PlaylistScreen}
 				options={({ route }) => ({
 					headerShown: true,
-					headerTitle: '',
+					title: route.params.playlist.Name ?? 'Untitled Playlist',
+					headerTitleStyle: {
+						color: theme.background.val,
+					},
 				})}
 			/>
 
