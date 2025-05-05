@@ -17,13 +17,13 @@ interface SliderProps {
 }
 
 const JellifyActiveSliderTrack = styled(Slider.TrackActive, {
-	backgroundColor: getTokens().color.$telemagenta,
+	backgroundColor: '$telemagenta',
 })
 
 const JellifySliderThumb = styled(Slider.Thumb, {
-	backgroundColor: getToken('$color.purpleDark'),
-	borderColor: getToken('$color.amethyst'),
-	shadowColor: '#000',
+	backgroundColor: '$purpleDark',
+	borderColor: '$borderColor',
+	shadowColor: '$purpleDark',
 	shadowOffset: { width: 0, height: 1 },
 	shadowOpacity: 0.25,
 	shadowRadius: 2,

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react'
-import { useProgress, useActiveTrack } from 'react-native-track-player'
+import { useProgress } from 'react-native-track-player'
 import { HorizontalSlider } from '../../../components/Global/helpers/slider'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import { trigger } from 'react-native-haptic-feedback'
@@ -16,21 +16,18 @@ import { Platform } from 'react-native'
 const scrubGesture = Gesture.Pan()
 
 export default function Scrubber(): React.JSX.Element {
-	const { useSeekTo } = usePlayerContext()
+	const { useSeekTo, nowPlaying } = usePlayerContext()
 	const { useSkip, usePrevious } = useQueueContext()
 	const { width } = useSafeAreaFrame()
 
 	// Track if user is currently seeking
 	const [seeking, setSeeking] = useState<boolean>(false)
 
-	// Get the currently active track
-	const activeTrack = useActiveTrack()
-
 	// Store the active track ID to detect track changes
 	const previousTrackIdRef = useRef<string | null>(null)
 
 	// Get progress from the track player with the specified update interval
-	const progress = useProgress(UPDATE_INTERVAL)
+	const progress = useProgress(UPDATE_INTERVAL, false)
 
 	// Keep track of position in component state for display
 	const [position, setPosition] = useState<number>(
@@ -47,7 +44,6 @@ export default function Scrubber(): React.JSX.Element {
 			: 1
 	}, [progress.duration])
 
-	// Safely update position ensuring it doesn't go below 0
 	const safelyUpdatePosition = useCallback((newPos: number) => {
 		// Ensure position is never negative
 		const safePosition = Math.max(0, newPos)
@@ -57,7 +53,6 @@ export default function Scrubber(): React.JSX.Element {
 	// Update position only if not seeking and no pending operations
 	useEffect(() => {
 		if (
-			!seeking &&
 			!isSlidingRef.current &&
 			!useSkip.isPending &&
 			!usePrevious.isPending &&
@@ -79,23 +74,23 @@ export default function Scrubber(): React.JSX.Element {
 
 	// Reset position when track changes
 	useEffect(() => {
-		if (activeTrack && activeTrack.id !== previousTrackIdRef.current) {
+		if (nowPlaying && nowPlaying.id !== previousTrackIdRef.current) {
 			// Track has changed, reset position to 0
 			safelyUpdatePosition(0)
-			previousTrackIdRef.current = activeTrack.id || null
+			previousTrackIdRef.current = nowPlaying.id || null
 		}
-	}, [activeTrack, safelyUpdatePosition])
+	}, [nowPlaying, safelyUpdatePosition])
 
 	// Reset seeking state when seek operation completes
 	useEffect(() => {
-		if (useSeekTo.isIdle) {
+		if (!useSeekTo.isPending) {
 			// Give a small delay before allowing automatic position updates again
 			setTimeout(() => {
 				setSeeking(false)
 				isSlidingRef.current = false
-			}, 200)
+			}, 250)
 		}
-	}, [useSeekTo.isIdle])
+	}, [useSeekTo.isPending])
 
 	return (
 		<YStack>
@@ -115,6 +110,7 @@ export default function Scrubber(): React.JSX.Element {
 									0,
 									Math.floor(position / ProgressMultiplier),
 								)
+
 								useSeekTo.mutate(seekPosition)
 							}
 						},
