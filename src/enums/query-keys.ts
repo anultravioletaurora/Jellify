@@ -74,4 +74,5 @@ export enum QueryKeys {
 	FrequentArtists = 'FrequentArtists',
 	FrequentlyPlayed = 'FrequentlyPlayed',
 	InstantMix = 'InstantMix',
+	ArtistFeaturedOn = 'ArtistFeaturedOn',
 }
