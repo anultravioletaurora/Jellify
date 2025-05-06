@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ItemCard } from '../Global/components/item-card'
 import { ArtistAlbumsProps, ArtistEpsProps, ArtistFeaturedOnProps } from '../types'
 import { Text } from '../Global/helpers/text'
@@ -22,7 +22,11 @@ export default function Albums({
 		},
 	})
 
-	const columns = Math.floor(width / getToken('$16'))
+	const [columns, setColumns] = useState(Math.floor(width / getToken('$20')))
+
+	useEffect(() => {
+		setColumns(Math.floor(width / getToken('$20')))
+	}, [width])
 
 	return (
 		<Animated.FlatList
@@ -53,6 +57,8 @@ export default function Albums({
 							)
 						: []
 			}
+			key={`${route.name}-${columns}`}
+			keyExtractor={(item) => `${item.Id}-${item.Name}-${columns}`}
 			numColumns={columns}
 			renderItem={({ item: album }) => (
 				<ItemCard
