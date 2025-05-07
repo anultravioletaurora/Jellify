@@ -1,14 +1,9 @@
 import { MaterialTopTabBar, MaterialTopTabBarProps } from '@react-navigation/material-top-tabs'
-import { useTheme, XStack, YStack } from 'tamagui'
+import { getTokens, useTheme, XStack } from 'tamagui'
 import { H5 } from '../Global/helpers/text'
 import FavoriteButton from '../Global/components/favorite-button'
 import InstantMixButton from '../Global/components/instant-mix-button'
-import Animated, {
-	useAnimatedStyle,
-	withClamp,
-	withDelay,
-	withSpring,
-} from 'react-native-reanimated'
+import Animated, { useAnimatedStyle, withSpring } from 'react-native-reanimated'
 import FastImage from 'react-native-fast-image'
 import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import { ImageType } from '@jellyfin/sdk/lib/generated-client/models'
@@ -17,7 +12,7 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import { useJellifyContext } from '../provider'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { StackParamList } from '../types'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 export default function ArtistTabBar(
 	props: MaterialTopTabBarProps,
@@ -30,7 +25,7 @@ export default function ArtistTabBar(
 
 	const theme = useTheme()
 
-	const bannerHeight = 250
+	const bannerHeight = getTokens().size['$16'].val
 
 	const animatedBannerStyle = useAnimatedStyle(() => {
 		'worklet'

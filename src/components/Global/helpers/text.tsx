@@ -1,3 +1,4 @@
+import Animated from 'react-native-reanimated'
 import {
 	H1 as TamaguiH1,
 	H2 as TamaguiH2,
@@ -82,3 +83,5 @@ export function Text(props: TextProps): React.JSX.Element {
 		</Paragraph>
 	)
 }
+
+export const AnimatedH5 = Animated.createAnimatedComponent(H5)

@@ -28,7 +28,6 @@ interface PlaylistContext {
 		{ playlist: BaseItemDto; track: BaseItemDto; index: number }
 	>
 	scroll: SharedValue<number>
-	setScroll: (scroll: number) => void
 }
 
 const PlaylistContextInitializer = (playlist: BaseItemDto) => {
@@ -38,7 +37,6 @@ const PlaylistContextInitializer = (playlist: BaseItemDto) => {
 
 	const [playlistTracks, setPlaylistTracks] = useState<BaseItemDto[] | undefined>(undefined)
 
-	const [_, setScroll] = useState<number>(0)
 	const scroll = useSharedValue(0)
 
 	const {
@@ -120,7 +118,6 @@ const PlaylistContextInitializer = (playlist: BaseItemDto) => {
 		useUpdatePlaylist,
 		useRemoveFromPlaylist,
 		scroll,
-		setScroll,
 	}
 }
 
@@ -169,7 +166,6 @@ const PlaylistContext = createContext<PlaylistContext>({
 		submittedAt: 0,
 	},
 	scroll: { value: 0 } as SharedValue<number>,
-	setScroll: () => {},
 })
 
 export const PlaylistProvider = ({

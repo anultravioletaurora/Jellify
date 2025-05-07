@@ -16,7 +16,6 @@ interface ArtistContext {
 	featuredOn: BaseItemDto[] | undefined
 	similarArtists: BaseItemDto[] | undefined
 	artist: BaseItemDto
-	setScroll: React.Dispatch<SetStateAction<number>>
 	scroll: SharedValue<number>
 }
 
@@ -56,7 +55,6 @@ const ArtistContextInitializer = (artist: BaseItemDto) => {
 		refetchRefetchSimilarArtists()
 	}
 
-	const [_, setScroll] = useState<number>(0)
 	const scroll = useSharedValue(0)
 	return {
 		artist,
@@ -68,7 +66,6 @@ const ArtistContextInitializer = (artist: BaseItemDto) => {
 		fetchingSimilarArtists,
 		refresh,
 		scroll,
-		setScroll,
 	}
 }
 
@@ -82,7 +79,6 @@ const ArtistContext = createContext<ArtistContext>({
 	similarArtists: [],
 	refresh: () => {},
 	scroll: { value: 0 } as SharedValue<number>,
-	setScroll: () => {},
 })
 
 export const ArtistProvider: ({

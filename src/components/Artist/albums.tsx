@@ -13,8 +13,7 @@ export default function Albums({
 	navigation,
 }: ArtistAlbumsProps | ArtistEpsProps | ArtistFeaturedOnProps): React.JSX.Element {
 	const { width } = useSafeAreaFrame()
-	const { albums, fetchingAlbums, featuredOn, fetchingFeaturedOn, scroll, setScroll } =
-		useArtistContext()
+	const { albums, fetchingAlbums, featuredOn, scroll } = useArtistContext()
 	const scrollHandler = useAnimatedScrollHandler({
 		onScroll: (event) => {
 			'worklet'
