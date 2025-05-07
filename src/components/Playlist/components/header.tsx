@@ -63,8 +63,6 @@ export default function PlayliistTracklistHeader(
 			),
 		)
 
-		console.debug(clampedWidth)
-
 		return {
 			width: withSpring(clampedWidth, {
 				stiffness: 100,

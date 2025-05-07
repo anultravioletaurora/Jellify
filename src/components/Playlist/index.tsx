@@ -11,8 +11,6 @@ import { useAnimatedScrollHandler } from 'react-native-reanimated'
 import AnimatedDraggableItemFlatList from '../Global/components/animated-draggable-item-flat-list'
 
 export default function Playlist({ playlist, navigation }: PlaylistProps): React.JSX.Element {
-	const { api } = useJellifyContext()
-
 	const {
 		scroll,
 		playlistTracks,
