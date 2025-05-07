@@ -68,7 +68,7 @@
 		"react-native-swipeable-item": "^2.0.9",
 		"react-native-text-ticker": "^1.14.0",
 		"react-native-toast-message": "^2.3.0",
-		"react-native-track-player": "git+https://github.com/riteshshukla04/react-native-track-player#APM",
+		"react-native-track-player": "git+https://github.com/riteshshukla04/react-native-track-player.git#APM",
 		"react-native-url-polyfill": "^2.0.0",
 		"react-native-uuid": "^2.0.3",
 		"react-native-vector-icons": "^10.2.0",
