@@ -3,13 +3,11 @@ import Track from '../Global/components/track'
 import Icon from '../Global/helpers/icon'
 import { trigger } from 'react-native-haptic-feedback'
 import { RefreshControl } from 'react-native'
-import { useJellifyContext } from '../provider'
 import { PlaylistProps } from './interfaces'
 import PlayliistTracklistHeader from './components/header'
 import { usePlaylistContext } from './provider'
 import { useAnimatedScrollHandler } from 'react-native-reanimated'
-import AnimatedDraggableItemFlatList from '../Global/components/animated-draggable-item-flat-list'
-
+import AnimatedDraggableFlatList from '../Global/components/animated-draggable-flat-list'
 export default function Playlist({ playlist, navigation }: PlaylistProps): React.JSX.Element {
 	const {
 		scroll,
@@ -22,7 +20,7 @@ export default function Playlist({ playlist, navigation }: PlaylistProps): React
 		useRemoveFromPlaylist,
 	} = usePlaylistContext()
 
-	const scrollHandler = useAnimatedScrollHandler({
+	const scrollOffsetHandler = useAnimatedScrollHandler({
 		onScroll: (event) => {
 			'worklet'
 			scroll.value = event.contentOffset.y
@@ -30,7 +28,7 @@ export default function Playlist({ playlist, navigation }: PlaylistProps): React
 	})
 
 	return (
-		<AnimatedDraggableItemFlatList
+		<AnimatedDraggableFlatList
 			refreshControl={<RefreshControl refreshing={isPending} onRefresh={refetch} />}
 			contentInsetAdjustmentBehavior='automatic'
 			data={playlistTracks ?? []}
@@ -90,7 +88,7 @@ export default function Playlist({ playlist, navigation }: PlaylistProps): React
 			style={{
 				marginHorizontal: 2,
 			}}
-			onScroll={scrollHandler}
+			onScroll={scrollOffsetHandler}
 		/>
 	)
 }

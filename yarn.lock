@@ -8111,9 +8111,9 @@ react-native-toast-message@^2.3.0:
   resolved "https://registry.yarnpkg.com/react-native-toast-message/-/react-native-toast-message-2.3.0.tgz#c25fb40d7af4388f6a798efbfca479d53916ed00"
   integrity sha512-d7LldTK1ei1Bl7RFhoOYw8hVQ4oKPQHORYI//xR9Pyz3HxSlFlvQbueE5X3KLoemRRgBrOUg3zY6DxXnxrVLRg==
 
-"react-native-track-player@git+https://github.com/riteshshukla04/react-native-track-player#APM":
+"react-native-track-player@git+https://github.com/riteshshukla04/react-native-track-player.git#APM":
   version "4.1.1"
-  resolved "git+https://github.com/riteshshukla04/react-native-track-player#867785387fe6686b669a255df72e17e928b20251"
+  resolved "git+https://github.com/riteshshukla04/react-native-track-player.git#867785387fe6686b669a255df72e17e928b20251"
 
 react-native-url-polyfill@^2.0.0:
   version "2.0.0"
