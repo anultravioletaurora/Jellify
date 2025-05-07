@@ -2,23 +2,16 @@ import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { StackParamList } from '../../types'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
-import { getToken, getTokens, Separator, Spacer, View, XStack, YStack } from 'tamagui'
-import { AnimatedH5, H5 } from '../../Global/helpers/text'
+import { getToken, getTokens, Separator, View, XStack, YStack } from 'tamagui'
+import { AnimatedH5 } from '../../Global/helpers/text'
 import InstantMixButton from '../../Global/components/instant-mix-button'
 import Icon from '../../Global/helpers/icon'
 import { usePlaylistContext } from '../provider'
-import Animated, {
-	FadeIn,
-	FadeOut,
-	useAnimatedStyle,
-	useDerivedValue,
-	withSpring,
-} from 'react-native-reanimated'
+import Animated, { useAnimatedStyle, withSpring } from 'react-native-reanimated'
 import FastImage from 'react-native-fast-image'
 import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import { useJellifyContext } from '../../provider'
 import { ImageType } from '@jellyfin/sdk/lib/generated-client/models'
-import { useEffect } from 'react'
 
 export default function PlayliistTracklistHeader(
 	playlist: BaseItemDto,
@@ -86,11 +79,7 @@ export default function PlayliistTracklistHeader(
 				marginBottom={'$2'}
 			>
 				<YStack justifyContent='center' alignContent='center' padding={'$2'}>
-					<Animated.View
-						style={[animatedArtworkStyle]}
-						entering={FadeIn}
-						exiting={FadeOut}
-					>
+					<Animated.View style={[animatedArtworkStyle]}>
 						<FastImage
 							source={{
 								uri: getImageApi(api!).getItemImageUrlById(
