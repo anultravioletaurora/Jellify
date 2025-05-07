@@ -2,7 +2,7 @@ import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import React from 'react'
 import Animated, { useAnimatedStyle } from 'react-native-reanimated'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
-import { XStack } from 'tamagui'
+import { getTokens, XStack } from 'tamagui'
 import Albums from './albums'
 import SimilarArtists from './similar'
 import FastImage from 'react-native-fast-image'
@@ -33,7 +33,7 @@ export default function ArtistNavigation({
 
 	const theme = useTheme()
 
-	const bannerHeight = 250
+	const bannerHeight = getTokens().size['$16'].val
 
 	const animatedBannerStyle = useAnimatedStyle(() => {
 		'worklet'

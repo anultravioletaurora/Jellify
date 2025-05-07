@@ -1,7 +1,7 @@
 import { HomeAlbumProps, StackParamList } from '../types'
 import { YStack, XStack, Separator, getToken, Spacer } from 'tamagui'
 import { H5, Text } from '../Global/helpers/text'
-import { ActivityIndicator, FlatList, SectionList, useWindowDimensions } from 'react-native'
+import { ActivityIndicator, FlatList, SectionList } from 'react-native'
 import { RunTimeTicks } from '../Global/helpers/time-codes'
 import Track from '../Global/components/track'
 import FavoriteButton from '../Global/components/favorite-button'
@@ -15,6 +15,7 @@ import InstantMixButton from '../Global/components/instant-mix-button'
 import ItemImage from '../Global/components/image'
 import React from 'react'
 import { useJellifyContext } from '../provider'
+import { useSafeAreaFrame } from 'react-native-safe-area-context'
 
 /**
  * The screen for an Album's track list
@@ -86,7 +87,7 @@ function AlbumTrackListHeader(
 	album: BaseItemDto,
 	navigation: NativeStackNavigationProp<StackParamList>,
 ): React.JSX.Element {
-	const { width } = useWindowDimensions()
+	const { width } = useSafeAreaFrame()
 
 	return (
 		<YStack marginTop={'$4'} alignItems='center'>
