@@ -24,10 +24,9 @@ export function Miniplayer({
 
 	return (
 		<View
-			style={{
-				backgroundColor: theme.background.val,
-				borderColor: theme.borderColor.val,
-			}}
+			borderTopLeftRadius={'$2'}
+			borderTopRightRadius={'$2'}
+			backgroundColor={'$background'}
 		>
 			{nowPlaying && (
 				<XStack

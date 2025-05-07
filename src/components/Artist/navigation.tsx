@@ -6,7 +6,6 @@ import { StackParamList } from '../types'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import ArtistTabBar from './tab-bar'
 import { useArtistContext } from './provider'
-
 const ArtistTabs = createMaterialTopTabNavigator<StackParamList>()
 
 export default function ArtistNavigation({
