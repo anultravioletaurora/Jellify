@@ -25,7 +25,7 @@ export function ItemCard(props: CardProps) {
 	})
 
 	return (
-		<View alignItems='center' margin={5}>
+		<View alignItems='center' margin={'$1.5'}>
 			<TamaguiCard
 				size={'$12'}
 				height={props.size}

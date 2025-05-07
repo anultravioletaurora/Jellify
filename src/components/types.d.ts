@@ -63,8 +63,9 @@ export type StackParamList = {
 		artist: BaseItemDto
 	}
 	ArtistAlbums: undefined
-
 	ArtistEps: undefined
+	ArtistFeaturedOn: undefined
+
 	SimilarArtists: {
 		artist: BaseItemDto
 		navigation: NativeStackNavigationProp
@@ -109,6 +110,7 @@ export type DiscoverProps = NativeStackScreenProps<StackParamList, 'Discover'>
 export type HomeArtistProps = NativeStackScreenProps<StackParamList, 'Artist'>
 export type ArtistAlbumsProps = NativeStackScreenProps<StackParamList, 'ArtistAlbums'>
 export type ArtistEpsProps = NativeStackScreenProps<StackParamList, 'ArtistEps'>
+export type ArtistFeaturedOnProps = NativeStackScreenProps<StackParamList, 'ArtistFeaturedOn'>
 
 export type HomeAlbumProps = NativeStackScreenProps<StackParamList, 'Album'>
 
