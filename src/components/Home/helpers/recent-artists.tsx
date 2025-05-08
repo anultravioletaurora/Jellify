@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, XStack } from 'tamagui'
-import { useHomeContext } from '../provider'
+import { useHomeContext } from '../../../providers/Home'
 import { H2 } from '../../Global/helpers/text'
 import { StackParamList } from '../../types'
 import { ItemCard } from '../../Global/components/item-card'
@@ -13,15 +13,17 @@ export default function RecentArtists({
 }: {
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
-	const { recentArtists } = useHomeContext()
+	const { recentArtists, fetchNextRecentArtists, hasNextRecentArtists } = useHomeContext()
 
 	return (
 		<View>
 			<XStack
 				alignItems='center'
 				onPress={() => {
-					navigation.navigate('Artists', {
+					navigation.navigate('RecentArtists', {
 						artists: recentArtists,
+						fetchNextPage: fetchNextRecentArtists,
+						hasNextPage: hasNextRecentArtists,
 					})
 				}}
 			>
@@ -31,7 +33,9 @@ export default function RecentArtists({
 
 			<HorizontalCardList
 				data={
-					(recentArtists?.length ?? 0 > 10) ? recentArtists!.slice(0, 10) : recentArtists
+					(recentArtists?.pages.flatMap((page) => page).length ?? 0 > 10)
+						? recentArtists?.pages.flatMap((page) => page).slice(0, 10)
+						: recentArtists?.pages.flatMap((page) => page)
 				}
 				renderItem={({ item: recentArtist }) => (
 					<ItemCard

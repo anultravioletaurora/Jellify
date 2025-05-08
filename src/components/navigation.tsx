@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Player from './Player/stack'
+import Player from '../screens/Player'
 import { Tabs } from './tabs'
 import { StackParamList } from './types'
 import { useTheme } from 'tamagui'
-import { useJellifyContext } from './provider'
-import Login from './Login/component'
+import { useJellifyContext } from '../providers'
+import Login from '../screens/Login'
 const RootStack = createNativeStackNavigator<StackParamList>()
 
 export default function Navigation(): React.JSX.Element {

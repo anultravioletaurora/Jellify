@@ -1,11 +1,11 @@
 import React from 'react'
-import SignOut from './helpers/sign-out'
+import SignOut from '../../components/Settings/sign-out'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { StackParamList } from '../types'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import { FlatList } from 'react-native'
 import IconCard from '../Global/helpers/icon-card'
-import Categories from './categories'
+import Categories from '../../components/Settings/categories'
 import StorageBar from '../Storage'
 
 export default function Root({

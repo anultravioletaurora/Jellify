@@ -6,22 +6,24 @@ import { ItemCard } from '../../../components/Global/components/item-card'
 import { View, XStack } from 'tamagui'
 import { H2 } from '../../../components/Global/helpers/text'
 import Icon from '../../../components/Global/helpers/icon'
-import { useHomeContext } from '../provider'
+import { useHomeContext } from '../../../providers/Home'
 
 export default function FrequentArtists({
 	navigation,
 }: {
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
-	const { frequentArtists } = useHomeContext()
+	const { frequentArtists, fetchNextFrequentArtists, hasNextFrequentArtists } = useHomeContext()
 
 	return (
 		<View>
 			<XStack
 				alignItems='center'
 				onPress={() => {
-					navigation.navigate('Artists', {
+					navigation.navigate('MostPlayedArtists', {
 						artists: frequentArtists,
+						fetchNextPage: fetchNextFrequentArtists,
+						hasNextPage: hasNextFrequentArtists,
 					})
 				}}
 			>
@@ -31,9 +33,9 @@ export default function FrequentArtists({
 
 			<HorizontalCardList
 				data={
-					(frequentArtists?.length ?? 0 > 10)
-						? frequentArtists!.slice(0, 10)
-						: frequentArtists
+					(frequentArtists?.pages.flatMap((page) => page).length ?? 0 > 10)
+						? frequentArtists?.pages.flatMap((page) => page).slice(0, 10)
+						: frequentArtists?.pages.flatMap((page) => page)
 				}
 				renderItem={({ item: artist }) => (
 					<ItemCard

@@ -3,8 +3,8 @@ import { StackParamList } from '../types'
 import FavoritePlaylists from './component'
 import React from 'react'
 
-export default function PlaylistsScreen(
-	props: NativeStackScreenProps<StackParamList, 'Playlists'>,
-): React.JSX.Element {
-	return <FavoritePlaylists {...props} />
+export default function PlaylistsScreen({
+	navigation,
+}: NativeStackScreenProps<StackParamList>): React.JSX.Element {
+	return <FavoritePlaylists navigation={navigation} />
 }

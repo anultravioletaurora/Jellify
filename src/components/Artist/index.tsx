@@ -1,21 +1,65 @@
-import { RouteProp } from '@react-navigation/native'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import React from 'react'
+import Albums from './albums'
+import SimilarArtists from './similar'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { StackParamList } from '../types'
-import { ArtistProvider } from './provider'
-import ArtistNavigation from './navigation'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import ArtistTabBar from './tab-bar'
+import { useArtistContext } from '../../providers/Artist'
 
-export function ArtistScreen({
-	route,
+const ArtistTabs = createMaterialTopTabNavigator<StackParamList>()
+
+export default function ArtistNavigation({
 	navigation,
 }: {
-	route: RouteProp<StackParamList, 'Artist'>
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
-	const { artist } = route.params
+	const { featuredOn, artist } = useArtistContext()
 
 	return (
-		<ArtistProvider artist={artist}>
-			<ArtistNavigation navigation={navigation} />
-		</ArtistProvider>
+		<ArtistTabs.Navigator
+			tabBar={(props) => ArtistTabBar(props, navigation)}
+			screenOptions={{
+				tabBarLabelStyle: {
+					fontFamily: 'Aileron-Bold',
+				},
+			}}
+		>
+			<ArtistTabs.Screen
+				name='ArtistAlbums'
+				options={{
+					title: 'Albums',
+				}}
+				component={Albums}
+			/>
+
+			<ArtistTabs.Screen
+				name='ArtistEps'
+				options={{
+					title: 'Singles & EPs',
+				}}
+				component={Albums}
+			/>
+
+			{featuredOn && featuredOn.length > 0 && (
+				<ArtistTabs.Screen
+					name='ArtistFeaturedOn'
+					options={{
+						title: 'Featured On',
+					}}
+					component={Albums}
+				/>
+			)}
+
+			<ArtistTabs.Screen
+				name='SimilarArtists'
+				options={{
+					title: `Similar to ${artist.Name?.slice(0, 20) ?? 'Unknown Artist'}${
+						artist.Name && artist.Name.length > 20 ? '...' : ''
+					}`,
+				}}
+				component={SimilarArtists}
+			/>
+		</ArtistTabs.Navigator>
 	)
 }

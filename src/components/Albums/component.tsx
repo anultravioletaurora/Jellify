@@ -1,21 +1,14 @@
-import { AlbumsProps } from '../types'
 import { ItemCard } from '../Global/components/item-card'
-import { FlatList, RefreshControl } from 'react-native'
-import { useQuery } from '@tanstack/react-query'
-import { QueryKeys } from '../../enums/query-keys'
-import { fetchFavoriteAlbums } from '../../api/queries/favorites'
-import { useJellifyContext } from '../provider'
-
-export default function Albums({ navigation, route }: AlbumsProps): React.JSX.Element {
-	const { api, user, library } = useJellifyContext()
-	const {
-		data: albums,
-		refetch,
-		isPending,
-	} = useQuery({
-		queryKey: [QueryKeys.FavoriteAlbums],
-		queryFn: () => fetchFavoriteAlbums(api, user, library),
-	})
+import { FlatList } from 'react-native'
+import { AlbumsProps } from '../types'
+import { useDisplayContext } from '../display-provider'
+export default function Albums({
+	albums,
+	navigation,
+	fetchNextPage,
+	hasNextPage,
+}: AlbumsProps): React.JSX.Element {
+	const { numberOfColumns } = useDisplayContext()
 
 	return (
 		<FlatList
@@ -24,9 +17,8 @@ export default function Albums({ navigation, route }: AlbumsProps): React.JSX.El
 				alignItems: 'center',
 			}}
 			contentInsetAdjustmentBehavior='automatic'
-			numColumns={2}
-			data={route.params.albums ? route.params.albums : albums ? albums : []}
-			refreshControl={<RefreshControl refreshing={isPending} onRefresh={refetch} />}
+			numColumns={numberOfColumns}
+			data={albums?.pages.flatMap((page) => page) ?? []}
 			renderItem={({ index, item: album }) => (
 				<ItemCard
 					item={album}
@@ -39,6 +31,11 @@ export default function Albums({ navigation, route }: AlbumsProps): React.JSX.El
 					size={'$14'}
 				/>
 			)}
+			onEndReached={() => {
+				if (hasNextPage) fetchNextPage()
+			}}
+			onEndReachedThreshold={0.25}
+			removeClippedSubviews
 		/>
 	)
 }

@@ -2,9 +2,9 @@ import React from 'react'
 import { XStack, getToken } from 'tamagui'
 import PlayPauseButton from './buttons'
 import Icon from '../../../components/Global/helpers/icon'
-import { usePlayerContext } from '../../../player/player-provider'
+import { usePlayerContext } from '../../../providers/Player'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
-import { useQueueContext } from '../../../player/queue-provider'
+import { useQueueContext } from '../../../providers/Player/queue'
 
 export default function Controls(): React.JSX.Element {
 	const { width } = useSafeAreaFrame()

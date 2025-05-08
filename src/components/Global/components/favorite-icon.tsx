@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../../enums/query-keys'
 import { fetchUserData } from '../../../api/queries/favorites'
 import { useEffect, useState } from 'react'
-import { useJellifyContext } from '../../provider'
+import { useJellifyContext } from '../../../providers'
 
 export default function FavoriteIcon({ item }: { item: BaseItemDto }): React.JSX.Element {
 	const [isFavorite, setIsFavorite] = useState<boolean>(item.UserData?.IsFavorite ?? false)

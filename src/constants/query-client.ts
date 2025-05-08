@@ -16,9 +16,14 @@ export const queryClient = new QueryClient({
 		queries: {
 			/**
 			 * Infinity, this needs to be greater than
-			 * or higher than the `maxAge`
+			 * or higher than the `maxAge` set in App.tsx
 			 */
 			gcTime: Infinity,
+
+			/**
+			 * 2 hours as a default.
+			 */
+			staleTime: 1000 * 60 * 60 * 2, // 2 hours
 		},
 	},
 })

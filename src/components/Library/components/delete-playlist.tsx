@@ -8,7 +8,7 @@ import { deletePlaylist } from '../../../api/mutations/playlists'
 import { trigger } from 'react-native-haptic-feedback'
 import { queryClient } from '../../../constants/query-client'
 import { QueryKeys } from '../../../enums/query-keys'
-import { useJellifyContext } from '../../../components/provider'
+import { useJellifyContext } from '../../../providers'
 // import * as Burnt from 'burnt'
 
 export default function DeletePlaylist({

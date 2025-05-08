@@ -1,16 +1,16 @@
 import React, { useMemo } from 'react'
 import { View, XStack } from 'tamagui'
-import { useHomeContext } from '../provider'
+import { useHomeContext } from '../../../providers/Home'
 import { H2 } from '../../Global/helpers/text'
 import { ItemCard } from '../../Global/components/item-card'
-import { usePlayerContext } from '../../../player/player-provider'
+import { usePlayerContext } from '../../../providers/Player'
 import { StackParamList } from '../../../components/types'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { trigger } from 'react-native-haptic-feedback'
 import { QueuingType } from '../../../enums/queuing-type'
 import HorizontalCardList from '../../../components/Global/components/horizontal-list'
 import Icon from '../../../components/Global/helpers/icon'
-import { useQueueContext } from '../../../player/queue-provider'
+import { useQueueContext } from '../../../providers/Player/queue'
 
 export default function RecentlyPlayed({
 	navigation,
@@ -19,7 +19,7 @@ export default function RecentlyPlayed({
 }): React.JSX.Element {
 	const { nowPlaying, useStartPlayback } = usePlayerContext()
 	const { useLoadNewQueue } = useQueueContext()
-	const { recentTracks } = useHomeContext()
+	const { recentTracks, fetchNextRecentTracks, hasNextRecentTracks } = useHomeContext()
 
 	return useMemo(() => {
 		return (
@@ -27,9 +27,10 @@ export default function RecentlyPlayed({
 				<XStack
 					alignItems='center'
 					onPress={() => {
-						navigation.navigate('Tracks', {
+						navigation.navigate('RecentTracks', {
 							tracks: recentTracks,
-							queue: 'Recently Played',
+							fetchNextPage: fetchNextRecentTracks,
+							hasNextPage: hasNextRecentTracks,
 						})
 					}}
 				>
@@ -40,7 +41,9 @@ export default function RecentlyPlayed({
 				<HorizontalCardList
 					squared
 					data={
-						(recentTracks?.length ?? 0 > 10) ? recentTracks!.slice(0, 10) : recentTracks
+						(recentTracks?.pages.flatMap((page) => page).length ?? 0 > 10)
+							? recentTracks?.pages.flatMap((page) => page).slice(0, 10)
+							: recentTracks?.pages.flatMap((page) => page)
 					}
 					renderItem={({ index, item: recentlyPlayedTrack }) => (
 						<ItemCard
@@ -54,7 +57,9 @@ export default function RecentlyPlayed({
 									{
 										track: recentlyPlayedTrack,
 										index: index,
-										tracklist: recentTracks ?? [recentlyPlayedTrack],
+										tracklist: recentTracks?.pages.flatMap((page) => page) ?? [
+											recentlyPlayedTrack,
+										],
 										queue: 'Recently Played',
 										queuingType: QueuingType.FromSelection,
 									},

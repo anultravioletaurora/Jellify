@@ -3,6 +3,15 @@ import { ImageFormat } from '@jellyfin/sdk/lib/generated-client/models'
 const QueryConfig = {
 	limits: {
 		recents: 50,
+
+		/**
+		 * The number of items to fetch for the library, set to 20
+		 * This is used for the artists, albums, and tracks tabs in the library
+		 *
+		 * This should be multipled by the number of columns if we are displaying
+		 * a grid of items
+		 */
+		library: 20,
 		instantMix: 50,
 		search: 50, // TODO: make this a paginated search so limits don't even matter
 		similar: 20,

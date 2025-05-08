@@ -6,11 +6,11 @@ import { getToken, getTokens, Separator, View, XStack, YStack } from 'tamagui'
 import { AnimatedH5 } from '../../Global/helpers/text'
 import InstantMixButton from '../../Global/components/instant-mix-button'
 import Icon from '../../Global/helpers/icon'
-import { usePlaylistContext } from '../provider'
+import { usePlaylistContext } from '../../../providers/Playlist'
 import Animated, { useAnimatedStyle, withSpring } from 'react-native-reanimated'
 import FastImage from 'react-native-fast-image'
 import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
-import { useJellifyContext } from '../../provider'
+import { useJellifyContext } from '../../../providers'
 import { ImageType } from '@jellyfin/sdk/lib/generated-client/models'
 
 export default function PlayliistTracklistHeader(

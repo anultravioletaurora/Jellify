@@ -14,7 +14,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { StackParamList } from '../../../components/types'
 import Toast from 'react-native-toast-message'
-import { useJellifyContext } from '../../provider'
+import { useJellifyContext } from '../../../providers'
 
 export default function ServerAddress({
 	navigation,

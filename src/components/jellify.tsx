@@ -1,25 +1,24 @@
 import _ from 'lodash'
 import React from 'react'
 import Navigation from './navigation'
-import Login from './Login/component'
-import { PlayerProvider } from '../player/player-provider'
-import { useColorScheme } from 'react-native'
-import { JellifyProvider, useJellifyContext } from './provider'
+import { PlayerProvider } from '../providers/Player'
+import { JellifyProvider, useJellifyContext } from '../providers'
 import { JellifyUserDataProvider } from './user-data-provider'
-import { NetworkContextProvider } from './Network/provider'
-import { QueueProvider } from '../player/queue-provider'
+import { NetworkContextProvider } from '../providers/Network'
+import { QueueProvider } from '../providers/Player/queue'
+import { DisplayProvider } from './display-provider'
 
 /**
  * The main component for the Jellify app. Children are wrapped in the {@link JellifyProvider}
  * @returns The {@link Jellify} component
  */
 export default function Jellify(): React.JSX.Element {
-	const isDarkMode = useColorScheme() === 'dark'
-
 	return (
-		<JellifyProvider>
-			<App />
-		</JellifyProvider>
+		<DisplayProvider>
+			<JellifyProvider>
+				<App />
+			</JellifyProvider>
+		</DisplayProvider>
 	)
 }
 /**

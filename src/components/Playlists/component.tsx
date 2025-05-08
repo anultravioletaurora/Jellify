@@ -1,16 +1,19 @@
 import { FlatList, RefreshControl } from 'react-native-gesture-handler'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import { ItemCard } from '../Global/components/item-card'
-import { FavoritePlaylistsProps } from '../types'
 import Icon from '../Global/helpers/icon'
 import { getToken } from 'tamagui'
 import { fetchFavoritePlaylists } from '../../api/queries/favorites'
 import { QueryKeys } from '../../enums/query-keys'
 import { useQuery } from '@tanstack/react-query'
-import { useJellifyContext } from '../provider'
+import { useJellifyContext } from '../../providers'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { StackParamList } from '../types'
 export default function FavoritePlaylists({
 	navigation,
-}: FavoritePlaylistsProps): React.JSX.Element {
+}: {
+	navigation: NativeStackNavigationProp<StackParamList>
+}): React.JSX.Element {
 	const { api, user, library } = useJellifyContext()
 	navigation.setOptions({
 		headerRight: () => {

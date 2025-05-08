@@ -7,7 +7,7 @@ import { trigger } from 'react-native-haptic-feedback'
 import { queryClient } from '../constants/query-client'
 import { QueryKeys } from '../enums/query-keys'
 import Toast from 'react-native-toast-message'
-import { useJellifyContext } from './provider'
+import { useJellifyContext } from '../providers'
 
 interface SetFavoriteMutation {
 	item: BaseItemDto

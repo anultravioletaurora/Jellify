@@ -10,7 +10,7 @@ import { JellifyUser } from '../../../types/JellifyUser'
 import { StackParamList } from '../../../components/types'
 import Input from '../../../components/Global/helpers/input'
 import Icon from '../../../components/Global/helpers/icon'
-import { useJellifyContext } from '../../provider'
+import { useJellifyContext } from '../../../providers'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import Toast from 'react-native-toast-message'
 

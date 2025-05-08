@@ -5,7 +5,7 @@ import { Event } from 'react-native-track-player'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Button, Text } from 'react-native'
 
-import { QueueProvider, useQueueContext } from '../src/player/queue-provider'
+import { QueueProvider, useQueueContext } from '../src/providers/Player/queue'
 import { eventHandler } from './setup-rntp'
 
 const queryClient = new QueryClient()

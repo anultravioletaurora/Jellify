@@ -7,8 +7,8 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import Icon from '../helpers/icon'
 import { QueuingType } from '../../../enums/queuing-type'
 import { RunTimeTicks } from '../helpers/time-codes'
-import { useQueueContext } from '../../../player/queue-provider'
-import { usePlayerContext } from '../../../player/player-provider'
+import { useQueueContext } from '../../../providers/Player/queue'
+import { usePlayerContext } from '../../../providers/Player'
 import ItemImage from './image'
 
 export default function Item({

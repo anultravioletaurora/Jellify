@@ -1,36 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ItemCard } from '../Global/components/item-card'
-import { ArtistsProps } from '../types'
-import { QueryKeys } from '../../enums/query-keys'
-import { useQuery } from '@tanstack/react-query'
-import { fetchFavoriteArtists } from '../../api/queries/favorites'
-import { YStack } from 'tamagui'
+import { getTokens, YStack } from 'tamagui'
 import { Text } from '../Global/helpers/text'
 import { FlatList } from 'react-native'
-import { useJellifyContext } from '../provider'
+import { useDisplayContext } from '../display-provider'
+import { StackParamList } from '../types'
+import { ArtistsProps } from '../types'
 
-export default function Artists({ navigation, route }: ArtistsProps): React.JSX.Element {
-	const { api, user, library } = useJellifyContext()
-	const {
-		data: favoriteArtists,
-		refetch,
-		isPending,
-	} = useQuery({
-		queryKey: [QueryKeys.FavoriteArtists],
-		queryFn: () => fetchFavoriteArtists(api, user, library),
-	})
+export default function Artists({
+	artists,
+	navigation,
+	fetchNextPage,
+	hasNextPage,
+}: ArtistsProps): React.JSX.Element {
+	const { numberOfColumns } = useDisplayContext()
+
+	useEffect(() => {
+		console.debug(hasNextPage)
+	}, [hasNextPage])
 
 	return (
 		<FlatList
 			contentContainerStyle={{
 				flexGrow: 1,
 				alignItems: 'center',
+				margin: getTokens().size.$1.val,
 			}}
 			contentInsetAdjustmentBehavior='automatic'
-			numColumns={2}
-			data={
-				route.params.artists ? route.params.artists : favoriteArtists ? favoriteArtists : []
-			}
+			numColumns={numberOfColumns}
+			data={artists?.pages.flatMap((page) => page) ?? []}
 			renderItem={({ index, item: artist }) => (
 				<ItemCard
 					item={artist}
@@ -38,7 +36,7 @@ export default function Artists({ navigation, route }: ArtistsProps): React.JSX.
 					onPress={() => {
 						navigation.navigate('Artist', { artist })
 					}}
-					size={'$14'}
+					size={'$11'}
 				/>
 			)}
 			ListEmptyComponent={
@@ -46,6 +44,11 @@ export default function Artists({ navigation, route }: ArtistsProps): React.JSX.
 					<Text>No artists</Text>
 				</YStack>
 			}
+			onEndReached={() => {
+				if (hasNextPage) fetchNextPage()
+			}}
+			onEndReachedThreshold={0.25}
+			removeClippedSubviews
 		/>
 	)
 }

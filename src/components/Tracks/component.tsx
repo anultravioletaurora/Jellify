@@ -1,0 +1,40 @@
+import React from 'react'
+import Track from '../Global/components/track'
+import { FlatList } from 'react-native'
+import { Separator } from 'tamagui'
+import { StackParamList } from '../types'
+import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { Queue } from '../../player/types/queue-item'
+import { InfiniteData } from '@tanstack/react-query'
+
+export default function Tracks({
+	tracks,
+	queue,
+	navigation,
+}: {
+	tracks: InfiniteData<BaseItemDto[], unknown> | undefined
+	queue: Queue
+	navigation: NativeStackNavigationProp<StackParamList>
+}): React.JSX.Element {
+	return (
+		<FlatList
+			contentInsetAdjustmentBehavior='automatic'
+			ItemSeparatorComponent={() => <Separator />}
+			numColumns={1}
+			data={tracks?.pages.flatMap((page) => page) ?? []}
+			renderItem={({ index, item: track }) => (
+				<Track
+					navigation={navigation}
+					showArtwork
+					index={0}
+					track={track}
+					tracklist={
+						tracks ? tracks.pages.flatMap((page) => page).slice(index, index + 50) : []
+					}
+					queue={queue}
+				/>
+			)}
+		/>
+	)
+}
