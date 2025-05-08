@@ -8,7 +8,15 @@ import { useLibraryContext } from '../../../providers/Library'
 export default function TracksTab(): React.JSX.Element {
 	const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>()
 
-	const { tracks } = useLibraryContext()
+	const { tracks, fetchNextTracksPage, hasNextTracksPage } = useLibraryContext()
 
-	return <Tracks navigation={navigation} tracks={tracks} queue={'On Repeat'} />
+	return (
+		<Tracks
+			navigation={navigation}
+			tracks={tracks}
+			queue={'On Repeat'}
+			fetchNextPage={fetchNextTracksPage}
+			hasNextPage={hasNextTracksPage}
+		/>
+	)
 }

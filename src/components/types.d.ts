@@ -42,6 +42,8 @@ export type StackParamList = {
 	Tracks: {
 		tracks: InfiniteData<BaseItemDto[], unknown> | undefined
 		queue: Queue
+		fetchNextPage: () => void
+		hasNextPage: boolean
 	}
 
 	Discover: undefined

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { View, XStack } from 'tamagui'
 import { useHomeContext } from '../../../providers/Home'
-import { H2 } from '../../Global/helpers/text'
+import { H2, H4 } from '../../Global/helpers/text'
 import { ItemCard } from '../../Global/components/item-card'
 import { usePlayerContext } from '../../../providers/Player'
 import { StackParamList } from '../../../components/types'
@@ -34,7 +34,7 @@ export default function RecentlyPlayed({
 						})
 					}}
 				>
-					<H2 marginLeft={'$2'}>Play it again</H2>
+					<H4 marginLeft={'$2'}>Play it again</H4>
 					<Icon name='arrow-right' />
 				</XStack>
 
@@ -47,7 +47,7 @@ export default function RecentlyPlayed({
 					}
 					renderItem={({ index, item: recentlyPlayedTrack }) => (
 						<ItemCard
-							size={'$12'}
+							size={'$11'}
 							caption={recentlyPlayedTrack.Name}
 							subCaption={`${recentlyPlayedTrack.Artists?.join(', ')}`}
 							squared

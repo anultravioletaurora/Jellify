@@ -3,7 +3,7 @@ import { ItemCard } from '../Global/components/item-card'
 import { getTokens, YStack } from 'tamagui'
 import { Text } from '../Global/helpers/text'
 import { FlatList } from 'react-native'
-import { useDisplayContext } from '../display-provider'
+import { useDisplayContext } from '../../providers/Display'
 import { StackParamList } from '../types'
 import { ArtistsProps } from '../types'
 

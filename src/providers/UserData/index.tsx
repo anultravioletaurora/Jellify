@@ -4,10 +4,10 @@ import { useMutation } from '@tanstack/react-query'
 import { createContext, ReactNode, SetStateAction, useContext } from 'react'
 
 import { trigger } from 'react-native-haptic-feedback'
-import { queryClient } from '../constants/query-client'
-import { QueryKeys } from '../enums/query-keys'
+import { queryClient } from '../../constants/query-client'
+import { QueryKeys } from '../../enums/query-keys'
 import Toast from 'react-native-toast-message'
-import { useJellifyContext } from '../providers'
+import { useJellifyContext } from '..'
 
 interface SetFavoriteMutation {
 	item: BaseItemDto

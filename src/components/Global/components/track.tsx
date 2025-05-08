@@ -156,7 +156,7 @@ export default function Track({
 					</Text>
 
 					{(showArtwork || (track.ArtistCount ?? 0 > 1)) && (
-						<Text lineBreakStrategyIOS='standard' numberOfLines={1}>
+						<Text lineBreakStrategyIOS='standard' numberOfLines={1} color={'$amethyst'}>
 							{track.Artists?.join(', ') ?? ''}
 						</Text>
 					)}

@@ -11,25 +11,24 @@ import InstantMix from '../../components/InstantMix/component'
 import { useTheme } from 'tamagui'
 import TracksScreen from '../Tracks'
 import HomeArtistsScreen from './artists'
+import HomeTracksScreen from './tracks'
 
-const Stack = createNativeStackNavigator<StackParamList>()
+const HomeStack = createNativeStackNavigator<StackParamList>()
 
+/**
+ * The main screen for the home tab.
+ * @returns The {@link Home} component
+ */
 export default function Home(): React.JSX.Element {
 	const theme = useTheme()
 
 	return (
 		<HomeProvider>
-			<Stack.Navigator initialRouteName='Home' screenOptions={{ headerShown: true }}>
-				<Stack.Group>
-					<Stack.Screen
-						name='Home'
-						component={ProvidedHome}
-						options={{
-							headerShown: false,
-						}}
-					/>
+			<HomeStack.Navigator initialRouteName='Home' screenOptions={{ headerShown: true }}>
+				<HomeStack.Group>
+					<HomeStack.Screen name='Home' component={ProvidedHome} />
 
-					<Stack.Screen
+					<HomeStack.Screen
 						name='Artist'
 						component={ArtistScreen}
 						options={({ route }) => ({
@@ -40,28 +39,30 @@ export default function Home(): React.JSX.Element {
 						})}
 					/>
 
-					<Stack.Screen
+					<HomeStack.Screen
 						name='RecentArtists'
 						component={HomeArtistsScreen}
 						options={{ title: 'Recent Artists' }}
 					/>
-					<Stack.Screen
+					<HomeStack.Screen
 						name='MostPlayedArtists'
 						component={HomeArtistsScreen}
 						options={{ title: 'Most Played' }}
 					/>
 
-					<Stack.Screen
-						name='Tracks'
-						component={TracksScreen}
-						options={({ route }) => {
-							return {
-								title: route.params.queue.valueOf() as string,
-							}
-						}}
+					<HomeStack.Screen
+						name='RecentTracks'
+						component={HomeTracksScreen}
+						options={{ title: 'Recently Played' }}
 					/>
 
-					<Stack.Screen
+					<HomeStack.Screen
+						name='MostPlayedTracks'
+						component={HomeTracksScreen}
+						options={{ title: 'On Repeat' }}
+					/>
+
+					<HomeStack.Screen
 						name='Album'
 						component={AlbumScreen}
 						options={({ route }) => ({
@@ -72,7 +73,7 @@ export default function Home(): React.JSX.Element {
 						})}
 					/>
 
-					<Stack.Screen
+					<HomeStack.Screen
 						name='Playlist'
 						component={PlaylistScreen}
 						options={({ route }) => ({
@@ -83,7 +84,7 @@ export default function Home(): React.JSX.Element {
 						})}
 					/>
 
-					<Stack.Screen
+					<HomeStack.Screen
 						name='InstantMix'
 						component={InstantMix}
 						options={({ route }) => ({
@@ -92,18 +93,18 @@ export default function Home(): React.JSX.Element {
 								: 'Instant Mix',
 						})}
 					/>
-				</Stack.Group>
+				</HomeStack.Group>
 
-				<Stack.Group screenOptions={{ presentation: 'modal' }}>
-					<Stack.Screen
+				<HomeStack.Group screenOptions={{ presentation: 'modal' }}>
+					<HomeStack.Screen
 						name='Details'
 						component={DetailsScreen}
 						options={{
 							headerShown: false,
 						}}
 					/>
-				</Stack.Group>
-			</Stack.Navigator>
+				</HomeStack.Group>
+			</HomeStack.Navigator>
 		</HomeProvider>
 	)
 }

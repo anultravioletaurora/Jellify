@@ -11,10 +11,14 @@ import { InfiniteData } from '@tanstack/react-query'
 export default function Tracks({
 	tracks,
 	queue,
+	fetchNextPage,
+	hasNextPage,
 	navigation,
 }: {
 	tracks: InfiniteData<BaseItemDto[], unknown> | undefined
 	queue: Queue
+	fetchNextPage: () => void
+	hasNextPage: boolean
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
 	return (
@@ -35,6 +39,10 @@ export default function Tracks({
 					queue={queue}
 				/>
 			)}
+			onEndReached={() => {
+				if (hasNextPage) fetchNextPage()
+			}}
+			onEndReachedThreshold={0.25}
 		/>
 	)
 }

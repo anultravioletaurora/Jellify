@@ -1,7 +1,7 @@
 import { ItemCard } from '../Global/components/item-card'
 import { FlatList } from 'react-native'
 import { AlbumsProps } from '../types'
-import { useDisplayContext } from '../display-provider'
+import { useDisplayContext } from '../../providers/Display'
 export default function Albums({
 	albums,
 	navigation,
@@ -28,7 +28,7 @@ export default function Albums({
 					onPress={() => {
 						navigation.navigate('Album', { album })
 					}}
-					size={'$14'}
+					size={'$11'}
 				/>
 			)}
 			onEndReached={() => {

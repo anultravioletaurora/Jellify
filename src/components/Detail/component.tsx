@@ -65,7 +65,7 @@ export default function ItemDetail({
 				<XStack
 					justifyContent='center'
 					alignItems='flex-start'
-					minHeight={getToken('$20') + getToken('$20') + getToken('$5')}
+					minHeight={getToken('$20') + getToken('$20')}
 				>
 					{/**
 					 * Android needs a dismiss chevron here
@@ -91,11 +91,11 @@ export default function ItemDetail({
 							),
 						}}
 						style={{
-							width: getToken('$20') + getToken('$20') + getToken('$5'),
-							height: getToken('$20') + getToken('$20') + getToken('$5'),
+							width: getToken('$20') + getToken('$20'),
+							height: getToken('$20') + getToken('$20'),
 							borderRadius:
 								item.Type === 'MusicArtist'
-									? getToken('$20') + getToken('$20') + getToken('$5')
+									? getToken('$20') + getToken('$20')
 									: getToken('$5'),
 						}}
 					/>

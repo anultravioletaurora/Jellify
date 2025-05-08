@@ -16,7 +16,7 @@ interface DiscoverContext {
 }
 
 const DiscoverContextInitializer = () => {
-	const { api, library } = useJellifyContext()
+	const { api, library, user } = useJellifyContext()
 	const [refreshing, setRefreshing] = useState<boolean>(false)
 
 	const {
@@ -26,7 +26,7 @@ const DiscoverContextInitializer = () => {
 		hasNextPage: hasNextRecentlyAdded,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.RecentlyAdded],
-		queryFn: () => fetchRecentlyAdded(api, library),
+		queryFn: ({ pageParam }) => fetchRecentlyAdded(api, library, pageParam),
 		getNextPageParam: (lastPage, pages) => (lastPage.length > 0 ? pages.length + 1 : undefined),
 		initialPageParam: 0,
 	})
@@ -38,7 +38,7 @@ const DiscoverContextInitializer = () => {
 		hasNextPage: hasNextRecentlyPlayed,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.RecentlyPlayed],
-		queryFn: () => fetchRecentlyPlayed(api, library),
+		queryFn: ({ pageParam }) => fetchRecentlyPlayed(api, user, library, pageParam),
 		getNextPageParam: (lastPage, pages) => (lastPage.length > 0 ? pages.length + 1 : undefined),
 		initialPageParam: 0,
 	})

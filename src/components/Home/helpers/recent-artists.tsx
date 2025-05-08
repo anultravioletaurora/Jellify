@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, XStack } from 'tamagui'
 import { useHomeContext } from '../../../providers/Home'
-import { H2 } from '../../Global/helpers/text'
+import { H2, H4 } from '../../Global/helpers/text'
 import { StackParamList } from '../../types'
 import { ItemCard } from '../../Global/components/item-card'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
@@ -27,7 +27,7 @@ export default function RecentArtists({
 					})
 				}}
 			>
-				<H2 marginLeft={'$2'}>Recent Artists</H2>
+				<H4 marginLeft={'$2'}>Recent Artists</H4>
 				<Icon name='arrow-right' />
 			</XStack>
 
@@ -46,7 +46,7 @@ export default function RecentArtists({
 								artist: recentArtist,
 							})
 						}}
-						size={'$12'}
+						size={'$11'}
 					></ItemCard>
 				)}
 			/>

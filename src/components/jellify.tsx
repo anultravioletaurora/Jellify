@@ -3,10 +3,10 @@ import React from 'react'
 import Navigation from './navigation'
 import { PlayerProvider } from '../providers/Player'
 import { JellifyProvider, useJellifyContext } from '../providers'
-import { JellifyUserDataProvider } from './user-data-provider'
+import { JellifyUserDataProvider } from '../providers/UserData'
 import { NetworkContextProvider } from '../providers/Network'
 import { QueueProvider } from '../providers/Player/queue'
-import { DisplayProvider } from './display-provider'
+import { DisplayProvider } from '../providers/Display'
 
 /**
  * The main component for the Jellify app. Children are wrapped in the {@link JellifyProvider}

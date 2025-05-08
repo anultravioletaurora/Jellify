@@ -6,11 +6,10 @@ import HorizontalCardList from '../../../components/Global/components/horizontal
 import { ItemCard } from '../../../components/Global/components/item-card'
 import { QueuingType } from '../../../enums/queuing-type'
 import { trigger } from 'react-native-haptic-feedback'
-import { H2 } from '../../../components/Global/helpers/text'
 import Icon from '../../../components/Global/helpers/icon'
 import { useQueueContext } from '../../../providers/Player/queue'
 import { usePlayerContext } from '../../../providers/Player'
-
+import { H4 } from '../../../components/Global/helpers/text'
 export default function FrequentlyPlayedTracks({
 	navigation,
 }: {
@@ -34,7 +33,7 @@ export default function FrequentlyPlayedTracks({
 					})
 				}}
 			>
-				<H2 marginLeft={'$2'}>On Repeat</H2>
+				<H4 marginLeft={'$2'}>On Repeat</H4>
 				<Icon name='arrow-right' />
 			</XStack>
 
@@ -47,7 +46,7 @@ export default function FrequentlyPlayedTracks({
 				renderItem={({ item: track, index }) => (
 					<ItemCard
 						item={track}
-						size={'$12'}
+						size={'$11'}
 						caption={track.Name}
 						subCaption={`${track.Artists?.join(', ')}`}
 						squared

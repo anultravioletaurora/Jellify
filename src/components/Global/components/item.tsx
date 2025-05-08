@@ -89,7 +89,7 @@ export default function Item({
 						{item.Name ?? ''}
 					</Text>
 					{(item.Type === 'Audio' || item.Type === 'MusicAlbum') && (
-						<Text lineBreakStrategyIOS='standard' numberOfLines={1}>
+						<Text lineBreakStrategyIOS='standard' numberOfLines={1} color={'$amethyst'}>
 							{item.AlbumArtist ?? 'Untitled Artist'}
 						</Text>
 					)}

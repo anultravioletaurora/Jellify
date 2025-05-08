@@ -143,6 +143,7 @@ export default function PlayerScreen({
 
 										<TextTicker {...TextTickerConfig}>
 											<Text
+												bold
 												fontSize={'$6'}
 												color={getTokens().color.telemagenta}
 												onPress={() => {

@@ -4,7 +4,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import React from 'react'
 import { ItemCard } from '../../../components/Global/components/item-card'
 import { View, XStack } from 'tamagui'
-import { H2 } from '../../../components/Global/helpers/text'
+import { H2, H4 } from '../../../components/Global/helpers/text'
 import Icon from '../../../components/Global/helpers/icon'
 import { useHomeContext } from '../../../providers/Home'
 
@@ -27,7 +27,7 @@ export default function FrequentArtists({
 					})
 				}}
 			>
-				<H2 marginLeft={'$2'}>Most Played</H2>
+				<H4 marginLeft={'$2'}>Most Played</H4>
 				<Icon name='arrow-right' />
 			</XStack>
 
@@ -46,7 +46,7 @@ export default function FrequentArtists({
 								artist,
 							})
 						}}
-						size={'$12'}
+						size={'$11'}
 					/>
 				)}
 			/>

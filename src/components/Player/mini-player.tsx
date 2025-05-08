@@ -68,7 +68,7 @@ export function Miniplayer({
 						</TextTicker>
 
 						<TextTicker {...TextTickerConfig}>
-							<Text color={getTokens().color.telemagenta}>
+							<Text bold color={getTokens().color.telemagenta}>
 								{nowPlaying?.artist ?? ''}
 							</Text>
 						</TextTicker>

@@ -40,14 +40,11 @@ const HomeContextInitializer = () => {
 		hasNextPage: hasNextRecentTracks,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.RecentlyPlayed],
-		queryFn: () => fetchRecentlyPlayed(api, library),
+		queryFn: ({ pageParam }) => fetchRecentlyPlayed(api, user, library, pageParam),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
-			return lastPage.length === QueryConfig.limits.recents * 4
-				? lastPageParam + 1
-				: lastPage.length >= 0
-					? lastPageParam
-					: undefined
+			console.debug('Getting next page for recent tracks')
+			return lastPage.length >= 0 ? lastPageParam + 1 : undefined
 		},
 	})
 	const {
@@ -57,14 +54,11 @@ const HomeContextInitializer = () => {
 		hasNextPage: hasNextRecentArtists,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.RecentlyPlayedArtists],
-		queryFn: () => fetchRecentlyPlayedArtists(api, library),
+		queryFn: ({ pageParam }) => fetchRecentlyPlayedArtists(api, user, library, pageParam),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
-			return lastPage.length === QueryConfig.limits.recents * 4
-				? lastPageParam + 1
-				: lastPage.length >= 0
-					? lastPageParam
-					: undefined
+			console.debug('Getting next page for recent artists')
+			return lastPage.length >= 0 ? lastPageParam + 1 : undefined
 		},
 	})
 
@@ -75,14 +69,11 @@ const HomeContextInitializer = () => {
 		hasNextPage: hasNextFrequentlyPlayed,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.FrequentlyPlayed],
-		queryFn: () => fetchFrequentlyPlayed(api, library),
+		queryFn: ({ pageParam }) => fetchFrequentlyPlayed(api, library, pageParam),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
-			return lastPage.length === QueryConfig.limits.recents * 4
-				? lastPageParam + 1
-				: lastPage.length >= 0
-					? lastPageParam
-					: undefined
+			console.debug('Getting next page for frequently played')
+			return lastPage.length >= 0 ? lastPageParam + 1 : undefined
 		},
 	})
 
@@ -93,14 +84,11 @@ const HomeContextInitializer = () => {
 		hasNextPage: hasNextFrequentArtists,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.FrequentArtists],
-		queryFn: () => fetchFrequentlyPlayedArtists(api, library),
+		queryFn: ({ pageParam }) => fetchFrequentlyPlayedArtists(api, library, pageParam),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
-			return lastPage.length === QueryConfig.limits.recents * 4
-				? lastPageParam + 1
-				: lastPage.length >= 0
-					? lastPageParam
-					: undefined
+			console.debug('Getting next page for frequent artists')
+			return lastPage.length === 100 ? lastPageParam + 1 : undefined
 		},
 	})
 
