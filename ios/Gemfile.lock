@@ -239,7 +239,7 @@ GEM
     json (2.10.2)
     jwt (2.10.1)
       base64
-    logger (1.6.5)
+    logger (1.7.0)
     mime-types (3.6.2)
       logger
       mime-types-data (~> 3.2015)
