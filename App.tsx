@@ -19,8 +19,16 @@ import { requestStoragePermission } from './src/helpers/permisson-helpers'
 import ErrorBoundary from './src/components/ErrorBoundary'
 import Toast from 'react-native-toast-message'
 import JellifyToastConfig from './src/constants/toast.config'
+import { TelemetryDeckProvider, createTelemetryDeck } from '@typedigital/telemetrydeck-react'
+import telemetryDeckConfig from './telemetrydeck.json'
+import glitchtipConfig from './glitchtip.json'
+import * as Sentry from '@sentry/react-native'
 
 export const backgroundRuntime = createWorkletRuntime('background')
+
+const telemetrydeck = createTelemetryDeck(telemetryDeckConfig)
+
+Sentry.init(glitchtipConfig)
 
 export default function App(): React.JSX.Element {
 	const [playerIsReady, setPlayerIsReady] = useState<boolean>(false)
@@ -48,33 +56,35 @@ export default function App(): React.JSX.Element {
 	const handleRetry = () => setReloader((r) => r + 1)
 
 	return (
-		<SafeAreaProvider>
-			<ErrorBoundary reloader={reloader} onRetry={handleRetry}>
-				<NavigationContainer theme={isDarkMode ? JellifyDarkTheme : JellifyLightTheme}>
-					<PersistQueryClientProvider
-						client={queryClient}
-						persistOptions={{
-							persister: clientPersister,
+		<TelemetryDeckProvider telemetryDeck={telemetrydeck}>
+			<SafeAreaProvider>
+				<ErrorBoundary reloader={reloader} onRetry={handleRetry}>
+					<NavigationContainer theme={isDarkMode ? JellifyDarkTheme : JellifyLightTheme}>
+						<PersistQueryClientProvider
+							client={queryClient}
+							persistOptions={{
+								persister: clientPersister,
 
-							/**
-							 * Infinity, since data can remain the
-							 * same forever on the server
-							 */
-							maxAge: Infinity,
-							buster: '0.10.99',
-						}}
-					>
-						<GestureHandlerRootView>
-							<TamaguiProvider config={jellifyConfig}>
-								<Theme name={isDarkMode ? 'dark' : 'light'}>
-									{playerIsReady && <Jellify />}
-								</Theme>
-							</TamaguiProvider>
-						</GestureHandlerRootView>
-					</PersistQueryClientProvider>
-					<Toast config={JellifyToastConfig(isDarkMode)} />
-				</NavigationContainer>
-			</ErrorBoundary>
-		</SafeAreaProvider>
+								/**
+								 * Infinity, since data can remain the
+								 * same forever on the server
+								 */
+								maxAge: Infinity,
+								buster: '0.10.99',
+							}}
+						>
+							<GestureHandlerRootView>
+								<TamaguiProvider config={jellifyConfig}>
+									<Theme name={isDarkMode ? 'dark' : 'light'}>
+										{playerIsReady && <Jellify />}
+									</Theme>
+								</TamaguiProvider>
+							</GestureHandlerRootView>
+						</PersistQueryClientProvider>
+						<Toast config={JellifyToastConfig(isDarkMode)} />
+					</NavigationContainer>
+				</ErrorBoundary>
+			</SafeAreaProvider>
+		</TelemetryDeckProvider>
 	)
 }
