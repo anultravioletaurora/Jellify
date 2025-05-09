@@ -58,6 +58,8 @@ export function fetchFrequentlyPlayedArtists(
 	library: JellifyLibrary | undefined,
 	page: number,
 ): Promise<BaseItemDto[]> {
+	console.debug('Fetching frequently played artists', page)
+
 	return new Promise((resolve, reject) => {
 		console.debug('Fetching frequently played artists')
 

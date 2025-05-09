@@ -1,4 +1,6 @@
-import { useContext, useState } from 'react'
+import { storage } from '../../constants/storage'
+import { MMKVStorageKeys } from '../../enums/mmkv-storage-keys'
+import { useContext, useEffect, useState } from 'react'
 import { createContext } from 'react'
 
 interface LibrarySortAndFilterContext {
@@ -9,8 +11,16 @@ interface LibrarySortAndFilterContext {
 }
 
 const LibrarySortAndFilterContextInitializer = () => {
-	const [sortDescending, setSortDescending] = useState(false)
-	const [isFavorites, setIsFavorites] = useState(false)
+	const sortDescendingInit = storage.getBoolean(MMKVStorageKeys.LibrarySortDescending)
+	const isFavoritesInit = storage.getBoolean(MMKVStorageKeys.LibraryIsFavorites)
+
+	const [sortDescending, setSortDescending] = useState(sortDescendingInit ?? false)
+	const [isFavorites, setIsFavorites] = useState(isFavoritesInit ?? false)
+
+	useEffect(() => {
+		storage.set(MMKVStorageKeys.LibrarySortDescending, sortDescending)
+		storage.set(MMKVStorageKeys.LibraryIsFavorites, isFavorites)
+	}, [sortDescending, isFavorites])
 
 	return {
 		sortDescending,

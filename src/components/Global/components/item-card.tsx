@@ -22,6 +22,8 @@ export function ItemCard(props: CardProps) {
 	const mediaInfo = useQuery({
 		queryKey: [QueryKeys.MediaSources, props.item.Id!],
 		queryFn: () => fetchMediaInfo(api, user, props.item),
+		staleTime: Infinity,
+		enabled: props.item.Type === 'Audio',
 	})
 
 	return (
@@ -76,7 +78,8 @@ export function ItemCard(props: CardProps) {
 							lineBreakStrategyIOS='standard'
 							numberOfLines={1}
 							textAlign='center'
-							color={'$amethyst'}
+							bold
+							color={getToken('$color.amethyst')}
 						>
 							{props.subCaption}
 						</Text>

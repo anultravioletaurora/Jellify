@@ -13,7 +13,6 @@ import QueryConfig from './query.config'
 export function fetchTracks(
 	api: Api | undefined,
 	library: JellifyLibrary | undefined,
-	numberOfColumns: number,
 	pageParam: number,
 	isFavorite: boolean = false,
 	sortBy: ItemSortBy = ItemSortBy.SortName,
@@ -29,7 +28,7 @@ export function fetchTracks(
 				parentId: library.musicLibraryId,
 				recursive: true,
 				isFavorite: isFavorite,
-				limit: QueryConfig.limits.library * 10,
+				limit: QueryConfig.limits.library * 2,
 				startIndex: pageParam * QueryConfig.limits.library * 2,
 				sortBy: [sortBy],
 				sortOrder: [sortOrder],

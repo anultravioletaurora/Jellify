@@ -20,6 +20,7 @@ export default function InstantMixButton({
 	const { data, isFetching, refetch } = useQuery({
 		queryKey: [QueryKeys.InstantMix, item.Id!],
 		queryFn: () => fetchInstantMixFromItem(api, user, item),
+		staleTime: 1000 * 60 * 60 * 24, // 24 hours
 	})
 
 	const isDarkMode = useColorScheme() === 'dark'

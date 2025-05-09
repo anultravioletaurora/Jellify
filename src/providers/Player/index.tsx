@@ -12,7 +12,6 @@ import TrackPlayer, {
 import { handlePlaybackProgress, handlePlaybackState } from '../../player/handlers'
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { trigger } from 'react-native-haptic-feedback'
-import { pause, play, seekBy, seekTo } from 'react-native-track-player/lib/src/trackPlayer'
 
 import { getPlaystateApi } from '@jellyfin/sdk/lib/utils/api'
 import { useNetworkContext } from '../Network'
@@ -79,17 +78,18 @@ const PlayerContextInitializer = () => {
 	 * A mutation to handle starting playback
 	 */
 	const useStartPlayback = useMutation({
-		mutationFn: play,
+		mutationFn: TrackPlayer.play,
 	})
 
 	/**
 	 * A mutation to handle toggling the playback state
 	 */
 	const useTogglePlayback = useMutation({
-		mutationFn: () => {
+		mutationFn: async () => {
 			trigger('impactMedium')
-			if (playbackState === State.Playing) return pause()
-			else return play()
+			if ((await TrackPlayer.getPlaybackState()).state === State.Playing)
+				return TrackPlayer.pause()
+			else return TrackPlayer.play()
 		},
 	})
 
@@ -99,7 +99,7 @@ const PlayerContextInitializer = () => {
 	const useSeekTo = useMutation({
 		mutationFn: async (position: number) => {
 			trigger('impactLight')
-			await seekTo(position)
+			await TrackPlayer.seekTo(position)
 		},
 	})
 
@@ -110,7 +110,7 @@ const PlayerContextInitializer = () => {
 		mutationFn: async (seekSeconds: number) => {
 			trigger('clockTick')
 
-			await seekBy(seekSeconds)
+			await TrackPlayer.seekBy(seekSeconds)
 		},
 	})
 
@@ -140,32 +140,28 @@ const PlayerContextInitializer = () => {
 	 * This is use to report playback status to Jellyfin, and as such the player context
 	 * is only concerned about the playback state and progress.
 	 */
-	useTrackPlayerEvents(
-		[Event.RemoteLike, Event.RemoteDislike, Event.PlaybackProgressUpdated, Event.PlaybackState],
-		(event) => {
-			switch (event.type) {
-				case Event.PlaybackState: {
-					usePlaybackStateChanged.mutate(event.state)
-					break
-				}
-				case Event.PlaybackProgressUpdated: {
-					usePlaybackProgressUpdated.mutate(event)
-
-					// Cache playing track at 20 seconds if it's not already downloaded
-					if (
-						Math.floor(event.position) === 20 &&
-						downloadedTracks?.filter(
-							(download) => download.item.Id === nowPlaying!.item.Id,
-						).length === 0 &&
-						[networkStatusTypes.ONLINE, undefined].includes(networkStatus)
-					)
-						useDownload.mutate(nowPlaying!.item)
-
-					break
-				}
+	useTrackPlayerEvents([Event.PlaybackProgressUpdated, Event.PlaybackState], (event) => {
+		switch (event.type) {
+			case Event.PlaybackState: {
+				usePlaybackStateChanged.mutate(event.state)
+				break
 			}
-		},
-	)
+			case Event.PlaybackProgressUpdated: {
+				usePlaybackProgressUpdated.mutate(event)
+
+				// Cache playing track at 20 seconds if it's not already downloaded
+				if (
+					Math.floor(event.position) === 20 &&
+					downloadedTracks?.filter((download) => download.item.Id === nowPlaying!.item.Id)
+						.length === 0 &&
+					[networkStatusTypes.ONLINE, undefined].includes(networkStatus)
+				)
+					useDownload.mutate(nowPlaying!.item)
+
+				break
+			}
+		}
+	})
 
 	//#endregion RNTP Setup
 

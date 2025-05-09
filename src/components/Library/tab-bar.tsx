@@ -6,6 +6,7 @@ import { useLibrarySortAndFilterContext } from '../../providers/Library/sorting-
 import { Text } from '../Global/helpers/text'
 import { FadeIn, FadeOut } from 'react-native-reanimated'
 import Animated from 'react-native-reanimated'
+import { useLibraryContext } from '../../providers/Library'
 
 export default function LibraryTabBar(props: MaterialTopTabBarProps) {
 	useEffect(() => {
@@ -14,6 +15,7 @@ export default function LibraryTabBar(props: MaterialTopTabBarProps) {
 
 	const { sortDescending, setSortDescending, isFavorites, setIsFavorites } =
 		useLibrarySortAndFilterContext()
+
 	return (
 		<YStack>
 			<MaterialTopTabBar {...props} />

@@ -42,6 +42,7 @@ const HomeContextInitializer = () => {
 		data: recentTracks,
 		isFetching: isFetchingRecentTracks,
 		refetch: refetchRecentTracks,
+		isError: isErrorRecentTracks,
 		fetchNextPage: fetchNextRecentTracks,
 		hasNextPage: hasNextRecentTracks,
 	} = useInfiniteQuery({
@@ -50,7 +51,7 @@ const HomeContextInitializer = () => {
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
 			console.debug('Getting next page for recent tracks')
-			return lastPage.length >= 0 ? lastPageParam + 1 : undefined
+			return lastPage.length === QueryConfig.limits.recents ? lastPageParam + 1 : undefined
 		},
 	})
 	const {
@@ -61,12 +62,13 @@ const HomeContextInitializer = () => {
 		hasNextPage: hasNextRecentArtists,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.RecentlyPlayedArtists],
-		queryFn: ({ pageParam }) => fetchRecentlyPlayedArtists(api, user, library, pageParam),
+		queryFn: ({ pageParam }) => fetchRecentlyPlayedArtists(pageParam),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
 			console.debug('Getting next page for recent artists')
-			return lastPage.length >= 0 ? lastPageParam + 1 : undefined
+			return lastPage.length > 0 ? lastPageParam + 1 : undefined
 		},
+		enabled: !isErrorRecentTracks && recentTracks && recentTracks.pages.length > 0,
 	})
 
 	const {
@@ -81,7 +83,7 @@ const HomeContextInitializer = () => {
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
 			console.debug('Getting next page for frequently played')
-			return lastPage.length >= 0 ? lastPageParam + 1 : undefined
+			return lastPage.length === QueryConfig.limits.recents ? lastPageParam + 1 : undefined
 		},
 	})
 

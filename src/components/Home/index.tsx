@@ -4,7 +4,7 @@ import { YStack, XStack, Separator, getToken } from 'tamagui'
 import RecentArtists from './helpers/recent-artists'
 import RecentlyPlayed from './helpers/recently-played'
 import { useHomeContext } from '../../providers/Home'
-import { H3, H5 } from '../Global/helpers/text'
+import { H3, H4, H5 } from '../Global/helpers/text'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import FrequentArtists from './helpers/frequent-artists'
 import FrequentlyPlayedTracks from './helpers/frequent-tracks'
@@ -29,6 +29,10 @@ export function ProvidedHome({
 			removeClippedSubviews // Save memory usage
 		>
 			<YStack alignContent='flex-start'>
+				<H4 marginHorizontal={'$2'}>{`Hi, ${user?.name ?? ''}`}</H4>
+
+				<Separator marginVertical={'$3'} />
+
 				<RecentArtists navigation={navigation} />
 
 				<Separator marginVertical={'$3'} />

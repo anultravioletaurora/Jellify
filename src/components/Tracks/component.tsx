@@ -1,7 +1,7 @@
 import React from 'react'
 import Track from '../Global/components/track'
 import { FlatList } from 'react-native'
-import { Separator } from 'tamagui'
+import { getTokens, Separator } from 'tamagui'
 import { StackParamList } from '../types'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
@@ -24,6 +24,9 @@ export default function Tracks({
 	return (
 		<FlatList
 			contentInsetAdjustmentBehavior='automatic'
+			contentContainerStyle={{
+				marginVertical: getTokens().size.$1.val,
+			}}
 			ItemSeparatorComponent={() => <Separator />}
 			numColumns={1}
 			data={tracks?.pages.flatMap((page) => page) ?? []}

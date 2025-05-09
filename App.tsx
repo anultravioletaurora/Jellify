@@ -33,30 +33,16 @@ export default function App(): React.JSX.Element {
 	})
 		.then(() =>
 			TrackPlayer.updateOptions({
-				progressUpdateEventInterval: 1,
 				capabilities: CAPABILITIES,
 				notificationCapabilities: CAPABILITIES,
 				compactCapabilities: CAPABILITIES,
-				// ratingType: RatingType.Heart,
-				// likeOptions: {
-				//     isActive: false,
-				//     title: "Favorite"
-				// },
-				// dislikeOptions: {
-				//     isActive: true,
-				//     title: "Unfavorite"
-				// }
 			}),
 		)
 		.finally(() => {
 			setPlayerIsReady(true)
 			requestStoragePermission()
 		})
-	const getActiveTrack = async () => {
-		const track = await TrackPlayer.getActiveTrack()
-		console.log('playerIsReady', track)
-	}
-	getActiveTrack()
+
 	const [reloader, setReloader] = useState(0)
 
 	const handleRetry = () => setReloader((r) => r + 1)

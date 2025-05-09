@@ -68,6 +68,8 @@ export default function Track({
 	const mediaInfo = useQuery({
 		queryKey: [QueryKeys.MediaSources, track.Id!],
 		queryFn: () => fetchMediaInfo(api, user, track),
+		staleTime: Infinity,
+		enabled: track.Type === 'Audio',
 	})
 
 	// Fetch album so it's available in the Details screen
@@ -156,7 +158,7 @@ export default function Track({
 					</Text>
 
 					{(showArtwork || (track.ArtistCount ?? 0 > 1)) && (
-						<Text lineBreakStrategyIOS='standard' numberOfLines={1} color={'$amethyst'}>
+						<Text lineBreakStrategyIOS='standard' numberOfLines={1}>
 							{track.Artists?.join(', ') ?? ''}
 						</Text>
 					)}

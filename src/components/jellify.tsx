@@ -6,7 +6,7 @@ import { JellifyProvider, useJellifyContext } from '../providers'
 import { JellifyUserDataProvider } from '../providers/UserData'
 import { NetworkContextProvider } from '../providers/Network'
 import { QueueProvider } from '../providers/Player/queue'
-import { DisplayProvider } from '../providers/Display'
+import { DisplayProvider } from '../providers/Display/display-provider'
 
 /**
  * The main component for the Jellify app. Children are wrapped in the {@link JellifyProvider}

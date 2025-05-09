@@ -8,11 +8,11 @@ export async function fetchMediaInfo(
 	user: JellifyUser | undefined,
 	item: BaseItemDto,
 ): Promise<PlaybackInfoResponse> {
+	console.debug('Fetching media info')
+
 	return new Promise((resolve, reject) => {
 		if (isUndefined(api)) return reject('Client instance not set')
 		if (isUndefined(user)) return reject('User instance not set')
-
-		if (item.Type !== 'Audio') return resolve({})
 
 		getMediaInfoApi(api)
 			.getPlaybackInfo({

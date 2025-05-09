@@ -1,7 +1,8 @@
 import { ItemCard } from '../Global/components/item-card'
 import { FlatList } from 'react-native'
 import { AlbumsProps } from '../types'
-import { useDisplayContext } from '../../providers/Display'
+import { useDisplayContext } from '../../providers/Display/display-provider'
+import { getTokens } from 'tamagui'
 export default function Albums({
 	albums,
 	navigation,
@@ -15,6 +16,7 @@ export default function Albums({
 			contentContainerStyle={{
 				flexGrow: 1,
 				alignItems: 'center',
+				marginVertical: getTokens().size.$1.val,
 			}}
 			contentInsetAdjustmentBehavior='automatic'
 			numColumns={numberOfColumns}

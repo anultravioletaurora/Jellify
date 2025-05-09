@@ -12,13 +12,13 @@ import { fetchItems } from './item'
 export function fetchArtists(
 	api: Api | undefined,
 	library: JellifyLibrary | undefined,
-	columns: number,
 	page: number,
-	isFavorite: boolean = false,
+	isFavorite: boolean,
 	sortBy: ItemSortBy[] = [ItemSortBy.SortName],
 	sortOrder: SortOrder[] = [SortOrder.Ascending],
 ): Promise<BaseItemDto[]> {
-	return fetchItems(api, library, page, columns, sortBy, sortOrder)
+	console.debug('Fetching artists', page)
+	return fetchItems(api, library, [BaseItemKind.MusicArtist], page, sortBy, sortOrder, isFavorite)
 }
 
 /**
@@ -31,6 +31,8 @@ export function fetchArtistAlbums(
 	api: Api | undefined,
 	artist: BaseItemDto,
 ): Promise<BaseItemDto[]> {
+	console.debug('Fetching artist albums')
+
 	return new Promise((resolve, reject) => {
 		if (!api) return reject('No API instance provided')
 
@@ -62,6 +64,8 @@ export function fetchArtistFeaturedOn(
 	api: Api | undefined,
 	artist: BaseItemDto,
 ): Promise<BaseItemDto[]> {
+	console.debug('Fetching artist featured on')
+
 	return new Promise((resolve, reject) => {
 		if (!api) return reject('No API instance provided')
 

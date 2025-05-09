@@ -145,24 +145,28 @@ export type ArtistsProps = {
 	navigation: NativeStackNavigationProp<StackParamList>
 	fetchNextPage: () => void
 	hasNextPage: boolean
+	isPending: boolean
 }
 export type AlbumsProps = {
 	albums: InfiniteData<BaseItemDto[], unknown> | undefined
 	navigation: NativeStackNavigationProp<StackParamList>
 	fetchNextPage: () => void
 	hasNextPage: boolean
+	isPending: boolean
 }
 export type GenresProps = {
 	genres: InfiniteData<BaseItemDto[], unknown> | undefined
 	navigation: NativeStackNavigationProp<StackParamList>
 	fetchNextPage: () => void
 	hasNextPage: boolean
+	isPending: boolean
 }
 export type PlaylistsProps = {
 	playlists: InfiniteData<BaseItemDto[], unknown> | undefined
 	navigation: NativeStackNavigationProp<StackParamList>
 	fetchNextPage: () => void
 	hasNextPage: boolean
+	isPending: boolean
 }
 
 export type DeletePlaylistProps = NativeStackScreenProps<StackParamList, 'DeletePlaylist'>

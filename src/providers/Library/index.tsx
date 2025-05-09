@@ -4,7 +4,7 @@ import { InfiniteData, useInfiniteQuery } from '@tanstack/react-query'
 import { useJellifyContext } from '..'
 import { fetchArtists } from '../../api/queries/artist'
 import { createContext, useContext, useState } from 'react'
-import { useDisplayContext } from '../Display'
+import { useDisplayContext } from '../Display/display-provider'
 import QueryConfig from '../../api/queries/query.config'
 import { fetchTracks } from '../../api/queries/tracks'
 import { fetchAlbums } from '../../api/queries/album'
@@ -31,6 +31,10 @@ interface LibraryContext {
 
 	fetchNextAlbumsPage: () => void
 	hasNextAlbumsPage: boolean
+
+	isPendingArtists: boolean
+	isPendingTracks: boolean
+	isPendingAlbums: boolean
 }
 
 const LibraryContextInitializer = () => {
@@ -42,6 +46,7 @@ const LibraryContextInitializer = () => {
 
 	const {
 		data: artists,
+		isPending: isPendingArtists,
 		refetch: refetchArtists,
 		fetchNextPage: fetchNextArtistsPage,
 		hasNextPage: hasNextArtistsPage,
@@ -51,7 +56,6 @@ const LibraryContextInitializer = () => {
 			fetchArtists(
 				api,
 				library,
-				numberOfColumns,
 				pageParam,
 				isFavorites,
 				[ItemSortBy.SortName],
@@ -59,13 +63,14 @@ const LibraryContextInitializer = () => {
 			),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
-			console.debug('Page params', lastPageParam, allPageParams)
+			console.debug(`Artists last page length: ${lastPage.length}`)
 			return lastPage.length === QueryConfig.limits.library ? lastPageParam + 1 : undefined
 		},
 	})
 
 	const {
 		data: tracks,
+		isPending: isPendingTracks,
 		refetch: refetchTracks,
 		fetchNextPage: fetchNextTracksPage,
 		hasNextPage: hasNextTracksPage,
@@ -75,7 +80,6 @@ const LibraryContextInitializer = () => {
 			fetchTracks(
 				api,
 				library,
-				numberOfColumns,
 				pageParam,
 				isFavorites,
 				ItemSortBy.SortName,
@@ -83,31 +87,34 @@ const LibraryContextInitializer = () => {
 			),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
-			console.debug('Page params', lastPageParam, allPageParams)
-			return lastPage.length === numberOfColumns * QueryConfig.limits.library
+			console.debug(`Tracks last page length: ${lastPage.length}`)
+			return lastPage.length === QueryConfig.limits.library * 2
 				? lastPageParam + 1
-				: lastPage.length >= 0
-					? lastPageParam
-					: undefined
+				: undefined
 		},
 	})
 
 	const {
 		data: albums,
+		isPending: isPendingAlbums,
 		refetch: refetchAlbums,
 		fetchNextPage: fetchNextAlbumsPage,
 		hasNextPage: hasNextAlbumsPage,
 	} = useInfiniteQuery({
-		queryKey: [QueryKeys.AllAlbums],
-		queryFn: ({ pageParam }) => fetchAlbums(api, library, numberOfColumns, pageParam),
+		queryKey: [QueryKeys.AllAlbums, isFavorites, sortDescending],
+		queryFn: ({ pageParam }) =>
+			fetchAlbums(
+				api,
+				library,
+				pageParam,
+				isFavorites,
+				[ItemSortBy.SortName],
+				[sortDescending ? SortOrder.Descending : SortOrder.Ascending],
+			),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
-			console.debug('Page params', lastPageParam, allPageParams)
-			return lastPage.length === numberOfColumns * QueryConfig.limits.library
-				? lastPageParam + 1
-				: lastPage.length >= 0
-					? lastPageParam
-					: undefined
+			console.debug(`Albums last page length: ${lastPage.length}`)
+			return lastPage.length === QueryConfig.limits.library ? lastPageParam + 1 : undefined
 		},
 	})
 
@@ -124,6 +131,9 @@ const LibraryContextInitializer = () => {
 		refetchAlbums,
 		fetchNextAlbumsPage,
 		hasNextAlbumsPage,
+		isPendingArtists,
+		isPendingTracks,
+		isPendingAlbums,
 	}
 }
 
@@ -140,6 +150,9 @@ const LibraryContext = createContext<LibraryContext>({
 	refetchAlbums: () => {},
 	fetchNextAlbumsPage: () => {},
 	hasNextAlbumsPage: false,
+	isPendingArtists: false,
+	isPendingTracks: false,
+	isPendingAlbums: false,
 })
 
 export const LibraryProvider = ({ children }: { children: React.ReactNode }) => {

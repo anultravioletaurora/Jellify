@@ -10,8 +10,11 @@ import QueryConfig from './query.config'
 import { getUserLibraryApi } from '@jellyfin/sdk/lib/utils/api'
 import { Api } from '@jellyfin/sdk'
 import { isUndefined } from 'lodash'
-import { JellifyLibrary } from '../../../src/types/JellifyLibrary'
-import { JellifyUser } from '@/src/types/JellifyUser'
+import { JellifyLibrary } from '../../types/JellifyLibrary'
+import { JellifyUser } from '../../types/JellifyUser'
+import { queryClient } from '../../constants/query-client'
+import { QueryKeys } from '../../enums/query-keys'
+import { InfiniteData } from '@tanstack/react-query'
 
 export async function fetchRecentlyAdded(
 	api: Api | undefined,
@@ -84,39 +87,38 @@ export async function fetchRecentlyPlayed(
 }
 
 /**
- * Fetches recently played artists for a user from the Jellyfin server,
- * referencing the recently played tracks.
- * @param limit The number of items to fetch. Defaults to 50
- * @param offset The offset of the items to fetch.
+ * Fetches recently played artists for a user, using the recently played tracks
+ * from the query client since Jellyfin doesn't track when artists are played accurately.
+ * @param page The page number of the recently played tracks to fetch artists from.
  * @returns The recently played artists.
  */
-export function fetchRecentlyPlayedArtists(
-	api: Api | undefined,
-	user: JellifyUser | undefined,
-	library: JellifyLibrary | undefined,
-	page: number,
-): Promise<BaseItemDto[]> {
+export function fetchRecentlyPlayedArtists(page: number): Promise<BaseItemDto[]> {
+	console.debug('Fetching recently played artists')
 	return new Promise((resolve, reject) => {
-		if (isUndefined(api)) return reject('Client instance not set')
-		if (isUndefined(user)) return reject('User instance not set')
-		if (isUndefined(library)) return reject('Library instance not set')
+		// Get the recently played tracks from the query client
+		const recentlyPlayedTracks = queryClient.getQueryData<InfiniteData<BaseItemDto[]>>([
+			QueryKeys.RecentlyPlayed,
+		])
+		if (!recentlyPlayedTracks) {
+			return resolve([])
+		}
 
-		getItemsApi(api)
-			.getItems({
-				includeItemTypes: [BaseItemKind.MusicArtist],
-				parentId: library.musicLibraryId,
-				recursive: true,
-				limit: 100,
-				startIndex: page * 100,
-				sortBy: [ItemSortBy.DatePlayed],
-				sortOrder: [SortOrder.Descending],
-			})
-			.then(({ data }) => {
-				if (data.Items) return resolve(data.Items)
-				else return resolve([])
-			})
-			.catch((error) => {
-				reject(error)
-			})
+		// Get the artists from the recently played tracks
+		const artists = recentlyPlayedTracks.pages[page]
+
+			// Map artist from the recently played tracks
+			.map((track) => (track.ArtistItems ? track.ArtistItems[0] : undefined))
+
+			// Filter out undefined artists
+			.filter((artist) => artist !== undefined)
+
+			// Filter out duplicate artists
+			.filter(
+				(artist, index, artists) =>
+					artists.findIndex((duplicateArtist) => duplicateArtist.Id === artist.Id) ===
+					index,
+			)
+
+		resolve(artists)
 	})
 }

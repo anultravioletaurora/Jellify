@@ -1,4 +1,9 @@
-import { BaseItemDto, ItemSortBy, SortOrder } from '@jellyfin/sdk/lib/generated-client/models'
+import {
+	BaseItemDto,
+	BaseItemKind,
+	ItemSortBy,
+	SortOrder,
+} from '@jellyfin/sdk/lib/generated-client/models'
 import { getItemsApi } from '@jellyfin/sdk/lib/utils/api'
 import { groupBy, isEmpty, isEqual, isUndefined } from 'lodash'
 import { SectionList } from 'react-native'
@@ -12,6 +17,7 @@ import QueryConfig from './query.config'
  * @returns The item - a {@link BaseItemDto}
  */
 export async function fetchItem(api: Api | undefined, itemId: string): Promise<BaseItemDto> {
+	console.debug('Fetching item by id')
 	return new Promise((resolve, reject) => {
 		if (isEmpty(itemId)) return reject('No item ID proviced')
 		if (isUndefined(api)) return reject('Client not initialized')
@@ -44,13 +50,14 @@ export async function fetchItem(api: Api | undefined, itemId: string): Promise<B
 export async function fetchItems(
 	api: Api | undefined,
 	library: JellifyLibrary | undefined,
+	types: BaseItemKind[],
 	page: number = 0,
-	columns: number = 1,
 	sortBy: ItemSortBy[] = [ItemSortBy.SortName],
 	sortOrder: SortOrder[] = [SortOrder.Ascending],
-	isFavorite: boolean = false,
+	isFavorite: boolean,
 	parentId?: string | undefined,
 ): Promise<BaseItemDto[]> {
+	console.debug('Fetching items', page)
 	return new Promise((resolve, reject) => {
 		if (isUndefined(api)) return reject('Client not initialized')
 		if (isUndefined(library)) return reject('Library not initialized')
@@ -58,7 +65,9 @@ export async function fetchItems(
 		getItemsApi(api)
 			.getItems({
 				parentId: parentId ?? library.musicLibraryId,
+				includeItemTypes: types,
 				sortBy,
+				recursive: true,
 				sortOrder,
 				startIndex: page * QueryConfig.limits.library,
 				limit: QueryConfig.limits.library,
@@ -83,6 +92,7 @@ export async function fetchAlbumDiscs(
 	api: Api | undefined,
 	album: BaseItemDto,
 ): Promise<{ title: string; data: BaseItemDto[] }[]> {
+	console.debug('Fetching album discs')
 	return new Promise<{ title: string; data: BaseItemDto[] }[]>((resolve, reject) => {
 		if (isEmpty(album.Id)) return reject('No album ID provided')
 		if (isUndefined(api)) return reject('Client not initialized')
