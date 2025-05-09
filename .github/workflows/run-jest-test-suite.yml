@@ -31,7 +31,7 @@ jobs:
       - name: 🤫 Output Glitchtip JSON to Glitchtip
         run: |
           echo "{" > glitchtip.json
-          echo "\"dsn\": \"${{ secrets.GLITCHTIP_DSN }}\"," >> glitchtip.json
+          echo "\"dsn\": \"${{ secrets.GLITCHTIP_DSN }}\"" >> glitchtip.json
           echo "}" >> glitchtip.json
         
         
