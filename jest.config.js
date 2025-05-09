@@ -9,6 +9,7 @@ module.exports = {
 		'./jest/setup-reanimated.ts',
 		'./jest/setup-rnfs.ts',
 		'./jest/setup-rntp.ts',
+		'./jest/setup-sentry.ts',
 		'./tamagui.config.ts',
 		'./jest/setup-native-modules.ts',
 	],
