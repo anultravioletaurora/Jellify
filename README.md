@@ -136,9 +136,10 @@ Playlist
 [React Native Track Player](https://github.com/doublesymmetry/react-native-track-player)\
 [React Native URL Polyfill](https://github.com/charpeni/react-native-url-polyfill)
 
-### 👩‍💻 Monitoring
+### 👩‍💻 Opt-In Monitoring
 
-[GlitchTip](https://glitchtip.com/)
+[GlitchTip](https://glitchtip.com/)\
+[TelemetryDeck](https://telemetrydeck.com)
 
 ### 💜 Love from Wisconsin 🧀
 

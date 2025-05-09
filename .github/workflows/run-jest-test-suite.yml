@@ -22,16 +22,16 @@ jobs:
       - name: 🤫 Output TelemetryDeck JSON to TelemetryDeck          
         run: |
           echo "{" > telemetrydeck.json
-          echo "'appID': '${{ secrets.TELEMETRYDECK_APPID }}'," >> telemetrydeck.json
-          echo "'clientUser': 'anonymous'," >> telemetrydeck.json
-          echo "'app': 'Jellify'," >> telemetrydeck.json
+          echo "\"appID\": \"${{ secrets.TELEMETRYDECK_APPID }}\"," >> telemetrydeck.json
+          echo "\"clientUser\": \"anonymous\"," >> telemetrydeck.json
+          echo "\"app\": \"Jellify\"" >> telemetrydeck.json
           echo "}" >> telemetrydeck.json
 
           
       - name: 🤫 Output Glitchtip JSON to Glitchtip
         run: |
           echo "{" > glitchtip.json
-          echo "'dsn': '${{ secrets.GLITCHTIP_DSN }}'," >> glitchtip.json
+          echo "\"dsn\": \"${{ secrets.GLITCHTIP_DSN }}\"," >> glitchtip.json
           echo "}" >> glitchtip.json
         
         
