@@ -69,11 +69,6 @@ jobs:
           git config --global user.email "violet@cosmonautical.cloud"
           git config --global user.name "anultravioletaurora"
 
-      - name: 🔄 Restore Glitchtip.json and TelemetryDeck.json
-        run: |
-          git restore glitchtip.json
-          git restore telemetrydeck.json
-
       # Commit Fastlane Xcode build number increment
       - name: 🔢 Commit changes for version increment
         run: |
