@@ -19,21 +19,25 @@ export type StackParamList = {
 		artists: InfiniteData<BaseItemDto[], unknown> | undefined
 		fetchNextPage: () => void
 		hasNextPage: boolean
+		isPending: boolean
 	}
 	MostPlayedArtists: {
 		artists: InfiniteData<BaseItemDto[], unknown> | undefined
 		fetchNextPage: () => void
 		hasNextPage: boolean
+		isPending: boolean
 	}
 	RecentTracks: {
 		tracks: InfiniteData<BaseItemDto[], unknown> | undefined
 		fetchNextPage: () => void
 		hasNextPage: boolean
+		isPending: boolean
 	}
 	MostPlayedTracks: {
 		tracks: InfiniteData<BaseItemDto[], unknown> | undefined
 		fetchNextPage: () => void
 		hasNextPage: boolean
+		isPending: boolean
 	}
 	UserPlaylists: {
 		playlists: BaseItemDto[]
@@ -44,6 +48,7 @@ export type StackParamList = {
 		queue: Queue
 		fetchNextPage: () => void
 		hasNextPage: boolean
+		isPending: boolean
 	}
 
 	Discover: undefined
@@ -52,6 +57,7 @@ export type StackParamList = {
 		navigation: NativeStackNavigationProp<StackParamList>
 		fetchNextPage: () => void
 		hasNextPage: boolean
+		isPending: boolean
 	}
 
 	Library: undefined

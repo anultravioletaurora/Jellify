@@ -15,8 +15,12 @@ export default function FrequentlyPlayedTracks({
 }: {
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
-	const { frequentlyPlayed, fetchNextFrequentlyPlayed, hasNextFrequentlyPlayed } =
-		useHomeContext()
+	const {
+		frequentlyPlayed,
+		fetchNextFrequentlyPlayed,
+		hasNextFrequentlyPlayed,
+		isFetchingFrequentlyPlayed,
+	} = useHomeContext()
 
 	const { useStartPlayback } = usePlayerContext()
 	const { useLoadNewQueue } = useQueueContext()
@@ -30,6 +34,7 @@ export default function FrequentlyPlayedTracks({
 						tracks: frequentlyPlayed,
 						fetchNextPage: fetchNextFrequentlyPlayed,
 						hasNextPage: hasNextFrequentlyPlayed,
+						isPending: isFetchingFrequentlyPlayed,
 					})
 				}}
 			>

@@ -45,6 +45,7 @@ const HomeContextInitializer = () => {
 		isError: isErrorRecentTracks,
 		fetchNextPage: fetchNextRecentTracks,
 		hasNextPage: hasNextRecentTracks,
+		isPending: isPendingRecentTracks,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.RecentlyPlayed],
 		queryFn: ({ pageParam }) => fetchRecentlyPlayed(api, user, library, pageParam),
@@ -60,6 +61,7 @@ const HomeContextInitializer = () => {
 		refetch: refetchRecentArtists,
 		fetchNextPage: fetchNextRecentArtists,
 		hasNextPage: hasNextRecentArtists,
+		isPending: isPendingRecentArtists,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.RecentlyPlayedArtists],
 		queryFn: ({ pageParam }) => fetchRecentlyPlayedArtists(pageParam),
@@ -77,6 +79,7 @@ const HomeContextInitializer = () => {
 		refetch: refetchFrequentlyPlayed,
 		fetchNextPage: fetchNextFrequentlyPlayed,
 		hasNextPage: hasNextFrequentlyPlayed,
+		isPending: isPendingFrequentlyPlayed,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.FrequentlyPlayed],
 		queryFn: ({ pageParam }) => fetchFrequentlyPlayed(api, library, pageParam),
@@ -93,6 +96,7 @@ const HomeContextInitializer = () => {
 		refetch: refetchFrequentArtists,
 		fetchNextPage: fetchNextFrequentArtists,
 		hasNextPage: hasNextFrequentArtists,
+		isPending: isPendingFrequentArtists,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.FrequentArtists],
 		queryFn: ({ pageParam }) => fetchFrequentlyPlayedArtists(api, library, pageParam),

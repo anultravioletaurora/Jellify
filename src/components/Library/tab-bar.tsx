@@ -30,11 +30,7 @@ export default function LibraryTabBar(props: MaterialTopTabBarProps) {
 				borderRadius={'$4'}
 				backgroundColor={'$background'}
 				alignItems={'center'}
-				shadowRadius={'$4'}
-				shadowColor={'$purpleDark'}
-				shadowOffset={{ width: 0, height: -20 }}
-				shadowOpacity={0.25}
-				elevation={5}
+				justifyContent='flex-end'
 			>
 				<Animated.View entering={FadeIn} exiting={FadeOut}>
 					{props.state.routes[props.state.index].name === 'Playlists' ? (

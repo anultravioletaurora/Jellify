@@ -12,7 +12,8 @@ export default function RecentlyAdded({
 }: {
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
-	const { recentlyAdded, fetchNextRecentlyAdded, hasNextRecentlyAdded } = useDiscoverContext()
+	const { recentlyAdded, fetchNextRecentlyAdded, hasNextRecentlyAdded, isPendingRecentlyAdded } =
+		useDiscoverContext()
 
 	return (
 		<View>
@@ -24,6 +25,7 @@ export default function RecentlyAdded({
 						navigation: navigation,
 						fetchNextPage: fetchNextRecentlyAdded,
 						hasNextPage: hasNextRecentlyAdded,
+						isPending: isPendingRecentlyAdded,
 					})
 				}}
 			>

@@ -5,7 +5,7 @@ import { useLibraryContext } from '../../../providers/Library'
 import { useNavigation } from '@react-navigation/native'
 
 export default function AlbumsTab(): React.JSX.Element {
-	const { albums, fetchNextAlbumsPage, hasNextAlbumsPage } = useLibraryContext()
+	const { albums, fetchNextAlbumsPage, hasNextAlbumsPage, isPendingAlbums } = useLibraryContext()
 
 	const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>()
 
@@ -15,6 +15,7 @@ export default function AlbumsTab(): React.JSX.Element {
 			navigation={navigation}
 			fetchNextPage={fetchNextAlbumsPage}
 			hasNextPage={hasNextAlbumsPage}
+			isPending={isPendingAlbums}
 		/>
 	)
 }

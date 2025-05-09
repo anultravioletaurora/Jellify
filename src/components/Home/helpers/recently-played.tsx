@@ -19,7 +19,8 @@ export default function RecentlyPlayed({
 }): React.JSX.Element {
 	const { nowPlaying, useStartPlayback } = usePlayerContext()
 	const { useLoadNewQueue } = useQueueContext()
-	const { recentTracks, fetchNextRecentTracks, hasNextRecentTracks } = useHomeContext()
+	const { recentTracks, fetchNextRecentTracks, hasNextRecentTracks, isFetchingRecentTracks } =
+		useHomeContext()
 
 	return useMemo(() => {
 		return (
@@ -31,6 +32,7 @@ export default function RecentlyPlayed({
 							tracks: recentTracks,
 							fetchNextPage: fetchNextRecentTracks,
 							hasNextPage: hasNextRecentTracks,
+							isPending: isFetchingRecentTracks,
 						})
 					}}
 				>

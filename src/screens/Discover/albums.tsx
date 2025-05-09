@@ -11,6 +11,7 @@ export default function RecentlyAdded({
 			albums={route.params.albums}
 			fetchNextPage={route.params.fetchNextPage}
 			hasNextPage={route.params.hasNextPage}
+			isPending={route.params.isPending}
 		/>
 	)
 }

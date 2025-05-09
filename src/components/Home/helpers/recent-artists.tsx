@@ -13,7 +13,8 @@ export default function RecentArtists({
 }: {
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
-	const { recentArtists, fetchNextRecentArtists, hasNextRecentArtists } = useHomeContext()
+	const { recentArtists, fetchNextRecentArtists, hasNextRecentArtists, isFetchingRecentArtists } =
+		useHomeContext()
 
 	return (
 		<View>
@@ -24,6 +25,7 @@ export default function RecentArtists({
 						artists: recentArtists,
 						fetchNextPage: fetchNextRecentArtists,
 						hasNextPage: hasNextRecentArtists,
+						isPending: isFetchingRecentArtists,
 					})
 				}}
 			>

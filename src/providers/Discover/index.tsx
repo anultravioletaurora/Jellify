@@ -13,6 +13,8 @@ interface DiscoverContext {
 	fetchNextRecentlyPlayed: () => void
 	hasNextRecentlyAdded: boolean
 	hasNextRecentlyPlayed: boolean
+	isPendingRecentlyAdded: boolean
+	isPendingRecentlyPlayed: boolean
 }
 
 const DiscoverContextInitializer = () => {
@@ -24,6 +26,7 @@ const DiscoverContextInitializer = () => {
 		refetch: refetchRecentlyAdded,
 		fetchNextPage: fetchNextRecentlyAdded,
 		hasNextPage: hasNextRecentlyAdded,
+		isPending: isPendingRecentlyAdded,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.RecentlyAdded],
 		queryFn: ({ pageParam }) => fetchRecentlyAdded(api, library, pageParam),
@@ -36,6 +39,7 @@ const DiscoverContextInitializer = () => {
 		refetch: refetchRecentlyPlayed,
 		fetchNextPage: fetchNextRecentlyPlayed,
 		hasNextPage: hasNextRecentlyPlayed,
+		isPending: isPendingRecentlyPlayed,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.RecentlyPlayed],
 		queryFn: ({ pageParam }) => fetchRecentlyPlayed(api, user, library, pageParam),
@@ -59,6 +63,8 @@ const DiscoverContextInitializer = () => {
 		fetchNextRecentlyPlayed,
 		hasNextRecentlyAdded,
 		hasNextRecentlyPlayed,
+		isPendingRecentlyAdded,
+		isPendingRecentlyPlayed,
 	}
 }
 
@@ -71,6 +77,8 @@ const DiscoverContext = createContext<DiscoverContext>({
 	fetchNextRecentlyPlayed: () => {},
 	hasNextRecentlyAdded: false,
 	hasNextRecentlyPlayed: false,
+	isPendingRecentlyAdded: false,
+	isPendingRecentlyPlayed: false,
 })
 
 export const DiscoverProvider: ({ children }: { children: ReactNode }) => React.JSX.Element = ({

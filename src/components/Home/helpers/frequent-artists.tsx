@@ -30,6 +30,7 @@ export default function FrequentArtists({
 						artists: frequentArtists,
 						fetchNextPage: fetchNextFrequentArtists,
 						hasNextPage: hasNextFrequentArtists,
+						isPending: isFetchingFrequentArtists,
 					})
 				}}
 			>
