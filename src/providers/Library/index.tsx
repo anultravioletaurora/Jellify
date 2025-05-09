@@ -1,13 +1,14 @@
 import { QueryKeys } from '../../enums/query-keys'
-import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
+import { BaseItemDto, ItemSortBy, SortOrder } from '@jellyfin/sdk/lib/generated-client/models'
 import { InfiniteData, useInfiniteQuery } from '@tanstack/react-query'
 import { useJellifyContext } from '..'
 import { fetchArtists } from '../../api/queries/artist'
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { useDisplayContext } from '../Display'
 import QueryConfig from '../../api/queries/query.config'
 import { fetchTracks } from '../../api/queries/tracks'
 import { fetchAlbums } from '../../api/queries/album'
+import { useLibrarySortAndFilterContext } from './sorting-filtering'
 
 interface LibraryContext {
 	artists: InfiniteData<BaseItemDto[], unknown> | undefined
@@ -37,22 +38,29 @@ const LibraryContextInitializer = () => {
 
 	const { numberOfColumns } = useDisplayContext()
 
+	const { sortDescending, isFavorites } = useLibrarySortAndFilterContext()
+
 	const {
 		data: artists,
 		refetch: refetchArtists,
 		fetchNextPage: fetchNextArtistsPage,
 		hasNextPage: hasNextArtistsPage,
 	} = useInfiniteQuery({
-		queryKey: [QueryKeys.AllArtists],
-		queryFn: ({ pageParam }) => fetchArtists(api, library, numberOfColumns, pageParam),
+		queryKey: [QueryKeys.AllArtists, isFavorites, sortDescending],
+		queryFn: ({ pageParam }) =>
+			fetchArtists(
+				api,
+				library,
+				numberOfColumns,
+				pageParam,
+				isFavorites,
+				[ItemSortBy.SortName],
+				[sortDescending ? SortOrder.Descending : SortOrder.Ascending],
+			),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
 			console.debug('Page params', lastPageParam, allPageParams)
-			return lastPage.length === numberOfColumns * QueryConfig.limits.library
-				? lastPageParam + 1
-				: lastPage.length >= 0
-					? lastPageParam
-					: undefined
+			return lastPage.length === QueryConfig.limits.library ? lastPageParam + 1 : undefined
 		},
 	})
 
@@ -62,8 +70,17 @@ const LibraryContextInitializer = () => {
 		fetchNextPage: fetchNextTracksPage,
 		hasNextPage: hasNextTracksPage,
 	} = useInfiniteQuery({
-		queryKey: [QueryKeys.AllTracks],
-		queryFn: ({ pageParam }) => fetchTracks(api, library, numberOfColumns, pageParam),
+		queryKey: [QueryKeys.AllTracks, isFavorites, sortDescending],
+		queryFn: ({ pageParam }) =>
+			fetchTracks(
+				api,
+				library,
+				numberOfColumns,
+				pageParam,
+				isFavorites,
+				ItemSortBy.SortName,
+				sortDescending ? SortOrder.Descending : SortOrder.Ascending,
+			),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
 			console.debug('Page params', lastPageParam, allPageParams)

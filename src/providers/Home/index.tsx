@@ -27,6 +27,11 @@ interface HomeContext {
 
 	frequentArtists: InfiniteData<BaseItemDto[], unknown> | undefined
 	frequentlyPlayed: InfiniteData<BaseItemDto[], unknown> | undefined
+
+	isFetchingRecentTracks: boolean
+	isFetchingRecentArtists: boolean
+	isFetchingFrequentArtists: boolean
+	isFetchingFrequentlyPlayed: boolean
 }
 
 const HomeContextInitializer = () => {
@@ -35,6 +40,7 @@ const HomeContextInitializer = () => {
 
 	const {
 		data: recentTracks,
+		isFetching: isFetchingRecentTracks,
 		refetch: refetchRecentTracks,
 		fetchNextPage: fetchNextRecentTracks,
 		hasNextPage: hasNextRecentTracks,
@@ -49,6 +55,7 @@ const HomeContextInitializer = () => {
 	})
 	const {
 		data: recentArtists,
+		isFetching: isFetchingRecentArtists,
 		refetch: refetchRecentArtists,
 		fetchNextPage: fetchNextRecentArtists,
 		hasNextPage: hasNextRecentArtists,
@@ -64,6 +71,7 @@ const HomeContextInitializer = () => {
 
 	const {
 		data: frequentlyPlayed,
+		isFetching: isFetchingFrequentlyPlayed,
 		refetch: refetchFrequentlyPlayed,
 		fetchNextPage: fetchNextFrequentlyPlayed,
 		hasNextPage: hasNextFrequentlyPlayed,
@@ -79,6 +87,7 @@ const HomeContextInitializer = () => {
 
 	const {
 		data: frequentArtists,
+		isFetching: isFetchingFrequentArtists,
 		refetch: refetchFrequentArtists,
 		fetchNextPage: fetchNextFrequentArtists,
 		hasNextPage: hasNextFrequentArtists,
@@ -136,6 +145,10 @@ const HomeContextInitializer = () => {
 		hasNextFrequentArtists,
 		fetchNextFrequentlyPlayed,
 		hasNextFrequentlyPlayed,
+		isFetchingRecentTracks,
+		isFetchingRecentArtists,
+		isFetchingFrequentArtists,
+		isFetchingFrequentlyPlayed,
 	}
 }
 
@@ -154,6 +167,10 @@ const HomeContext = createContext<HomeContext>({
 	hasNextFrequentlyPlayed: false,
 	fetchNextRecentArtists: () => {},
 	hasNextRecentArtists: false,
+	isFetchingRecentTracks: false,
+	isFetchingRecentArtists: false,
+	isFetchingFrequentArtists: false,
+	isFetchingFrequentlyPlayed: false,
 })
 
 export const HomeProvider: ({ children }: { children: ReactNode }) => React.JSX.Element = ({

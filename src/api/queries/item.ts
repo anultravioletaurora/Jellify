@@ -1,8 +1,10 @@
-import { BaseItemDto, ItemSortBy } from '@jellyfin/sdk/lib/generated-client/models'
+import { BaseItemDto, ItemSortBy, SortOrder } from '@jellyfin/sdk/lib/generated-client/models'
 import { getItemsApi } from '@jellyfin/sdk/lib/utils/api'
 import { groupBy, isEmpty, isEqual, isUndefined } from 'lodash'
 import { SectionList } from 'react-native'
 import { Api } from '@jellyfin/sdk/lib/api'
+import { JellifyLibrary } from '../../types/JellifyLibrary'
+import QueryConfig from './query.config'
 
 /**
  * Fetches a single Jellyfin item by it's ID
@@ -22,6 +24,48 @@ export async function fetchItem(api: Api | undefined, itemId: string): Promise<B
 				if (response.data.Items && response.data.TotalRecordCount == 1)
 					resolve(response.data.Items[0])
 				else reject(`${response.data.TotalRecordCount} items returned for ID`)
+			})
+			.catch((error) => {
+				reject(error)
+			})
+	})
+}
+
+/**
+ * Fetches a list of Jellyfin {@link BaseItemDto}s from the library
+ * @param api The Jellyfin {@link Api} instance
+ * @param library The selected Jellyfin {@link JellifyLibrary}
+ * @param page The page number to fetch
+ * @param columns The number of columns to fetch
+ * @param sortBy The field to sort by
+ * @param sortOrder The order to sort by
+ * @returns A list of {@link BaseItemDto}s
+ */
+export async function fetchItems(
+	api: Api | undefined,
+	library: JellifyLibrary | undefined,
+	page: number = 0,
+	columns: number = 1,
+	sortBy: ItemSortBy[] = [ItemSortBy.SortName],
+	sortOrder: SortOrder[] = [SortOrder.Ascending],
+	isFavorite: boolean = false,
+	parentId?: string | undefined,
+): Promise<BaseItemDto[]> {
+	return new Promise((resolve, reject) => {
+		if (isUndefined(api)) return reject('Client not initialized')
+		if (isUndefined(library)) return reject('Library not initialized')
+
+		getItemsApi(api)
+			.getItems({
+				parentId: parentId ?? library.musicLibraryId,
+				sortBy,
+				sortOrder,
+				startIndex: page * QueryConfig.limits.library,
+				limit: QueryConfig.limits.library,
+				isFavorite,
+			})
+			.then(({ data }) => {
+				resolve(data.Items ?? [])
 			})
 			.catch((error) => {
 				reject(error)

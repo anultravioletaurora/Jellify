@@ -2,13 +2,14 @@ import { StackParamList } from '../../components/types'
 import { RouteProp } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import PlaylistsScreen from '../Playlists/screen'
+import PlaylistsScreen from './components/playlists-tab'
 import { getToken } from 'tamagui'
 import { useColorScheme } from 'react-native'
 import Icon from '../Global/helpers/icon'
 import TracksTab from './components/tracks-tab'
 import ArtistsTab from './components/artists-tab'
 import AlbumsTab from './components/albums-tab'
+import LibraryTabBar from './tab-bar'
 
 const LibraryTabsNavigator = createMaterialTopTabNavigator()
 
@@ -23,7 +24,9 @@ export default function Library({
 
 	return (
 		<LibraryTabsNavigator.Navigator
+			tabBar={(props) => <LibraryTabBar {...props} />}
 			screenOptions={{
+				lazy: true,
 				tabBarShowIcon: true,
 				tabBarActiveTintColor: getToken('$color.telemagenta'),
 				tabBarInactiveTintColor: isDarkMode

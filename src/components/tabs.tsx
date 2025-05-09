@@ -28,7 +28,7 @@ export function Tabs(): React.JSX.Element {
 					? getToken('$color.amethyst')
 					: getToken('$color.purpleGray'),
 				tabBarLabelStyle: {
-					fontWeight: '800',
+					fontWeight: 'bold',
 				},
 			}}
 			tabBar={(props) => (

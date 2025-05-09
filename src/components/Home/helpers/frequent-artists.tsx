@@ -4,16 +4,22 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import React from 'react'
 import { ItemCard } from '../../../components/Global/components/item-card'
 import { View, XStack } from 'tamagui'
-import { H2, H4 } from '../../../components/Global/helpers/text'
+import { H2, H4, Text } from '../../../components/Global/helpers/text'
 import Icon from '../../../components/Global/helpers/icon'
 import { useHomeContext } from '../../../providers/Home'
+import { ActivityIndicator } from 'react-native'
 
 export default function FrequentArtists({
 	navigation,
 }: {
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
-	const { frequentArtists, fetchNextFrequentArtists, hasNextFrequentArtists } = useHomeContext()
+	const {
+		frequentArtists,
+		fetchNextFrequentArtists,
+		hasNextFrequentArtists,
+		isFetchingFrequentArtists,
+	} = useHomeContext()
 
 	return (
 		<View>
@@ -49,6 +55,13 @@ export default function FrequentArtists({
 						size={'$11'}
 					/>
 				)}
+				ListEmptyComponent={
+					isFetchingFrequentArtists ? (
+						<ActivityIndicator />
+					) : (
+						<Text>No frequent artists</Text>
+					)
+				}
 			/>
 		</View>
 	)

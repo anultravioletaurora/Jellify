@@ -9,7 +9,8 @@ import { useQuery } from '@tanstack/react-query'
 import { useJellifyContext } from '../../providers'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { StackParamList } from '../types'
-export default function FavoritePlaylists({
+
+export default function Playlists({
 	navigation,
 }: {
 	navigation: NativeStackNavigationProp<StackParamList>
@@ -57,6 +58,7 @@ export default function FavoritePlaylists({
 					squared
 				/>
 			)}
+			removeClippedSubviews
 		/>
 	)
 }

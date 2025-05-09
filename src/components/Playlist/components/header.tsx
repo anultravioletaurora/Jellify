@@ -92,6 +92,7 @@ export default function PlayliistTracklistHeader(
 								height: '100%',
 								padding: getToken('$2'),
 								alignSelf: 'center',
+								borderRadius: getToken('$2'),
 							}}
 						/>
 					</Animated.View>
