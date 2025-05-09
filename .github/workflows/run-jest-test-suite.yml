@@ -21,33 +21,33 @@ jobs:
 
       - name: 🤫 Output TelemetryDeck JSON to TelemetryDeck          
         run: |
-          echo "export const ENV = {" > telemetrydeck.js
-          echo "  appID: '${{ secrets.TELEMETRYDECK_APPID }}'," >> telemetrydeck.js
-          echo "  clientUser: 'anonymous'," >> telemetrydeck.js
-          echo "  app: 'Jellify'," >> telemetrydeck.js
-          echo "};" >> telemetrydeck.js
+          echo "{" > telemetrydeck.json
+          echo "  appID: '${{ secrets.TELEMETRYDECK_APPID }}'," >> telemetrydeck.json
+          echo "  clientUser: 'anonymous'," >> telemetrydeck.json
+          echo "  app: 'Jellify'," >> telemetrydeck.json
+          echo "}" >> telemetrydeck.json
 
       - name: ✅ Validate TelemetryDeck JSON
         run: |
-          node -e "JSON.parse(require('fs').readFileSync('telemetrydeck.js'))"
+          node -e "JSON.parse(require('fs').readFileSync('telemetrydeck.json'))"
 
       - name: 🤫 Output Glitchtip JSON to Glitchtip
         run: |
-          echo "export const ENV = {" > glitchtip.js
-          echo "  dsn: '${{ secrets.GLITCHTIP_DSN }}'," >> glitchtip.js
-          echo "};" >> glitchtip.js
+          echo "{" > glitchtip.json
+          echo "  dsn: '${{ secrets.GLITCHTIP_DSN }}'," >> glitchtip.json
+          echo "}" >> glitchtip.json
 
       - name: ✅ Validate Glitchtip JSON
         run: |
-          node -e "JSON.parse(require('fs').readFileSync('glitchtip.js'))"
+          node -e "JSON.parse(require('fs').readFileSync('glitchtip.json'))"
 
       - name: Output TelemetryDeck JSON
         run: |
-          cat telemetrydeck.js
+          cat telemetrydeck.json
 
       - name: Output Glitchtip JSON
         run: |
-          cat glitchtip.js
+          cat glitchtip.json
 
       - name: 🍎 Run yarn init-ios:new-arch
         run: yarn init-ios:new-arch
