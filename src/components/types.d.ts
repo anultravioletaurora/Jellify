@@ -73,6 +73,7 @@ export type StackParamList = {
 	Server: undefined
 	Playback: undefined
 	Labs: undefined
+	SignOut: undefined
 
 	Tabs: {
 		screen: keyof StackParamList

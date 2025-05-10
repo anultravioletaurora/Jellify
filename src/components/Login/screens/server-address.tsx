@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
 import { useMutation } from '@tanstack/react-query'
 import { JellifyServer } from '../../../types/JellifyServer'
-import { Input, Spinner, YStack } from 'tamagui'
+import { Input, ListItem, Separator, Spacer, Spinner, XStack, YGroup, YStack } from 'tamagui'
 import { SwitchWithLabel } from '../../Global/helpers/switch-with-label'
 import { H2 } from '../../Global/helpers/text'
 import Button from '../../Global/helpers/button'
@@ -15,6 +15,8 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { StackParamList } from '../../../components/types'
 import Toast from 'react-native-toast-message'
 import { useJellifyContext } from '../../../providers'
+import { useSettingsContext } from '../../../providers/Settings'
+import Icon from '../../Global/helpers/icon'
 
 export default function ServerAddress({
 	navigation,
@@ -25,6 +27,8 @@ export default function ServerAddress({
 	const [serverAddress, setServerAddress] = useState<string | undefined>(undefined)
 
 	const { server, setServer, signOut } = useJellifyContext()
+
+	const { setSendMetrics, sendMetrics } = useSettingsContext()
 
 	useEffect(() => {
 		signOut()
@@ -87,21 +91,54 @@ export default function ServerAddress({
 				</H2>
 			</YStack>
 
-			<YStack marginHorizontal={'$2'}>
-				<SwitchWithLabel
-					checked={useHttps}
-					onCheckedChange={(checked) => setUseHttps(checked)}
-					label='Use HTTPS'
-					size='$2'
-					width={100}
-				/>
-
+			<YStack marginHorizontal={'$4'} gap={'$4'}>
 				<Input
 					onChangeText={setServerAddress}
 					autoCapitalize='none'
 					autoCorrect={false}
 					placeholder='jellyfin.org'
 				/>
+
+				<YGroup
+					gap={'$2'}
+					borderColor={'$borderColor'}
+					borderWidth={'$0.5'}
+					borderRadius={'$4'}
+				>
+					<YGroup.Item>
+						<ListItem
+							icon={<Icon name={useHttps ? 'lock-check' : 'lock-off'} />}
+							title='HTTPS'
+							subTitle='Use HTTPS to connect to Jellyfin'
+						>
+							<SwitchWithLabel
+								checked={useHttps}
+								onCheckedChange={(checked) => setUseHttps(checked)}
+								label='Use HTTPS'
+								size='$2'
+								width={100}
+							/>
+						</ListItem>
+					</YGroup.Item>
+
+					<Separator />
+
+					<YGroup.Item>
+						<ListItem
+							icon={<Icon name={sendMetrics ? 'bug-check' : 'bug'} />}
+							title='Submit Usage and Crash Data'
+							subTitle='Send anonymized metrics and crash data'
+						>
+							<SwitchWithLabel
+								checked={sendMetrics}
+								onCheckedChange={(checked) => setSendMetrics(checked)}
+								label='Send Metrics'
+								size='$2'
+								width={100}
+							/>
+						</ListItem>
+					</YGroup.Item>
+				</YGroup>
 
 				{useServerMutation.isPending ? (
 					<Spinner />

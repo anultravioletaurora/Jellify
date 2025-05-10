@@ -1,65 +1,31 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Root from '../../components/Settings/component'
-import AccountDetails from './account-details'
-import Labs from './labs'
-import DetailsScreen from '../Detail'
-import { StackParamList } from '../../components/types'
-import PlaybackDetails from './playback-details'
-import ServerDetails from './server-details'
+import Settings from '../../components/Settings/component'
+import SignOutModal from './sign-out-modal'
+import { SettingsStackParamList } from './types'
 
-export const SettingsStack = createNativeStackNavigator<StackParamList>()
+export const SettingsStack = createNativeStackNavigator<SettingsStackParamList>()
 
 export default function SettingsScreen(): React.JSX.Element {
 	return (
-		<SettingsStack.Navigator>
-			<SettingsStack.Screen
-				name='Settings'
-				component={Root}
-				options={{
-					headerLargeTitle: true,
-					headerLargeTitleStyle: {
-						fontFamily: 'Aileron-Bold',
-					},
-				}}
-			/>
+		<SettingsStack.Navigator
+			initialRouteName='Settings'
+			screenOptions={{
+				headerShown: false,
+			}}
+		>
+			<SettingsStack.Screen name='Settings' component={Settings} />
 
 			<SettingsStack.Screen
-				name='Account'
-				component={AccountDetails}
+				name='SignOut'
+				component={SignOutModal}
 				options={{
-					title: 'Account',
-					headerLargeTitle: true,
-					headerLargeTitleStyle: {
-						fontFamily: 'Aileron-Bold',
-					},
+					/* https://www.reddit.com/r/reactnative/comments/1dgktbn/comment/lxd23sj/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button */
+					presentation: 'formSheet',
+					sheetInitialDetentIndex: 0,
+					sheetAllowedDetents: [0.2],
 				}}
 			/>
-
-			<SettingsStack.Screen name='Server' component={ServerDetails} />
-
-			<SettingsStack.Screen name='Playback' component={PlaybackDetails} />
-
-			<SettingsStack.Screen
-				name='Labs'
-				component={Labs}
-				options={{
-					headerLargeTitle: true,
-					headerLargeTitleStyle: {
-						fontFamily: 'Aileron-Bold',
-					},
-				}}
-			/>
-
-			<SettingsStack.Group screenOptions={{ presentation: 'modal' }}>
-				<SettingsStack.Screen
-					name='Details'
-					component={DetailsScreen}
-					options={{
-						headerShown: false,
-					}}
-				/>
-			</SettingsStack.Group>
 		</SettingsStack.Navigator>
 	)
 }
