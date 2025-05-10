@@ -77,7 +77,3 @@ yarn-error.log
 .expo
 dist/
 web-build/
-
-# Glitchtip and TelemetryDeck
-glitchtip.json
-telemetrydeck.json
