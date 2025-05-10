@@ -7,3 +7,4 @@ export type Queue =
 	| 'Favorite Tracks'
 	| 'On Repeat'
 	| 'Instant Mix'
+	| 'Library'

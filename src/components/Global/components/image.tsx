@@ -4,7 +4,7 @@ import { isUndefined } from 'lodash'
 import { StyleProp } from 'react-native'
 import FastImage, { ImageStyle } from 'react-native-fast-image'
 import { FontSizeTokens, getFontSizeToken, getToken, getTokenValue, Token, useTheme } from 'tamagui'
-import { useJellifyContext } from '../../provider'
+import { useJellifyContext } from '../../../providers'
 interface ImageProps {
 	item: BaseItemDto
 	circular?: boolean | undefined

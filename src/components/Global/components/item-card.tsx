@@ -8,7 +8,7 @@ import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import { useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../../enums/query-keys'
 import { fetchMediaInfo } from '../../../api/queries/media'
-import { useJellifyContext } from '../../provider'
+import { useJellifyContext } from '../../../providers'
 interface CardProps extends TamaguiCardProps {
 	caption?: string | null | undefined
 	subCaption?: string | null | undefined
@@ -21,7 +21,9 @@ export function ItemCard(props: CardProps) {
 
 	const mediaInfo = useQuery({
 		queryKey: [QueryKeys.MediaSources, props.item.Id!],
-		queryFn: () => fetchMediaInfo(api, user, props.item.Id!),
+		queryFn: () => fetchMediaInfo(api, user, props.item),
+		staleTime: Infinity,
+		enabled: props.item.Type === 'Audio',
 	})
 
 	return (
@@ -72,7 +74,13 @@ export function ItemCard(props: CardProps) {
 					</Text>
 
 					{props.subCaption && (
-						<Text lineBreakStrategyIOS='standard' numberOfLines={1} textAlign='center'>
+						<Text
+							lineBreakStrategyIOS='standard'
+							numberOfLines={1}
+							textAlign='center'
+							bold
+							color={getToken('$color.amethyst')}
+						>
 							{props.subCaption}
 						</Text>
 					)}

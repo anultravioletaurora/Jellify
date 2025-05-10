@@ -1,22 +1,26 @@
 import { StackParamList } from '../../../components/types'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { useHomeContext } from '../provider'
+import { useHomeContext } from '../../../providers/Home'
 import { View, XStack } from 'tamagui'
 import HorizontalCardList from '../../../components/Global/components/horizontal-list'
 import { ItemCard } from '../../../components/Global/components/item-card'
 import { QueuingType } from '../../../enums/queuing-type'
 import { trigger } from 'react-native-haptic-feedback'
-import { H2 } from '../../../components/Global/helpers/text'
-import Icon from '../../../components/Global/helpers/icon'
-import { useQueueContext } from '../../../player/queue-provider'
-import { usePlayerContext } from '../../../player/player-provider'
-
+import Icon from '../../Global/components/icon'
+import { useQueueContext } from '../../../providers/Player/queue'
+import { usePlayerContext } from '../../../providers/Player'
+import { H4 } from '../../../components/Global/helpers/text'
 export default function FrequentlyPlayedTracks({
 	navigation,
 }: {
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
-	const { frequentlyPlayed } = useHomeContext()
+	const {
+		frequentlyPlayed,
+		fetchNextFrequentlyPlayed,
+		hasNextFrequentlyPlayed,
+		isFetchingFrequentlyPlayed,
+	} = useHomeContext()
 
 	const { useStartPlayback } = usePlayerContext()
 	const { useLoadNewQueue } = useQueueContext()
@@ -26,26 +30,28 @@ export default function FrequentlyPlayedTracks({
 			<XStack
 				alignItems='center'
 				onPress={() => {
-					navigation.navigate('Tracks', {
+					navigation.navigate('MostPlayedTracks', {
 						tracks: frequentlyPlayed,
-						queue: 'On Repeat',
+						fetchNextPage: fetchNextFrequentlyPlayed,
+						hasNextPage: hasNextFrequentlyPlayed,
+						isPending: isFetchingFrequentlyPlayed,
 					})
 				}}
 			>
-				<H2 marginLeft={'$2'}>On Repeat</H2>
+				<H4 marginLeft={'$2'}>On Repeat</H4>
 				<Icon name='arrow-right' />
 			</XStack>
 
 			<HorizontalCardList
 				data={
-					(frequentlyPlayed?.length ?? 0 > 10)
-						? frequentlyPlayed!.slice(0, 10)
-						: frequentlyPlayed
+					(frequentlyPlayed?.pages.flatMap((page) => page).length ?? 0 > 10)
+						? frequentlyPlayed?.pages.flatMap((page) => page).slice(0, 10)
+						: frequentlyPlayed?.pages.flatMap((page) => page)
 				}
 				renderItem={({ item: track, index }) => (
 					<ItemCard
 						item={track}
-						size={'$12'}
+						size={'$11'}
 						caption={track.Name}
 						subCaption={`${track.Artists?.join(', ')}`}
 						squared
@@ -54,7 +60,9 @@ export default function FrequentlyPlayedTracks({
 								{
 									track,
 									index,
-									tracklist: frequentlyPlayed ?? [track],
+									tracklist: frequentlyPlayed?.pages.flatMap((page) => page) ?? [
+										track,
+									],
 									queue: 'On Repeat',
 									queuingType: QueuingType.FromSelection,
 								},

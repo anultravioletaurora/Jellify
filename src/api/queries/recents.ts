@@ -10,27 +10,35 @@ import QueryConfig from './query.config'
 import { getUserLibraryApi } from '@jellyfin/sdk/lib/utils/api'
 import { Api } from '@jellyfin/sdk'
 import { isUndefined } from 'lodash'
-import { JellifyLibrary } from '../../../src/types/JellifyLibrary'
+import { JellifyLibrary } from '../../types/JellifyLibrary'
+import { JellifyUser } from '../../types/JellifyUser'
+import { queryClient } from '../../constants/query-client'
+import { QueryKeys } from '../../enums/query-keys'
+import { InfiniteData } from '@tanstack/react-query'
 
 export async function fetchRecentlyAdded(
 	api: Api | undefined,
 	library: JellifyLibrary | undefined,
-	limit: number = QueryConfig.limits.recents,
-	offset?: number | undefined,
+	page: number,
 ): Promise<BaseItemDto[]> {
-	if (isUndefined(api)) {
-		console.error('Client not set')
-		return []
-	}
-	if (isUndefined(library)) return []
-	return await getUserLibraryApi(api)
-		.getLatestMedia({
-			parentId: library.musicLibraryId,
-			limit,
-		})
-		.then(({ data }) => {
-			return offset ? data.slice(offset, data.length - 1) : data
-		})
+	return new Promise((resolve, reject) => {
+		if (isUndefined(api)) return reject('Client instance not set')
+		if (isUndefined(library)) return reject('Library instance not set')
+
+		getUserLibraryApi(api)
+			.getLatestMedia({
+				parentId: library.musicLibraryId,
+				limit: QueryConfig.limits.recents,
+			})
+			.then(({ data }) => {
+				if (data) return resolve(data)
+				return resolve([])
+			})
+			.catch((error) => {
+				console.error(error)
+				return reject(error)
+			})
+	})
 }
 
 /**
@@ -41,22 +49,25 @@ export async function fetchRecentlyAdded(
  */
 export async function fetchRecentlyPlayed(
 	api: Api | undefined,
+	user: JellifyUser | undefined,
 	library: JellifyLibrary | undefined,
+	page: number,
 	limit: number = QueryConfig.limits.recents,
-	offset?: number | undefined,
 ): Promise<BaseItemDto[]> {
 	console.debug('Fetching recently played items')
 
 	return new Promise((resolve, reject) => {
-		if (isUndefined(api)) return reject(new Error('API client not set'))
-		else if (isUndefined(library)) return reject(new Error('Library not set'))
+		if (isUndefined(api)) return reject('Client instance not set')
+		if (isUndefined(user)) return reject('User instance not set')
+		if (isUndefined(library)) return reject('Library instance not set')
 
 		getItemsApi(api)
 			.getItems({
 				includeItemTypes: [BaseItemKind.Audio],
-				startIndex: offset,
+				startIndex: page * limit,
+				userId: user.id,
 				limit,
-				parentId: library!.musicLibraryId,
+				parentId: library.musicLibraryId,
 				recursive: true,
 				sortBy: [ItemSortBy.DatePlayed],
 				sortOrder: [SortOrder.Descending],
@@ -76,27 +87,38 @@ export async function fetchRecentlyPlayed(
 }
 
 /**
- * Fetches recently played artists for a user from the Jellyfin server,
- * referencing the recently played tracks.
- * @param limit The number of items to fetch. Defaults to 50
- * @param offset The offset of the items to fetch.
+ * Fetches recently played artists for a user, using the recently played tracks
+ * from the query client since Jellyfin doesn't track when artists are played accurately.
+ * @param page The page number of the recently played tracks to fetch artists from.
  * @returns The recently played artists.
  */
-export function fetchRecentlyPlayedArtists(
-	api: Api | undefined,
-	library: JellifyLibrary | undefined,
-	limit: number = QueryConfig.limits.recents,
-	offset?: number | undefined,
-): Promise<BaseItemDto[]> {
-	return fetchRecentlyPlayed(api, library, limit, offset ? offset + 10 : undefined).then(
-		(tracks) => {
-			return getItemsApi(api!)
-				.getItems({
-					ids: tracks.map((track) => track.ArtistItems![0].Id!),
-				})
-				.then((recentArtists) => {
-					return recentArtists.data.Items!
-				})
-		},
-	)
+export function fetchRecentlyPlayedArtists(page: number): Promise<BaseItemDto[]> {
+	console.debug('Fetching recently played artists')
+	return new Promise((resolve, reject) => {
+		// Get the recently played tracks from the query client
+		const recentlyPlayedTracks = queryClient.getQueryData<InfiniteData<BaseItemDto[]>>([
+			QueryKeys.RecentlyPlayed,
+		])
+		if (!recentlyPlayedTracks) {
+			return resolve([])
+		}
+
+		// Get the artists from the recently played tracks
+		const artists = recentlyPlayedTracks.pages[page]
+
+			// Map artist from the recently played tracks
+			.map((track) => (track.ArtistItems ? track.ArtistItems[0] : undefined))
+
+			// Filter out undefined artists
+			.filter((artist) => artist !== undefined)
+
+			// Filter out duplicate artists
+			.filter(
+				(artist, index, artists) =>
+					artists.findIndex((duplicateArtist) => duplicateArtist.Id === artist.Id) ===
+					index,
+			)
+
+		resolve(artists)
+	})
 }

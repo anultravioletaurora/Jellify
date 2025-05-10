@@ -1,10 +1,10 @@
-import { usePlayerContext } from '../../../player/player-provider'
+import { usePlayerContext } from '../../../providers/Player'
 import React from 'react'
 import { getToken, getTokens, Theme, useTheme, XStack, YStack } from 'tamagui'
 import { Text } from '../helpers/text'
 import { RunTimeTicks } from '../helpers/time-codes'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
-import Icon from '../helpers/icon'
+import Icon from './icon'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { StackParamList } from '../../../components/types'
 import { QueuingType } from '../../../enums/queuing-type'
@@ -13,13 +13,13 @@ import FavoriteIcon from './favorite-icon'
 import FastImage from 'react-native-fast-image'
 import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import { networkStatusTypes } from '../../../components/Network/internetConnectionWatcher'
-import { useNetworkContext } from '../../../components/Network/provider'
+import { useNetworkContext } from '../../../providers/Network'
 import { useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../../enums/query-keys'
 import { fetchMediaInfo } from '../../../api/queries/media'
-import { useQueueContext } from '../../../player/queue-provider'
+import { useQueueContext } from '../../../providers/Player/queue'
 import { fetchItem } from '../../../api/queries/item'
-import { useJellifyContext } from '../../provider'
+import { useJellifyContext } from '../../../providers'
 
 export interface TrackProps {
 	track: BaseItemDto
@@ -67,7 +67,9 @@ export default function Track({
 	// Fetch media info so it's available in the player
 	const mediaInfo = useQuery({
 		queryKey: [QueryKeys.MediaSources, track.Id!],
-		queryFn: () => fetchMediaInfo(api, user, track.Id!),
+		queryFn: () => fetchMediaInfo(api, user, track),
+		staleTime: Infinity,
+		enabled: track.Type === 'Audio',
 	})
 
 	// Fetch album so it's available in the Details screen
@@ -81,6 +83,7 @@ export default function Track({
 			<XStack
 				alignContent='center'
 				alignItems='center'
+				height={showArtwork ? '$6' : '$5'}
 				flex={1}
 				onPress={() => {
 					if (onPress) {
@@ -117,7 +120,6 @@ export default function Track({
 					justifyContent='center'
 					flex={showArtwork ? 2 : 1}
 					marginHorizontal={'$2'}
-					minHeight={showArtwork ? '$4' : 'unset'}
 				>
 					{showArtwork ? (
 						<FastImage
@@ -155,8 +157,13 @@ export default function Track({
 						{track.Name ?? 'Untitled Track'}
 					</Text>
 
-					{(showArtwork || (track.ArtistCount ?? 0 > 1)) && (
-						<Text lineBreakStrategyIOS='standard' numberOfLines={1}>
+					{(showArtwork || (track.Artists && track.Artists.length > 1)) && (
+						<Text
+							lineBreakStrategyIOS='standard'
+							numberOfLines={1}
+							bold
+							color={'$borderColor'}
+						>
 							{track.Artists?.join(', ') ?? ''}
 						</Text>
 					)}

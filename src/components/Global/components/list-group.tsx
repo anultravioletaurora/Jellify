@@ -1,7 +1,7 @@
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { ListItem, Separator, Spacer, XStack, YGroup, YStack } from 'tamagui'
 import ItemImage from './image'
-import Icon from '../helpers/icon'
+import Icon from './icon'
 import { H5, Text } from '../helpers/text'
 
 interface ListGroupProps {

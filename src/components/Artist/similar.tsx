@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { StackParamList } from '../types'
 import { RouteProp } from '@react-navigation/native'
 import { Text } from '../Global/helpers/text'
-import { useArtistContext } from './provider'
+import { useArtistContext } from '../../providers/Artist'
 import Animated, { useAnimatedScrollHandler } from 'react-native-reanimated'
 import { ActivityIndicator } from 'react-native'
 

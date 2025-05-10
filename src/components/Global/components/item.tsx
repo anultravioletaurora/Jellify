@@ -4,11 +4,11 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { getTokens, Separator, Spacer, View, XStack, YStack } from 'tamagui'
 import { Text } from '../helpers/text'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
-import Icon from '../helpers/icon'
+import Icon from './icon'
 import { QueuingType } from '../../../enums/queuing-type'
 import { RunTimeTicks } from '../helpers/time-codes'
-import { useQueueContext } from '../../../player/queue-provider'
-import { usePlayerContext } from '../../../player/player-provider'
+import { useQueueContext } from '../../../providers/Player/queue'
+import { usePlayerContext } from '../../../providers/Player'
 import ItemImage from './image'
 
 export default function Item({
@@ -89,7 +89,12 @@ export default function Item({
 						{item.Name ?? ''}
 					</Text>
 					{(item.Type === 'Audio' || item.Type === 'MusicAlbum') && (
-						<Text lineBreakStrategyIOS='standard' numberOfLines={1}>
+						<Text
+							lineBreakStrategyIOS='standard'
+							numberOfLines={1}
+							color={'$amethyst'}
+							bold
+						>
 							{item.AlbumArtist ?? 'Untitled Artist'}
 						</Text>
 					)}
@@ -97,7 +102,7 @@ export default function Item({
 
 				<XStack justifyContent='space-between' alignItems='center' flex={2}>
 					{item.UserData?.IsFavorite ? (
-						<Icon small color={getTokens().color.telemagenta.val} name='heart' />
+						<Icon small color={'$primary'} name='heart' />
 					) : (
 						<Spacer />
 					)}

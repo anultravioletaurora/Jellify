@@ -1,11 +1,11 @@
 import { Separator, XStack } from 'tamagui'
 import Track from '../Global/components/track'
-import Icon from '../Global/helpers/icon'
+import Icon from '../Global/components/icon'
 import { trigger } from 'react-native-haptic-feedback'
 import { RefreshControl } from 'react-native'
 import { PlaylistProps } from './interfaces'
 import PlayliistTracklistHeader from './components/header'
-import { usePlaylistContext } from './provider'
+import { usePlaylistContext } from '../../providers/Playlist'
 import { useAnimatedScrollHandler } from 'react-native-reanimated'
 import AnimatedDraggableFlatList from '../Global/components/animated-draggable-flat-list'
 export default function Playlist({ playlist, navigation }: PlaylistProps): React.JSX.Element {
@@ -89,6 +89,7 @@ export default function Playlist({ playlist, navigation }: PlaylistProps): React
 				marginHorizontal: 2,
 			}}
 			onScroll={scrollOffsetHandler}
+			removeClippedSubviews
 		/>
 	)
 }

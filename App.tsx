@@ -19,6 +19,10 @@ import { requestStoragePermission } from './src/helpers/permisson-helpers'
 import ErrorBoundary from './src/components/ErrorBoundary'
 import Toast from 'react-native-toast-message'
 import JellifyToastConfig from './src/constants/toast.config'
+import { TelemetryDeckProvider, createTelemetryDeck } from '@typedigital/telemetrydeck-react'
+import telemetryDeckConfig from './telemetrydeck.json'
+import glitchtipConfig from './glitchtip.json'
+import * as Sentry from '@sentry/react-native'
 
 export const backgroundRuntime = createWorkletRuntime('background')
 
@@ -33,30 +37,17 @@ export default function App(): React.JSX.Element {
 	})
 		.then(() =>
 			TrackPlayer.updateOptions({
-				progressUpdateEventInterval: 1,
 				capabilities: CAPABILITIES,
 				notificationCapabilities: CAPABILITIES,
 				compactCapabilities: CAPABILITIES,
-				// ratingType: RatingType.Heart,
-				// likeOptions: {
-				//     isActive: false,
-				//     title: "Favorite"
-				// },
-				// dislikeOptions: {
-				//     isActive: true,
-				//     title: "Unfavorite"
-				// }
+				progressUpdateEventInterval: 10,
 			}),
 		)
 		.finally(() => {
 			setPlayerIsReady(true)
 			requestStoragePermission()
 		})
-	const getActiveTrack = async () => {
-		const track = await TrackPlayer.getActiveTrack()
-		console.log('playerIsReady', track)
-	}
-	getActiveTrack()
+
 	const [reloader, setReloader] = useState(0)
 
 	const handleRetry = () => setReloader((r) => r + 1)

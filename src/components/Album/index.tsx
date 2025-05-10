@@ -14,7 +14,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import InstantMixButton from '../Global/components/instant-mix-button'
 import ItemImage from '../Global/components/image'
 import React from 'react'
-import { useJellifyContext } from '../provider'
+import { useJellifyContext } from '../../providers'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
 
 /**

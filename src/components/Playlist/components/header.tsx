@@ -5,12 +5,12 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import { getToken, getTokens, Separator, View, XStack, YStack } from 'tamagui'
 import { AnimatedH5 } from '../../Global/helpers/text'
 import InstantMixButton from '../../Global/components/instant-mix-button'
-import Icon from '../../Global/helpers/icon'
-import { usePlaylistContext } from '../provider'
+import Icon from '../../Global/components/icon'
+import { usePlaylistContext } from '../../../providers/Playlist'
 import Animated, { useAnimatedStyle, withSpring } from 'react-native-reanimated'
 import FastImage from 'react-native-fast-image'
 import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
-import { useJellifyContext } from '../../provider'
+import { useJellifyContext } from '../../../providers'
 import { ImageType } from '@jellyfin/sdk/lib/generated-client/models'
 
 export default function PlayliistTracklistHeader(
@@ -92,6 +92,7 @@ export default function PlayliistTracklistHeader(
 								height: '100%',
 								padding: getToken('$2'),
 								alignSelf: 'center',
+								borderRadius: getToken('$2'),
 							}}
 						/>
 					</Animated.View>
@@ -135,7 +136,7 @@ function PlaylistHeaderControls({
 			<YStack justifyContent='center' alignContent='center'>
 				{editing ? (
 					<Icon
-						color={getToken('$color.danger')}
+						color={'$danger'}
 						name='delete-sweep-outline' // otherwise use "delete-circle"
 						onPress={() => navigation.navigate('DeletePlaylist', { playlist })}
 					/>
@@ -146,7 +147,7 @@ function PlaylistHeaderControls({
 
 			<YStack justifyContent='center' alignContent='center'>
 				<Icon
-					color={getToken('$color.amethyst')}
+					color={'$borderColor'}
 					name={editing ? 'content-save-outline' : 'pencil'}
 					onPress={() => setEditing(!editing)}
 				/>

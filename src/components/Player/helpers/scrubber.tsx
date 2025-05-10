@@ -5,11 +5,11 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import { trigger } from 'react-native-haptic-feedback'
 import { getToken, XStack, YStack } from 'tamagui'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
-import { usePlayerContext } from '../../../player/player-provider'
+import { usePlayerContext } from '../../../providers/Player'
 import { RunTimeSeconds } from '../../../components/Global/helpers/time-codes'
 import { UPDATE_INTERVAL } from '../../../player/config'
 import { ProgressMultiplier } from '../component.config'
-import { useQueueContext } from '../../../player/queue-provider'
+import { useQueueContext } from '../../../providers/Player/queue'
 import { Platform } from 'react-native'
 
 // Create a simple pan gesture

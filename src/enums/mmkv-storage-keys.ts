@@ -10,4 +10,8 @@ export enum MMKVStorageKeys {
 	Queue = 'Queue',
 	CurrentIndex = 'CurrentIndex',
 	Api = 'Api',
+	LibrarySortDescending = 'LibrarySortDescending',
+	LibraryIsFavorites = 'LibraryIsFavorites',
+	SendMetrics = 'SEND_METRICS',
+	AutoDownload = 'AutoDownload',
 }

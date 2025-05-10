@@ -1,27 +1,56 @@
 import _ from 'lodash'
 import React from 'react'
 import Navigation from './navigation'
-import Login from './Login/component'
-import { PlayerProvider } from '../player/player-provider'
-import { useColorScheme } from 'react-native'
-import { JellifyProvider, useJellifyContext } from './provider'
-import { JellifyUserDataProvider } from './user-data-provider'
-import { NetworkContextProvider } from './Network/provider'
-import { QueueProvider } from '../player/queue-provider'
+import { PlayerProvider } from '../providers/Player'
+import { JellifyProvider, useJellifyContext } from '../providers'
+import { JellifyUserDataProvider } from '../providers/UserData'
+import { NetworkContextProvider } from '../providers/Network'
+import { QueueProvider } from '../providers/Player/queue'
+import { DisplayProvider } from '../providers/Display/display-provider'
+import { SettingsProvider, useSettingsContext } from '../providers/Settings'
+import { createTelemetryDeck, TelemetryDeckProvider } from '@typedigital/telemetrydeck-react'
+import telemetryDeckConfig from '../../telemetrydeck.json'
+import glitchtipConfig from '../../glitchtip.json'
+import * as Sentry from '@sentry/react-native'
 
 /**
  * The main component for the Jellify app. Children are wrapped in the {@link JellifyProvider}
  * @returns The {@link Jellify} component
  */
 export default function Jellify(): React.JSX.Element {
-	const isDarkMode = useColorScheme() === 'dark'
-
 	return (
-		<JellifyProvider>
-			<App />
-		</JellifyProvider>
+		<SettingsProvider>
+			<JellifyLoggingWrapper>
+				<DisplayProvider>
+					<JellifyProvider>
+						<App />
+					</JellifyProvider>
+				</DisplayProvider>
+			</JellifyLoggingWrapper>
+		</SettingsProvider>
 	)
 }
+
+function JellifyLoggingWrapper({ children }: { children: React.ReactNode }): React.JSX.Element {
+	const { sendMetrics } = useSettingsContext()
+
+	let telemetrydeck = undefined
+	if (sendMetrics) {
+		telemetrydeck = createTelemetryDeck(telemetryDeckConfig)
+	}
+
+	Sentry.init({
+		...glitchtipConfig,
+		enabled: sendMetrics,
+	})
+
+	return sendMetrics && telemetrydeck ? (
+		<TelemetryDeckProvider telemetryDeck={telemetrydeck}>{children}</TelemetryDeckProvider>
+	) : (
+		<>{children}</>
+	)
+}
+
 /**
  * The main component for the Jellify app. Depends on {@link useJellifyContext} hook to determine if the user is logged in
  * @returns The {@link App} component

@@ -4,7 +4,7 @@ import { ScrollView } from 'tamagui'
 import RecentlyAdded from './helpers/just-added'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { StackParamList } from '../types'
-import { useDiscoverContext } from './provider'
+import { useDiscoverContext } from '../../providers/Discover'
 import { RefreshControl } from 'react-native'
 
 export default function Index({

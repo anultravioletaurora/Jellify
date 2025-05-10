@@ -2,36 +2,42 @@ import { StackParamList } from '../../../components/types'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import HorizontalCardList from '../../../components/Global/components/horizontal-list'
 import { ItemCard } from '../../../components/Global/components/item-card'
-import { useDiscoverContext } from '../provider'
+import { useDiscoverContext } from '../../../providers/Discover'
 import { View, XStack } from 'tamagui'
-import { H2 } from '../../../components/Global/helpers/text'
-import Icon from '../../../components/Global/helpers/icon'
+import { H2, H4 } from '../../../components/Global/helpers/text'
+import Icon from '../../Global/components/icon'
 
 export default function RecentlyAdded({
 	navigation,
 }: {
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
-	const { recentlyAdded } = useDiscoverContext()
+	const { recentlyAdded, fetchNextRecentlyAdded, hasNextRecentlyAdded, isPendingRecentlyAdded } =
+		useDiscoverContext()
 
 	return (
 		<View>
 			<XStack
 				alignItems='center'
 				onPress={() => {
-					navigation.navigate('Albums', {
+					navigation.navigate('RecentlyAdded', {
 						albums: recentlyAdded,
+						navigation: navigation,
+						fetchNextPage: fetchNextRecentlyAdded,
+						hasNextPage: hasNextRecentlyAdded,
+						isPending: isPendingRecentlyAdded,
 					})
 				}}
 			>
-				<H2 marginLeft={'$2'}>Recently Added</H2>
+				<H4 marginLeft={'$2'}>Recently Added</H4>
 				<Icon name='arrow-right' />
 			</XStack>
 
 			<HorizontalCardList
-				squared
 				data={
-					(recentlyAdded?.length ?? 0 > 10) ? recentlyAdded!.slice(0, 10) : recentlyAdded
+					(recentlyAdded?.pages[0].length ?? 0 > 10)
+						? recentlyAdded!.pages[0].slice(0, 10)
+						: recentlyAdded?.pages[0]
 				}
 				renderItem={({ item }) => (
 					<ItemCard

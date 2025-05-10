@@ -53,6 +53,8 @@ This app was designed with me and my dad in mind, since I wanted to give him a s
 
 ## 👀 Lemme see!
 
+*Screenshots taken on iPhone 15 Pro Max*
+
 ### Home
 
 Home
@@ -60,10 +62,6 @@ Home
 <img src="screenshots/home.png" alt="Jellify Home" width="275" height="600">
 
 ### Library
-
-Library
-
-<img src="screenshots/library.png" alt="Library" width="275" height="600">
 
 Library Artists
 
@@ -81,7 +79,11 @@ Album
 
 <img src="screenshots/album.png" alt="Album" width="275" height="600">
 
-Album (In Offline Mode)
+Album (Multiple Artists)
+
+<img src="screenshots/album_multiple_artists.png" alt="MultiArtist Album" width="275" height="600">
+
+Album (Offline Mode)
 
 <img src="screenshots/offline_album.png" alt="Offline Album" width="275" height="600">
 
@@ -138,9 +140,10 @@ Playlist
 [React Native Track Player](https://github.com/doublesymmetry/react-native-track-player)\
 [React Native URL Polyfill](https://github.com/charpeni/react-native-url-polyfill)
 
-### 👩‍💻 Monitoring
+### 👩‍💻 *Opt-In* Monitoring
 
-[GlitchTip](https://glitchtip.com/)
+[GlitchTip](https://glitchtip.com/)\
+[TelemetryDeck](https://telemetrydeck.com)
 
 ### 💜 Love from Wisconsin 🧀
 

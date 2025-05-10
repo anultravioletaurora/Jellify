@@ -21,17 +21,13 @@ export function SwitchWithLabel(props: SwitchWithLabelProps) {
 	const id = `switch-${props.size.toString().slice(1)}-${props.checked ?? ''}}`
 	return (
 		<XStack alignItems='center' gap='$3'>
-			<Label size={props.size} htmlFor={id}>
-				{props.label}
-			</Label>
-			<Separator minHeight={20} vertical />
 			<Switch
 				id={id}
 				size={props.size}
 				checked={props.checked}
 				onCheckedChange={(checked: boolean) => props.onCheckedChange(checked)}
 				backgroundColor={
-					props.checked ? getToken('$color.telemagenta') : getToken('$color.purpleGray')
+					props.checked ? getToken('$color.success') : getToken('$color.purpleGray')
 				}
 				borderColor={
 					isDarkMode ? getToken('$color.amethyst') : getToken('$color.purpleDark')
@@ -39,6 +35,10 @@ export function SwitchWithLabel(props: SwitchWithLabelProps) {
 			>
 				<JellifySliderThumb animation='bouncy' />
 			</Switch>
+			<Separator minHeight={20} vertical />
+			<Label size={props.size} htmlFor={id}>
+				{props.label}
+			</Label>
 		</XStack>
 	)
 }

@@ -47,7 +47,8 @@ export async function handlePlaybackProgress(
 	track: JellifyTrack,
 	progress: Progress,
 ) {
-	if (Math.floor(progress.duration - progress.position) === 5) {
+	console.debug('Playback progress updated')
+	if (Math.floor(progress.duration) - Math.floor(progress.position) <= 9) {
 		console.debug(`Track finished. ${playstateApi ? 'scrobbling...' : ''}`)
 
 		if (playstateApi)

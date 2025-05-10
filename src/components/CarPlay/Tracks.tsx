@@ -8,7 +8,7 @@ import { queryClient } from '../../constants/query-client'
 import { QueryKeys } from '../../enums/query-keys'
 import { Api } from '@jellyfin/sdk'
 import React from 'react'
-import { QueueContext } from '../../player/queue-provider'
+import { QueueContext } from '../../providers/Player/queue'
 import { Queue } from '../../player/types/queue-item'
 
 const TracksTemplate = (api: Api, sessionId: string, items: BaseItemDto[], queuingRef: Queue) =>
