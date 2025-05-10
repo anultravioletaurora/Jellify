@@ -20,11 +20,7 @@ export function SwitchWithLabel(props: SwitchWithLabelProps) {
 
 	const id = `switch-${props.size.toString().slice(1)}-${props.checked ?? ''}}`
 	return (
-		<XStack alignItems='center' gap='$3' marginHorizontal={'$4'}>
-			<Label size={props.size} htmlFor={id}>
-				{props.label}
-			</Label>
-			<Separator minHeight={20} vertical />
+		<XStack alignItems='center' gap='$3'>
 			<Switch
 				id={id}
 				size={props.size}
@@ -39,6 +35,10 @@ export function SwitchWithLabel(props: SwitchWithLabelProps) {
 			>
 				<JellifySliderThumb animation='bouncy' />
 			</Switch>
+			<Separator minHeight={20} vertical />
+			<Label size={props.size} htmlFor={id}>
+				{props.label}
+			</Label>
 		</XStack>
 	)
 }

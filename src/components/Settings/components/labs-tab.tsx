@@ -7,7 +7,7 @@ export default function LabsTab(): React.JSX.Element {
 	return (
 		<YGroup
 			alignSelf='center'
-			borderColor={'$telemagenta'}
+			borderColor={'$borderColor'}
 			borderWidth={'$1'}
 			borderRadius={'$4'}
 			margin={'$4'}

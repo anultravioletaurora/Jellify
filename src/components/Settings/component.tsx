@@ -5,7 +5,8 @@ import { getToken } from 'tamagui'
 import AccountTab from './components/account-tab'
 import Icon from '../Global/helpers/icon'
 import LabsTab from './components/labs-tab'
-import AppTab from './components/app-tab'
+import PreferencesTab from './components/preferences-tab'
+import InfoTab from './components/info-tab'
 
 const SettingsTabsNavigator = createMaterialTopTabNavigator()
 
@@ -26,14 +27,15 @@ export default function Settings(): React.JSX.Element {
 			}}
 		>
 			<SettingsTabsNavigator.Screen
-				name='Jellify'
-				component={AppTab}
+				name='Settings'
+				component={PreferencesTab}
 				options={{
 					tabBarIcon: ({ focused, color }) => (
-						<Icon name='application-braces' color={color} small />
+						<Icon name='headphones-settings' color={color} small />
 					),
 				}}
 			/>
+
 			<SettingsTabsNavigator.Screen
 				name='Account'
 				component={AccountTab}
@@ -49,6 +51,16 @@ export default function Settings(): React.JSX.Element {
 				component={LabsTab}
 				options={{
 					tabBarIcon: ({ focused, color }) => <Icon name='flask' color={color} small />,
+				}}
+			/>
+
+			<SettingsTabsNavigator.Screen
+				name='About'
+				component={InfoTab}
+				options={{
+					tabBarIcon: ({ focused, color }) => (
+						<Icon name='information' color={color} small />
+					),
 				}}
 			/>
 		</SettingsTabsNavigator.Navigator>

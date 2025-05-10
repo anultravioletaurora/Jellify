@@ -1,6 +1,12 @@
 import React, { createContext, ReactNode, useContext } from 'react'
 import { JellifyDownload } from '../../types/JellifyDownload'
-import { useMutation, UseMutationResult, useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+	useMutation,
+	UseMutationResult,
+	useQuery,
+	useQueryClient,
+	UseQueryResult,
+} from '@tanstack/react-query'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { mapDtoToTrack } from '../../helpers/mappings'
 import { deleteAudio, getAudioCache, saveAudio } from '../../components/Network/offlineModeUtils'
@@ -9,9 +15,13 @@ import { networkStatusTypes } from '../../components/Network/internetConnectionW
 import DownloadProgress from '../../types/DownloadProgress'
 import { useJellifyContext } from '..'
 import { isUndefined } from 'lodash'
+import RNFS from 'react-native-fs'
+import { JellifyStorage } from './types'
+
 interface NetworkContext {
 	useDownload: UseMutationResult<void, Error, BaseItemDto, unknown>
 	useRemoveDownload: UseMutationResult<void, Error, BaseItemDto, unknown>
+	storageUsage: JellifyStorage | undefined
 	downloadedTracks: JellifyDownload[] | undefined
 	activeDownloads: DownloadProgress[] | undefined
 	networkStatus: networkStatusTypes | undefined
@@ -20,6 +30,17 @@ interface NetworkContext {
 const NetworkContextInitializer = () => {
 	const { api, sessionId } = useJellifyContext()
 	const queryClient = useQueryClient()
+
+	const fetchStorageInUse: () => Promise<JellifyStorage> = async () => {
+		const totalStorage = await RNFS.getFSInfo()
+		const storageInUse = await RNFS.stat(RNFS.DocumentDirectoryPath)
+
+		return {
+			totalStorage: totalStorage.totalSpace,
+			freeSpace: totalStorage.freeSpace,
+			storageInUseByJellify: storageInUse.size,
+		}
+	}
 
 	const useDownload = useMutation({
 		mutationFn: (trackItem: BaseItemDto) => {
@@ -35,6 +56,12 @@ const NetworkContextInitializer = () => {
 			refetchDownloadedTracks()
 			return data
 		},
+	})
+
+	const { data: storageUsage } = useQuery({
+		queryKey: [QueryKeys.StorageInUse],
+		queryFn: () => fetchStorageInUse(),
+		staleTime: 1000 * 60 * 60 * 1, // 1 hour
 	})
 
 	const useRemoveDownload = useMutation({
@@ -67,6 +94,7 @@ const NetworkContextInitializer = () => {
 		activeDownloads,
 		downloadedTracks,
 		networkStatus,
+		storageUsage,
 	}
 }
 
@@ -110,6 +138,7 @@ const NetworkContext = createContext<NetworkContext>({
 	downloadedTracks: [],
 	activeDownloads: [],
 	networkStatus: networkStatusTypes.ONLINE,
+	storageUsage: undefined,
 })
 
 export const NetworkContextProvider: ({
@@ -117,22 +146,9 @@ export const NetworkContextProvider: ({
 }: {
 	children: ReactNode
 }) => React.JSX.Element = ({ children }: { children: ReactNode }) => {
-	const { useDownload, useRemoveDownload, downloadedTracks, activeDownloads, networkStatus } =
-		NetworkContextInitializer()
+	const context = NetworkContextInitializer()
 
-	return (
-		<NetworkContext.Provider
-			value={{
-				useDownload,
-				useRemoveDownload,
-				activeDownloads,
-				downloadedTracks,
-				networkStatus,
-			}}
-		>
-			{children}
-		</NetworkContext.Provider>
-	)
+	return <NetworkContext.Provider value={context}>{children}</NetworkContext.Provider>
 }
 
 export const useNetworkContext = () => useContext(NetworkContext)

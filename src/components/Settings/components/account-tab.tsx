@@ -1,7 +1,7 @@
 import React from 'react'
 import Icon from '../../Global/helpers/icon'
 import { useJellifyContext } from '../../../providers'
-import { ListItem, YGroup } from 'tamagui'
+import { ListItem, Separator, YGroup } from 'tamagui'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import SignOut from './sign-out-button'
 import { SettingsStackParamList } from '../../../screens/Settings/types'
@@ -18,7 +18,7 @@ export default function AccountTab(): React.JSX.Element {
 		<SafeAreaView>
 			<YGroup
 				alignSelf='center'
-				borderColor={'$telemagenta'}
+				borderColor={'$borderColor'}
 				borderWidth={'$1'}
 				borderRadius={'$4'}
 				margin={'$4'}
@@ -34,6 +34,8 @@ export default function AccountTab(): React.JSX.Element {
 					</ListItem>
 				</YGroup.Item>
 
+				<Separator />
+
 				<YGroup.Item>
 					<ListItem
 						size={'$5'}
@@ -43,11 +45,8 @@ export default function AccountTab(): React.JSX.Element {
 						<Text>{library!.musicLibraryName!}</Text>
 					</ListItem>
 				</YGroup.Item>
-
-				<YGroup.Item forcePlacement='last'>
-					<SignOut navigation={navigation} />
-				</YGroup.Item>
 			</YGroup>
+			<SignOut navigation={navigation} />
 		</SafeAreaView>
 	)
 }

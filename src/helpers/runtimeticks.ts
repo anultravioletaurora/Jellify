@@ -1,5 +1,3 @@
-import { SharedValue } from 'react-native-reanimated'
-
 /**
  * Converts the run time seconds of a track to the RunTimeTicks standard set by Emby / Jellyfin
  * @param seconds The run time seconds of the item to convert to Jellyfin ticks
