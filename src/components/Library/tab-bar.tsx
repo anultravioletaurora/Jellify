@@ -1,12 +1,11 @@
 import { MaterialTopTabBar, MaterialTopTabBarProps } from '@react-navigation/material-top-tabs'
 import React, { useEffect } from 'react'
-import { Button, getToken, Separator, XStack, YStack } from 'tamagui'
-import Icon from '../Global/helpers/icon'
+import { Separator, XStack, YStack } from 'tamagui'
+import Icon from '../Global/components/icon'
 import { useLibrarySortAndFilterContext } from '../../providers/Library/sorting-filtering'
 import { Text } from '../Global/helpers/text'
 import { FadeIn, FadeOut } from 'react-native-reanimated'
 import Animated from 'react-native-reanimated'
-import { useLibraryContext } from '../../providers/Library'
 
 export default function LibraryTabBar(props: MaterialTopTabBarProps) {
 	useEffect(() => {
@@ -40,12 +39,9 @@ export default function LibraryTabBar(props: MaterialTopTabBarProps) {
 							alignItems={'center'}
 							justifyContent={'center'}
 						>
-							<Icon
-								name={'plus-circle-outline'}
-								color={getToken('$color.telemagenta')}
-							/>
+							<Icon name={'plus-circle-outline'} color={'$primary'} />
 
-							<Text color={'$telemagenta'}>Create Playlist</Text>
+							<Text color={'$primary'}>Create Playlist</Text>
 						</XStack>
 					) : (
 						<XStack
@@ -56,20 +52,10 @@ export default function LibraryTabBar(props: MaterialTopTabBarProps) {
 						>
 							<Icon
 								name={isFavorites ? 'heart' : 'heart-outline'}
-								color={
-									isFavorites
-										? getToken('$color.telemagenta')
-										: getToken('$color.purpleGray')
-								}
+								color={isFavorites ? '$primary' : '$borderColor'}
 							/>
 
-							<Text
-								color={
-									isFavorites
-										? getToken('$color.telemagenta')
-										: getToken('$color.purpleGray')
-								}
-							>
+							<Text color={isFavorites ? '$primary' : '$borderColor'}>
 								{isFavorites ? 'Favorites' : 'All'}
 							</Text>
 						</XStack>
@@ -90,20 +76,10 @@ export default function LibraryTabBar(props: MaterialTopTabBarProps) {
 								? 'sort-alphabetical-descending'
 								: 'sort-alphabetical-ascending'
 						}
-						color={
-							sortDescending
-								? getToken('$color.success')
-								: getToken('$color.purpleGray')
-						}
+						color={sortDescending ? '$success' : '$borderColor'}
 					/>
 
-					<Text
-						color={
-							sortDescending
-								? getToken('$color.success')
-								: getToken('$color.purpleGray')
-						}
-					>
+					<Text color={sortDescending ? '$success' : '$borderColor'}>
 						{sortDescending ? 'Descending' : 'Ascending'}
 					</Text>
 				</XStack>

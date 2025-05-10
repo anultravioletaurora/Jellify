@@ -1,51 +1,46 @@
 import React from 'react'
-import Icon from '../../Global/helpers/icon'
+import Icon from '../../Global/components/icon'
 import { useJellifyContext } from '../../../providers'
-import { ListItem, Separator, YGroup } from 'tamagui'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import SignOut from './sign-out-button'
 import { SettingsStackParamList } from '../../../screens/Settings/types'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { useNavigation } from '@react-navigation/native'
 import { Text } from '../../Global/helpers/text'
+import SettingsListGroup from './settings-list-group'
 
 export default function AccountTab(): React.JSX.Element {
-	const { user, library } = useJellifyContext()
+	const { user, library, server } = useJellifyContext()
 
 	const navigation = useNavigation<NativeStackNavigationProp<SettingsStackParamList>>()
 
 	return (
 		<SafeAreaView>
-			<YGroup
-				alignSelf='center'
-				borderColor={'$borderColor'}
-				borderWidth={'$1'}
-				borderRadius={'$4'}
-				margin={'$4'}
-			>
-				<YGroup.Item>
-					<ListItem
-						size={'$5'}
-						icon={<Icon name='account-music' />}
-						title={'Username'}
-						subTitle={"You're awesome!"}
-					>
-						<Text>{user!.name}</Text>
-					</ListItem>
-				</YGroup.Item>
-
-				<Separator />
-
-				<YGroup.Item>
-					<ListItem
-						size={'$5'}
-						icon={<Icon name='book-music' />}
-						title={'Selected Library'}
-					>
-						<Text>{library!.musicLibraryName!}</Text>
-					</ListItem>
-				</YGroup.Item>
-			</YGroup>
+			<SettingsListGroup
+				settingsList={[
+					{
+						title: 'Username',
+						subTitle: "You're awesome!",
+						iconName: 'account-music',
+						iconColor: '$borderColor',
+						children: <Text>{user?.name ?? 'Unknown User'}</Text>,
+					},
+					{
+						title: 'Selected Library',
+						subTitle: '',
+						iconName: 'book-music',
+						iconColor: '$borderColor',
+						children: <Text>{library?.musicLibraryName ?? 'Unknown Library'}</Text>,
+					},
+					{
+						title: 'Jellyfin Server',
+						subTitle: server?.version ?? 'Unknown Jellyfin Version',
+						iconName: 'server',
+						iconColor: '$borderColor',
+						children: <Text>{server?.name ?? 'Unknown Server'}</Text>,
+					},
+				]}
+			/>
 			<SignOut navigation={navigation} />
 		</SafeAreaView>
 	)

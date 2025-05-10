@@ -16,7 +16,7 @@ import { StackParamList } from '../../../components/types'
 import Toast from 'react-native-toast-message'
 import { useJellifyContext } from '../../../providers'
 import { useSettingsContext } from '../../../providers/Settings'
-import Icon from '../../Global/helpers/icon'
+import Icon from '../../Global/components/icon'
 
 export default function ServerAddress({
 	navigation,
@@ -107,14 +107,19 @@ export default function ServerAddress({
 				>
 					<YGroup.Item>
 						<ListItem
-							icon={<Icon name={useHttps ? 'lock-check' : 'lock-off'} />}
+							icon={
+								<Icon
+									name={useHttps ? 'lock-check' : 'lock-off'}
+									color={useHttps ? '$success' : '$borderColor'}
+								/>
+							}
 							title='HTTPS'
 							subTitle='Use HTTPS to connect to Jellyfin'
 						>
 							<SwitchWithLabel
 								checked={useHttps}
 								onCheckedChange={(checked) => setUseHttps(checked)}
-								label='Use HTTPS'
+								label={useHttps ? 'Use HTTPS' : 'Use HTTP'}
 								size='$2'
 								width={100}
 							/>
@@ -125,7 +130,12 @@ export default function ServerAddress({
 
 					<YGroup.Item>
 						<ListItem
-							icon={<Icon name={sendMetrics ? 'bug-check' : 'bug'} />}
+							icon={
+								<Icon
+									name={sendMetrics ? 'bug-check' : 'bug'}
+									color={sendMetrics ? '$success' : '$borderColor'}
+								/>
+							}
 							title='Submit Usage and Crash Data'
 							subTitle='Send anonymized metrics and crash data'
 						>

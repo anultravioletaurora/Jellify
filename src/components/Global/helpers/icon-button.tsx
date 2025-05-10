@@ -1,6 +1,6 @@
 import React from 'react'
 import { Square, Theme } from 'tamagui'
-import Icon from './icon'
+import Icon from '../components/icon'
 import { TouchableOpacity } from 'react-native'
 import { Text } from './text'
 
@@ -40,13 +40,7 @@ export default function IconButton({
 					justifyContent='center'
 					backgroundColor={'$background'}
 				>
-					<Icon
-						large={largeIcon}
-						small={!largeIcon}
-						name={name}
-						color={'$color'}
-						disabled={disabled}
-					/>
+					<Icon large={largeIcon} small={!largeIcon} name={name} disabled={disabled} />
 
 					{title && <Text textAlign='center'>{title}</Text>}
 				</Square>

@@ -1,6 +1,6 @@
 import { FlatList, RefreshControl } from 'react-native-gesture-handler'
 import { ItemCard } from '../Global/components/item-card'
-import Icon from '../Global/helpers/icon'
+import Icon from '../Global/components/icon'
 import { getToken, getTokens } from 'tamagui'
 import { fetchFavoritePlaylists } from '../../api/queries/favorites'
 import { QueryKeys } from '../../enums/query-keys'

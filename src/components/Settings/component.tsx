@@ -1,9 +1,9 @@
 import React from 'react'
 import { useColorScheme } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { getToken } from 'tamagui'
+import { getToken, useTheme } from 'tamagui'
 import AccountTab from './components/account-tab'
-import Icon from '../Global/helpers/icon'
+import Icon from '../Global/components/icon'
 import LabsTab from './components/labs-tab'
 import PreferencesTab from './components/preferences-tab'
 import InfoTab from './components/info-tab'
@@ -11,16 +11,14 @@ import InfoTab from './components/info-tab'
 const SettingsTabsNavigator = createMaterialTopTabNavigator()
 
 export default function Settings(): React.JSX.Element {
-	const isDarkMode = useColorScheme() === 'dark'
+	const theme = useTheme()
 
 	return (
 		<SettingsTabsNavigator.Navigator
 			screenOptions={{
 				tabBarShowIcon: true,
-				tabBarActiveTintColor: getToken('$color.telemagenta'),
-				tabBarInactiveTintColor: isDarkMode
-					? getToken('$color.amethyst')
-					: getToken('$color.purpleGray'),
+				tabBarActiveTintColor: theme.primary.val,
+				tabBarInactiveTintColor: theme.borderColor.val,
 				tabBarLabelStyle: {
 					fontFamily: 'Aileron-Bold',
 				},
@@ -31,7 +29,11 @@ export default function Settings(): React.JSX.Element {
 				component={PreferencesTab}
 				options={{
 					tabBarIcon: ({ focused, color }) => (
-						<Icon name='headphones-settings' color={color} small />
+						<Icon
+							name='headphones-settings'
+							color={focused ? '$primary' : '$borderColor'}
+							small
+						/>
 					),
 				}}
 			/>
@@ -41,7 +43,11 @@ export default function Settings(): React.JSX.Element {
 				component={AccountTab}
 				options={{
 					tabBarIcon: ({ focused, color }) => (
-						<Icon name='account-music' color={color} small />
+						<Icon
+							name='account-music'
+							color={focused ? '$primary' : '$borderColor'}
+							small
+						/>
 					),
 				}}
 			/>
@@ -50,7 +56,9 @@ export default function Settings(): React.JSX.Element {
 				name='Labs'
 				component={LabsTab}
 				options={{
-					tabBarIcon: ({ focused, color }) => <Icon name='flask' color={color} small />,
+					tabBarIcon: ({ focused, color }) => (
+						<Icon name='flask' color={focused ? '$primary' : '$borderColor'} small />
+					),
 				}}
 			/>
 
@@ -59,7 +67,11 @@ export default function Settings(): React.JSX.Element {
 				component={InfoTab}
 				options={{
 					tabBarIcon: ({ focused, color }) => (
-						<Icon name='information' color={color} small />
+						<Icon
+							name='information'
+							color={focused ? '$primary' : '$borderColor'}
+							small
+						/>
 					),
 				}}
 			/>

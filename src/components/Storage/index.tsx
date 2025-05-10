@@ -4,7 +4,7 @@ import RNFS from 'react-native-fs'
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import { deleteAudioCache } from '../../components/Network/offlineModeUtils'
 import { useNetworkContext } from '../../providers/Network'
-import Icon from '../Global/helpers/icon'
+import Icon from '../Global/components/icon'
 import { getToken, View } from 'tamagui'
 import { Text } from '../Global/helpers/text'
 

@@ -1,4 +1,4 @@
-import Icon from '../Global/helpers/icon'
+import Icon from '../Global/components/icon'
 import Track from '../Global/components/track'
 import { StackParamList } from '../types'
 import { usePlayerContext } from '../../providers/Player'

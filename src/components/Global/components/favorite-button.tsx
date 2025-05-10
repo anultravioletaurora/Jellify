@@ -1,6 +1,6 @@
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import React, { useEffect, useState } from 'react'
-import Icon from '../helpers/icon'
+import Icon from './icon'
 import { useQuery } from '@tanstack/react-query'
 import { isUndefined } from 'lodash'
 import { getTokens, Spinner } from 'tamagui'
@@ -43,7 +43,7 @@ export default function FavoriteButton({
 	) : (
 		<Icon
 			name={isFavorite ? 'heart' : 'heart-outline'}
-			color={getTokens().color.telemagenta.val}
+			color={'$primary'}
 			onPress={() =>
 				toggleFavorite(isFavorite, {
 					item,

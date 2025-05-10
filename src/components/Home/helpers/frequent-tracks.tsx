@@ -6,7 +6,7 @@ import HorizontalCardList from '../../../components/Global/components/horizontal
 import { ItemCard } from '../../../components/Global/components/item-card'
 import { QueuingType } from '../../../enums/queuing-type'
 import { trigger } from 'react-native-haptic-feedback'
-import Icon from '../../../components/Global/helpers/icon'
+import Icon from '../../Global/components/icon'
 import { useQueueContext } from '../../../providers/Player/queue'
 import { usePlayerContext } from '../../../providers/Player'
 import { H4 } from '../../../components/Global/helpers/text'

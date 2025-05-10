@@ -12,5 +12,6 @@ export enum MMKVStorageKeys {
 	Api = 'Api',
 	LibrarySortDescending = 'LibrarySortDescending',
 	LibraryIsFavorites = 'LibraryIsFavorites',
-	SEND_METRICS = 'SEND_METRICS',
+	SendMetrics = 'SEND_METRICS',
+	AutoDownload = 'AutoDownload',
 }

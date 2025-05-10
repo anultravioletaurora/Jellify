@@ -3,7 +3,7 @@ import { getToken, getTokens, Image, useTheme, View, XStack, YStack } from 'tama
 import { usePlayerContext } from '../../providers/Player'
 import { BottomTabNavigationEventMap } from '@react-navigation/bottom-tabs'
 import { NavigationHelpers, ParamListBase } from '@react-navigation/native'
-import Icon from '../Global/helpers/icon'
+import Icon from '../Global/components/icon'
 import { Text } from '../Global/helpers/text'
 import TextTicker from 'react-native-text-ticker'
 import PlayPauseButton from './helpers/buttons'
@@ -79,7 +79,7 @@ export function Miniplayer({
 
 						<Icon
 							large
-							color={theme.borderColor.val}
+							color={'$borderColor'}
 							name='skip-next'
 							onPress={() => useSkip.mutate(undefined)}
 						/>

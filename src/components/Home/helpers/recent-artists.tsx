@@ -6,7 +6,7 @@ import { StackParamList } from '../../types'
 import { ItemCard } from '../../Global/components/item-card'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import HorizontalCardList from '../../../components/Global/components/horizontal-list'
-import Icon from '../../../components/Global/helpers/icon'
+import Icon from '../../Global/components/icon'
 
 export default function RecentArtists({
 	navigation,

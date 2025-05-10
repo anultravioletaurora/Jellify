@@ -42,8 +42,10 @@ export default function ServerLibrary({
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
-			<YStack maxHeight={'$19'} flex={1} justifyContent='flex-end' alignContent='flex-end'>
-				<H2 textAlign='center'>Select Music Library</H2>
+			<YStack maxHeight={'$19'} flex={1} justifyContent='center'>
+				<H2 marginHorizontal={'$2'} textAlign='center'>
+					Select Music Library
+				</H2>
 			</YStack>
 			<YStack marginHorizontal={'$4'}>
 				{isPending ? (

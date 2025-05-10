@@ -5,7 +5,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import SettingsScreen from '../screens/Settings'
 import { Discover } from '../screens/Discover'
 import { Miniplayer } from './Player/mini-player'
-import { getToken, getTokens, Separator } from 'tamagui'
+import { getToken, getTokens, Separator, useTheme } from 'tamagui'
 import { usePlayerContext } from '../providers/Player'
 import SearchStack from '../screens/Search'
 import LibraryStack from '../screens/Library'
@@ -15,7 +15,7 @@ import InternetConnectionWatcher from './Network/internetConnectionWatcher'
 const Tab = createBottomTabNavigator()
 
 export function Tabs(): React.JSX.Element {
-	const isDarkMode = useColorScheme() === 'dark'
+	const theme = useTheme()
 	const { nowPlaying } = usePlayerContext()
 
 	return (
@@ -23,13 +23,8 @@ export function Tabs(): React.JSX.Element {
 			initialRouteName='Home'
 			screenOptions={{
 				animation: 'shift',
-				tabBarActiveTintColor: getTokens().color.telemagenta.val,
-				tabBarInactiveTintColor: isDarkMode
-					? getToken('$color.amethyst')
-					: getToken('$color.purpleGray'),
-				tabBarLabelStyle: {
-					fontWeight: 'bold',
-				},
+				tabBarActiveTintColor: theme.primary.val,
+				tabBarInactiveTintColor: theme.borderColor.val,
 			}}
 			tabBar={(props) => (
 				<>

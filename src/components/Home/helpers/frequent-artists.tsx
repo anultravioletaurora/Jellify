@@ -5,7 +5,7 @@ import React from 'react'
 import { ItemCard } from '../../../components/Global/components/item-card'
 import { View, XStack } from 'tamagui'
 import { H2, H4, Text } from '../../../components/Global/helpers/text'
-import Icon from '../../../components/Global/helpers/icon'
+import Icon from '../../Global/components/icon'
 import { useHomeContext } from '../../../providers/Home'
 import { ActivityIndicator } from 'react-native'
 

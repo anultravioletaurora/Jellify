@@ -9,7 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { JellifyUser } from '../../../types/JellifyUser'
 import { StackParamList } from '../../../components/types'
 import Input from '../../../components/Global/helpers/input'
-import Icon from '../../../components/Global/helpers/icon'
+import Icon from '../../Global/components/icon'
 import { useJellifyContext } from '../../../providers'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import Toast from 'react-native-toast-message'
@@ -70,15 +70,9 @@ export default function ServerAuthentication({
 					{`Sign in to ${server?.name ?? 'Jellyfin'}`}
 				</H2>
 			</YStack>
-			<YStack marginHorizontal={'$2'}>
+			<YStack marginHorizontal={'$4'}>
 				<Input
-					prependElement={
-						<Icon
-							small
-							name='human-greeting-variant'
-							color={getToken('$color.amethyst')}
-						/>
-					}
+					prependElement={<Icon name='human-greeting-variant' color={'$borderColor'} />}
 					placeholder='Username'
 					value={username}
 					onChangeText={(value: string | undefined) => setUsername(value)}
@@ -89,9 +83,7 @@ export default function ServerAuthentication({
 				<Spacer />
 
 				<Input
-					prependElement={
-						<Icon small name='lock-outline' color={getToken('$color.amethyst')} />
-					}
+					prependElement={<Icon name='lock-outline' color={'$borderColor'} />}
 					placeholder='Password'
 					value={password}
 					onChangeText={(value: string | undefined) => setPassword(value)}

@@ -1,25 +1,21 @@
 import { ListItem, View, YGroup } from 'tamagui'
 import { Text } from '../../Global/helpers/text'
 import { SwitchWithLabel } from '../../Global/helpers/switch-with-label'
-import Icon from '../../Global/helpers/icon'
+import Icon from '../../Global/components/icon'
+import SettingsListGroup from './settings-list-group'
 
 export default function LabsTab(): React.JSX.Element {
 	return (
-		<YGroup
-			alignSelf='center'
-			borderColor={'$borderColor'}
-			borderWidth={'$1'}
-			borderRadius={'$4'}
-			margin={'$4'}
-		>
-			<YGroup.Item>
-				<ListItem
-					size={'$5'}
-					icon={<Icon name='test-tube-off' />}
-					title={'Nothing to see here...(yet)'}
-					subTitle={'Come back later to enable beta features'}
-				/>
-			</YGroup.Item>
-		</YGroup>
+		<SettingsListGroup
+			borderColor={'$danger'}
+			settingsList={[
+				{
+					title: 'Nothing to see here...(yet)',
+					subTitle: 'Come back later to enable beta features',
+					iconName: 'test-tube-off',
+					iconColor: '$danger',
+				},
+			]}
+		/>
 	)
 }

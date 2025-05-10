@@ -1,7 +1,7 @@
 import React from 'react'
 import { XStack, getToken } from 'tamagui'
 import PlayPauseButton from './buttons'
-import Icon from '../../../components/Global/helpers/icon'
+import Icon from '../../Global/components/icon'
 import { usePlayerContext } from '../../../providers/Player'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import { useQueueContext } from '../../../providers/Player/queue'
@@ -15,14 +15,10 @@ export default function Controls(): React.JSX.Element {
 
 	return (
 		<XStack alignItems='center' justifyContent='space-evenly' marginVertical={'$4'}>
-			<Icon
-				color={getToken('$color.amethyst')}
-				name='rewind-15'
-				onPress={() => useSeekBy.mutate(-15)}
-			/>
+			<Icon color={'$borderColor'} name='rewind-15' onPress={() => useSeekBy.mutate(-15)} />
 
 			<Icon
-				color={getToken('$color.amethyst')}
+				color={'$borderColor'}
 				name='skip-previous'
 				onPress={() => usePrevious.mutate()}
 				large
@@ -32,14 +28,14 @@ export default function Controls(): React.JSX.Element {
 			<PlayPauseButton size={getToken('$13') - getToken('$5')} />
 
 			<Icon
-				color={getToken('$color.amethyst')}
+				color={'$borderColor'}
 				name='skip-next'
 				onPress={() => useSkip.mutate(undefined)}
 				large
 			/>
 
 			<Icon
-				color={getToken('$color.amethyst')}
+				color={'$borderColor'}
 				name='fast-forward-15'
 				onPress={() => useSeekBy.mutate(15)}
 			/>

@@ -5,7 +5,7 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { SafeAreaView, useSafeAreaFrame } from 'react-native-safe-area-context'
 import { YStack, XStack, Spacer, getTokens, getToken, useTheme } from 'tamagui'
 import { Text } from '../Global/helpers/text'
-import Icon from '../Global/helpers/icon'
+import Icon from '../Global/components/icon'
 import FavoriteButton from '../Global/components/favorite-button'
 import TextTicker from 'react-native-text-ticker'
 import { TextTickerConfig } from './component.config'
@@ -19,6 +19,7 @@ import JellifyToastConfig from '../../constants/toast.config'
 import { useColorScheme } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 import { useJellifyContext } from '../../providers'
+import Footer from './helpers/footer'
 export default function PlayerScreen({
 	navigation,
 }: {
@@ -201,24 +202,7 @@ export default function PlayerScreen({
 
 						<Controls />
 
-						<YStack justifyContent='flex-end' height={'$10'} maxHeight={height / 10}>
-							<XStack justifyContent='space-evenly' marginVertical={'$3'}>
-								<Icon name='speaker-multiple' />
-
-								<Spacer />
-
-								<Spacer />
-
-								<Spacer />
-
-								<Icon
-									name='playlist-music'
-									onPress={() => {
-										navigation.navigate('Queue')
-									}}
-								/>
-							</XStack>
-						</YStack>
+						<Footer navigation={navigation} />
 					</YStack>
 				</>
 			)}

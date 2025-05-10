@@ -4,7 +4,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { getTokens, Separator, Spacer, View, XStack, YStack } from 'tamagui'
 import { Text } from '../helpers/text'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
-import Icon from '../helpers/icon'
+import Icon from './icon'
 import { QueuingType } from '../../../enums/queuing-type'
 import { RunTimeTicks } from '../helpers/time-codes'
 import { useQueueContext } from '../../../providers/Player/queue'
@@ -102,7 +102,7 @@ export default function Item({
 
 				<XStack justifyContent='space-between' alignItems='center' flex={2}>
 					{item.UserData?.IsFavorite ? (
-						<Icon small color={getTokens().color.telemagenta.val} name='heart' />
+						<Icon small color={'$primary'} name='heart' />
 					) : (
 						<Spacer />
 					)}

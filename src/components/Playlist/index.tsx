@@ -1,6 +1,6 @@
 import { Separator, XStack } from 'tamagui'
 import Track from '../Global/components/track'
-import Icon from '../Global/helpers/icon'
+import Icon from '../Global/components/icon'
 import { trigger } from 'react-native-haptic-feedback'
 import { RefreshControl } from 'react-native'
 import { PlaylistProps } from './interfaces'
