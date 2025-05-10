@@ -13,3 +13,14 @@ export type JellifyDownload = JellifyTrack & {
 	 */
 	path: string | undefined
 }
+
+export type JellifyDownloadProgress = {
+	[url: string]: {
+		progress: number
+		name: string
+		songName: string
+	}
+}
+export type JellifyDownloadProgressState = React.Dispatch<
+	React.SetStateAction<JellifyDownloadProgress>
+>

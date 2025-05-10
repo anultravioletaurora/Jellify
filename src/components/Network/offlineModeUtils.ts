@@ -4,7 +4,11 @@ import RNFS from 'react-native-fs'
 import { JellifyTrack } from '../../types/JellifyTrack'
 import axios from 'axios'
 import { QueryClient } from '@tanstack/react-query'
-import { JellifyDownload } from '../../types/JellifyDownload'
+import {
+	JellifyDownload,
+	JellifyDownloadProgress,
+	JellifyDownloadProgressState,
+} from '../../types/JellifyDownload'
 import DownloadProgress from '../../types/DownloadProgress'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 
@@ -12,7 +16,7 @@ export async function downloadJellyfinFile(
 	url: string,
 	name: string,
 	songName: string,
-	queryClient: QueryClient,
+	setDownloadProgress: JellifyDownloadProgressState,
 ) {
 	try {
 		// Fetch the file
@@ -31,7 +35,7 @@ export async function downloadJellyfinFile(
 		const fileName = `${name}.${extension}`
 		const downloadDest = `${RNFS.DocumentDirectoryPath}/${fileName}`
 
-		queryClient.setQueryData(['downloads'], (prev: DownloadProgress) => ({
+		setDownloadProgress((prev: JellifyDownloadProgress) => ({
 			...prev,
 			[url]: { progress: 0, name: fileName, songName: songName },
 		}))
@@ -48,7 +52,7 @@ export async function downloadJellyfinFile(
 			progress: (data: any) => {
 				const percent = +(data.bytesWritten / data.contentLength).toFixed(2)
 
-				queryClient.setQueryData(['downloads'], (prev: DownloadProgress) => ({
+				setDownloadProgress((prev: JellifyDownloadProgress) => ({
 					...prev,
 					[url]: { progress: percent, name: fileName, songName: songName },
 				}))
@@ -88,16 +92,16 @@ const AUDIO_CACHE_LIMIT = mmkv.getNumber(MMKV_OFFLINE_MODE_KEYS.AUDIO_CACHE_LIMI
 
 export const saveAudio = async (
 	track: JellifyTrack,
-	queryClient: QueryClient,
+	setDownloadProgress: JellifyDownloadProgressState,
 	isAutoDownloaded: boolean = true,
-) => {
+): Promise<boolean> => {
 	if (
 		isAutoDownloaded &&
 		AUDIO_CACHE_LIMIT &&
 		(!Number.isFinite(AUDIO_CACHE_LIMIT) || AUDIO_CACHE_LIMIT <= 0)
 	) {
 		// If the cache limit is not set or is not a number, or is less than 0, Dont Auto Download
-		return
+		return false
 	}
 
 	const existingRaw = mmkv.getString(MMKV_OFFLINE_MODE_KEYS.AUDIO_CACHE)
@@ -117,13 +121,13 @@ export const saveAudio = async (
 			track.url,
 			track.item.Id as string,
 			track.title as string,
-			queryClient,
+			setDownloadProgress,
 		)
 		const dowloadalbum = await downloadJellyfinFile(
 			track.artwork as string,
 			track.item.Id as string,
 			track.title as string,
-			queryClient,
+			setDownloadProgress,
 		)
 		console.log('downloadtrack', downloadtrack)
 		if (downloadtrack) {
@@ -151,9 +155,10 @@ export const saveAudio = async (
 			})
 		}
 	} catch (error) {
-		console.error(error)
+		return false
 	}
 	mmkv.set(MMKV_OFFLINE_MODE_KEYS.AUDIO_CACHE, JSON.stringify(existingArray))
+	return true
 }
 
 export const deleteAudio = async (trackItem: BaseItemDto) => {

@@ -13,6 +13,7 @@ import Animated, {
 
 import { QueryKeys } from '../../enums/query-keys'
 import { Text } from '../Global/helpers/text'
+import { useNetworkContext } from '../../providers/Network'
 
 const internetConnectionWatcher = {
 	NO_INTERNET: 'You are offline',
@@ -27,9 +28,9 @@ export enum networkStatusTypes {
 const isAndroid = Platform.OS === 'android'
 
 const InternetConnectionWatcher = () => {
-	const [networkStatus, setNetworkStatus] = useState<keyof typeof networkStatusTypes | null>(null)
-	const lastNetworkStatus = useRef<keyof typeof networkStatusTypes | null>('ONLINE')
-	const queryClient = useQueryClient()
+	// const [networkStatus, setNetworkStatus] = useState<keyof typeof networkStatusTypes | null>(null)
+	const lastNetworkStatus = useRef<networkStatusTypes | null>(networkStatusTypes.ONLINE)
+	const { networkStatus, setNetworkStatus } = useNetworkContext()
 
 	const bannerHeight = useSharedValue(0)
 	const opacity = useSharedValue(0)
@@ -72,10 +73,6 @@ const InternetConnectionWatcher = () => {
 	}, [networkStatus])
 
 	useEffect(() => {
-		if (networkStatus) {
-			queryClient.setQueryData([QueryKeys.NetworkStatus], networkStatus)
-		}
-
 		if (networkStatus === networkStatusTypes.DISCONNECTED) {
 			animateBannerIn()
 		} else if (networkStatus === networkStatusTypes.ONLINE) {

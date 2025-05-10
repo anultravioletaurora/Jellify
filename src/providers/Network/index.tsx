@@ -1,5 +1,5 @@
-import React, { createContext, ReactNode, useContext } from 'react'
-import { JellifyDownload } from '../../types/JellifyDownload'
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react'
+import { JellifyDownload, JellifyDownloadProgress } from '../../types/JellifyDownload'
 import {
 	useMutation,
 	UseMutationResult,
@@ -17,19 +17,35 @@ import { useJellifyContext } from '..'
 import { isUndefined } from 'lodash'
 import RNFS from 'react-native-fs'
 import { JellifyStorage } from './types'
+import { JellifyTrack } from '@/src/types/JellifyTrack'
 
 interface NetworkContext {
-	useDownload: UseMutationResult<void, Error, BaseItemDto, unknown>
+	useDownload: UseMutationResult<boolean | void, Error, BaseItemDto, unknown>
 	useRemoveDownload: UseMutationResult<void, Error, BaseItemDto, unknown>
 	storageUsage: JellifyStorage | undefined
 	downloadedTracks: JellifyDownload[] | undefined
-	activeDownloads: DownloadProgress[] | undefined
-	networkStatus: networkStatusTypes | undefined
+	activeDownloads: JellifyDownloadProgress | undefined
+	networkStatus: networkStatusTypes | null
+	setNetworkStatus: (status: networkStatusTypes | null) => void
+	useDownloadMultiple: UseMutationResult<boolean, Error, JellifyTrack[], unknown>
+	pendingDownloads: JellifyTrack[]
+	downloadingDownloads: JellifyTrack[]
+	completedDownloads: JellifyTrack[]
+	failedDownloads: JellifyTrack[]
 }
 
+const MAX_CONCURRENT_DOWNLOADS = 3
 const NetworkContextInitializer = () => {
 	const { api, sessionId } = useJellifyContext()
-	const queryClient = useQueryClient()
+
+	const [downloadProgress, setDownloadProgress] = useState<JellifyDownloadProgress>({})
+	const [networkStatus, setNetworkStatus] = useState<networkStatusTypes | null>(null)
+
+	// Mutiple Downloads
+	const [pending, setPending] = useState<JellifyTrack[]>([])
+	const [downloading, setDownloading] = useState<JellifyTrack[]>([])
+	const [completed, setCompleted] = useState<JellifyTrack[]>([])
+	const [failed, setFailed] = useState<JellifyTrack[]>([])
 
 	const fetchStorageInUse: () => Promise<JellifyStorage> = async () => {
 		const totalStorage = await RNFS.getFSInfo()
@@ -42,13 +58,34 @@ const NetworkContextInitializer = () => {
 		}
 	}
 
+	useEffect(() => {
+		if (pending.length > 0 && downloading.length < MAX_CONCURRENT_DOWNLOADS) {
+			const availableSlots = MAX_CONCURRENT_DOWNLOADS - downloading.length
+			const filesToStart = pending.slice(0, availableSlots)
+
+			filesToStart.forEach((file) => {
+				setDownloading((prev) => [...prev, file])
+				setPending((prev) => prev.filter((f) => f.id !== file.id))
+
+				saveAudio(file, setDownloadProgress, false).then((success) => {
+					setDownloading((prev) => prev.filter((f) => f.id !== file.id))
+					if (success) {
+						setCompleted((prev) => [...prev, file])
+					} else {
+						setFailed((prev) => [...prev, file])
+					}
+				})
+			})
+		}
+	}, [pending, downloading])
+
 	const useDownload = useMutation({
 		mutationFn: (trackItem: BaseItemDto) => {
 			if (isUndefined(api)) throw new Error('API client not initialized')
 
 			const track = mapDtoToTrack(api, sessionId, trackItem, [])
 
-			return saveAudio(track, queryClient, false)
+			return saveAudio(track, setDownloadProgress, false)
 		},
 		onSuccess: (data, variables) => {
 			console.debug(`Downloaded ${variables.Id} successfully`)
@@ -73,13 +110,18 @@ const NetworkContextInitializer = () => {
 		},
 	})
 
-	const { data: networkStatus } = useQuery<networkStatusTypes>({
-		queryKey: [QueryKeys.NetworkStatus],
-	})
+	const addToQueue = async (items: JellifyTrack[]) => {
+		setPending((prev) => [...prev, ...items])
+		return true
+	}
 
-	const { data: activeDownloads } = useQuery<DownloadProgress[]>({
-		queryKey: ['downloads'],
-		initialData: [],
+	const useDownloadMultiple = useMutation({
+		mutationFn: (tracks: JellifyTrack[]) => {
+			return addToQueue(tracks)
+		},
+		onSuccess: (data, variables) => {
+			console.debug(`Added ${variables?.length} tracks to queue`)
+		},
 	})
 
 	const { data: downloadedTracks, refetch: refetchDownloadedTracks } = useQuery({
@@ -91,10 +133,16 @@ const NetworkContextInitializer = () => {
 	return {
 		useDownload,
 		useRemoveDownload,
-		activeDownloads,
+		activeDownloads: downloadProgress,
 		downloadedTracks,
 		networkStatus,
+		setNetworkStatus,
 		storageUsage,
+		useDownloadMultiple,
+		pendingDownloads: pending,
+		downloadingDownloads: downloading,
+		completedDownloads: completed,
+		failedDownloads: failed,
 	}
 }
 
@@ -136,9 +184,34 @@ const NetworkContext = createContext<NetworkContext>({
 		submittedAt: 0,
 	},
 	downloadedTracks: [],
-	activeDownloads: [],
+	activeDownloads: {},
 	networkStatus: networkStatusTypes.ONLINE,
+	setNetworkStatus: () => {},
 	storageUsage: undefined,
+	useDownloadMultiple: {
+		mutate: () => {},
+		mutateAsync: async () => {
+			return true
+		},
+		data: undefined,
+		error: null,
+		variables: undefined,
+		isError: false,
+		isIdle: true,
+		isPaused: false,
+		isPending: false,
+		isSuccess: false,
+		status: 'idle',
+		reset: () => {},
+		context: {},
+		failureCount: 0,
+		failureReason: null,
+		submittedAt: 0,
+	},
+	pendingDownloads: [],
+	downloadingDownloads: [],
+	completedDownloads: [],
+	failedDownloads: [],
 })
 
 export const NetworkContextProvider: ({
