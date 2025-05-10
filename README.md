@@ -79,7 +79,11 @@ Album
 
 <img src="screenshots/album.png" alt="Album" width="275" height="600">
 
-Album (In Offline Mode)
+Album (Multiple Artists)
+
+<img src="screenshots/album_multiple_artists.png" alt="MultiArtist Album" width="275" height="600">
+
+Album (Offline Mode)
 
 <img src="screenshots/offline_album.png" alt="Offline Album" width="275" height="600">
 
