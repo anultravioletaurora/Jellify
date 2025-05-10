@@ -21,8 +21,7 @@ export function Discover(): React.JSX.Element {
 					name='Discover'
 					component={Index}
 					options={{
-						headerLargeTitle: true,
-						headerLargeTitleStyle: {
+						headerTitleStyle: {
 							fontFamily: 'Aileron-Bold',
 						},
 					}}

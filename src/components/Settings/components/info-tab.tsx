@@ -21,7 +21,9 @@ export default function InfoTab() {
 					<ListItem
 						size={'$5'}
 						title={'Storage'}
-						subTitle={`${downloadedTracks?.length ?? '0'} songs in your pocket`}
+						subTitle={`${downloadedTracks?.length ?? '0'} ${
+							downloadedTracks?.length === 1 ? 'song' : 'songs'
+						} in your pocket`}
 					>
 						<Progress
 							borderColor={'$success'}

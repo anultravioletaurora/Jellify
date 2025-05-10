@@ -69,6 +69,8 @@ const PlayerContextInitializer = () => {
 	const handlePlaybackProgressUpdated = async (progress: Progress) => {
 		if (playStateApi && nowPlaying)
 			await handlePlaybackProgress(sessionId, playStateApi, nowPlaying, progress)
+		else if (!playStateApi) console.warn('No play state API found')
+		else console.warn('No now playing track found')
 	}
 
 	//#endregion Functions
@@ -147,6 +149,7 @@ const PlayerContextInitializer = () => {
 				break
 			}
 			case Event.PlaybackProgressUpdated: {
+				console.debug('Playback progress updated')
 				usePlaybackProgressUpdated.mutate(event)
 
 				// Cache playing track at 20 seconds if it's not already downloaded

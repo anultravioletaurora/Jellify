@@ -83,6 +83,7 @@ export default function Track({
 			<XStack
 				alignContent='center'
 				alignItems='center'
+				height={showArtwork ? '$6' : '$5'}
 				flex={1}
 				onPress={() => {
 					if (onPress) {
@@ -119,7 +120,6 @@ export default function Track({
 					justifyContent='center'
 					flex={showArtwork ? 2 : 1}
 					marginHorizontal={'$2'}
-					minHeight={showArtwork ? '$4' : 'unset'}
 				>
 					{showArtwork ? (
 						<FastImage
@@ -157,8 +157,13 @@ export default function Track({
 						{track.Name ?? 'Untitled Track'}
 					</Text>
 
-					{(showArtwork || (track.ArtistCount ?? 0 > 1)) && (
-						<Text lineBreakStrategyIOS='standard' numberOfLines={1}>
+					{(showArtwork || (track.Artists && track.Artists.length > 1)) && (
+						<Text
+							lineBreakStrategyIOS='standard'
+							numberOfLines={1}
+							bold
+							color={'$borderColor'}
+						>
 							{track.Artists?.join(', ') ?? ''}
 						</Text>
 					)}

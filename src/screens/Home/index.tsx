@@ -26,8 +26,15 @@ export default function Home(): React.JSX.Element {
 		<HomeProvider>
 			<HomeStack.Navigator initialRouteName='Home' screenOptions={{ headerShown: true }}>
 				<HomeStack.Group>
-					<HomeStack.Screen name='Home' component={ProvidedHome} />
-
+					<HomeStack.Screen
+						name='Home'
+						component={ProvidedHome}
+						options={{
+							headerTitleStyle: {
+								fontFamily: 'Aileron-Bold',
+							},
+						}}
+					/>
 					<HomeStack.Screen
 						name='Artist'
 						component={ArtistScreen}
@@ -35,6 +42,7 @@ export default function Home(): React.JSX.Element {
 							title: route.params.artist.Name ?? 'Unknown Artist',
 							headerTitleStyle: {
 								color: theme.background.val,
+								fontFamily: 'Aileron-Bold',
 							},
 						})}
 					/>

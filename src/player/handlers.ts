@@ -48,7 +48,7 @@ export async function handlePlaybackProgress(
 	progress: Progress,
 ) {
 	console.debug('Playback progress updated')
-	if (Math.floor(progress.duration) - Math.floor(progress.position) === 5) {
+	if (Math.floor(progress.duration) - Math.floor(progress.position) <= 9) {
 		console.debug(`Track finished. ${playstateApi ? 'scrobbling...' : ''}`)
 
 		if (playstateApi)

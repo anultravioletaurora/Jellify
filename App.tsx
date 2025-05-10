@@ -40,6 +40,7 @@ export default function App(): React.JSX.Element {
 				capabilities: CAPABILITIES,
 				notificationCapabilities: CAPABILITIES,
 				compactCapabilities: CAPABILITIES,
+				progressUpdateEventInterval: 10,
 			}),
 		)
 		.finally(() => {
