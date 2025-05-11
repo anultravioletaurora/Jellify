@@ -1,4 +1,4 @@
-import _, { isUndefined } from 'lodash'
+import _, { isNull, isUndefined } from 'lodash'
 import { JellifyTrack } from '../../types/JellifyTrack'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { JellifyDownload } from '../../types/JellifyDownload'
@@ -24,11 +24,15 @@ export function buildNewQueue(
 }
 
 export function filterTracksOnNetworkStatus(
-	networkStatus: networkStatusTypes | undefined,
+	networkStatus: networkStatusTypes | undefined | null,
 	queuedItems: BaseItemDto[],
 	downloadedTracks: JellifyDownload[],
 ) {
-	if (isUndefined(networkStatus) || networkStatus === networkStatusTypes.ONLINE)
+	if (
+		isUndefined(networkStatus) ||
+		isNull(networkStatus) ||
+		networkStatus === networkStatusTypes.ONLINE
+	)
 		return queuedItems
 	else
 		return queuedItems.filter((item) =>

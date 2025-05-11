@@ -29,6 +29,12 @@ export default function SettingsListGroup({
 							title={setting.title}
 							icon={<Icon name={setting.iconName} color={setting.iconColor} />}
 							subTitle={setting.subTitle}
+							onPress={setting.onPress}
+							iconAfter={
+								setting.onPress ? (
+									<Icon name='chevron-right' color={'$borderColor'} />
+								) : undefined
+							}
 						>
 							{setting.children}
 						</ListItem>

@@ -20,6 +20,7 @@ import { fetchMediaInfo } from '../../../api/queries/media'
 import { useQueueContext } from '../../../providers/Player/queue'
 import { fetchItem } from '../../../api/queries/item'
 import { useJellifyContext } from '../../../providers'
+import DownloadedIcon from './downloaded-icon'
 
 export interface TrackProps {
 	track: BaseItemDto
@@ -118,8 +119,8 @@ export default function Track({
 				<XStack
 					alignContent='center'
 					justifyContent='center'
-					flex={showArtwork ? 2 : 1}
-					marginHorizontal={'$2'}
+					flex={1}
+					marginHorizontal={showArtwork ? '$4' : '$1'}
 				>
 					{showArtwork ? (
 						<FastImage
@@ -171,31 +172,40 @@ export default function Track({
 
 				<XStack
 					alignItems='center'
-					justifyContent='space-between'
 					alignContent='center'
+					justifyContent='flex-end'
 					flex={4}
+					marginRight={'$0'}
 				>
+					<DownloadedIcon item={track} />
+
 					<FavoriteIcon item={track} />
 
-					<YStack alignContent='center' justifyContent='space-around'>
-						<RunTimeTicks>{track.RunTimeTicks}</RunTimeTicks>
-					</YStack>
+					<RunTimeTicks
+						props={{
+							textAlign: 'center',
+							flex: 3,
+							alignSelf: 'center',
+							marginVertical: 'auto',
+						}}
+					>
+						{track.RunTimeTicks}
+					</RunTimeTicks>
 
-					<YStack alignContent='center' justifyContent='flex-start' marginRight={'$3'}>
-						<Icon
-							name={showRemove ? 'close' : 'dots-horizontal'}
-							onPress={() => {
-								if (showRemove) {
-									if (onRemove) onRemove()
-								} else {
-									navigation.navigate('Details', {
-										item: track,
-										isNested: isNested,
-									})
-								}
-							}}
-						/>
-					</YStack>
+					<Icon
+						name={showRemove ? 'close' : 'dots-horizontal'}
+						flex={3}
+						onPress={() => {
+							if (showRemove) {
+								if (onRemove) onRemove()
+							} else {
+								navigation.navigate('Details', {
+									item: track,
+									isNested: isNested,
+								})
+							}
+						}}
+					/>
 				</XStack>
 			</XStack>
 		</Theme>

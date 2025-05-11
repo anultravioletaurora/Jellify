@@ -88,10 +88,6 @@ export default function Queue({
 							drag()
 						}}
 					>
-						<YStack>
-							<Icon name='drag' />
-						</YStack>
-
 						<Track
 							queue={queueRef}
 							navigation={navigation}

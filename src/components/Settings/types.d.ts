@@ -4,4 +4,5 @@ export type SettingsTabList = {
 	iconColor: ThemeTokens
 	subTitle: string
 	children?: React.ReactNode
+	onPress?: () => void
 }[]

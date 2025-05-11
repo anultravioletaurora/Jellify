@@ -1,13 +1,12 @@
 import React from 'react'
-import { useColorScheme } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { getToken, useTheme } from 'tamagui'
+import { useTheme } from 'tamagui'
 import AccountTab from './components/account-tab'
 import Icon from '../Global/components/icon'
 import LabsTab from './components/labs-tab'
 import PreferencesTab from './components/preferences-tab'
-import InfoTab from './components/info-tab'
 import PlaybackTab from './components/playback-tab'
+import InfoTab from './components/info-tab'
 
 const SettingsTabsNavigator = createMaterialTopTabNavigator()
 
