@@ -9,3 +9,6 @@ node_modules/
 
 # Ignore iOS Pods directory
 ios/**/*
+
+# Ignore package.json files
+package.json
