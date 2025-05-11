@@ -16,6 +16,9 @@ import ItemImage from '../Global/components/image'
 import React from 'react'
 import { useJellifyContext } from '../../providers'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
+import Icon from '../Global/components/icon'
+import { mapDtoToTrack } from '../../helpers/mappings'
+import { useNetworkContext } from '../../providers/Network'
 
 /**
  * The screen for an Album's track list
@@ -30,13 +33,25 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context'
 export function AlbumScreen({ route, navigation }: HomeAlbumProps): React.JSX.Element {
 	const { album } = route.params
 
-	const { api } = useJellifyContext()
+	const { api, sessionId } = useJellifyContext()
+	const {
+		useDownloadMultiple,
+		pendingDownloads,
+		downloadingDownloads,
+		downloadedTracks,
+		failedDownloads,
+	} = useNetworkContext()
 
 	const { data: discs, isPending } = useQuery({
 		queryKey: [QueryKeys.ItemTracks, album.Id!],
 		queryFn: () => fetchAlbumDiscs(api, album),
 	})
 
+	const downloadAlbum = (item: BaseItemDto[]) => {
+		if (!api || !sessionId) return
+		const jellifyTracks = item.map((item) => mapDtoToTrack(api, sessionId, item, []))
+		useDownloadMultiple.mutate(jellifyTracks)
+	}
 	return (
 		<SectionList
 			contentInsetAdjustmentBehavior='automatic'
@@ -44,14 +59,33 @@ export function AlbumScreen({ route, navigation }: HomeAlbumProps): React.JSX.El
 			keyExtractor={(item, index) => item.Id! + index}
 			ItemSeparatorComponent={() => <Separator />}
 			renderSectionHeader={({ section }) => {
-				return discs && discs.length >= 2 ? (
-					<Text
-						paddingVertical={'$2'}
-						paddingLeft={'$4.5'}
+				return (
+					<XStack
+						width='100%'
+						justifyContent={discs && discs.length >= 2 ? 'space-between' : 'flex-end'}
+						alignItems='center'
 						backgroundColor={'$background'}
-						bold
-					>{`Disc ${section.title}`}</Text>
-				) : null
+						paddingHorizontal={'$4.5'}
+					>
+						{discs && discs.length >= 2 && (
+							<Text
+								paddingVertical={'$2'}
+								paddingLeft={'$4.5'}
+								bold
+							>{`Disc ${section.title}`}</Text>
+						)}
+						<Icon
+							name={pendingDownloads?.length ? 'progress-download' : 'download'}
+							small
+							onPress={() => {
+								if (pendingDownloads.length) {
+									return
+								}
+								downloadAlbum(section.data)
+							}}
+						/>
+					</XStack>
+				)
 			}}
 			ListHeaderComponent={() => AlbumTrackListHeader(album, navigation)}
 			renderItem={({ item: track, index }) => (

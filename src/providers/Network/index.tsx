@@ -34,7 +34,7 @@ interface NetworkContext {
 	failedDownloads: JellifyTrack[]
 }
 
-const MAX_CONCURRENT_DOWNLOADS = 3
+const MAX_CONCURRENT_DOWNLOADS = 1
 const NetworkContextInitializer = () => {
 	const { api, sessionId } = useJellifyContext()
 
@@ -65,10 +65,10 @@ const NetworkContextInitializer = () => {
 
 			filesToStart.forEach((file) => {
 				setDownloading((prev) => [...prev, file])
-				setPending((prev) => prev.filter((f) => f.id !== file.id))
+				setPending((prev) => prev.filter((f) => f.item.Id !== file.item.Id))
 
 				saveAudio(file, setDownloadProgress, false).then((success) => {
-					setDownloading((prev) => prev.filter((f) => f.id !== file.id))
+					setDownloading((prev) => prev.filter((f) => f.item.Id !== file.item.Id))
 					if (success) {
 						setCompleted((prev) => [...prev, file])
 					} else {
@@ -76,6 +76,9 @@ const NetworkContextInitializer = () => {
 					}
 				})
 			})
+		}
+		if (pending.length === 0 && downloading.length === 0) {
+			refetchDownloadedTracks()
 		}
 	}, [pending, downloading])
 
@@ -89,7 +92,6 @@ const NetworkContextInitializer = () => {
 		},
 		onSuccess: (data, variables) => {
 			console.debug(`Downloaded ${variables.Id} successfully`)
-
 			refetchDownloadedTracks()
 			return data
 		},
