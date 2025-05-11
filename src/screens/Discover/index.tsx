@@ -49,7 +49,16 @@ export function Discover(): React.JSX.Element {
 					})}
 				/>
 
-				<DiscoverStack.Screen name='RecentlyAdded' component={RecentlyAdded} />
+				<DiscoverStack.Screen
+					name='RecentlyAdded'
+					component={RecentlyAdded}
+					options={{
+						title: 'Recently Added',
+						headerTitleStyle: {
+							fontFamily: 'Aileron-Bold',
+						},
+					}}
+				/>
 
 				<DiscoverStack.Screen
 					name='InstantMix'

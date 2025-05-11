@@ -1,6 +1,6 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { ScrollView } from 'tamagui'
+import { getToken, ScrollView } from 'tamagui'
 import RecentlyAdded from './helpers/just-added'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { StackParamList } from '../types'
@@ -18,6 +18,10 @@ export default function Index({
 		<SafeAreaView edges={['top', 'left', 'right']}>
 			<ScrollView
 				flexGrow={1}
+				contentContainerStyle={{
+					flexGrow: 1,
+					marginTop: getToken('$4'),
+				}}
 				contentInsetAdjustmentBehavior='automatic'
 				removeClippedSubviews
 				paddingBottom={'$15'}

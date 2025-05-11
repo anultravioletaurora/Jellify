@@ -11,7 +11,9 @@ export default function SettingsScreen(): React.JSX.Element {
 		<SettingsStack.Navigator
 			initialRouteName='Settings'
 			screenOptions={{
-				headerShown: false,
+				headerTitleStyle: {
+					fontFamily: 'Aileron-Bold',
+				},
 			}}
 		>
 			<SettingsStack.Screen name='Settings' component={Settings} />

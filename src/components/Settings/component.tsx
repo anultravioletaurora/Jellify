@@ -7,6 +7,7 @@ import Icon from '../Global/components/icon'
 import LabsTab from './components/labs-tab'
 import PreferencesTab from './components/preferences-tab'
 import InfoTab from './components/info-tab'
+import PlaybackTab from './components/playback-tab'
 
 const SettingsTabsNavigator = createMaterialTopTabNavigator()
 
@@ -28,12 +29,24 @@ export default function Settings(): React.JSX.Element {
 				name='Settings'
 				component={PreferencesTab}
 				options={{
+					title: 'App',
 					tabBarIcon: ({ focused, color }) => (
 						<Icon
-							name='headphones-settings'
+							name='jellyfish-outline'
 							color={focused ? '$primary' : '$borderColor'}
 							small
 						/>
+					),
+				}}
+			/>
+
+			<SettingsTabsNavigator.Screen
+				name='Playback'
+				component={PlaybackTab}
+				options={{
+					title: 'Player',
+					tabBarIcon: ({ focused, color }) => (
+						<Icon name='cassette' color={focused ? '$primary' : '$borderColor'} small />
 					),
 				}}
 			/>

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navigation from './navigation'
 import { PlayerProvider } from '../providers/Player'
 import { JellifyProvider, useJellifyContext } from '../providers'
@@ -8,7 +8,11 @@ import { NetworkContextProvider } from '../providers/Network'
 import { QueueProvider } from '../providers/Player/queue'
 import { DisplayProvider } from '../providers/Display/display-provider'
 import { SettingsProvider, useSettingsContext } from '../providers/Settings'
-import { createTelemetryDeck, TelemetryDeckProvider } from '@typedigital/telemetrydeck-react'
+import {
+	createTelemetryDeck,
+	TelemetryDeckProvider,
+	useTelemetryDeck,
+} from '@typedigital/telemetrydeck-react'
 import telemetryDeckConfig from '../../telemetrydeck.json'
 import glitchtipConfig from '../../glitchtip.json'
 import * as Sentry from '@sentry/react-native'
@@ -34,21 +38,21 @@ export default function Jellify(): React.JSX.Element {
 function JellifyLoggingWrapper({ children }: { children: React.ReactNode }): React.JSX.Element {
 	const { sendMetrics } = useSettingsContext()
 
-	let telemetrydeck = undefined
-	if (sendMetrics) {
-		telemetrydeck = createTelemetryDeck(telemetryDeckConfig)
-	}
+	/**
+	 * Create the TelemetryDeck instance, which is used to send telemetry data to the server
+	 *
+	 * We will always wrap the app with this provider, but we won't send signal data if we're not sending metrics
+	 *
+	 * @see https://github.com/typedigital/telemetrydeck-react
+	 */
+	const telemetrydeck = createTelemetryDeck(telemetryDeckConfig)
 
 	Sentry.init({
 		...glitchtipConfig,
-		enabled: sendMetrics,
+		enabled: sendMetrics, // Disable Sentry if we're not sending metrics
 	})
 
-	return sendMetrics && telemetrydeck ? (
-		<TelemetryDeckProvider telemetryDeck={telemetrydeck}>{children}</TelemetryDeckProvider>
-	) : (
-		<>{children}</>
-	)
+	return <TelemetryDeckProvider telemetryDeck={telemetrydeck}>{children}</TelemetryDeckProvider>
 }
 
 /**
@@ -56,6 +60,15 @@ function JellifyLoggingWrapper({ children }: { children: React.ReactNode }): Rea
  * @returns The {@link App} component
  */
 function App(): React.JSX.Element {
+	const { sendMetrics } = useSettingsContext()
+	const telemetrydeck = useTelemetryDeck()
+
+	useEffect(() => {
+		if (sendMetrics) {
+			telemetrydeck.signal('Jellify launched')
+		}
+	}, [sendMetrics])
+
 	return (
 		<JellifyUserDataProvider>
 			<NetworkContextProvider>

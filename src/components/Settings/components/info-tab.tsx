@@ -22,10 +22,11 @@ export default function InfoTab() {
 						iconColor: '$borderColor',
 					},
 					{
-						title: 'Jellify',
-						subTitle: 'Made with 💜 by Violet Caulfield',
+						title: `Jellify`,
+						subTitle: version,
 						iconName: 'jellyfish',
 						iconColor: '$borderColor',
+						children: <Text>Made with 💜 by Violet Caulfield</Text>,
 					},
 				]}
 			/>

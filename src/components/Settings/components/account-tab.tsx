@@ -20,7 +20,7 @@ export default function AccountTab(): React.JSX.Element {
 				settingsList={[
 					{
 						title: 'Username',
-						subTitle: "You're awesome!",
+						subTitle: 'You are awesome!',
 						iconName: 'account-music',
 						iconColor: '$borderColor',
 						children: <Text>{user?.name ?? 'Unknown User'}</Text>,
