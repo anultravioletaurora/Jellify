@@ -22,6 +22,7 @@ import { SKIP_TO_PREVIOUS_THRESHOLD } from '../../player/config'
 import { isUndefined } from 'lodash'
 import Toast from 'react-native-toast-message'
 import { useJellifyContext } from '..'
+import { networkStatusTypes } from '@/src/components/Network/internetConnectionWatcher'
 
 /**
  * @description The context for managing the queue
@@ -176,7 +177,7 @@ const QueueContextInitailizer = () => {
 		setSkipping(true)
 
 		const availableAudioItems = filterTracksOnNetworkStatus(
-			networkStatus,
+			networkStatus as networkStatusTypes,
 			audioItems,
 			downloadedTracks ?? [],
 		)

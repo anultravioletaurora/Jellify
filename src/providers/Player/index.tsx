@@ -157,7 +157,9 @@ const PlayerContextInitializer = () => {
 					Math.floor(event.position) === 20 &&
 					downloadedTracks?.filter((download) => download.item.Id === nowPlaying!.item.Id)
 						.length === 0 &&
-					[networkStatusTypes.ONLINE, undefined].includes(networkStatus)
+					[networkStatusTypes.ONLINE, undefined].includes(
+						networkStatus as networkStatusTypes,
+					)
 				)
 					useDownload.mutate(nowPlaying!.item)
 

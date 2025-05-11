@@ -43,7 +43,7 @@ export default function StorageBar(): React.JSX.Element {
 	const [used, setUsed] = useState(0)
 	const [total, setTotal] = useState(1)
 
-	const { downloadedTracks, activeDownloads } = useNetworkContext()
+	const { downloadedTracks, activeDownloads: activeDownloadsArray } = useNetworkContext()
 
 	const usageShared = useSharedValue(0)
 	const percentUsed = used / total
@@ -81,6 +81,11 @@ export default function StorageBar(): React.JSX.Element {
 	useEffect(() => {
 		refreshStats()
 	}, [])
+	const activeDownloads = Object.values(activeDownloadsArray ?? {}).map((item) => ({
+		name: item.name,
+		progress: item.progress,
+		songName: item.songName,
+	}))
 
 	return (
 		<View style={styles.container}>
