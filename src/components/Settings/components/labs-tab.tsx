@@ -11,7 +11,7 @@ export default function LabsTab(): React.JSX.Element {
 			settingsList={[
 				{
 					title: 'Nothing to see here...(yet)',
-					subTitle: 'Come back later to enable beta features',
+					subTitle: 'Come back later to enable experimental features',
 					iconName: 'test-tube-off',
 					iconColor: '$danger',
 				},
