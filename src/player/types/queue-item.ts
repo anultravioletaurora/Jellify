@@ -5,6 +5,7 @@ export type Queue =
 	| 'Recently Played'
 	| 'Search'
 	| 'Favorite Tracks'
+	| 'Downloaded Tracks'
 	| 'On Repeat'
 	| 'Instant Mix'
 	| 'Library'

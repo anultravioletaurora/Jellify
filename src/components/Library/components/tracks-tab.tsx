@@ -11,13 +11,15 @@ export default function TracksTab(): React.JSX.Element {
 
 	const { tracks, fetchNextTracksPage, hasNextTracksPage } = useLibraryContext()
 
-	const { isFavorites } = useLibrarySortAndFilterContext()
+	const { isFavorites, isDownloaded } = useLibrarySortAndFilterContext()
 
 	return (
 		<Tracks
 			navigation={navigation}
 			tracks={tracks}
-			queue={isFavorites ? 'Favorite Tracks' : 'Library'}
+			queue={isFavorites ? 'Favorite Tracks' : isDownloaded ? 'Downloaded Tracks' : 'Library'}
+			filterDownloaded={isDownloaded}
+			filterFavorites={isFavorites}
 			fetchNextPage={fetchNextTracksPage}
 			hasNextPage={hasNextTracksPage}
 		/>

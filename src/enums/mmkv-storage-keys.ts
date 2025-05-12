@@ -14,4 +14,5 @@ export enum MMKVStorageKeys {
 	LibraryIsFavorites = 'LibraryIsFavorites',
 	SendMetrics = 'SEND_METRICS',
 	AutoDownload = 'AutoDownload',
+	LibraryIsDownloaded = 'LibraryIsDownloaded',
 }

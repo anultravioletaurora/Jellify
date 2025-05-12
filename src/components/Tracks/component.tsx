@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import Track from '../Global/components/track'
 import { FlatList } from 'react-native'
 import { getTokens, Separator } from 'tamagui'
 import { StackParamList } from '../types'
-import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
+import { BaseItemDto, UserItemDataDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { Queue } from '../../player/types/queue-item'
 import { InfiniteData } from '@tanstack/react-query'
+import { useNetworkContext } from '../../providers/Network'
+import { queryClient } from '../../constants/query-client'
+import { QueryKeys } from '../../enums/query-keys'
 
 export default function Tracks({
 	tracks,
@@ -14,13 +17,42 @@ export default function Tracks({
 	fetchNextPage,
 	hasNextPage,
 	navigation,
+	filterDownloaded,
+	filterFavorites,
 }: {
 	tracks: InfiniteData<BaseItemDto[], unknown> | undefined
 	queue: Queue
 	fetchNextPage: () => void
 	hasNextPage: boolean
 	navigation: NativeStackNavigationProp<StackParamList>
+	filterDownloaded?: boolean | undefined
+	filterFavorites?: boolean | undefined
 }): React.JSX.Element {
+	const { downloadedTracks } = useNetworkContext()
+
+	const tracksToDisplay: () => BaseItemDto[] = useCallback(() => {
+		if (filterDownloaded) {
+			return (
+				downloadedTracks
+					?.map((downloadedTrack) => downloadedTrack.item)
+					.filter((downloadedTrack) => {
+						if (filterFavorites) {
+							return (
+								(
+									queryClient.getQueryData([
+										QueryKeys.UserData,
+										downloadedTrack.Id,
+									]) as UserItemDataDto | undefined
+								)?.IsFavorite ?? false
+							)
+						}
+						return true
+					}) ?? []
+			)
+		}
+		return tracks?.pages.flatMap((page) => page) ?? []
+	}, [filterDownloaded, downloadedTracks, tracks, filterFavorites])
+
 	return (
 		<FlatList
 			contentInsetAdjustmentBehavior='automatic'
@@ -29,7 +61,7 @@ export default function Tracks({
 			}}
 			ItemSeparatorComponent={() => <Separator />}
 			numColumns={1}
-			data={tracks?.pages.flatMap((page) => page) ?? []}
+			data={tracksToDisplay()}
 			renderItem={({ index, item: track }) => (
 				<Track
 					navigation={navigation}
@@ -46,7 +78,7 @@ export default function Tracks({
 			onEndReached={() => {
 				if (hasNextPage) fetchNextPage()
 			}}
-			onEndReachedThreshold={0.25}
+			onEndReachedThreshold={0.0}
 		/>
 	)
 }

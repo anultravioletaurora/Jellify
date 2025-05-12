@@ -12,8 +12,14 @@ export default function LibraryTabBar(props: MaterialTopTabBarProps) {
 		console.debug(`LibraryTabBar:`, props.state.routes[props.state.index].name)
 	}, [props])
 
-	const { sortDescending, setSortDescending, isFavorites, setIsFavorites } =
-		useLibrarySortAndFilterContext()
+	const {
+		sortDescending,
+		setSortDescending,
+		isFavorites,
+		setIsFavorites,
+		isDownloaded,
+		setIsDownloaded,
+	} = useLibrarySortAndFilterContext()
 
 	return (
 		<YStack>
@@ -61,6 +67,24 @@ export default function LibraryTabBar(props: MaterialTopTabBarProps) {
 						</XStack>
 					)}
 				</Animated.View>
+
+				{props.state.routes[props.state.index].name === 'Tracks' && (
+					<XStack
+						flex={1}
+						onPress={() => setIsDownloaded(!isDownloaded)}
+						alignItems={'center'}
+						justifyContent={'center'}
+					>
+						<Icon
+							name={isDownloaded ? 'download' : 'download-outline'}
+							color={isDownloaded ? '$success' : '$borderColor'}
+						/>
+
+						<Text color={isDownloaded ? '$success' : '$borderColor'}>
+							{isDownloaded ? 'Downloaded' : 'All'}
+						</Text>
+					</XStack>
+				)}
 
 				<Separator vertical />
 
