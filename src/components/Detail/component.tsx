@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import { StackParamList } from '../types'
 import TrackOptions from './helpers/TrackOptions'
-import { getToken, getTokens, ScrollView, Spacer, View, XStack, YStack } from 'tamagui'
+import { getToken, getTokens, ScrollView, Spacer, useTheme, View, XStack, YStack } from 'tamagui'
 import { Text } from '../Global/helpers/text'
 import FavoriteButton from '../Global/components/favorite-button'
 import { useEffect } from 'react'
@@ -34,7 +34,7 @@ export default function ItemDetail({
 		trigger('impactMedium')
 	}, [item])
 
-	const isDarkMode = useColorScheme() === 'dark'
+	const theme = useTheme()
 
 	switch (item.Type) {
 		case 'Audio': {
@@ -154,7 +154,7 @@ export default function ItemDetail({
 
 				{options ?? <View />}
 			</YStack>
-			<Toast config={JellifyToastConfig(isDarkMode)} />
+			<Toast config={JellifyToastConfig(theme)} />
 		</ScrollView>
 	)
 }
