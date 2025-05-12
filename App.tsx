@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import 'react-native-url-polyfill/auto'
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client'
 import Jellify from './src/components/jellify'
-import { TamaguiProvider, Theme } from 'tamagui'
+import { TamaguiProvider, Theme, useTheme } from 'tamagui'
 import { useColorScheme } from 'react-native'
 import jellifyConfig from './tamagui.config'
 import { clientPersister } from './src/constants/storage'
@@ -19,10 +19,6 @@ import { requestStoragePermission } from './src/helpers/permisson-helpers'
 import ErrorBoundary from './src/components/ErrorBoundary'
 import Toast from 'react-native-toast-message'
 import JellifyToastConfig from './src/constants/toast.config'
-import { TelemetryDeckProvider, createTelemetryDeck } from '@typedigital/telemetrydeck-react'
-import telemetryDeckConfig from './telemetrydeck.json'
-import glitchtipConfig from './glitchtip.json'
-import * as Sentry from '@sentry/react-native'
 
 export const backgroundRuntime = createWorkletRuntime('background')
 
@@ -77,7 +73,6 @@ export default function App(): React.JSX.Element {
 							</TamaguiProvider>
 						</GestureHandlerRootView>
 					</PersistQueryClientProvider>
-					<Toast config={JellifyToastConfig(isDarkMode)} />
 				</NavigationContainer>
 			</ErrorBoundary>
 		</SafeAreaProvider>

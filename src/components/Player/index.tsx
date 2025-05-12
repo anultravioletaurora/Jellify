@@ -16,7 +16,6 @@ import { getImageApi } from '@jellyfin/sdk/lib/utils/api'
 import { useQueueContext } from '../../providers/Player/queue'
 import Toast from 'react-native-toast-message'
 import JellifyToastConfig from '../../constants/toast.config'
-import { useColorScheme } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 import { useJellifyContext } from '../../providers'
 import Footer from './helpers/footer'
@@ -28,8 +27,6 @@ export default function PlayerScreen({
 	const { api } = useJellifyContext()
 
 	const [showToast, setShowToast] = useState(true)
-
-	const isDarkMode = useColorScheme() === 'dark'
 
 	const { nowPlaying } = usePlayerContext()
 
@@ -206,7 +203,7 @@ export default function PlayerScreen({
 					</YStack>
 				</>
 			)}
-			{showToast && <Toast config={JellifyToastConfig(isDarkMode)} />}
+			{showToast && <Toast config={JellifyToastConfig(theme)} />}
 		</SafeAreaView>
 	)
 }

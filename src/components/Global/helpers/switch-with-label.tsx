@@ -1,4 +1,4 @@
-import { SizeTokens, XStack, Separator, Switch, Theme, styled, getToken } from 'tamagui'
+import { SizeTokens, XStack, Separator, Switch, Theme, styled, getToken, useTheme } from 'tamagui'
 import { Label } from './text'
 import { useColorScheme } from 'react-native'
 
@@ -16,7 +16,7 @@ const JellifySliderThumb = styled(Switch.Thumb, {
 })
 
 export function SwitchWithLabel(props: SwitchWithLabelProps) {
-	const isDarkMode = useColorScheme() === 'dark'
+	const theme = useTheme()
 
 	const id = `switch-${props.size.toString().slice(1)}-${props.checked ?? ''}}`
 	return (
@@ -26,12 +26,8 @@ export function SwitchWithLabel(props: SwitchWithLabelProps) {
 				size={props.size}
 				checked={props.checked}
 				onCheckedChange={(checked: boolean) => props.onCheckedChange(checked)}
-				backgroundColor={
-					props.checked ? getToken('$color.success') : getToken('$color.purpleGray')
-				}
-				borderColor={
-					isDarkMode ? getToken('$color.amethyst') : getToken('$color.purpleDark')
-				}
+				backgroundColor={props.checked ? '$success' : '$borderColor'}
+				borderColor={'$borderColor'}
 			>
 				<JellifySliderThumb animation='bouncy' />
 			</Switch>

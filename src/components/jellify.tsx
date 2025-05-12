@@ -16,12 +16,16 @@ import {
 import telemetryDeckConfig from '../../telemetrydeck.json'
 import glitchtipConfig from '../../glitchtip.json'
 import * as Sentry from '@sentry/react-native'
-
+import { useTheme } from 'tamagui'
+import Toast from 'react-native-toast-message'
+import JellifyToastConfig from '../constants/toast.config'
 /**
  * The main component for the Jellify app. Children are wrapped in the {@link JellifyProvider}
  * @returns The {@link Jellify} component
  */
 export default function Jellify(): React.JSX.Element {
+	const theme = useTheme()
+
 	return (
 		<SettingsProvider>
 			<JellifyLoggingWrapper>
@@ -31,6 +35,7 @@ export default function Jellify(): React.JSX.Element {
 					</JellifyProvider>
 				</DisplayProvider>
 			</JellifyLoggingWrapper>
+			<Toast config={JellifyToastConfig(theme)} />
 		</SettingsProvider>
 	)
 }

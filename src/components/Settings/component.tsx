@@ -1,6 +1,6 @@
 import React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { useTheme } from 'tamagui'
+import { getToken, useTheme } from 'tamagui'
 import AccountTab from './components/account-tab'
 import Icon from '../Global/components/icon'
 import LabsTab from './components/labs-tab'
@@ -16,6 +16,10 @@ export default function Settings(): React.JSX.Element {
 	return (
 		<SettingsTabsNavigator.Navigator
 			screenOptions={{
+				tabBarScrollEnabled: true,
+				tabBarItemStyle: {
+					width: getToken('$13'),
+				},
 				tabBarShowIcon: true,
 				tabBarActiveTintColor: theme.primary.val,
 				tabBarInactiveTintColor: theme.borderColor.val,
