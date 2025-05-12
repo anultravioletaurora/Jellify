@@ -176,10 +176,18 @@ const QueueContextInitailizer = () => {
 
 		setSkipping(true)
 
+		// Get the item at the start index
+		const startingTrack = audioItems[startIndex]
+
 		const availableAudioItems = filterTracksOnNetworkStatus(
 			networkStatus as networkStatusTypes,
 			audioItems,
 			downloadedTracks ?? [],
+		)
+
+		// The start index may have changed due to the filtered out items
+		const filteredStartIndex = availableAudioItems.findIndex(
+			(item) => item.Id === startingTrack.Id,
 		)
 
 		console.debug(
@@ -187,6 +195,8 @@ const QueueContextInitailizer = () => {
 				audioItems.length - availableAudioItems.length
 			} due to network status being ${networkStatus}`,
 		)
+
+		console.debug(`Filtered start index is ${filteredStartIndex}`)
 
 		const queue = availableAudioItems.map((item) =>
 			mapDtoToTrack(api!, sessionId, item, downloadedTracks ?? [], QueuingType.FromSelection),
@@ -196,11 +206,11 @@ const QueueContextInitailizer = () => {
 
 		await TrackPlayer.setQueue(queue)
 		setPlayQueue(queue)
-		await TrackPlayer.skip(startIndex)
+		await TrackPlayer.skip(filteredStartIndex)
 
 		setSkipping(false)
 
-		console.debug(`Queued ${queue.length} tracks, starting at ${startIndex}`)
+		console.debug(`Queued ${queue.length} tracks, starting at ${filteredStartIndex}`)
 
 		await play()
 	}
