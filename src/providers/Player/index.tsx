@@ -20,6 +20,7 @@ import { PlaystateApi } from '@jellyfin/sdk/lib/generated-client/api/playstate-a
 import { networkStatusTypes } from '../../components/Network/internetConnectionWatcher'
 import { useJellifyContext } from '..'
 import { isUndefined } from 'lodash'
+import { useSettingsContext } from '../Settings'
 
 interface PlayerContext {
 	nowPlaying: JellifyTrack | undefined
@@ -135,6 +136,7 @@ const PlayerContextInitializer = () => {
 
 	const { state: playbackState } = usePlaybackState()
 	const { useDownload, downloadedTracks, networkStatus } = useNetworkContext()
+	const { autoDownload } = useSettingsContext()
 
 	/**
 	 * Use the {@link useTrackPlayerEvents} hook to listen for events from the player.
@@ -160,7 +162,9 @@ const PlayerContextInitializer = () => {
 					// Only download if we are online or *optimistically* if the network status is unknown
 					[networkStatusTypes.ONLINE, undefined, null].includes(
 						networkStatus as networkStatusTypes,
-					)
+					) &&
+					// Only download if auto-download is enabled
+					autoDownload
 				)
 					useDownload.mutate(nowPlaying!.item)
 

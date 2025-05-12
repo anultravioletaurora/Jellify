@@ -7,6 +7,8 @@ import LabsTab from './components/labs-tab'
 import PreferencesTab from './components/preferences-tab'
 import PlaybackTab from './components/playback-tab'
 import InfoTab from './components/info-tab'
+import SettingsTabBar from './components/tab-bar'
+import StorageTab from './components/storage-tab'
 
 const SettingsTabsNavigator = createMaterialTopTabNavigator()
 
@@ -17,8 +19,9 @@ export default function Settings(): React.JSX.Element {
 		<SettingsTabsNavigator.Navigator
 			screenOptions={{
 				tabBarScrollEnabled: true,
+				tabBarGap: getToken('$size.0'),
 				tabBarItemStyle: {
-					width: getToken('$13'),
+					width: getToken('$size.8'),
 				},
 				tabBarShowIcon: true,
 				tabBarActiveTintColor: theme.primary.val,
@@ -27,6 +30,7 @@ export default function Settings(): React.JSX.Element {
 					fontFamily: 'Aileron-Bold',
 				},
 			}}
+			tabBar={(props) => <SettingsTabBar {...props} />}
 		>
 			<SettingsTabsNavigator.Screen
 				name='Settings'
@@ -55,15 +59,12 @@ export default function Settings(): React.JSX.Element {
 			/>
 
 			<SettingsTabsNavigator.Screen
-				name='Account'
-				component={AccountTab}
+				name='Storage'
+				component={StorageTab}
 				options={{
+					title: 'Storage',
 					tabBarIcon: ({ focused, color }) => (
-						<Icon
-							name='account-music'
-							color={focused ? '$primary' : '$borderColor'}
-							small
-						/>
+						<Icon name='harddisk' color={focused ? '$primary' : '$borderColor'} small />
 					),
 				}}
 			/>
@@ -74,6 +75,20 @@ export default function Settings(): React.JSX.Element {
 				options={{
 					tabBarIcon: ({ focused, color }) => (
 						<Icon name='flask' color={focused ? '$primary' : '$borderColor'} small />
+					),
+				}}
+			/>
+
+			<SettingsTabsNavigator.Screen
+				name='Account'
+				component={AccountTab}
+				options={{
+					tabBarIcon: ({ focused, color }) => (
+						<Icon
+							name='account-music'
+							color={focused ? '$primary' : '$borderColor'}
+							small
+						/>
 					),
 				}}
 			/>
