@@ -2,6 +2,7 @@ import { SizeTokens, XStack, Separator, Switch, styled, getToken } from 'tamagui
 import { Label } from './text'
 import { useEffect } from 'react'
 import { trigger } from 'react-native-haptic-feedback'
+import { usePreviousValue } from '../../../hooks/use-previous-value'
 
 interface SwitchWithLabelProps {
 	onCheckedChange: (value: boolean) => void
@@ -19,8 +20,12 @@ const JellifySliderThumb = styled(Switch.Thumb, {
 export function SwitchWithLabel(props: SwitchWithLabelProps) {
 	const id = `switch-${props.size.toString().slice(1)}-${props.checked ?? ''}}`
 
+	const previousChecked = usePreviousValue(props.checked)
+
 	useEffect(() => {
-		trigger('impactMedium')
+		if (previousChecked !== props.checked) {
+			trigger('impactMedium')
+		}
 	}, [props.checked])
 
 	return (
