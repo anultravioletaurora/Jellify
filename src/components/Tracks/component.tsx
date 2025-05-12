@@ -68,9 +68,7 @@ export default function Tracks({
 					showArtwork
 					index={0}
 					track={track}
-					tracklist={
-						tracks ? tracks.pages.flatMap((page) => page).slice(index, index + 50) : []
-					}
+					tracklist={tracksToDisplay().slice(index, index + 50)}
 					queue={queue}
 				/>
 			)}
