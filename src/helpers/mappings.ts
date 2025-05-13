@@ -59,7 +59,7 @@ export function mapDtoToTrack(
 	let url: string
 
 	if (downloads.length > 0 && downloads[0].path)
-		url = `file://${RNFS.DocumentDirectoryPath}/${downloads[0].item.Id}`
+		url = `file://${RNFS.DocumentDirectoryPath}/${downloads[0].path.split('/').pop()}`
 	else {
 		const PlaybackInfoResponse = queryClient.getQueryData([
 			QueryKeys.MediaSources,
