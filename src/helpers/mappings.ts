@@ -12,6 +12,7 @@ import { JellifyDownload } from '../types/JellifyDownload'
 import { queryClient } from '../constants/query-client'
 import { QueryKeys } from '../enums/query-keys'
 import { Api } from '@jellyfin/sdk/lib/api'
+import RNFS from 'react-native-fs'
 
 /**
  * The container that the Jellyfin server will attempt to transcode to
@@ -57,7 +58,8 @@ export function mapDtoToTrack(
 
 	let url: string
 
-	if (downloads.length > 0 && downloads[0].path) url = downloads[0].path
+	if (downloads.length > 0 && downloads[0].path)
+		url = `file://${RNFS.DocumentDirectoryPath}/${downloads[0].item.Id}`
 	else {
 		const PlaybackInfoResponse = queryClient.getQueryData([
 			QueryKeys.MediaSources,
