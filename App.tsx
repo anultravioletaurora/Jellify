@@ -51,9 +51,9 @@ export default function App(): React.JSX.Element {
 
 	return (
 		<SafeAreaProvider>
+			<OTAUpdateScreen />
 			<ErrorBoundary reloader={reloader} onRetry={handleRetry}>
 				<NavigationContainer theme={isDarkMode ? JellifyDarkTheme : JellifyLightTheme}>
-					<OTAUpdateScreen />
 					<PersistQueryClientProvider
 						client={queryClient}
 						persistOptions={{

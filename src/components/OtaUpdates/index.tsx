@@ -26,6 +26,7 @@ const GitUpdateModal = () => {
 		setIsVisible(false)
 	}
 
+	console.log(isVisible, 'isVisible')
 	const onCheckGitVersion = () => {
 		setLoading(true)
 
@@ -65,9 +66,9 @@ const GitUpdateModal = () => {
 		})
 	}
 
-	if (__DEV__) {
-		return
-	}
+	// if (__DEV__) {
+	// 	return
+	// }
 	return (
 		<Modal visible={isVisible} transparent animationType='slide' onRequestClose={onClose}>
 			<View style={styles.overlay}>
