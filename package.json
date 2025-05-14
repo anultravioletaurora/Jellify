@@ -26,6 +26,10 @@
     "prepare": "husky",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
+    "createBundle:android":"mkdir -p android/App-Bundles && react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/App-Bundles/index.android.bundle --assets-dest android/App-Bundles",
+    "createBundle:ios": "mkdir -p ios/App-Bundles && react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/App-Bundles/main.jsbundle --assets-dest ios/App-Bundles",
+    "sendOTA:android":"bash scripts/ota-android.sh",
+    "sendOTA:iOS":"bash scripts/ota-iOS.sh",
     "postinstall": "patch-package"
   },
   "dependencies": {
@@ -56,6 +60,8 @@
     "react-freeze": "^1.0.4",
     "react-native": "0.79.2",
     "react-native-background-actions": "^4.0.1",
+    "react-native-blob-util": "^0.21.2",
+
     "react-native-carplay": "^2.4.1-beta.0",
     "react-native-device-info": "^14.0.4",
     "react-native-draggable-flatlist": "^4.0.3",
@@ -64,6 +70,7 @@
     "react-native-gesture-handler": "^2.25.0",
     "react-native-haptic-feedback": "^2.3.3",
     "react-native-mmkv": "3.2.0",
+    "react-native-ota-hot-update": "^2.3.0",
     "react-native-pager-view": "^6.7.1",
     "react-native-reanimated": "^3.17.5",
     "react-native-safe-area-context": "^5.4.0",

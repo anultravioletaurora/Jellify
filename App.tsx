@@ -19,6 +19,7 @@ import { requestStoragePermission } from './src/helpers/permisson-helpers'
 import ErrorBoundary from './src/components/ErrorBoundary'
 import Toast from 'react-native-toast-message'
 import JellifyToastConfig from './src/constants/toast.config'
+import OTAUpdateScreen from './src/components/OtaUpdates'
 
 export const backgroundRuntime = createWorkletRuntime('background')
 
@@ -52,6 +53,7 @@ export default function App(): React.JSX.Element {
 		<SafeAreaProvider>
 			<ErrorBoundary reloader={reloader} onRetry={handleRetry}>
 				<NavigationContainer theme={isDarkMode ? JellifyDarkTheme : JellifyLightTheme}>
+					<OTAUpdateScreen />
 					<PersistQueryClientProvider
 						client={queryClient}
 						persistOptions={{

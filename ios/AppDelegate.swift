@@ -4,6 +4,8 @@ import CarPlay
 import React
 import React_RCTAppDelegate
 import ReactAppDependencyProvider
+import react_native_ota_hot_update
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -60,7 +62,8 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     #if DEBUG
     return RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index");
     #else
-    return Bundle.main.url(forResource:"main", withExtension:"jsbundle")
+    return OtaHotUpdate.getBundle()  // -> Add this line
+
     #endif
   }
 }
