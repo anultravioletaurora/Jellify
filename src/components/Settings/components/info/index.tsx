@@ -46,7 +46,7 @@ export default function InfoTabIndex({ navigation }: InfoTabStackNavigationProp)
 									<XStack
 										alignItems='center'
 										onPress={() =>
-											Linking.openURL('https://discord.gg/jellify')
+											Linking.openURL('https://discord.gg/yf8fBatktn')
 										}
 									>
 										<Icon name='discord' small color='$borderColor' />
