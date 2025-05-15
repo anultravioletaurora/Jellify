@@ -37,7 +37,7 @@ const GitUpdateModal = () => {
 
 			onCloneFailed(msg: string) {
 				setLoading(false)
-				Alert.alert('Clone project faile .d!', msg)
+				// Alert.alert('Clone project faile .d!', msg)
 			},
 			onCloneSuccess() {
 				Alert.alert('Clone project success!', 'Restart to apply the changes', [
