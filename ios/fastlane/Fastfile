@@ -23,7 +23,6 @@ platform :ios do
     match(
       type: "appstore",
       app_identifier: "com.cosmonautical.jellify",
-      readonly: true
     )
     build_app(
       scheme: "Jellify - Release",
@@ -36,17 +35,8 @@ platform :ios do
     match(
       type: "appstore",
       app_identifier: "com.cosmonautical.jellify",
-      readonly: true
     )
-    # we dont need to increment version number here anymore, because we  will increment it in the github action
-    # increment_version_number(
-    #   version_number: ENV['VERSION_NUMBER'],
-    #   xcodeproj: "Jellify.xcodeproj"
-    # )
 
-    # increment_build_number(
-    #   xcodeproj: "Jellify.xcodeproj"
-    # )
     build_app(
       scheme: "Jellify - Release",
       workspace: "Jellify.xcworkspace", 

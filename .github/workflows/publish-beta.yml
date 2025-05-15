@@ -52,10 +52,7 @@ jobs:
       - name: ✅ Validate Glitchtip.json
         run: |
           node -e "JSON.parse(require('fs').readFileSync('glitchtip.json'))"
-          
-      - name: 🚀 Run Android fastlane build
-        run: yarn fastlane:android:build
-          
+                    
       - name: 🚀 Run iOS fastlane build and publish to TestFlight
         run: yarn fastlane:ios:beta
         env:
@@ -64,10 +61,15 @@ jobs:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           MATCH_REPO_PAT: "anultravioletaurora:${{ secrets.SIGNING_REPO_PAT }}"
 
+      - name: 🚀 Run Android fastlane build
+        run: yarn fastlane:android:build
+
       - name: 👩‍💻 Configure Git
         run: |
           git config --global user.email "violet@cosmonautical.cloud"
           git config --global user.name "anultravioletaurora"
+          git remote set-url origin https://x-access-token:${{ secrets.SIGNING_REPO_PAT }}@github.com/Jellify-Music/App.git
+
 
       - name: 🧹 Clean up Glitchtip and TelemetryDeck files
         run: |
