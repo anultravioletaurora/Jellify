@@ -1,0 +1,27 @@
+name: Publish Over-the-Air Update
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  publish-ota-update:
+    runs-on: macos-15
+    steps:
+      - name: 🛒 Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SIGNING_REPO_PAT }}
+
+      - name: 🖥 Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 🍎 Run yarn init-ios:new-arch
+        run: yarn init-ios:new-arch
+    
+      - name: 🤖 Publish Android Update
+        run: yarn sendOTA:Android
+
+      - name: 🍎 Publish iOS Update
+        run: yarn sendOTA:iOS
