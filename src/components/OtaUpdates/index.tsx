@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
 	View,
 	Text,
@@ -37,7 +37,7 @@ const GitUpdateModal = () => {
 
 			onCloneFailed(msg: string) {
 				setLoading(false)
-				Alert.alert('Clone project failed!', msg)
+				Alert.alert('Clone project faile .d!', msg)
 			},
 			onCloneSuccess() {
 				Alert.alert('Clone project success!', 'Restart to apply the changes', [
@@ -47,7 +47,7 @@ const GitUpdateModal = () => {
 			},
 			onPullFailed(msg: string) {
 				setLoading(false)
-				Alert.alert('Pull project failed!', msg)
+				// Alert.alert('Pull project failed!', msg)
 			},
 			onPullSuccess() {
 				Alert.alert('Pull project success!', 'Restart to apply the changes', [
@@ -69,6 +69,12 @@ const GitUpdateModal = () => {
 	// if (__DEV__) {
 	// 	return
 	// }
+
+	useEffect(() => {
+		onCheckGitVersion()
+	}, [])
+
+	return null
 	return (
 		<Modal visible={isVisible} transparent animationType='slide' onRequestClose={onClose}>
 			<View style={styles.overlay}>

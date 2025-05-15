@@ -17,11 +17,11 @@ jobs:
         with:
           node-version: 20
 
-      - name: 🍎 Run yarn init-ios:new-arch
-        run: yarn init-ios:new-arch
+      - name: 🍎 Run yarn 
+        run: yarn 
     
       - name: 🤖 Publish Android Update
-        run: yarn sendOTA:Android
+        run: yarn sendOTA:android
 
       - name: 🍎 Publish iOS Update
         run: yarn sendOTA:iOS
