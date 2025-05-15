@@ -119,6 +119,8 @@ Playlist
 - Playlist support, including creating, updating, and reordering
 - Offline Playback
 - Support for Jellyfin Instant Mixes
+- Over-the-Air Updates
+  - Powered by [react-native-ota-hot-update](https://github.com/vantuan88291/react-native-ota-hot-update), incremental app updates are automatically fetched and applied from our [App Bundles Repository](https://github.com/Jellify-Music/App-Bundles)
 
 ### 🛠 Roadmap (in order of priority)
 
@@ -153,6 +155,7 @@ Playlist
 [Tanstack Query](https://tanstack.com/query/latest/docs/framework/react/react-native)\
 [React Native File Access](https://github.com/alpha0010/react-native-file-access)\
 [React Native MMKV](https://github.com/mrousavy/react-native-mmkv)\
+[React Native OTA Hot Update](https://github.com/vantuan88291/react-native-ota-hot-update)\
 [React Native Track Player](https://github.com/doublesymmetry/react-native-track-player)\
 [React Native URL Polyfill](https://github.com/charpeni/react-native-url-polyfill)
 
@@ -252,7 +255,11 @@ This allows me to prioritize specific features, acquire additional hardware for 
 - The team behind [Podverse](https://github.com/podverse/podverse-rn) for their incredible open source project, of which was used as a reference extensively during development
 - My fellow [contributors](https://github.com/anultravioletaurora/Jellify/graphs/contributors) who have poured so much heart and a lot of sweat into making _Jellify_ a great experience
   - Extra thanks to [John](https://github.com/johngrantdev) and [Vali-98](https://github.com/Vali-98) for shaping and designing the user experience in many places
-  - Huge thank you to [Ritesh](https://github.com/riteshshukla04) for your project automation and backend expertise (and for the memes)
+  - Huge thank you to [Ritesh](https://github.com/riteshshukla04) for literally so many things:
+    - Offline Mode and Network Detection
+    - Error Boundary Detection
+    - Over-the-Air Updates
+    - _Supreme_ memes
 - The friends I made along the way that have been critical in fostering an amazing community around _Jellify_
   - [Thalia](https://github.com/PercyGabriel1129)
   - [BotBlake](https://github.com/BotBlake)
