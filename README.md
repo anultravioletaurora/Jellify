@@ -17,6 +17,7 @@
 ## 📄 Contents
 
 - [Info](#ℹ️-info)
+- [Download](#%EF%B8%8F-download)
 - [Screenshots](#-screenshots)
 - [Features](#-features)
 - [Built with](#-built-with-good-stuff)
@@ -39,6 +40,16 @@ Showcasing the artwork of your library, it has a user interface congruent to wha
 ### 😇 Background
 
 This app was designed with me and my dad in mind. I wanted us to have a sleek, one stop shop for live recordings of bands we like (read: the Grateful Dead). The UI was designed so that we'd find it instantly familiar and useful. CarPlay / Android Auto support was also a must for us, as we both use CarPlay religiously.
+
+## ⬇️ Download
+
+### Android
+
+Head to [releases](https://github.com/Jellify-Music/App/releases) to download the required APK directly. 
+
+Also there is [obtanium](https://github.com/ImranR98/Obtainium) to which you can add Jellify as a repo to use the above releases as a repository.
+
+For Obtanium, click "Add App", put "https://github.com/Jellify-Music/App" as the source URL, and on the next screen toggle "prereleases". You'll now be easily able to keep your local copy in sync with new releases.
 
 
 ## 📱 Screenshots
