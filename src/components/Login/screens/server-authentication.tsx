@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import _ from 'lodash'
 import { JellyfinCredentials } from '../../../api/types/jellyfin-credentials'
-import { getToken, Spacer, Spinner, XStack, YStack } from 'tamagui'
-import { H2 } from '../../Global/helpers/text'
+import { getToken, H6, Spacer, Spinner, XStack, YStack } from 'tamagui'
+import { H2, H5, Text } from '../../Global/helpers/text'
 import Button from '../../Global/helpers/button'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { JellifyUser } from '../../../types/JellifyUser'
@@ -69,6 +69,9 @@ export default function ServerAuthentication({
 				<H2 marginHorizontal={'$2'} textAlign='center'>
 					{`Sign in to ${server?.name ?? 'Jellyfin'}`}
 				</H2>
+				<H6 marginHorizontal={'$2'} textAlign='center'>
+					{server?.version ?? 'Unknown Jellyfin version'}
+				</H6>
 			</YStack>
 			<YStack marginHorizontal={'$4'}>
 				<Input
@@ -103,7 +106,7 @@ export default function ServerAuthentication({
 							if (navigation.canGoBack()) navigation.goBack()
 							else
 								navigation.navigate('ServerAddress', undefined, {
-									pop: false,
+									pop: true,
 								})
 						}}
 					>
@@ -115,6 +118,7 @@ export default function ServerAuthentication({
 						<Button
 							marginVertical={0}
 							disabled={_.isEmpty(username) || useApiMutation.isPending}
+							icon={() => <Icon name='chevron-right' small />}
 							onPress={() => {
 								if (!_.isUndefined(username)) {
 									console.log(`Signing in...`)

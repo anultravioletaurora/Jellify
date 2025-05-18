@@ -45,7 +45,10 @@ export default function ServerAddress({
 			const api = jellyfin.createApi(`${useHttps ? https : http}${serverAddress}`)
 
 			const connectViaHostnamePromise = () =>
-				new Promise<PublicSystemInfo>((resolve, reject) => {
+				new Promise<{
+					publicSystemInfoResponse: PublicSystemInfo
+					connectionType: 'hostname'
+				}>((resolve, reject) => {
 					getSystemApi(api)
 						.getPublicSystemInfo()
 						.then((response) => {
@@ -55,7 +58,10 @@ export default function ServerAddress({
 										'Jellyfin instance did not respond to our hostname request',
 									),
 								)
-							return resolve(response.data)
+							return resolve({
+								publicSystemInfoResponse: response.data,
+								connectionType: 'hostname',
+							})
 						})
 						.catch((error) => {
 							console.error('An error occurred getting public system info', error)
@@ -69,7 +75,10 @@ export default function ServerAddress({
 				`${useHttps ? https : http}${ipAddress[0]}:${serverAddress.split(':')[1]}`,
 			)
 			const connectViaLocalNetworkPromise = () =>
-				new Promise<PublicSystemInfo>((resolve, reject) => {
+				new Promise<{
+					publicSystemInfoResponse: PublicSystemInfo
+					connectionType: 'ipAddress'
+				}>((resolve, reject) => {
 					getSystemApi(ipAddressApi)
 						.getPublicSystemInfo()
 						.then((response) => {
@@ -79,7 +88,10 @@ export default function ServerAddress({
 										'Jellyfin instance did not respond to our IP Address request',
 									),
 								)
-							return resolve(response.data)
+							return resolve({
+								publicSystemInfoResponse: response.data,
+								connectionType: 'ipAddress',
+							})
 						})
 						.catch((error) => {
 							console.error('An error occurred getting public system info', error)
@@ -89,14 +101,24 @@ export default function ServerAddress({
 
 			return connectViaHostnamePromise().catch(() => connectViaLocalNetworkPromise())
 		},
-		onSuccess: (publicSystemInfoResponse) => {
+		onSuccess: ({
+			publicSystemInfoResponse,
+			connectionType,
+		}: {
+			publicSystemInfoResponse: PublicSystemInfo
+			connectionType: 'hostname' | 'ipAddress'
+		}) => {
 			if (!publicSystemInfoResponse.Version)
 				throw new Error('Jellyfin instance did not respond')
 
+			console.debug(`Connected to Jellyfin via ${connectionType}`, publicSystemInfoResponse)
 			console.log(`Connected to Jellyfin ${publicSystemInfoResponse.Version!}`)
 
 			const server: JellifyServer = {
-				url: `${useHttps ? https : http}${serverAddress!}`,
+				url:
+					connectionType === 'hostname'
+						? `${useHttps ? https : http}${serverAddress!}`
+						: publicSystemInfoResponse.LocalAddress!,
 				address: serverAddress!,
 				name: publicSystemInfoResponse.ServerName!,
 				version: publicSystemInfoResponse.Version!,

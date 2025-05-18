@@ -1,43 +1,82 @@
 import { ItemCard } from '../Global/components/item-card'
-import { FlatList } from 'react-native'
+import { ActivityIndicator, FlatList, RefreshControl } from 'react-native'
 import { AlbumsProps } from '../types'
 import { useDisplayContext } from '../../providers/Display/display-provider'
-import { getTokens } from 'tamagui'
+import { getToken, getTokens, XStack, YStack } from 'tamagui'
+import Item from '../Global/components/item'
+import React from 'react'
+import { Text } from '../Global/helpers/text'
+import { FlashList } from '@shopify/flash-list'
+
 export default function Albums({
 	albums,
 	navigation,
 	fetchNextPage,
 	hasNextPage,
+	isPending,
 }: AlbumsProps): React.JSX.Element {
 	const { numberOfColumns } = useDisplayContext()
 
+	const MemoizedItem = React.memo(Item)
+
+	const itemHeight = getToken('$6')
+
 	return (
-		<FlatList
-			contentContainerStyle={{
-				flexGrow: 1,
-				alignItems: 'center',
-				marginVertical: getTokens().size.$1.val,
-			}}
-			contentInsetAdjustmentBehavior='automatic'
-			numColumns={numberOfColumns}
-			data={albums?.pages.flatMap((page) => page) ?? []}
-			renderItem={({ index, item: album }) => (
-				<ItemCard
-					item={album}
-					caption={album.Name ?? 'Untitled Album'}
-					subCaption={album.ProductionYear?.toString() ?? ''}
-					squared
-					onPress={() => {
-						navigation.navigate('Album', { album })
-					}}
-					size={'$11'}
-				/>
-			)}
-			onEndReached={() => {
-				if (hasNextPage) fetchNextPage()
-			}}
-			onEndReachedThreshold={0.25}
-			removeClippedSubviews
-		/>
+		<XStack flex={1}>
+			<FlashList
+				contentContainerStyle={{
+					paddingTop: getToken('$1'),
+				}}
+				contentInsetAdjustmentBehavior='automatic'
+				data={albums ?? []}
+				renderItem={({ index, item: album }) =>
+					typeof album === 'string' ? (
+						<XStack
+							padding={'$2'}
+							backgroundColor={'$background'}
+							borderRadius={'$5'}
+							borderWidth={'$1'}
+							borderColor={'$borderColor'}
+							margin={'$2'}
+						>
+							<Text>{album.toUpperCase()}</Text>
+						</XStack>
+					) : typeof album === 'number' ? null : typeof album === 'object' ? (
+						<MemoizedItem
+							item={album}
+							queueName={album.Name ?? 'Unknown Album'}
+							navigation={navigation}
+						/>
+					) : null
+				}
+				ListEmptyComponent={
+					isPending ? (
+						<ActivityIndicator />
+					) : (
+						<YStack justifyContent='center'>
+							<Text>No albums</Text>
+						</YStack>
+					)
+				}
+				onEndReached={() => {
+					if (hasNextPage) fetchNextPage()
+				}}
+				ListFooterComponent={isPending ? <ActivityIndicator /> : null}
+				refreshControl={<RefreshControl refreshing={isPending} />}
+				stickyHeaderIndices={albums
+					?.map((album, index, albums) => (typeof album === 'string' ? index : 0))
+					.filter((value, index, indices) => indices.indexOf(value) === index)}
+				keyExtractor={(item) =>
+					typeof item === 'string'
+						? item
+						: typeof item === 'number'
+							? item.toString()
+							: item.Id!
+				}
+				estimatedItemSize={itemHeight}
+				onEndReachedThreshold={0.25}
+				removeClippedSubviews
+			/>
+		</XStack>
 	)
 }

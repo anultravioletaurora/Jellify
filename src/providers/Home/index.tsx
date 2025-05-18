@@ -70,7 +70,7 @@ const HomeContextInitializer = () => {
 			console.debug('Getting next page for recent artists')
 			return lastPage.length > 0 ? lastPageParam + 1 : undefined
 		},
-		enabled: !isErrorRecentTracks && recentTracks && recentTracks.pages.length > 0,
+		enabled: !!recentTracks && recentTracks.pages.length > 0,
 	})
 
 	const {

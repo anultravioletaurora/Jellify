@@ -10,14 +10,25 @@ import fetchPatrons from '../../../../api/queries/patrons'
 import { FlatList, Linking } from 'react-native'
 import { H6, ScrollView, Separator, XStack, YStack } from 'tamagui'
 import Icon from '../../../Global/components/icon'
-
+import { useEffect, useState } from 'react'
+import { useSettingsContext } from '../../../../providers/Settings'
 export default function InfoTabIndex({ navigation }: InfoTabStackNavigationProp) {
 	const { api } = useJellifyContext()
+
+	const { setDevTools } = useSettingsContext()
+
+	const [versionNumberPresses, setVersionNumberPresses] = useState(0)
 
 	const { data: patrons } = useQuery({
 		queryKey: [QueryKeys.Patrons],
 		queryFn: () => fetchPatrons(api),
 	})
+
+	useEffect(() => {
+		if (versionNumberPresses > 5) {
+			setDevTools(true)
+		}
+	}, [versionNumberPresses])
 
 	return (
 		<ScrollView contentInsetAdjustmentBehavior='automatic'>
@@ -30,7 +41,13 @@ export default function InfoTabIndex({ navigation }: InfoTabStackNavigationProp)
 						iconColor: '$borderColor',
 						children: (
 							<YStack gap={'$2'}>
-								<Text>Made with 💜 by Violet Caulfield</Text>
+								<Text
+									onPress={() =>
+										setVersionNumberPresses(versionNumberPresses + 1)
+									}
+								>
+									Made with 💜 by Violet Caulfield
+								</Text>
 
 								<Separator marginBottom={'$2'} />
 								<XStack gap={'$3'}>

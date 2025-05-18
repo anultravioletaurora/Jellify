@@ -1,5 +1,3 @@
-import { getItemsApi } from '@jellyfin/sdk/lib/utils/api'
-import QueryConfig from './query.config'
 import {
 	BaseItemDto,
 	BaseItemKind,
@@ -13,11 +11,11 @@ import { fetchItems } from './item'
 export function fetchAlbums(
 	api: Api | undefined,
 	library: JellifyLibrary | undefined,
-	page: number,
+	page: string,
 	isFavorite: boolean = false,
 	sortBy: ItemSortBy[] = [ItemSortBy.SortName],
 	sortOrder: SortOrder[] = [SortOrder.Ascending],
-): Promise<BaseItemDto[]> {
+): Promise<{ title: string | number; data: BaseItemDto[] }> {
 	console.debug('Fetching albums', page)
 
 	return fetchItems(api, library, [BaseItemKind.MusicAlbum], page, sortBy, sortOrder, isFavorite)

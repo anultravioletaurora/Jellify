@@ -17,12 +17,13 @@
 ## 📄 Contents
 
 - [Info](#ℹ️-info)
-- [Download](#%EF%B8%8F-download)
+- [Downloading](#️-downloading)
 - [Screenshots](#-screenshots)
 - [Features](#-features)
 - [Built with](#-built-with-good-stuff)
 - [Support](#-support-the-project)
 - [Running Locally](#️running-locally)
+- [Contributing](#-contributing)
 - [Special Thanks](#-special-thanks-to)
 
 
@@ -41,15 +42,27 @@ Showcasing the artwork of your library, it has a user interface congruent to wha
 
 This app was designed with me and my dad in mind. I wanted us to have a sleek, one stop shop for live recordings of bands we like (read: the Grateful Dead). The UI was designed so that we'd find it instantly familiar and useful. CarPlay / Android Auto support was also a must for us, as we both use CarPlay religiously.
 
-## ⬇️ Download
+## ⬇️ Downloading
 
 ### Android
 
-Head to [releases](https://github.com/Jellify-Music/App/releases) to download the required APK directly. 
+Head to [releases](https://github.com/Jellify-Music/App/releases) to download the required .APK directly.
 
 Also there is [obtanium](https://github.com/ImranR98/Obtainium) to which you can add Jellify as a repo to use the above releases as a repository.
 
 For Obtanium, click "Add App", put "https://github.com/Jellify-Music/App" as the source URL, and on the next screen toggle "prereleases". You'll now be easily able to keep your local copy in sync with new releases.
+
+### iOS
+
+#### The TestFlight Way
+
+Join the [TestFlight](https://testflight.apple.com/join/etVSc7ZQ) and install the latest version from there
+
+#### The Sideloading Way
+
+Head to [releases](https://github.com/Jellify-Music/App/releases) to download the required .IPA directly.
+
+Install via [Altstore](https://altstore.io) or your favorite sideloading utility
 
 
 ## 📱 Screenshots
@@ -283,6 +296,17 @@ This allows me to prioritize specific features, acquire additional hardware for 
 - [Setting up Android SDK](https://developer.android.com/about/versions/14/setup-sdk)
 - [ANDROID_HOME not being set](https://stackoverflow.com/questions/26356359/error-android-home-is-not-set-and-android-command-not-in-your-path-you-must/54888107#54888107)
 - [Android Auto app not showing up](https://www.reddit.com/r/AndroidAuto/s/LGYHoSPdXm)
+
+## 👩‍💻 Contributing
+
+We are open to any developer that wants to lend their hand at _Jellify_ development! Here's the best way to get started
+
+- Fork this repository
+- Follow the instructions for [Running Locally](#️running-locally)
+- Hack, hack, hack
+- ???
+- Submit a Pull Request to sync the main repository with your fork!
+- Profit 🎉
 
 ## 🙏 Special Thanks To
 

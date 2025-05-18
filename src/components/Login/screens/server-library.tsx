@@ -11,6 +11,7 @@ import { fetchUserViews } from '../../../api/queries/libraries'
 import { useQuery } from '@tanstack/react-query'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { StackParamList } from '../../../components/types'
+import Icon from '../../Global/components/icon'
 
 export default function ServerLibrary({
 	navigation,
@@ -83,6 +84,7 @@ export default function ServerLibrary({
 
 				<Button
 					disabled={!libraryId}
+					icon={() => <Icon name='guitar-electric' small />}
 					onPress={() => {
 						setLibrary({
 							musicLibraryId: libraryId!,
@@ -105,10 +107,11 @@ export default function ServerLibrary({
 				</Button>
 
 				<Button
+					icon={() => <Icon name='chevron-left' small />}
 					onPress={() => {
 						setUser(undefined)
 						navigation.navigate('ServerAuthentication', undefined, {
-							pop: false,
+							pop: true,
 						})
 					}}
 				>

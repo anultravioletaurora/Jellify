@@ -8,6 +8,8 @@ interface SettingsContext {
 	setSendMetrics: React.Dispatch<React.SetStateAction<boolean>>
 	autoDownload: boolean
 	setAutoDownload: React.Dispatch<React.SetStateAction<boolean>>
+	devTools: boolean
+	setDevTools: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 /**
@@ -26,11 +28,15 @@ const SettingsContextInitializer = () => {
 
 	const autoDownloadInit = storage.getBoolean(MMKVStorageKeys.AutoDownload)
 
+	const devToolsInit = storage.getBoolean(MMKVStorageKeys.DevTools)
+
 	const [sendMetrics, setSendMetrics] = useState(sendMetricsInit ?? false)
 
 	const [autoDownload, setAutoDownload] = useState(
 		autoDownloadInit ?? ['ios', 'android'].includes(Platform.OS),
 	)
+
+	const [devTools, setDevTools] = useState(false)
 
 	useEffect(() => {
 		storage.set(MMKVStorageKeys.SendMetrics, sendMetrics)
@@ -40,11 +46,17 @@ const SettingsContextInitializer = () => {
 		storage.set(MMKVStorageKeys.AutoDownload, autoDownload)
 	}, [autoDownload])
 
+	useEffect(() => {
+		storage.set(MMKVStorageKeys.DevTools, devTools)
+	}, [devTools])
+
 	return {
 		sendMetrics,
 		setSendMetrics,
 		autoDownload,
 		setAutoDownload,
+		devTools,
+		setDevTools,
 	}
 }
 
@@ -53,6 +65,8 @@ export const SettingsContext = createContext<SettingsContext>({
 	setSendMetrics: () => {},
 	autoDownload: false,
 	setAutoDownload: () => {},
+	devTools: false,
+	setDevTools: () => {},
 })
 
 export const SettingsProvider = ({ children }: { children: React.ReactNode }) => {

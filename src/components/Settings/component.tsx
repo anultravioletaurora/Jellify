@@ -9,17 +9,19 @@ import PlaybackTab from './components/playback-tab'
 import InfoTab from './components/info-tab'
 import SettingsTabBar from './components/tab-bar'
 import StorageTab from './components/storage-tab'
-
+import { useSettingsContext } from '../../providers/Settings'
 const SettingsTabsNavigator = createMaterialTopTabNavigator()
 
 export default function Settings(): React.JSX.Element {
 	const theme = useTheme()
 
+	const { devTools } = useSettingsContext()
+
 	return (
 		<SettingsTabsNavigator.Navigator
 			screenOptions={{
-				tabBarScrollEnabled: true,
 				tabBarGap: getToken('$size.0'),
+				tabBarScrollEnabled: true,
 				tabBarItemStyle: {
 					width: getToken('$size.8'),
 				},
@@ -70,16 +72,6 @@ export default function Settings(): React.JSX.Element {
 			/>
 
 			<SettingsTabsNavigator.Screen
-				name='Labs'
-				component={LabsTab}
-				options={{
-					tabBarIcon: ({ focused, color }) => (
-						<Icon name='flask' color={focused ? '$primary' : '$borderColor'} small />
-					),
-				}}
-			/>
-
-			<SettingsTabsNavigator.Screen
 				name='Account'
 				component={AccountTab}
 				options={{
@@ -106,6 +98,21 @@ export default function Settings(): React.JSX.Element {
 					),
 				}}
 			/>
+			{devTools && (
+				<SettingsTabsNavigator.Screen
+					name='Labs'
+					component={LabsTab}
+					options={{
+						tabBarIcon: ({ focused, color }) => (
+							<Icon
+								name='flask'
+								color={focused ? '$primary' : '$borderColor'}
+								small
+							/>
+						),
+					}}
+				/>
+			)}
 		</SettingsTabsNavigator.Navigator>
 	)
 }

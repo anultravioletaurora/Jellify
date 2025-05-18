@@ -10,6 +10,7 @@ import { SectionList } from 'react-native'
 import { Api } from '@jellyfin/sdk/lib/api'
 import { JellifyLibrary } from '../../types/JellifyLibrary'
 import QueryConfig from './query.config'
+import { alphabet } from '../../providers/Library'
 
 /**
  * Fetches a single Jellyfin item by it's ID
@@ -51,12 +52,12 @@ export async function fetchItems(
 	api: Api | undefined,
 	library: JellifyLibrary | undefined,
 	types: BaseItemKind[],
-	page: number = 0,
+	page: string | number = 0,
 	sortBy: ItemSortBy[] = [ItemSortBy.SortName],
 	sortOrder: SortOrder[] = [SortOrder.Ascending],
 	isFavorite: boolean,
 	parentId?: string | undefined,
-): Promise<BaseItemDto[]> {
+): Promise<{ title: string | number; data: BaseItemDto[] }> {
 	console.debug('Fetching items', page)
 	return new Promise((resolve, reject) => {
 		if (isUndefined(api)) return reject('Client not initialized')
@@ -69,12 +70,14 @@ export async function fetchItems(
 				sortBy,
 				recursive: true,
 				sortOrder,
-				startIndex: page * QueryConfig.limits.library,
+				startIndex: typeof page === 'number' ? page * QueryConfig.limits.library : 0,
 				limit: QueryConfig.limits.library,
+				nameStartsWith: typeof page === 'string' && page !== alphabet[0] ? page : undefined,
+				nameLessThan: typeof page === 'string' && page === alphabet[0] ? 'A' : undefined,
 				isFavorite,
 			})
 			.then(({ data }) => {
-				resolve(data.Items ?? [])
+				resolve({ title: page, data: data.Items ?? [] })
 			})
 			.catch((error) => {
 				reject(error)

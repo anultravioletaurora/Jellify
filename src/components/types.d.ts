@@ -148,32 +148,36 @@ export type LibraryProps = NativeStackScreenProps<StackParamList, 'Library'>
 export type TracksProps = NativeStackScreenProps<StackParamList, 'Tracks'>
 
 export type ArtistsProps = {
-	artists: InfiniteData<BaseItemDto[], unknown> | undefined
+	artists: (string | number | BaseItemDto)[] | undefined
 	navigation: NativeStackNavigationProp<StackParamList>
-	fetchNextPage: () => void
+	fetchNextPage: (options?: FetchNextPageOptions | undefined) => void
 	hasNextPage: boolean
 	isPending: boolean
+	isFetchingNextPage: boolean
 }
 export type AlbumsProps = {
-	albums: InfiniteData<BaseItemDto[], unknown> | undefined
+	albums: (string | number | BaseItemDto)[] | undefined
 	navigation: NativeStackNavigationProp<StackParamList>
-	fetchNextPage: () => void
+	fetchNextPage: (options?: FetchNextPageOptions | undefined) => void
 	hasNextPage: boolean
 	isPending: boolean
+	isFetchingNextPage: boolean
 }
 export type GenresProps = {
 	genres: InfiniteData<BaseItemDto[], unknown> | undefined
 	navigation: NativeStackNavigationProp<StackParamList>
-	fetchNextPage: () => void
+	fetchNextPage: (options?: FetchNextPageOptions | undefined) => void
 	hasNextPage: boolean
 	isPending: boolean
+	isFetchingNextPage: boolean
 }
 export type PlaylistsProps = {
 	playlists: InfiniteData<BaseItemDto[], unknown> | undefined
 	navigation: NativeStackNavigationProp<StackParamList>
-	fetchNextPage: () => void
+	fetchNextPage: (options?: FetchNextPageOptions | undefined) => void
 	hasNextPage: boolean
 	isPending: boolean
+	isFetchingNextPage: boolean
 }
 
 export type DeletePlaylistProps = NativeStackScreenProps<StackParamList, 'DeletePlaylist'>

@@ -12,11 +12,11 @@ import { fetchItems } from './item'
 export function fetchArtists(
 	api: Api | undefined,
 	library: JellifyLibrary | undefined,
-	page: number,
+	page: string | number,
 	isFavorite: boolean,
 	sortBy: ItemSortBy[] = [ItemSortBy.SortName],
 	sortOrder: SortOrder[] = [SortOrder.Ascending],
-): Promise<BaseItemDto[]> {
+): Promise<{ title: string | number; data: BaseItemDto[] }> {
 	console.debug('Fetching artists', page)
 	return fetchItems(api, library, [BaseItemKind.MusicArtist], page, sortBy, sortOrder, isFavorite)
 }
