@@ -1,15 +1,24 @@
+
+version=$(jq -r '.version' "$(dirname "$0")/../package.json")
+target_branch="${version}/ios"
 cd ios
 rm -rf App-Bundles
 git clone https://github.com/Jellify-Music/App-Bundles.git
 cd App-Bundles
-git checkout iOS
+if git ls-remote --exit-code --heads origin "$target_branch" >/dev/null 2>&1; then
+  echo "Branch '$target_branch' already exists on remote."
+  git checkout "$target_branch"
+else
+  echo "Branch '$target_branch' does not exist on remote. Attempting to create it..."
+  git checkout -b "$target_branch"
+fi
 rm -rf Readme.md
 cd ../..
 yarn createBundle:ios
 cd ios/App-Bundles
 git add .
 git commit -m "OTA-Update - $(date +'%b %d %H:%M')"
-git push https://x-access-token:$SIGNING_REPO_PAT@github.com/Jellify-Music/App-Bundles.git iOS
+git push https://x-access-token:$SIGNING_REPO_PAT@github.com/Jellify-Music/App-Bundles.git "$target_branch"
 cd ..
 rm -rf App-Bundles
 cd ..

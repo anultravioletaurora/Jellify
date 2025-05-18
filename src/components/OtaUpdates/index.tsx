@@ -11,6 +11,11 @@ import {
 } from 'react-native'
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import hotUpdate from 'react-native-ota-hot-update'
+import DeviceInfo from 'react-native-device-info'
+
+const version = DeviceInfo.getVersion()
+
+const gitBranch = `${version}/${Platform.OS}`
 
 const GitUpdateModal = () => {
 	const progress = useSharedValue(0)
@@ -31,7 +36,7 @@ const GitUpdateModal = () => {
 		setLoading(true)
 
 		hotUpdate.git.checkForGitUpdate({
-			branch: Platform.OS === 'ios' ? 'iOS' : 'android',
+			branch: gitBranch,
 			bundlePath: Platform.OS === 'ios' ? 'main.jsbundle' : 'index.android.bundle',
 			url: 'https://github.com/Jellify-Music/App-Bundles',
 
