@@ -16,13 +16,13 @@ export type StackParamList = {
 	Home: undefined
 	AddPlaylist: undefined
 	RecentArtists: {
-		artists: InfiniteData<BaseItemDto[], unknown> | undefined
+		artists: BaseItemDto[] | undefined
 		fetchNextPage: () => void
 		hasNextPage: boolean
 		isPending: boolean
 	}
 	MostPlayedArtists: {
-		artists: InfiniteData<BaseItemDto[], unknown> | undefined
+		artists: BaseItemDto[] | undefined
 		fetchNextPage: () => void
 		hasNextPage: boolean
 		isPending: boolean
@@ -53,11 +53,12 @@ export type StackParamList = {
 
 	Discover: undefined
 	RecentlyAdded: {
-		albums: InfiniteData<BaseItemDto[], unknown> | undefined
+		albums: BaseItemDto[] | undefined
 		navigation: NativeStackNavigationProp<StackParamList>
 		fetchNextPage: () => void
 		hasNextPage: boolean
 		isPending: boolean
+		isFetchingNextPage: boolean
 	}
 
 	Library: undefined
@@ -154,6 +155,7 @@ export type ArtistsProps = {
 	hasNextPage: boolean
 	isPending: boolean
 	isFetchingNextPage: boolean
+	showAlphabeticalSelector: boolean
 }
 export type AlbumsProps = {
 	albums: (string | number | BaseItemDto)[] | undefined
@@ -162,6 +164,7 @@ export type AlbumsProps = {
 	hasNextPage: boolean
 	isPending: boolean
 	isFetchingNextPage: boolean
+	showAlphabeticalSelector: boolean
 }
 export type GenresProps = {
 	genres: InfiniteData<BaseItemDto[], unknown> | undefined

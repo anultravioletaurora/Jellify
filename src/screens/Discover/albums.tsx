@@ -12,6 +12,8 @@ export default function RecentlyAdded({
 			fetchNextPage={route.params.fetchNextPage}
 			hasNextPage={route.params.hasNextPage}
 			isPending={route.params.isPending}
+			isFetchingNextPage={route.params.isFetchingNextPage}
+			showAlphabeticalSelector={false}
 		/>
 	)
 }

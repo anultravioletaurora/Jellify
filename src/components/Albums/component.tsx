@@ -14,6 +14,8 @@ export default function Albums({
 	fetchNextPage,
 	hasNextPage,
 	isPending,
+	isFetchingNextPage,
+	showAlphabeticalSelector,
 }: AlbumsProps): React.JSX.Element {
 	const { numberOfColumns } = useDisplayContext()
 
@@ -63,9 +65,15 @@ export default function Albums({
 				}}
 				ListFooterComponent={isPending ? <ActivityIndicator /> : null}
 				refreshControl={<RefreshControl refreshing={isPending} />}
-				stickyHeaderIndices={albums
-					?.map((album, index, albums) => (typeof album === 'string' ? index : 0))
-					.filter((value, index, indices) => indices.indexOf(value) === index)}
+				stickyHeaderIndices={
+					showAlphabeticalSelector
+						? albums
+								?.map((album, index, albums) =>
+									typeof album === 'string' ? index : 0,
+								)
+								.filter((value, index, indices) => indices.indexOf(value) === index)
+						: []
+				}
 				keyExtractor={(item) =>
 					typeof item === 'string'
 						? item

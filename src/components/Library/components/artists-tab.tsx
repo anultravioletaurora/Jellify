@@ -23,6 +23,7 @@ export default function ArtistsTab(): React.JSX.Element {
 			fetchNextPage={fetchNextArtistsPage}
 			hasNextPage={hasNextArtistsPage}
 			isFetchingNextPage={isFetchingNextArtistsPage}
+			showAlphabeticalSelector={true}
 		/>
 	)
 }

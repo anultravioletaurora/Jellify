@@ -19,6 +19,7 @@ export default function Artists({
 	hasNextPage,
 	isPending,
 	isFetchingNextPage,
+	showAlphabeticalSelector,
 }: ArtistsProps): React.JSX.Element {
 	const { width, height } = useSafeAreaFrame()
 
@@ -120,9 +121,15 @@ export default function Artists({
 					)
 				}
 				ListFooterComponent={isPending ? <ActivityIndicator /> : null}
-				stickyHeaderIndices={artists
-					?.map((artist, index, artists) => (typeof artist === 'string' ? index : 0))
-					.filter((value, index, indices) => indices.indexOf(value) === index)}
+				stickyHeaderIndices={
+					showAlphabeticalSelector
+						? artists
+								?.map((artist, index, artists) =>
+									typeof artist === 'string' ? index : 0,
+								)
+								.filter((value, index, indices) => indices.indexOf(value) === index)
+						: []
+				}
 				onEndReached={() => {
 					if (hasNextPage) fetchNextPage()
 				}}
@@ -130,39 +137,41 @@ export default function Artists({
 				removeClippedSubviews={false}
 			/>
 
-			<YStack
-				maxWidth={'$4'}
-				margin={'$2'}
-				minWidth={'$2'}
-				width={width / 8}
-				height={height - getTokens().size.$15.val}
-				alignItems='center'
-				justifyContent='center'
-				borderWidth={'$1'}
-				borderColor={'$borderColor'}
-				borderRadius={'$5'}
-				gap={0}
-				flex={1}
-			>
-				{memoizedAlphabet.map((letter) => (
-					<Text
-						display='flex'
-						paddingHorizontal={'$3'}
-						flex={1}
-						alignItems='center'
-						justifyContent='center'
-						key={letter}
-						bold
-						fontSize={'$6'}
-						onPressOut={() => {
-							trigger('impactLight')
-							alphabeticalSelectorCallback(letter)
-						}}
-					>
-						{letter.toUpperCase()}
-					</Text>
-				))}
-			</YStack>
+			{showAlphabeticalSelector && (
+				<YStack
+					maxWidth={'$4'}
+					margin={'$2'}
+					minWidth={'$2'}
+					width={width / 8}
+					height={height - getTokens().size.$15.val}
+					alignItems='center'
+					justifyContent='center'
+					borderWidth={'$1'}
+					borderColor={'$borderColor'}
+					borderRadius={'$5'}
+					gap={0}
+					flex={1}
+				>
+					{memoizedAlphabet.map((letter) => (
+						<Text
+							display='flex'
+							paddingHorizontal={'$3'}
+							flex={1}
+							alignItems='center'
+							justifyContent='center'
+							key={letter}
+							bold
+							fontSize={'$6'}
+							onPressOut={() => {
+								trigger('impactLight')
+								alphabeticalSelectorCallback(letter)
+							}}
+						>
+							{letter.toUpperCase()}
+						</Text>
+					))}
+				</YStack>
+			)}
 		</XStack>
 	)
 }

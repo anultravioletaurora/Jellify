@@ -12,8 +12,13 @@ export default function RecentlyAdded({
 }: {
 	navigation: NativeStackNavigationProp<StackParamList>
 }): React.JSX.Element {
-	const { recentlyAdded, fetchNextRecentlyAdded, hasNextRecentlyAdded, isPendingRecentlyAdded } =
-		useDiscoverContext()
+	const {
+		recentlyAdded,
+		fetchNextRecentlyAdded,
+		hasNextRecentlyAdded,
+		isPendingRecentlyAdded,
+		isFetchingNextRecentlyAdded,
+	} = useDiscoverContext()
 
 	return (
 		<View>
@@ -26,6 +31,7 @@ export default function RecentlyAdded({
 						fetchNextPage: fetchNextRecentlyAdded,
 						hasNextPage: hasNextRecentlyAdded,
 						isPending: isPendingRecentlyAdded,
+						isFetchingNextPage: isFetchingNextRecentlyAdded,
 					})
 				}}
 			>
@@ -34,11 +40,7 @@ export default function RecentlyAdded({
 			</XStack>
 
 			<HorizontalCardList
-				data={
-					(recentlyAdded?.pages[0].length ?? 0 > 10)
-						? recentlyAdded!.pages[0].slice(0, 10)
-						: recentlyAdded?.pages[0]
-				}
+				data={recentlyAdded?.slice(0, 10) ?? []}
 				renderItem={({ item }) => (
 					<ItemCard
 						caption={item.Name}

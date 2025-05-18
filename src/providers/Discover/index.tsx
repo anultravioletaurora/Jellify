@@ -7,7 +7,7 @@ import { useJellifyContext } from '..'
 interface DiscoverContext {
 	refreshing: boolean
 	refresh: () => void
-	recentlyAdded: InfiniteData<BaseItemDto[], unknown> | undefined
+	recentlyAdded: BaseItemDto[] | undefined
 	recentlyPlayed: InfiniteData<BaseItemDto[], unknown> | undefined
 	fetchNextRecentlyAdded: () => void
 	fetchNextRecentlyPlayed: () => void
@@ -15,6 +15,8 @@ interface DiscoverContext {
 	hasNextRecentlyPlayed: boolean
 	isPendingRecentlyAdded: boolean
 	isPendingRecentlyPlayed: boolean
+	isFetchingNextRecentlyAdded: boolean
+	isFetchingNextRecentlyPlayed: boolean
 }
 
 const DiscoverContextInitializer = () => {
@@ -27,9 +29,11 @@ const DiscoverContextInitializer = () => {
 		fetchNextPage: fetchNextRecentlyAdded,
 		hasNextPage: hasNextRecentlyAdded,
 		isPending: isPendingRecentlyAdded,
+		isFetchingNextPage: isFetchingNextRecentlyAdded,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.RecentlyAdded],
 		queryFn: ({ pageParam }) => fetchRecentlyAdded(api, library, pageParam),
+		select: (data) => data.pages.flatMap((page) => page),
 		getNextPageParam: (lastPage, pages) => (lastPage.length > 0 ? pages.length + 1 : undefined),
 		initialPageParam: 0,
 	})
@@ -40,6 +44,7 @@ const DiscoverContextInitializer = () => {
 		fetchNextPage: fetchNextRecentlyPlayed,
 		hasNextPage: hasNextRecentlyPlayed,
 		isPending: isPendingRecentlyPlayed,
+		isFetchingNextPage: isFetchingNextRecentlyPlayed,
 	} = useInfiniteQuery({
 		queryKey: [QueryKeys.RecentlyPlayed],
 		queryFn: ({ pageParam }) => fetchRecentlyPlayed(api, user, library, pageParam),
@@ -65,6 +70,8 @@ const DiscoverContextInitializer = () => {
 		hasNextRecentlyPlayed,
 		isPendingRecentlyAdded,
 		isPendingRecentlyPlayed,
+		isFetchingNextRecentlyAdded,
+		isFetchingNextRecentlyPlayed,
 	}
 }
 
@@ -79,6 +86,8 @@ const DiscoverContext = createContext<DiscoverContext>({
 	hasNextRecentlyPlayed: false,
 	isPendingRecentlyAdded: false,
 	isPendingRecentlyPlayed: false,
+	isFetchingNextRecentlyAdded: false,
+	isFetchingNextRecentlyPlayed: false,
 })
 
 export const DiscoverProvider: ({ children }: { children: ReactNode }) => React.JSX.Element = ({

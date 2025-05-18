@@ -26,6 +26,8 @@ export default function HomeArtistsScreen({
 				fetchNextPage={fetchNextFrequentArtists}
 				hasNextPage={hasNextFrequentArtists}
 				isPending={isFetchingFrequentArtists}
+				isFetchingNextPage={isFetchingFrequentArtists}
+				showAlphabeticalSelector={false}
 			/>
 		)
 	}
@@ -37,6 +39,8 @@ export default function HomeArtistsScreen({
 			fetchNextPage={fetchNextRecentArtists}
 			hasNextPage={hasNextRecentArtists}
 			isPending={isFetchingRecentArtists}
+			isFetchingNextPage={isFetchingRecentArtists}
+			showAlphabeticalSelector={false}
 		/>
 	)
 }

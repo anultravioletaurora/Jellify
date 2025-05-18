@@ -34,11 +34,7 @@ export default function RecentArtists({
 			</XStack>
 
 			<HorizontalCardList
-				data={
-					(recentArtists?.pages.flatMap((page) => page).length ?? 0 > 10)
-						? recentArtists?.pages.flatMap((page) => page).slice(0, 10)
-						: recentArtists?.pages.flatMap((page) => page)
-				}
+				data={recentArtists?.slice(0, 10) ?? []}
 				renderItem={({ item: recentArtist }) => (
 					<ItemCard
 						item={recentArtist}

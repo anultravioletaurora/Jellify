@@ -39,11 +39,7 @@ export default function FrequentArtists({
 			</XStack>
 
 			<HorizontalCardList
-				data={
-					(frequentArtists?.pages.flatMap((page) => page).length ?? 0 > 10)
-						? frequentArtists?.pages.flatMap((page) => page).slice(0, 10)
-						: frequentArtists?.pages.flatMap((page) => page)
-				}
+				data={frequentArtists?.slice(0, 10) ?? []}
 				renderItem={({ item: artist }) => (
 					<ItemCard
 						item={artist}
