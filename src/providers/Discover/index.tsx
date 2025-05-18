@@ -31,7 +31,7 @@ const DiscoverContextInitializer = () => {
 		isPending: isPendingRecentlyAdded,
 		isFetchingNextPage: isFetchingNextRecentlyAdded,
 	} = useInfiniteQuery({
-		queryKey: [QueryKeys.RecentlyAdded],
+		queryKey: [QueryKeys.RecentlyAddedAlbums],
 		queryFn: ({ pageParam }) => fetchRecentlyAdded(api, library, pageParam),
 		select: (data) => data.pages.flatMap((page) => page),
 		getNextPageParam: (lastPage, pages) => (lastPage.length > 0 ? pages.length + 1 : undefined),

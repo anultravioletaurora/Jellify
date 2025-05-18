@@ -149,7 +149,7 @@ const LibraryContextInitializer = () => {
 		isFetchingNextPage: isFetchingNextAlbumsPage,
 		hasNextPage: hasNextAlbumsPage,
 	} = useInfiniteQuery({
-		queryKey: [QueryKeys.AllAlbums, isFavorites, sortDescending],
+		queryKey: [QueryKeys.AllAlbumsAlphabetical, isFavorites, sortDescending],
 		queryFn: ({ pageParam }) =>
 			fetchAlbums(
 				api,
