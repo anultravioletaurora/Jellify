@@ -55,24 +55,6 @@ const HomeContextInitializer = () => {
 			return lastPage.length === QueryConfig.limits.recents ? lastPageParam + 1 : undefined
 		},
 	})
-	const {
-		data: recentArtists,
-		isFetching: isFetchingRecentArtists,
-		refetch: refetchRecentArtists,
-		fetchNextPage: fetchNextRecentArtists,
-		hasNextPage: hasNextRecentArtists,
-		isPending: isPendingRecentArtists,
-	} = useInfiniteQuery({
-		queryKey: [QueryKeys.RecentlyPlayedArtists],
-		queryFn: ({ pageParam }) => fetchRecentlyPlayedArtists(pageParam),
-		select: (data) => data.pages.flatMap((page) => page),
-		initialPageParam: 0,
-		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
-			console.debug('Getting next page for recent artists')
-			return lastPage.length > 0 ? lastPageParam + 1 : undefined
-		},
-		enabled: !!recentTracks && recentTracks.pages.length > 0,
-	})
 
 	const {
 		data: frequentlyPlayed,
@@ -89,6 +71,25 @@ const HomeContextInitializer = () => {
 			console.debug('Getting next page for frequently played')
 			return lastPage.length === QueryConfig.limits.recents ? lastPageParam + 1 : undefined
 		},
+	})
+
+	const {
+		data: recentArtists,
+		isFetching: isFetchingRecentArtists,
+		refetch: refetchRecentArtists,
+		fetchNextPage: fetchNextRecentArtists,
+		hasNextPage: hasNextRecentArtists,
+		isPending: isPendingRecentArtists,
+	} = useInfiniteQuery({
+		queryKey: [QueryKeys.RecentlyPlayedArtists],
+		queryFn: ({ pageParam }) => fetchRecentlyPlayedArtists(pageParam),
+		select: (data) => data.pages.flatMap((page) => page),
+		initialPageParam: 0,
+		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
+			console.debug('Getting next page for recent artists')
+			return lastPage.length > 0 ? lastPageParam + 1 : undefined
+		},
+		enabled: !!recentTracks && recentTracks.pages.length > 0 && !isFetchingFrequentlyPlayed,
 	})
 
 	const {

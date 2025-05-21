@@ -27,6 +27,8 @@ export default function Albums({
 		setColumns(Math.floor(width / getToken('$20')))
 	}, [width])
 
+	console.debug('albums', albums)
+
 	return (
 		<Animated.FlatList
 			contentContainerStyle={{
@@ -44,15 +46,12 @@ export default function Albums({
 									// to those that have at least 6 songs or a runtime longer
 									// than 30 minutes
 									(route.name === 'ArtistAlbums' &&
-										((album.ChildCount && album.ChildCount >= 6) ||
-											convertRunTimeTicksToSeconds(album.RunTimeTicks ?? 0) /
-												60 >
-												30)) ||
+										convertRunTimeTicksToSeconds(album.RunTimeTicks ?? 0) / 60 >
+											30) ||
 									(route.name === 'ArtistEps' &&
-										((album.ChildCount && album.ChildCount < 6) ||
-											convertRunTimeTicksToSeconds(album.RunTimeTicks ?? 0) /
-												60 <=
-												30)),
+										convertRunTimeTicksToSeconds(album.RunTimeTicks ?? 0) /
+											60 <=
+											30),
 							)
 						: []
 			}
