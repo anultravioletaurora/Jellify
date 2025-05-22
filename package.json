@@ -83,6 +83,7 @@
     "react-native-url-polyfill": "^2.0.0",
     "react-native-uuid": "^2.0.3",
     "react-native-vector-icons": "^10.2.0",
+    "react-native-watch-connectivity": "^1.1.0",
     "ruby": "^0.6.1",
     "tamagui": "^1.126.12"
   },
