@@ -22,7 +22,7 @@ PODS:
     - hermes-engine/Pre-built (= 250829098.0.17)
   - hermes-engine/Pre-built (250829098.0.17)
   - MMKVCore (2.4.0)
-  - NitroFetch (1.8.0):
+  - NitroFetch (1.9.0):
     - hermes-engine
     - NitroModules
     - RCTRequired
@@ -2699,7 +2699,7 @@ SPEC CHECKSUMS:
   google-cast-sdk: 32f65af50d164e3c475e79ad123db3cc26fbcd37
   hermes-engine: 63c5db7d529c36335fada6582fd293ae2a105d77
   MMKVCore: 3d16ce9f7d411e135020915fde98a056859a1efa
-  NitroFetch: 17d71390f7822f63b703f02fe9e573eb648ccb8b
+  NitroFetch: 49d328f9b03e056e935dbc49a4229ed115439a68
   NitroMmkv: 70acd11bdb953854e3d75ec72eeaed4d5639d4b7
   NitroModules: b4d92f95f7e70027935b09736d7a589181bc0912
   NitroOta: 793284fb3b336b9e5b59f5a19424661ce100fd08
