@@ -1496,7 +1496,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - react-native-pager-view (9.0.6):
+  - react-native-pager-view (8.0.4):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2752,7 +2752,7 @@ SPEC CHECKSUMS:
   react-native-blurhash: 3a123f5fbdf811e5e8770ddea92b5aa16ff552bb
   react-native-carplay: 8f388f6f73e5e0f73ed154ad8794371343ee20c0
   react-native-netinfo: 58601963060e4df0c1b6b6980d4f24ce2751e64c
-  react-native-pager-view: b558d26913abc7415563648759b77e6bd1b61da9
+  react-native-pager-view: fa8bfbc3003db12dbcf3239ca9ee36910fd0538b
   react-native-quick-base64: 2dae6dfe4f0e5d631cba762516a760063ef26d6c
   react-native-safe-area-context: f2bf5d3db254014a48910436c4a58ab0c4e2fe1f
   react-native-turbo-image: cbf4df37ce4eda4fdbc3b21630e5f7ec0afd8090
