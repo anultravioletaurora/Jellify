@@ -35,6 +35,7 @@ export async function fetchRecentlyAdded(
 					parentId: library.musicLibraryId,
 					limit: ApiLimits.Discover,
 					enableUserData: true,
+					includeItemTypes: [BaseItemKind.MusicAlbum],
 					fields: [ItemFields.ParentId, ItemFields.Tags],
 				},
 				{
