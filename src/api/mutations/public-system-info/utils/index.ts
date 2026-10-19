@@ -4,6 +4,7 @@ import { Jellyfin } from '@jellyfin/sdk/lib/jellyfin'
 import { JellyfinInfo } from '../../../info'
 import { PublicSystemInfo } from '@jellyfin/sdk/lib/generated-client/models'
 import { Api } from '@jellyfin/sdk'
+import { AxiosResponse } from 'axios'
 import HTTPS, { HTTP } from '../../../../constants/protocols'
 import { captureError } from '../../../../utils/logging'
 import LoggingContext from '../../../../utils/logging/enums'
@@ -14,17 +15,17 @@ type ConnectionType = 'hostname' | 'ipAddress'
  * Attempts to connect to a Jellyfin server.
  *
  * @param serverAddress The server address to connect to.
- * @param useHttps Whether to use HTTPS.
  * @returns The public system info response.
  */
 export async function connectToServer(serverAddress: string): Promise<{
 	publicSystemInfoResponse: PublicSystemInfo
 	connectionType: ConnectionType
+	resolvedUrl: string
 }> {
 	if (!serverAddress) throw new Error('Server address was empty')
 
 	const serverAddressContainsProtocol =
-		serverAddress.includes(HTTP) || serverAddress.includes(HTTPS)
+		serverAddress.startsWith(HTTP) || serverAddress.startsWith(HTTPS)
 
 	const jellyfin = new Jellyfin(JellyfinInfo)
 
@@ -68,6 +69,7 @@ function connect(api: Api, connectionType: ConnectionType) {
 			return {
 				publicSystemInfoResponse: response.data,
 				connectionType,
+				resolvedUrl: resolveBaseUrl(response, api.basePath),
 			}
 		})
 		.catch((error) => {
@@ -78,4 +80,18 @@ function connect(api: Api, connectionType: ConnectionType) {
 			)
 			throw new Error(`Unable to connect to Jellyfin via ${connectionType}`)
 		})
+}
+
+const PUBLIC_INFO_PATH = '/System/Info/Public'
+
+/**
+ * Derives the server base URL from the final (post-redirect) request URL,
+ * falling back to the URL we originally requested.
+ */
+function resolveBaseUrl(response: AxiosResponse, requestedBasePath: string): string {
+	const finalUrl: unknown = response.request?.responseURL ?? response.request?.res?.responseUrl
+	if (typeof finalUrl !== 'string') return requestedBasePath
+
+	const index = finalUrl.indexOf(PUBLIC_INFO_PATH)
+	return index > 0 ? finalUrl.slice(0, index) : requestedBasePath
 }
