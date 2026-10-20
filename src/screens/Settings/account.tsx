@@ -132,8 +132,8 @@ export default function AccountScreen(): React.JSX.Element {
 								<SizableText size='4' fontWeight='600'>
 									{server?.name ?? 'Unknown Server'}
 								</SizableText>
-								<SizableText size='2' color='borderColor'>
-									{server?.address ?? 'Unknown Address'}
+								<SizableText size='$2' color='borderColor'>
+									{server?.url ?? 'Unknown Address'}
 								</SizableText>
 							</YStack>
 						</XStack>
