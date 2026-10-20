@@ -16,9 +16,9 @@ import { SPECIAL_THANKS } from '../../configs/messaging/special-thanks'
 function PatronsList({ patrons }: { patrons: { fullName: string }[] | undefined }) {
 	if (!patrons?.length) return null
 	return (
-		<XStack flexWrap='wrap' gap='$2' marginTop='$2'>
+		<XStack flexWrap='wrap' gap='2' marginTop='2'>
 			{patrons.map((patron, index) => (
-				<XStack key={index} alignItems='flex-start' maxWidth='$20'>
+				<XStack key={index} alignItems='flex-start' maxWidth='20'>
 					<Text numberOfLines={1} lineBreakStrategyIOS='standard'>
 						{patron.fullName}
 					</Text>
@@ -30,9 +30,9 @@ function PatronsList({ patrons }: { patrons: { fullName: string }[] | undefined 
 
 function SpecialThanksList() {
 	return (
-		<XStack flexWrap='wrap' gap='$2' marginTop='$2'>
+		<XStack flexWrap='wrap' gap='2' marginTop='2'>
 			{SPECIAL_THANKS.map((awesomePerson) => (
-				<XStack key={awesomePerson} alignItems='flex-start' maxWidth='$20'>
+				<XStack key={awesomePerson} alignItems='flex-start' maxWidth='20'>
 					<Text numberOfLines={1} lineBreakStrategyIOS='standard'>
 						{awesomePerson}
 					</Text>
@@ -49,7 +49,7 @@ export default function AboutScreen(): React.JSX.Element {
 	const otaVersion = getStoredOtaVersion()
 
 	return (
-		<YStack flex={1} backgroundColor='$background' testID='settings-screen-about'>
+		<YStack flex={1} backgroundColor='background' testID='settings-screen-about'>
 			<ScrollView
 				contentContainerStyle={{
 					paddingBottom: Math.max(bottom, 16) + 16,
@@ -58,80 +58,80 @@ export default function AboutScreen(): React.JSX.Element {
 				showsVerticalScrollIndicator={false}
 			>
 				<YStack
-					padding='$4'
-					gap='$4'
-					borderRadius={'$2'}
-					borderColor={'$borderColor'}
-					borderWidth={'$1'}
+					padding='4'
+					gap='4'
+					borderRadius='2'
+					borderColor='borderColor'
+					borderWidth='1'
 				>
-					<YStack gap='$1'>
-						<XStack alignItems='center' gap='$2' testID='jellify-version-text'>
-							<Icon name='jellyfish' color='$primary' />
-							<SizableText size='$6' fontWeight='$6'>
+					<YStack gap='1'>
+						<XStack alignItems='center' gap='2' testID='jellify-version-text'>
+							<Icon name='jellyfish' color='primary' />
+							<SizableText size='6' fontWeight='6'>
 								Jellify {version}
 							</SizableText>
 						</XStack>
 						{caption && (
-							<SizableText size='$2' color='$borderColor'>
+							<SizableText size='2' color='borderColor'>
 								{caption}
 							</SizableText>
 						)}
 						{otaVersion && (
-							<SizableText size='$2' color='$borderColor'>
+							<SizableText size='2' color='borderColor'>
 								OTA Version: {otaVersion}
 							</SizableText>
 						)}
 					</YStack>
 
-					<Separator borderColor={'$borderColor'} />
+					<Separator borderColor='borderColor' />
 
-					<XStack gap='$4' flexWrap='wrap'>
+					<XStack gap='4' flexWrap='wrap'>
 						<XStack
 							alignItems='center'
-							gap='$1'
+							gap='1'
+							{...ICON_PRESS_STYLES}
 							onPress={() => Linking.openURL('https://github.com/Jellify-Music/App')}
 							testID='jellify-source-link'
-							{...ICON_PRESS_STYLES}
 						>
-							<Icon name='code-tags' small color='$borderColor' />
+							<Icon name='code-tags' small color='borderColor' />
 							<Text>View Source</Text>
 						</XStack>
 						<XStack
 							alignItems='center'
-							gap='$1'
-							onPress={() => downloadUpdate(true)}
+							gap='1'
 							{...ICON_PRESS_STYLES}
+							onPress={() => downloadUpdate(true)}
 						>
-							<Icon name='cellphone-arrow-down' small color='$success' />
+							<Icon name='cellphone-arrow-down' small color='success' />
 							<Text>Update</Text>
 						</XStack>
 					</XStack>
 
-					<YStack gap='$2'>
-						<SizableText size='$4' fontWeight='600'>
+					<YStack gap='2'>
+						<SizableText size='4' fontWeight='600'>
 							Caught a bug?
 						</SizableText>
-						<XStack gap='$4' flexWrap='wrap'>
+						<XStack gap='4' flexWrap='wrap'>
 							<XStack
 								alignItems='center'
-								gap='$1'
+								gap='1'
+								{...ICON_PRESS_STYLES}
 								onPress={() =>
 									Linking.openURL('https://github.com/Jellify-Music/App/issues')
 								}
 								testID='jellify-report-issue'
-								{...ICON_PRESS_STYLES}
 							>
-								<Icon name='github' small color='$warning' />
+								<Icon name='github' small color='warning' />
 								<Text>Report Issue</Text>
 							</XStack>
 							<XStack
 								alignItems='center'
-								gap='$1'
+								gap='1'
+								{...ICON_PRESS_STYLES}
 								onPress={() => Linking.openURL('https://discord.gg/yf8fBatktn')}
 								testID='jellify-join-discord'
-								{...ICON_PRESS_STYLES}
 							>
-								<Icon name='chat' small color='$secondary' />
+								<Icon name='chat' small color='secondary' />
 								<Text>Join Discord</Text>
 							</XStack>
 						</XStack>
@@ -141,49 +141,49 @@ export default function AboutScreen(): React.JSX.Element {
 				<Spacer />
 
 				<YStack
-					gap='$2'
+					gap='2'
+					padding='4'
+					borderRadius='2'
+					borderColor='borderColor'
+					borderWidth='1'
 					testID='jellify-wall-of-fame'
-					padding='$4'
-					borderRadius={'$2'}
-					borderColor={'$borderColor'}
-					borderWidth={'$1'}
 				>
-					<SizableText size='$4' fontWeight='600'>
+					<SizableText size='4' fontWeight='600'>
 						Wall of Fame
 					</SizableText>
-					<XStack gap='$4' flexWrap='wrap'>
+					<XStack gap='4' flexWrap='wrap'>
 						<XStack
 							alignItems='center'
-							gap='$1'
+							gap='1'
+							{...ICON_PRESS_STYLES}
 							onPress={() =>
 								Linking.openURL('https://github.com/sponsors/anultravioletaurora/')
 							}
 							testID='jellify-sponsors-link'
-							{...ICON_PRESS_STYLES}
 						>
-							<Icon name='github' small color='$primary' />
+							<Icon name='github' small color='primary' />
 							<Text>Sponsors</Text>
 						</XStack>
 						<XStack
 							alignItems='center'
-							gap='$1'
+							gap='1'
+							{...ICON_PRESS_STYLES}
 							onPress={() =>
 								Linking.openURL('https://patreon.com/anultravioletaurora')
 							}
 							testID='jellify-patreon-link'
-							{...ICON_PRESS_STYLES}
 						>
-							<Icon name='patreon' small color='$danger' />
+							<Icon name='patreon' small color='danger' />
 							<Text>Patreon</Text>
 						</XStack>
 						<XStack
 							alignItems='center'
-							gap='$1'
+							gap='1'
+							{...ICON_PRESS_STYLES}
 							onPress={() => Linking.openURL('https://ko-fi.com/jellify')}
 							testID='jellify-ko-fi-link'
-							{...ICON_PRESS_STYLES}
 						>
-							<Icon name='coffee-outline' small color='$warning' />
+							<Icon name='coffee-outline' small color='warning' />
 							<Text>Ko-fi</Text>
 						</XStack>
 					</XStack>
@@ -193,14 +193,14 @@ export default function AboutScreen(): React.JSX.Element {
 				<Spacer />
 
 				<YStack
-					padding='$4'
-					gap='$4'
-					borderRadius={'$2'}
-					borderColor={'$borderColor'}
-					borderWidth={'$1'}
+					padding='4'
+					gap='4'
+					borderRadius='2'
+					borderColor='borderColor'
+					borderWidth='1'
 				>
-					<YStack gap='$1'>
-						<SizableText size='$4' fontWeight='$6'>
+					<YStack gap='1'>
+						<SizableText size='4' fontWeight='6'>
 							Special Thanks
 						</SizableText>
 						<SpecialThanksList />

@@ -98,13 +98,13 @@ export default function TrackRowContent({
 			alignContent='center'
 			alignItems='center'
 			flex={1}
-			gap={'$1'}
-			testID={testID ?? undefined}
-			paddingVertical={'$2'}
-			paddingHorizontal={'$2'}
+			gap='1'
+			paddingVertical='2'
+			paddingHorizontal='2'
 			transition={'quick'}
-			pressStyle={{ opacity: 0.5 }}
-			backgroundColor={'$background'}
+			opacity='press:0.5'
+			backgroundColor='background'
+			testID={testID ?? undefined}
 		>
 			<XStack
 				alignContent='center'
@@ -136,7 +136,7 @@ export default function TrackRowContent({
 			</XStack>
 
 			<SlidingTextArea leftGapWidth={artworkAreaWidth} hasArtwork={!!showArtwork}>
-				<YStack alignItems='flex-start' justifyContent='center' gap={'$0'}>
+				<YStack alignItems='flex-start' justifyContent='center' gap='0'>
 					<XStack alignItems='center'>
 						<Text
 							key={`${track.Id}-name`}
@@ -150,13 +150,13 @@ export default function TrackRowContent({
 						</Text>
 					</XStack>
 
-					<XStack alignItems='center' gap={'$1'}>
+					<XStack alignItems='center' gap='1'>
 						<DownloadedIcon item={track} size='xxsmall' />
 						<Text
 							key={`${track.Id}-artists`}
 							lineBreakStrategyIOS='standard'
 							numberOfLines={1}
-							color={'$borderColor'}
+							color={'borderColor'}
 							fontSize={'$2'}
 							marginVertical={'$-1.5'}
 						>
@@ -164,14 +164,14 @@ export default function TrackRowContent({
 						</Text>
 						{isExplicit(track) && (
 							<XStack alignSelf='center' paddingTop='0.5'>
-								<Icon name='alpha-e-box-outline' color={'$borderColor'} xxxsmall />
+								<Icon name='alpha-e-box-outline' color={'borderColor'} xxxsmall />
 							</XStack>
 						)}
 					</XStack>
 				</YStack>
 			</SlidingTextArea>
 
-			<XStack justifyContent='flex-end' alignItems='center' flex={0} flexShrink={1} gap='$1'>
+			<XStack justifyContent='flex-end' alignItems='center' flex={0} flexShrink={1} gap='1'>
 				<FavoriteIcon item={track} />
 				{runtimeComponent}
 				{!editing && <Icon name={'dots-horizontal'} onPress={handleIconPress} />}

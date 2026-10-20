@@ -170,8 +170,9 @@ function AddToPlaylistRow({
 		<ListItem
 			backgroundColor={'transparent'}
 			flex={1}
-			gap={'$2.5'}
+			gap='2-5'
 			justifyContent='flex-start'
+			{...ICON_PRESS_STYLES}
 			onPress={() => {
 				navigationRef.goBack()
 				navigationRef.dispatch(
@@ -181,11 +182,10 @@ function AddToPlaylistRow({
 					}),
 				)
 			}}
-			{...ICON_PRESS_STYLES}
 		>
-			<Icon small color='$primary' name='plus-circle-outline' />
+			<Icon small color='primary' name='plus-circle-outline' />
 
-			<Paragraph fontWeight={'$6'}>Add to Playlist</Paragraph>
+			<Paragraph fontWeight='6'>Add to Playlist</Paragraph>
 		</ListItem>
 	)
 }
@@ -200,39 +200,39 @@ function AddToQueueMenuRow({ tracks }: { tracks: BaseItemDto[] }): React.JSX.Ele
 			<ListItem
 				backgroundColor={'transparent'}
 				flex={1}
-				gap={'$2.5'}
+				gap='2-5'
 				justifyContent='flex-start'
+				{...ICON_PRESS_STYLES}
 				onPress={async () => {
 					await addToQueue({
 						...mutation,
 						queuingType: QueuingType.PlayNext,
 					})
 				}}
-				{...ICON_PRESS_STYLES}
 			>
 				{/* Use same icon as swipe Add to Queue for consistency */}
-				<Icon small color='$primary' name='playlist-play' />
+				<Icon small color='primary' name='playlist-play' />
 
-				<Paragraph fontWeight={'$6'}>Play Next</Paragraph>
+				<Paragraph fontWeight='6'>Play Next</Paragraph>
 			</ListItem>
 
 			<ListItem
 				backgroundColor={'transparent'}
 				flex={1}
-				gap={'$2.5'}
+				gap='2-5'
 				justifyContent='flex-start'
+				{...ICON_PRESS_STYLES}
 				onPress={() => {
 					addToQueue({
 						...mutation,
 						queuingType: QueuingType.PlayLater,
 					})
 				}}
-				{...ICON_PRESS_STYLES}
 			>
 				{/* Consistent Add to Queue icon */}
-				<Icon small color='$primary' name='playlist-play' />
+				<Icon small color='primary' name='playlist-play' />
 
-				<Paragraph fontWeight={'$6'}>Add to Queue</Paragraph>
+				<Paragraph fontWeight='6'>Add to Queue</Paragraph>
 			</ListItem>
 		</>
 	)
@@ -258,13 +258,13 @@ function DownloadMenuRow({ items }: { items: BaseItemDto[] }): React.JSX.Element
 		<ListItem
 			disabled
 			backgroundColor={'transparent'}
-			gap={'$4'}
+			gap='4'
 			justifyContent='flex-start'
 			{...ICON_PRESS_STYLES}
 		>
 			<CircularProgressIndicator progress={overallProgress} size={24} strokeWidth={4} />
 
-			<Paragraph fontWeight={'$6'} color={'$borderColor'}>
+			<Paragraph fontWeight='6' color='borderColor'>
 				Download Queued
 			</Paragraph>
 		</ListItem>
@@ -273,32 +273,32 @@ function DownloadMenuRow({ items }: { items: BaseItemDto[] }): React.JSX.Element
 	const downloadListItem = (
 		<ListItem
 			backgroundColor={'transparent'}
-			gap={'$2.5'}
+			gap='2-5'
 			justifyContent='flex-start'
-			onPress={() => download(items)}
 			{...ICON_PRESS_STYLES}
+			onPress={() => download(items)}
 		>
 			<Icon
 				small
-				color='$primary'
+				color='primary'
 				name={items.length > 1 ? 'download-multiple' : 'download'}
 			/>
 
-			<Paragraph fontWeight={'$6'}>Download</Paragraph>
+			<Paragraph fontWeight='6'>Download</Paragraph>
 		</ListItem>
 	)
 
 	const removeDownloadsListItem = (
 		<ListItem
 			backgroundColor={'transparent'}
-			gap={'$2.5'}
+			gap='2-5'
 			justifyContent='flex-start'
-			onPress={handleRemoveDownloads}
 			{...ICON_PRESS_STYLES}
+			onPress={handleRemoveDownloads}
 		>
-			<Icon small color='$warning' name='broom' />
+			<Icon small color='warning' name='broom' />
 
-			<Paragraph fontWeight={'$6'}>Remove Download</Paragraph>
+			<Paragraph fontWeight='6'>Remove Download</Paragraph>
 		</ListItem>
 	)
 
@@ -323,10 +323,10 @@ function ViewAlbumMenuRow({ album: album, stackNavigation }: MenuRowProps): Reac
 	return (
 		<ListItem
 			backgroundColor={'transparent'}
-			gap={'$3'}
+			gap='3'
 			justifyContent='flex-start'
-			onPress={goToAlbum}
 			{...ICON_PRESS_STYLES}
+			onPress={goToAlbum}
 		>
 			<ItemImage
 				item={album}
@@ -336,7 +336,7 @@ function ViewAlbumMenuRow({ album: album, stackNavigation }: MenuRowProps): Reac
 			/>
 
 			<TextTicker {...TextTickerConfig}>
-				<Paragraph fontWeight={'$6'}>{`Go to ${getItemName(album)}`}</Paragraph>
+				<Paragraph fontWeight='6'>{`Go to ${getItemName(album)}`}</Paragraph>
 			</TextTicker>
 		</ListItem>
 	)
@@ -377,10 +377,10 @@ function ViewArtistMenuRow({
 	return artist ? (
 		<ListItem
 			backgroundColor={'transparent'}
-			gap={'$3'}
+			gap='3'
 			justifyContent='flex-start'
-			onPress={() => goToArtist(artist)}
 			{...ICON_PRESS_STYLES}
+			onPress={() => goToArtist(artist)}
 		>
 			<ItemImage
 				circular
@@ -390,7 +390,7 @@ function ViewArtistMenuRow({
 				imageOptions={{ maxWidth: 50, maxHeight: 50, quality: 100 }}
 			/>
 
-			<Paragraph fontWeight={'$6'}>{`Go to ${getItemName(artist)}`}</Paragraph>
+			<Paragraph fontWeight='6'>{`Go to ${getItemName(artist)}`}</Paragraph>
 		</ListItem>
 	) : (
 		<></>
@@ -409,8 +409,9 @@ function StatsRow({
 	return (
 		<ListItem
 			backgroundColor={'transparent'}
-			gap={'$2.5'}
+			gap='2-5'
 			justifyContent='flex-start'
+			{...ICON_PRESS_STYLES}
 			onPress={() => {
 				navigationRef.goBack() // dismiss context modal
 				navigationRef.navigate('AudioSpecs', {
@@ -419,11 +420,10 @@ function StatsRow({
 					downloadedMediaSourceInfo,
 				})
 			}}
-			{...ICON_PRESS_STYLES}
 		>
-			<Icon small name='sine-wave' color='$primary' />
+			<Icon small name='sine-wave' color='primary' />
 
-			<Paragraph fontWeight={'$6'}>Open Audio Specs</Paragraph>
+			<Paragraph fontWeight='6'>Open Audio Specs</Paragraph>
 		</ListItem>
 	)
 }

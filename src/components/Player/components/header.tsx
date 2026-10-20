@@ -103,9 +103,9 @@ function PlayerArtwork(): React.JSX.Element {
 			flex={1}
 			alignItems='center'
 			justifyContent='center'
-			paddingHorizontal={'$2'}
+			paddingHorizontal='2'
 			maxHeight={'60%'}
-			marginHorizontal={'$4'}
+			marginHorizontal='4'
 			marginVertical={'auto'}
 			onLayout={handleLayout}
 		>

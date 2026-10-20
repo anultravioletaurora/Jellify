@@ -27,9 +27,9 @@ export default function QualityBadge({
 	return bitrate && container ? (
 		<Square
 			justifyContent='center'
-			backgroundColor={'$primary'}
-			paddingHorizontal={'$2'}
-			borderRadius={'$2'}
+			backgroundColor='primary'
+			paddingHorizontal='2'
+			borderRadius='2'
 			{...BUTTON_PRESS_STYLES}
 			onPress={() => {
 				navigationRef.navigate('AudioSpecs', {
@@ -39,7 +39,7 @@ export default function QualityBadge({
 				})
 			}}
 		>
-			<Text bold color={'$background'} textAlign='center' fontVariant={['tabular-nums']}>
+			<Text bold color={'background'} textAlign='center' fontVariant={['tabular-nums']}>
 				{`${Math.floor(bitrate / 1000)}kbps ${formatContainerName(bitrate, container)}`}
 			</Text>
 		</Square>

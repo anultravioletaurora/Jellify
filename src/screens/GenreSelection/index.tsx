@@ -106,22 +106,22 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 	const renderListHeader = (
 		<XStack
 			alignItems='center'
-			padding='$3'
-			gap='$3'
-			pressStyle={{ opacity: 0.6 }}
+			padding='3'
+			gap='3'
+			opacity='press:0.6'
 			transition='quick'
+			backgroundColor='background75'
 			onPress={handleSelectAll}
-			backgroundColor='$backgroundHover'
 		>
 			<YStack flex={1}>
 				<Text bold>Select all</Text>
 				{genres != null && (
-					<Text color='$borderColor'>{`${allLoadedGenreIds.length} genres`}</Text>
+					<Text color='borderColor'>{`${allLoadedGenreIds.length} genres`}</Text>
 				)}
 			</YStack>
 			<Icon
 				name={allSelected ? 'check-circle-outline' : 'circle-outline'}
-				color={allSelected ? '$primary' : '$borderColor'}
+				color={allSelected ? 'primary' : 'borderColor'}
 			/>
 		</XStack>
 	)
@@ -130,11 +130,7 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 		if (typeof item === 'string') {
 			// Section header
 			return (
-				<YStack
-					paddingVertical='$2'
-					paddingHorizontal='$4'
-					backgroundColor='$backgroundHover'
-				>
+				<YStack paddingVertical='2' paddingHorizontal='4' backgroundColor='background75'>
 					<Text bold fontSize='$5'>
 						{item}
 					</Text>
@@ -148,9 +144,9 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 		return (
 			<XStack
 				alignItems='center'
-				padding='$3'
-				gap='$3'
-				pressStyle={{ opacity: 0.6 }}
+				padding='3'
+				gap='3'
+				opacity='press:0.6'
 				transition='quick'
 				onPress={() => toggleGenre(item.Id!)}
 			>
@@ -158,12 +154,12 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 				<YStack flex={1}>
 					<Text bold>{genreName}</Text>
 					{item.SongCount !== undefined && (
-						<Text color='$borderColor'>{`${item.SongCount} tracks`}</Text>
+						<Text color='borderColor'>{`${item.SongCount} tracks`}</Text>
 					)}
 				</YStack>
 				<Icon
 					name={isSelected ? 'check-circle-outline' : 'circle-outline'}
-					color={isSelected ? '$primary' : '$borderColor'}
+					color={isSelected ? 'primary' : 'borderColor'}
 				/>
 			</XStack>
 		)
@@ -185,15 +181,15 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 	}
 
 	return (
-		<YStack flex={1} backgroundColor='$background'>
+		<YStack flex={1} backgroundColor='background'>
 			<XStack
 				justifyContent='space-between'
 				alignItems='center'
-				padding='$4'
+				padding='4'
 				borderBottomWidth={1}
-				borderBottomColor='$borderColor'
+				borderBottomColor='borderColor'
 			>
-				<Button variant='outlined' size='$3' onPress={libraryStackNavigation.goBack}>
+				<Button variant='outlined' size='sm' onPress={libraryStackNavigation.goBack}>
 					Cancel
 				</Button>
 				<Text bold fontSize='$6'>
@@ -201,7 +197,7 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 				</Text>
 				<Button
 					variant='outlined'
-					size='$3'
+					size='sm'
 					onPress={handleClear}
 					disabled={selectedGenreIds.length === 0}
 				>
@@ -220,8 +216,8 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 					}
 				}}
 				ListEmptyComponent={
-					<YStack flex={1} justifyContent='center' alignItems='center' padding='$4'>
-						<Text color='$borderColor'>No genres found</Text>
+					<YStack flex={1} justifyContent='center' alignItems='center' padding='4'>
+						<Text color='borderColor'>No genres found</Text>
 					</YStack>
 				}
 			/>
@@ -230,22 +226,17 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 				<XStack
 					justifyContent='space-evenly'
 					alignItems='center'
-					padding='$4'
+					padding='4'
 					borderTopWidth={1}
-					borderTopColor='$borderColor'
+					borderTopColor='borderColor'
 				>
 					<Text
 						fontSize='$3'
 						bold
-						color='$primary'
+						color='primary'
 					>{`${selectedGenreIds.length} selected`}</Text>
-					<Button
-						variant='outlined'
-						borderColor='$primary'
-						size='$3'
-						onPress={handleSave}
-					>
-						<Paragraph fontWeight={'$6'} color={'$primary'}>
+					<Button variant='outlined' borderColor='primary' size='sm' onPress={handleSave}>
+						<Paragraph fontWeight='6' color='primary'>
 							Apply
 						</Paragraph>
 					</Button>

@@ -22,8 +22,8 @@ export default function PlayPauseButton({
 	return (
 		<View justifyContent='center' alignItems='center' flex={flex}>
 			{currentState === 'buffering' ? (
-				<Circle size={size} disabled borderWidth={'$1.5'} borderColor={'$primary'}>
-					<Spinner margin={10} size='small' color={'$primary'} />
+				<Circle size={size} borderWidth='1-5' borderColor='primary' disabled>
+					<Spinner margin={10} size='small' color='primary' />
 				</Circle>
 			) : (
 				<IconButton
@@ -45,8 +45,8 @@ export function PlayPauseIcon(): React.JSX.Element {
 	const iconName = currentState === 'playing' ? 'pause' : 'play'
 
 	return currentState === 'buffering' ? (
-		<Spinner margin={10} color={'$primary'} />
+		<Spinner margin={10} color='primary' />
 	) : (
-		<Icon name={iconName} color='$primary' onPress={togglePlayback} />
+		<Icon name={iconName} color='primary' onPress={togglePlayback} />
 	)
 }

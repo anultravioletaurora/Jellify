@@ -30,7 +30,7 @@ export default function RecentlyAdded(): React.JSX.Element {
 					})
 				}}
 			>
-				<H5 marginLeft={'$2'}>Recently Added</H5>
+				<H5 marginLeft='2'>Recently Added</H5>
 				<Icon name='arrow-right' />
 			</XStack>
 

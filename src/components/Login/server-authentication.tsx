@@ -70,8 +70,8 @@ export default function ServerAuthentication(): React.JSX.Element {
 			</XStack>
 
 			<YStack
-				marginHorizontal={'$4'}
-				gap={'$3'}
+				marginHorizontal='4'
+				gap='3'
 				flex={1}
 				justifyContent='center'
 				alignContent='center'
@@ -82,20 +82,20 @@ export default function ServerAuthentication(): React.JSX.Element {
 					style={styles.headerSection}
 				>
 					<H3
-						marginHorizontal={'$2'}
+						marginHorizontal='2'
 						textAlign='center'
 						testID='server_authentication_title'
 					>
 						{`Sign in to ${server?.name ?? 'Jellyfin'}`}
 					</H3>
-					<Paragraph fontSize={'$6'} fontWeight={'$6'} textAlign='center' margin={'$2'}>
+					<Paragraph fontSize='6' fontWeight='6' textAlign='center' margin='2'>
 						{server?.version ?? 'Unknown Jellyfin version'}
 					</Paragraph>
 				</Animated.View>
 
-				<YStack flex={2} justifyContent='flex-start' gap={'$4'}>
+				<YStack flex={2} justifyContent='flex-start' gap='4'>
 					<Input
-						prependElement={<Icon name='human-greeting-variant' color={'$primary'} />}
+						prependElement={<Icon name='human-greeting-variant' color={'primary'} />}
 						placeholder='Username'
 						value={username}
 						style={
@@ -119,7 +119,7 @@ export default function ServerAuthentication(): React.JSX.Element {
 					/>
 
 					<Input
-						prependElement={<Icon name='lock-outline' color={'$primary'} />}
+						prependElement={<Icon name='lock-outline' color={'primary'} />}
 						placeholder='Password'
 						value={password}
 						onChangeText={setPassword}
@@ -142,28 +142,28 @@ export default function ServerAuthentication(): React.JSX.Element {
 					/>
 
 					<Button
-						backgroundColor={isEmpty(username) || isPending ? '$neutral' : '$primary'}
+						backgroundColor={isEmpty(username) || isPending ? 'neutral' : 'primary'}
 						testID='sign_in_button'
 						onPress={onSubmitEditing}
-						color='$background'
+						color='background'
 						fontWeight='$6'
 						{...BUTTON_PRESS_STYLES}
 					>
-						{isPending ? <Spinner color='$background' /> : 'Sign in'}
+						{isPending ? <Spinner color='background' /> : 'Sign in'}
 					</Button>
 
-					<Separator borderColor={'$borderColor'} flexShrink={1} />
+					<Separator borderColor='borderColor' flexShrink={1} />
 
 					<XStack alignItems='center' justifyContent='center'>
 						<Button
 							borderRadius={'$2'}
 							onPress={() => navigation.navigate('QuickConnect')}
-							color='$primary'
+							color='primary'
 							fontWeight='$6'
 							{...ICON_PRESS_STYLES}
 						>
 							{'Use Quick Connect'}
-							<Icon name='chevron-right' color='$primary' />
+							<Icon name='chevron-right' color='primary' />
 						</Button>
 					</XStack>
 				</YStack>

@@ -18,12 +18,7 @@ export default function ListGroup({
 	seeMore,
 }: ListGroupProps): React.JSX.Element {
 	return (
-		<YGroup
-			marginHorizontal={'$2'}
-			borderRadius={'$5'}
-			borderWidth={'$1'}
-			borderColor={'$borderColor'}
-		>
+		<YGroup marginHorizontal='2' borderRadius='5' borderWidth='1' borderColor='borderColor'>
 			{items?.slice(0, limit).map((item) => {
 				return (
 					<YGroup.Item key={item.Id}>
@@ -61,7 +56,7 @@ export default function ListGroup({
 			{seeMore && (
 				<YGroup.Item>
 					<ListItem onPress={seeMore}>
-						<XStack alignItems='center' height={'$6'} marginHorizontal={'$2.5'}>
+						<XStack alignItems='center' height='6' marginHorizontal='2-5'>
 							<Icon name='arrow-right-bottom' large />
 
 							<Spacer />

@@ -566,16 +566,16 @@ export default function Lyrics(): React.JSX.Element {
 	return (
 		<SafeAreaView style={{ flex: 1 }} edges={['top']}>
 			<View flex={1}>
-				<ZStack fullscreen>
+				<ZStack flex={1}>
 					<BlurredBackground />
 
-					<YStack fullscreen>
+					<YStack flex={1}>
 						<XStack
 							alignItems='center'
 							justifyContent='space-between'
-							paddingHorizontal='$4'
-							paddingVertical='$2'
-							marginTop='$2'
+							paddingHorizontal='4'
+							paddingVertical='2'
+							marginTop='2'
 						>
 							<XStack
 								alignItems='center'
@@ -640,7 +640,7 @@ export default function Lyrics(): React.JSX.Element {
 						) : (
 							<YStack justifyContent='center' alignItems='center' flex={1}>
 								{showNoLyricsMessage && (
-									<Text fontSize={18} color='$color' textAlign='center'>
+									<Text fontSize={18} color='color' textAlign='center'>
 										No lyrics available
 									</Text>
 								)}
@@ -648,9 +648,9 @@ export default function Lyrics(): React.JSX.Element {
 						)}
 						<YStack
 							justifyContent='flex-start'
-							gap={'$3'}
+							gap='3'
 							flexShrink={1}
-							padding='$5'
+							padding='5'
 							marginBottom={bottom}
 						>
 							<GestureDetector gesture={blockSwipeGesture}>

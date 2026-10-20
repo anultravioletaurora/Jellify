@@ -24,10 +24,10 @@ function AddFavoriteContextMenuRow({ item }: { item: BaseItemDto }): React.JSX.E
 			transition={'quick'}
 			backgroundColor={'transparent'}
 			justifyContent='flex-start'
+			opacity='press:0.5'
 			onPress={() => {
 				mutate({ item })
 			}}
-			pressStyle={{ opacity: 0.5 }}
 			disabled={isPending}
 		>
 			<Animated.View
@@ -35,8 +35,8 @@ function AddFavoriteContextMenuRow({ item }: { item: BaseItemDto }): React.JSX.E
 				exiting={FadeOut.easing(Easing.out(Easing.ease))}
 				key={`${item.Id}-favorite-row`}
 			>
-				<XStack alignItems='center' justifyContent='flex-start' gap={'$2.5'}>
-					<Icon small name={'heart-outline'} color={'$primary'} />
+				<XStack alignItems='center' justifyContent='flex-start' gap='2-5'>
+					<Icon small name={'heart-outline'} color={'primary'} />
 
 					<Text bold>Add to favorites</Text>
 				</XStack>
@@ -53,10 +53,10 @@ function RemoveFavoriteContextMenuRow({ item }: { item: BaseItemDto }): React.JS
 			transition={'quick'}
 			backgroundColor={'transparent'}
 			justifyContent='flex-start'
+			opacity='press:0.5'
 			onPress={() => {
 				mutate({ item })
 			}}
-			pressStyle={{ opacity: 0.5 }}
 			disabled={isPending}
 		>
 			<Animated.View
@@ -64,8 +64,8 @@ function RemoveFavoriteContextMenuRow({ item }: { item: BaseItemDto }): React.JS
 				exiting={FadeOut.easing(Easing.out(Easing.ease))}
 				key={`${item.Id}-favorite-row`}
 			>
-				<XStack alignItems='center' justifyContent='flex-start' gap={'$2.5'}>
-					<Icon small name={'heart'} color={'$primary'} />
+				<XStack alignItems='center' justifyContent='flex-start' gap='2-5'>
+					<Icon small name={'heart'} color={'primary'} />
 
 					<Text bold>Remove from favorites</Text>
 				</XStack>

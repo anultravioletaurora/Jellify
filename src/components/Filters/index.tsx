@@ -85,7 +85,7 @@ export default function Filters({ currentTab }: FiltersProps): React.JSX.Element
 	}
 
 	return (
-		<YStack padding={'$4'} gap={'$1'} marginBottom={bottom}>
+		<YStack padding='4' gap='1' marginBottom={bottom}>
 			<Text bold fontSize={'$6'} marginBottom={'$2'}>
 				Filter Options
 			</Text>
@@ -97,7 +97,7 @@ export default function Filters({ currentTab }: FiltersProps): React.JSX.Element
 						checked={isFavorites === true}
 						onCheckedChange={handleFavoritesToggle}
 						label='Favorites'
-						size='$6'
+						size='lg'
 					/>
 				</XStack>
 
@@ -108,7 +108,7 @@ export default function Filters({ currentTab }: FiltersProps): React.JSX.Element
 							checked={isDownloaded}
 							onCheckedChange={handleDownloadedToggle}
 							label='Downloaded'
-							size='$6'
+							size='lg'
 							disabled={hasGenresSelected}
 						/>
 					</XStack>
@@ -121,68 +121,68 @@ export default function Filters({ currentTab }: FiltersProps): React.JSX.Element
 							checked={isUnplayed}
 							onCheckedChange={handleUnplayedToggle}
 							label='Unplayed'
-							size='$6'
+							size='lg'
 						/>
 					</XStack>
 				)}
 
 				{isTracksTab && (
-					<XStack alignItems='center' justifyContent='space-between' marginTop='$3'>
+					<XStack alignItems='center' justifyContent='space-between' marginTop='3'>
 						<Button
 							variant='outlined'
-							size='$4'
-							onPress={handleGenreSelect}
-							pressStyle={{ opacity: 0.6 }}
+							size='md'
+							opacity='press:0.6'
 							transition='quick'
 							flex={1}
 							justifyContent='space-between'
+							onPress={handleGenreSelect}
 							disabled={isDownloaded}
 						>
 							<Text
 								color={
 									isDownloaded
-										? '$borderColor'
+										? 'borderColor'
 										: hasGenresSelected
-											? '$primary'
-											: '$neutral'
+											? 'primary'
+											: 'neutral'
 								}
 							>
 								{`Genres ${hasGenresSelected ? `(${selectedGenreIds.length})` : ''}`}
 							</Text>
 							<Icon
 								name={hasGenresSelected ? 'filter-variant' : 'filter'}
-								color={hasGenresSelected ? '$primary' : '$borderColor'}
+								color={hasGenresSelected ? 'primary' : 'borderColor'}
 							/>
 						</Button>
 					</XStack>
 				)}
 
 				{(isTracksTab || currentTab === 'Albums') && (
-					<XStack alignItems='center' justifyContent='space-between' marginTop='$4'>
+					<XStack alignItems='center' justifyContent='space-between' marginTop='4'>
 						<Button
 							variant='outlined'
-							size='$4'
-							onPress={handleYearRangeSelect}
-							pressStyle={{ opacity: 0.6 }}
+							size='md'
+							opacity='press:0.6'
 							transition='quick'
 							flex={1}
 							justifyContent='space-between'
+							onPress={handleYearRangeSelect}
 							disabled={isTracksTab && isDownloaded}
 						>
 							<Text
 								color={
 									isTracksTab && isDownloaded
-										? '$borderColor'
+										? 'borderColor'
 										: hasYearRange
-											? '$primary'
-											: '$neutral'
+											? 'primary'
+											: 'neutral'
 								}
 							>
 								{hasYearRange ? `Year range ${yearRangeLabel}` : 'Year range'}
 							</Text>
 							<Icon
 								name={hasYearRange ? 'filter-variant' : 'filter'}
-								color={hasYearRange ? '$primary' : '$borderColor'}
+								color={hasYearRange ? 'primary' : 'borderColor'}
 							/>
 						</Button>
 					</XStack>

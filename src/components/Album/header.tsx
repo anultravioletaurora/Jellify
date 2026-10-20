@@ -42,7 +42,7 @@ export default function AlbumTrackListHeader({ album }: { album: BaseItemDto }):
 	}
 
 	return (
-		<YStack alignContent='center' flex={1} marginTop={'$4'}>
+		<YStack alignContent='center' flex={1} marginTop='4'>
 			<XStack justifyContent='center'>
 				<ItemImage
 					item={album}
@@ -56,30 +56,30 @@ export default function AlbumTrackListHeader({ album }: { album: BaseItemDto }):
 				/>
 			</XStack>
 
-			<YStack marginTop={'$2'} alignContent='center' justifyContent='center' gap={'$2'}>
+			<YStack marginTop='2' alignContent='center' justifyContent='center' gap='2'>
 				<H5 lineBreakStrategyIOS='standard' textAlign='center' numberOfLines={5}>
 					{album.Name ?? 'Untitled Album'}
 				</H5>
 
 				{album.AlbumArtists && album.AlbumArtists.length > 0 && (
 					<Paragraph
-						fontWeight={'$6'}
-						color={'$primary'}
+						fontWeight='6'
+						color='primary'
+						textAlign='center'
+						fontSize='6'
+						paddingBottom='2'
+						{...ICON_PRESS_STYLES}
 						onPress={() =>
 							navigation.navigate('Artist', {
 								artist: album.AlbumArtists![0],
 							})
 						}
-						textAlign='center'
-						fontSize={'$6'}
-						paddingBottom={'$2'}
-						{...ICON_PRESS_STYLES}
 					>
 						{formatArtistName(album.AlbumArtists[0].Name)}
 					</Paragraph>
 				)}
 
-				<XStack justify='center' gap={'$3'} marginBottom={'$2'}>
+				<XStack justify='center' gap='3' marginBottom='2'>
 					<YStack flex={1} justifyContent='center'>
 						{album.ProductionYear ? (
 							<Paragraph fontVariant={['tabular-nums']} textAlign='right'>
@@ -88,7 +88,7 @@ export default function AlbumTrackListHeader({ album }: { album: BaseItemDto }):
 						) : null}
 					</YStack>
 
-					<Separator vertical borderColor={'$borderColor'} />
+					<Separator vertical borderColor='borderColor' />
 
 					<RunTimeTicks props={{ flex: 1, textAlign: 'left' }}>
 						{album.RunTimeTicks}
@@ -98,34 +98,34 @@ export default function AlbumTrackListHeader({ album }: { album: BaseItemDto }):
 				{discs && (
 					<XStack
 						alignContent='center'
-						gap={'$2'}
-						marginHorizontal={'$2'}
-						paddingHorizontal={'$2'}
+						gap='2'
+						marginHorizontal='2'
+						paddingHorizontal='2'
 					>
 						<Button
 							flex={1}
-							icon={() => <Icon small name='play' color='$background' />}
+							icon={() => <Icon small name='play' color='background' />}
 							borderRadius={'$4'}
-							backgroundColor={'$primary'}
+							backgroundColor={'primary'}
 							paddingRight={'$5'}
 							onPress={() => playAlbum(false)}
 							{...BUTTON_PRESS_STYLES}
 						>
-							<Paragraph fontWeight={'$6'} color={'$background'}>
+							<Paragraph fontWeight='6' color='background'>
 								Play
 							</Paragraph>
 						</Button>
 
 						<Button
-							icon={() => <Icon small name='shuffle' color='$primary' />}
+							icon={() => <Icon small name='shuffle' color='primary' />}
 							borderWidth={'$1'}
 							borderRadius={'$4'}
-							borderColor={'$primary'}
+							borderColor={'primary'}
 							flex={1}
 							onPress={() => playAlbum(true)}
 							{...BUTTON_PRESS_STYLES}
 						>
-							<Paragraph fontWeight={'$6'} color={'$primary'}>
+							<Paragraph fontWeight='6' color='primary'>
 								Shuffle
 							</Paragraph>
 						</Button>

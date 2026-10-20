@@ -20,7 +20,7 @@ export default function Footer(): React.JSX.Element {
 	const { data: lyrics } = useRawLyrics()
 
 	return (
-		<XStack justifyContent='center' alignItems='center' gap={'$3'}>
+		<XStack justifyContent='center' alignItems='center' gap='3'>
 			<XStack alignItems='center' justifyContent='flex-start' flex={1}>
 				<Icon
 					small
@@ -39,12 +39,7 @@ export default function Footer(): React.JSX.Element {
 					name='message-text-outline'
 					onPress={() => navigation.navigate('LyricsScreen', { lyrics: lyrics })}
 					{...ICON_PRESS_STYLES}
-					enterStyle={{
-						opacity: 0,
-					}}
-					exitStyle={{
-						opacity: 0,
-					}}
+					opacity={{ hover: 0.8, press: 0.6, enter: 0, exit: 0 }}
 					transition={'quick'}
 				/>
 			)}
@@ -71,7 +66,7 @@ interface CastIconProps {
 }
 
 function CastIcon({ isCasting }: CastIconProps) {
-	const color = isCasting ? '$primary' : '$color'
+	const color = isCasting ? 'primary' : 'color'
 
 	return <Icon name='cast-audio' small color={color} />
 }

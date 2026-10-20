@@ -48,8 +48,8 @@ export default function SuggestedArtists(): React.JSX.Element {
 		<AnimatedRow testID='discover-suggested-artists'>
 			<XStack
 				alignItems='center'
+				marginLeft='2'
 				onPress={() => navigation.navigate('SuggestedArtists')}
-				marginLeft={'$2'}
 			>
 				<H5>Artists for You</H5>
 				<Icon name='arrow-right' />

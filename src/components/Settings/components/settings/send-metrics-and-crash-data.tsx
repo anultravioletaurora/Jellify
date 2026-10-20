@@ -8,10 +8,10 @@ export default function SendMetricsAndCrashDataSetting(): React.JSX.Element {
 	return (
 		<XStack alignItems='center' justifyContent='space-between'>
 			<YStack flex={1}>
-				<SizableText size='$4' fontWeight={'$6'}>
+				<SizableText size='4' fontWeight='6'>
 					Send Analytics
 				</SizableText>
-				<SizableText size='$2' color='$borderColor'>
+				<SizableText size='2' color='borderColor'>
 					Send usage and crash data
 				</SizableText>
 			</YStack>

@@ -44,13 +44,29 @@ export default function ItemCard({
 
 	const warmContext = useItemContext()
 
-	const hoverStyle = onPress ? { scale: 0.925 } : undefined
+	const { darkBackground75 } = useTheme()
 
-	const pressStyle = onPress ? { scale: 0.875 } : undefined
+	const cardScale = onPress ? { hover: 0.925, press: 0.875 } : undefined
+
+	const cardShadowStyle = {
+		boxShadow: [
+			{
+				offsetY: 1,
+				offsetX: 0,
+				blurRadius: 2,
+				spreadDistance: 0,
+				color: darkBackground75.val,
+			},
+		],
+	}
 
 	const handlePressIn = () => (item.Type !== 'Audio' ? warmContext(item) : undefined)
 
 	const blurhash = getBlurhashFromDto(item)
+
+	// `cardProps.size` is a FlatStyleValue that can resolve to a modifier object or a
+	// boolean; the child components below only accept a plain size string, so narrow it.
+	const resolvedSize = typeof cardProps.size === 'string' ? cardProps.size : undefined
 
 	const background = (
 		<TamaguiCard.Background>
@@ -58,33 +74,32 @@ export default function ItemCard({
 				item={item}
 				customBlurhash={blurhash} // Pass blurhash here to reuse it as an image placeholder
 				circular={!squared}
-				width={cardProps.size}
-				height={cardProps.size}
+				width={resolvedSize}
+				height={resolvedSize}
 				imageOptions={{ maxWidth: 250, maxHeight: 250, quality: 100 }}
 			/>
 		</TamaguiCard.Background>
 	)
 
 	return (
-		<YStack alignItems='center' padding={'$1'} gap={'$1'}>
+		<YStack alignItems='center' padding='1' gap='1'>
 			<TamaguiCard
-				size={'$12'}
-				height={cardProps.size}
-				width={cardProps.size}
-				borderRadius={squared ? '$1' : '$12'}
+				size={'12'}
+				height={resolvedSize}
+				width={resolvedSize}
+				borderRadius={`${squared ? '1' : '12'}`}
 				transition='bouncy'
+				scale={cardScale}
+				{...cardProps}
+				style={cardShadowStyle}
 				onPress={onPress}
 				onPressIn={handlePressIn}
-				hoverStyle={hoverStyle}
-				pressStyle={pressStyle}
-				{...cardProps}
-				elevation={'$0.25'}
 			>
 				<ItemCardComponentFooter type={item.Type ?? BaseItemKind.Audio} />
 				{background}
 			</TamaguiCard>
 			<ItemCardComponentCaption
-				size={cardProps.size ?? '$10'}
+				size={resolvedSize ?? '10'}
 				captionAlign={captionAlign}
 				caption={caption}
 				subCaption={subCaption}
@@ -145,17 +160,29 @@ function ItemCardComponentFooter({ type }: ItemCardComponentFooterProps) {
 
 	const iconName: 'cassette' | 'disc' = type === BaseItemKind.Playlist ? 'cassette' : 'disc'
 
+	const footerShadowStyle = {
+		boxShadow: [
+			{
+				offsetY: 3,
+				offsetX: 0,
+				blurRadius: 6,
+				spreadDistance: 1,
+				color: theme.darkBackground75.val,
+			},
+		],
+	}
+
 	return displayFooter ? (
 		<TamaguiCard.Footer overflow='hidden'>
 			<Spacer flexGrow={1} />
 
 			<Square
-				x={'$6'}
-				y={'$6'}
-				elevation={'$3'}
-				backgroundColor={'$primary'}
-				size={'$6'}
+				x='6'
+				y='6'
+				backgroundColor='primary'
+				size={'6'}
 				rotate='45deg'
+				style={footerShadowStyle}
 			>
 				<View rotate='-45deg' {...offsets[iconName]}>
 					<MaterialDesignIcons

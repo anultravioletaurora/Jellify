@@ -51,27 +51,27 @@ export default function StorageSelectionModal({
 	return (
 		<YStack
 			flex={1}
-			backgroundColor='$background'
-			padding='$4'
+			backgroundColor='background'
+			padding='4'
 			paddingBottom={bottom + 16}
-			gap='$4'
+			gap='4'
 		>
 			<XStack justifyContent='space-between' alignItems='center'>
 				<Button
 					variant='outlined'
-					size='$2'
-					icon={<Icon name='chevron-left' color='$color' />}
+					size='md'
+					icon={<Icon name='chevron-left' color='color' />}
 					onPress={handleClose}
 				>
 					Close
 				</Button>
-				<SizableText size='$6' fontWeight='700'>
+				<SizableText size='6' fontWeight='700'>
 					Review selection
 				</SizableText>
 				<Button
 					variant='outlined'
-					size='$2'
-					icon={<Icon name='broom' color='$color' />}
+					size='xs'
+					icon={<Icon name='broom' color='color' />}
 					onPress={clearSelection}
 					disabled={!hasSelection}
 				>
@@ -80,30 +80,30 @@ export default function StorageSelectionModal({
 			</XStack>
 
 			{hasSelection ? (
-				<YStack gap='$4' flex={1}>
-					<Card borderWidth={1} borderColor='$borderColor' borderRadius='$6' padding='$4'>
-						<SizableText size='$7' fontWeight='700'>
+				<YStack gap='4' flex={1}>
+					<Card borderWidth={1} borderColor='borderColor' borderRadius='6' padding='4'>
+						<SizableText size='7' fontWeight='700'>
 							{formatBytes(selectedBytes)}
 						</SizableText>
-						<Paragraph color='$borderColor'>
+						<Paragraph color='borderColor'>
 							{selectedDownloads.length}{' '}
 							{selectedDownloads.length === 1 ? 'track' : 'tracks'} ready to remove
 						</Paragraph>
 					</Card>
 
-					<Card borderWidth={1} borderColor='$borderColor' borderRadius='$6' flex={1}>
+					<Card borderWidth={1} borderColor='borderColor' borderRadius='6' flex={1}>
 						<ScrollView>
 							{selectedDownloads.map((download, index) => (
 								<YStack key={download.trackId as string}>
-									<YStack padding='$3' gap='$1'>
+									<YStack padding='3' gap='1'>
 										<SizableText fontWeight='600'>
 											{download.originalTrack.title ?? 'Unknown track'}
 										</SizableText>
-										<Paragraph color='$borderColor'>
+										<Paragraph color='borderColor'>
 											{download.originalTrack.album} ·{' '}
 											{formatBytes(download.fileSize)}
 										</Paragraph>
-										<Paragraph color='$borderColor'>
+										<Paragraph color='borderColor'>
 											Saved {formatSavedAt(download.downloadedAt)}
 										</Paragraph>
 									</YStack>
@@ -114,22 +114,22 @@ export default function StorageSelectionModal({
 					</Card>
 
 					<Button
-						icon={isDeleting ? <Spinner /> : <Icon name='delete' color='$danger' />}
+						icon={isDeleting ? <Spinner /> : <Icon name='delete' color='danger' />}
 						onPress={handleDelete}
 						disabled={isDeleting}
-						backgroundColor='$danger'
+						backgroundColor='danger'
 					>
-						<Paragraph fontWeight={'$6'} color={'$background'}>
+						<Paragraph fontWeight='6' color='background'>
 							Delete downloads
 						</Paragraph>
 					</Button>
 				</YStack>
 			) : (
-				<Card borderWidth={1} borderColor='$borderColor' borderRadius='$6' padding='$4'>
-					<SizableText size='$5' fontWeight='600'>
+				<Card borderWidth={1} borderColor='borderColor' borderRadius='6' padding='4'>
+					<SizableText size='5' fontWeight='600'>
 						No tracks selected
 					</SizableText>
-					<Paragraph color='$borderColor'>
+					<Paragraph color='borderColor'>
 						Select some downloads to clean up storage.
 					</Paragraph>
 				</Card>

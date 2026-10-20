@@ -49,7 +49,7 @@ export default function RecentArtists(): React.JSX.Element {
 	return recentArtistsInfiniteQuery.data ? (
 		<AnimatedRow testID='home-recent-artists'>
 			<XStack alignItems='center' onPress={handleHeaderPress}>
-				<H5 marginLeft={'$2'}>Recent Artists</H5>
+				<H5 marginLeft='2'>Recent Artists</H5>
 				<Icon name='arrow-right' />
 			</XStack>
 

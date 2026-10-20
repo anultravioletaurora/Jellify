@@ -79,11 +79,11 @@ export default function Search(): React.JSX.Element {
 	return (
 		<List
 			contentContainerStyle={{
-				margin: getToken('$4'),
+				margin: getToken('4'),
 			}}
 			contentInsetAdjustmentBehavior='automatic'
 			ListHeaderComponent={
-				<YStack paddingTop={'$2'}>
+				<YStack paddingTop='2'>
 					<Input
 						placeholder={placeholder}
 						onChangeText={handleSearchStringUpdate}
@@ -130,7 +130,7 @@ export default function Search(): React.JSX.Element {
 				// Show spinner while fetching
 				if (fetchingResults) {
 					return (
-						<YStack alignContent='center' justifyContent='center' marginTop={'$4'}>
+						<YStack alignContent='center' justifyContent='center' marginTop='4'>
 							<Spinner />
 						</YStack>
 					)
@@ -142,9 +142,9 @@ export default function Search(): React.JSX.Element {
 						<YStack
 							alignItems='center'
 							justifyContent='center'
-							marginTop={'$8'}
-							gap={'$3'}
-							paddingHorizontal={'$4'}
+							marginTop='8'
+							gap='3'
+							paddingHorizontal='4'
 						>
 							<H5>No Results</H5>
 							<Text textAlign='center'>

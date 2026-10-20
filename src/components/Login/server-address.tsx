@@ -44,29 +44,23 @@ export default function ServerAddress(): React.JSX.Element {
 	}
 
 	return (
-		<YStack
-			marginHorizontal={'$4'}
-			gap={'$3'}
-			flex={1}
-			justifyContent='center'
-			alignContent='center'
-		>
+		<YStack marginHorizontal='4' gap='3' flex={1} justifyContent='center' alignContent='center'>
 			<AnimatedJellifyLogo rotateColor />
 			<Animated.View
 				entering={FadeIn.springify()}
 				exiting={FadeOut.springify()}
 				style={styles.headerSection}
 			>
-				<H3 textAlign='center' testID='server_address_title' margin={'$2'}>
+				<H3 textAlign='center' margin='2' testID='server_address_title'>
 					Welcome!
 				</H3>
 
-				<Paragraph fontSize={'$6'} fontWeight={'$6'} textAlign='center' margin={'$2'}>
+				<Paragraph fontSize='6' fontWeight='6' textAlign='center' margin='2'>
 					Let&apos;s get connected to Jellyfin
 				</Paragraph>
 			</Animated.View>
 
-			<YStack gap={'$6'} flex={1} justifyContent='flex-start'>
+			<YStack gap='6' flex={1} justifyContent='flex-start'>
 				<Input
 					onChangeText={setServerAddress}
 					autoCapitalize='none'
@@ -85,14 +79,14 @@ export default function ServerAddress(): React.JSX.Element {
 				<SendMetricsAndCrashDataSetting />
 
 				<Button
-					backgroundColor={isEmpty(serverAddress) || isPending ? '$neutral' : '$primary'}
+					backgroundColor={`${isEmpty(serverAddress) || isPending ? 'neutral' : 'primary'}`}
+					color='background'
+					fontWeight='6'
+					{...BUTTON_PRESS_STYLES}
 					onPress={connectWithAddress}
 					testID='connect_button'
-					color='$background'
-					fontWeight='$6'
-					{...BUTTON_PRESS_STYLES}
 				>
-					{isPending ? <Spinner color='$background' /> : 'Connect'}
+					{isPending ? <Spinner color='background' /> : 'Connect'}
 				</Button>
 			</YStack>
 		</YStack>

@@ -78,24 +78,24 @@ export default function Scrubber({ onSeekComplete }: ScrubberProps = {}): React.
 	}
 
 	return (
-		<YStack alignItems='stretch' gap={'$3'}>
+		<YStack alignItems='stretch' gap='3'>
 			<Slider
 				value={displayPosition}
 				maxValue={totalDuration}
 				backgroundColor={theme.neutral.val}
 				color={theme.primary.val}
 				onValueChange={handleValueChange}
-				thumbWidth={getTokenValue('$3')}
-				trackHeight={getTokenValue('$2')}
+				thumbWidth={getTokenValue('3')}
+				trackHeight={getTokenValue('2')}
 				gestureActiveRef={isSeeking}
-				thumbShadowColor={getTokenValue('$color.black')}
-				hitSlop={getTokenValue('$8')}
+				thumbShadowColor={getTokenValue('black')}
+				hitSlop={getTokenValue('8')}
 			/>
 
 			{/* Time display and quality badge */}
 			<XStack alignItems='center' justifyContent='space-between'>
 				<YStack flex={1}>
-					<Paragraph fontWeight={'$6'} textAlign={'left'} fontVariant={['tabular-nums']}>
+					<Paragraph fontWeight='6' textAlign={'left'} fontVariant={['tabular-nums']}>
 						{positionRunTimeText}
 					</Paragraph>
 				</YStack>

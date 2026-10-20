@@ -34,7 +34,7 @@ function DownloadedIcon({
 	if (!isVisible) return null
 
 	return isDownloaded ? (
-		<Icon {...{ [size]: true }} name='download-circle' color={'$success'} />
+		<Icon {...{ [size]: true }} name='download-circle' color={'success'} />
 	) : (
 		<CircularProgressIndicator progress={overallProgress} size={12} strokeWidth={4} />
 	)

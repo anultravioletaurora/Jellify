@@ -1,5 +1,5 @@
 import React from 'react'
-import { Square } from 'tamagui'
+import { Square, useTheme } from 'tamagui'
 import Icon from '../components/icon'
 import { Text } from './text'
 import { BUTTON_PRESS_STYLES } from '../../../configs/styling/elements'
@@ -26,21 +26,35 @@ export default function IconButton({
 	largeIcon,
 	disabled,
 }: IconButtonProps): React.JSX.Element {
+	const { darkBackground75 } = useTheme()
+
+	const shadowStyle = {
+		boxShadow: [
+			{
+				offsetY: 2,
+				offsetX: 0,
+				blurRadius: 4,
+				spreadDistance: 1,
+				color: darkBackground75.val,
+			},
+		],
+	}
+
 	return (
 		<Square
-			borderRadius={!circular ? '$4' : undefined}
-			circular={circular}
-			elevate
+			borderRadius={`${!circular ? '4' : undefined}`}
 			{...BUTTON_PRESS_STYLES}
-			onPress={onPress}
 			width={size}
 			height={size}
 			alignContent='center'
 			justifyContent='center'
 			backgroundColor={'transparent'}
-			borderWidth={'$1.5'}
-			borderColor={'$primary'}
-			padding={'$1'}
+			borderWidth='1-5'
+			borderColor='primary'
+			padding='1'
+			circular={circular}
+			style={shadowStyle}
+			onPress={onPress}
 			testID={testID ?? undefined}
 		>
 			<Icon
@@ -48,11 +62,11 @@ export default function IconButton({
 				small={!largeIcon}
 				name={name}
 				disabled={disabled}
-				color={'$primary'}
+				color={'primary'}
 			/>
 
 			{title && (
-				<Text textAlign='center' fontSize={'$2'}>
+				<Text textAlign='center' fontSize={'2'}>
 					{title}
 				</Text>
 			)}

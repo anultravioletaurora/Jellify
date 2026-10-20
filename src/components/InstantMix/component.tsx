@@ -32,7 +32,7 @@ export default function InstantMix(): React.JSX.Element {
 			)}
 			ListHeaderComponent={<MixTrackListHeader />}
 			ListEmptyComponent={
-				!isFetching ? <Text color={'$neutral'}>No mix tracks</Text> : undefined // Refresh Control will handle the spinner, which is actually called a "throbber" ;)
+				!isFetching ? <Text color={'neutral'}>No mix tracks</Text> : undefined // Refresh Control will handle the spinner, which is actually called a "throbber" ;)
 			}
 			refreshControl={
 				<RefreshControl

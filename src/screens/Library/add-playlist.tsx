@@ -18,21 +18,21 @@ export default function AddPlaylist(): React.JSX.Element {
 	const addPlaylist = useAddPlaylist()
 
 	return (
-		<View margin={'$4'} flex={1}>
+		<View margin='4' flex={1}>
 			<Label size='$2' htmlFor='name'>
 				Name
 			</Label>
 			<Input id='name' onChangeText={setName} />
-			<XStack justifyContent='space-evenly' gap={'$2'}>
+			<XStack justifyContent='space-evenly' gap='2'>
 				<Button
 					danger
 					borderWidth={'$1'}
-					borderColor={'$borderColor'}
+					borderColor={'borderColor'}
 					onPress={libraryStackNavigation.goBack}
 					flex={1}
-					icon={() => <Icon name='chevron-left' small color={'$borderColor'} />}
+					icon={() => <Icon name='chevron-left' small color={'borderColor'} />}
 				>
-					<Text bold color={'$borderColor'}>
+					<Text bold color={'borderColor'}>
 						Cancel
 					</Text>
 				</Button>
@@ -40,18 +40,18 @@ export default function AddPlaylist(): React.JSX.Element {
 					onPress={() => addPlaylist.mutate({ name })}
 					flex={1}
 					borderWidth={'$1'}
-					borderColor={'$primary'}
+					borderColor={'primary'}
 					icon={
 						!addPlaylist.isPending ? (
-							<Icon name='content-save' small color={'$primary'} />
+							<Icon name='content-save' small color={'primary'} />
 						) : undefined
 					}
 					disabled={isEmpty(name) || addPlaylist.isPending}
 				>
 					{addPlaylist.isPending ? (
-						<Spinner color={'$primary'} />
+						<Spinner color='primary' />
 					) : (
-						<Text bold color={'$primary'}>
+						<Text bold color={'primary'}>
 							Save
 						</Text>
 					)}

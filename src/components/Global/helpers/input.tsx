@@ -71,7 +71,7 @@ export default function Input(props: InputProps): React.JSX.Element {
 	return (
 		<YStack>
 			{props.title && (
-				<Paragraph fontWeight={'$6'} color={'$borderColor'}>
+				<Paragraph fontWeight='6' color='borderColor'>
 					{props.title}
 				</Paragraph>
 			)}
@@ -81,7 +81,7 @@ export default function Input(props: InputProps): React.JSX.Element {
 						flexShrink={1}
 						alignItems='center'
 						justifyContent='center'
-						paddingRight={'$2'}
+						paddingRight='2'
 					>
 						{prependElement}
 					</YStack>
@@ -97,7 +97,7 @@ export default function Input(props: InputProps): React.JSX.Element {
 				/>
 
 				{appendElement && (
-					<YStack alignItems='center' justifyContent='center' paddingLeft={'$2'}>
+					<YStack alignItems='center' justifyContent='center' paddingLeft='2'>
 						{appendElement}
 					</YStack>
 				)}
@@ -111,10 +111,10 @@ export default function Input(props: InputProps): React.JSX.Element {
 						testID={clearButtonTestID}
 						alignItems='center'
 						justifyContent='center'
-						paddingLeft={'$2'}
+						paddingLeft='2'
 						hitSlop={10}
 					>
-						<Icon small name='close-circle' color={'$neutral'} />
+						<Icon small name='close-circle' color={'neutral'} />
 					</YStack>
 				)}
 			</XStack>

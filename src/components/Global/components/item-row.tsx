@@ -155,24 +155,24 @@ function ItemRow({
 		artworkAreaWidth.value = width
 	}
 
-	const pressStyle = {
-		opacity: 0.5,
+	const pressOpacity = {
+		press: 0.5,
 	}
 	if (!isAudio) {
 		return (
 			<XStack
 				alignContent='center'
 				width={'100%'}
+				transition={'quick'}
+				opacity={pressOpacity}
+				paddingVertical='2'
+				paddingRight='2'
+				backgroundColor='background'
+				borderRadius='2'
 				testID={testID ?? (item.Id ? `item-row-${item.Id}` : undefined)}
 				onPressIn={onPressIn}
 				onPress={onPressCallback}
 				onLongPress={handleLongPress}
-				transition={'quick'}
-				pressStyle={pressStyle}
-				paddingVertical={'$2'}
-				paddingRight={'$2'}
-				backgroundColor={'$background'}
-				borderRadius={'$2'}
 			>
 				<HideableArtwork item={item} circular={circular} onLayout={handleArtworkLayout} />
 				<SlidingTextArea leftGapWidth={artworkAreaWidth}>
@@ -183,7 +183,7 @@ function ItemRow({
 					{renderRunTime ? (
 						<RunTimeTicks>{item.RunTimeTicks}</RunTimeTicks>
 					) : item.Type === 'Playlist' ? (
-						<Text color={'$borderColor'}>
+						<Text color={'borderColor'}>
 							{`${playlistTrackCount ?? 0} ${playlistTrackCount === 1 ? 'Track' : 'Tracks'}`}
 						</Text>
 					) : null}
@@ -207,16 +207,16 @@ function ItemRow({
 			<XStack
 				alignContent='center'
 				width={'100%'}
+				transition={'quick'}
+				opacity={pressOpacity}
+				paddingVertical='2'
+				paddingRight='2'
+				backgroundColor='background'
+				borderRadius='2'
 				testID={testID ?? (item.Id ? `item-row-${item.Id}` : undefined)}
 				onPressIn={onPressIn}
 				onPress={onPressCallback}
 				onLongPress={handleLongPress}
-				transition={'quick'}
-				pressStyle={pressStyle}
-				paddingVertical={'$2'}
-				paddingRight={'$2'}
-				backgroundColor={'$background'}
-				borderRadius={'$2'}
 			>
 				<HideableArtwork item={item} circular={circular} onLayout={handleArtworkLayout} />
 				<SlidingTextArea leftGapWidth={artworkAreaWidth}>
@@ -227,7 +227,7 @@ function ItemRow({
 					{renderRunTime ? (
 						<RunTimeTicks>{item.RunTimeTicks}</RunTimeTicks>
 					) : item.Type === 'Playlist' ? (
-						<Text color={'$borderColor'}>
+						<Text color={'borderColor'}>
 							{`${playlistTrackCount ?? 0} ${playlistTrackCount === 1 ? 'Track' : 'Tracks'}`}
 						</Text>
 					) : null}
@@ -265,7 +265,7 @@ function ItemRowDetails({
 			</Text>
 
 			{shouldRenderArtistName && (
-				<Text color={'$borderColor'} lineBreakStrategyIOS='standard' numberOfLines={1}>
+				<Text color={'borderColor'} lineBreakStrategyIOS='standard' numberOfLines={1}>
 					{formatArtistName(
 						item.AlbumArtist,
 						sortingByReleasedDate ? item.ProductionYear?.toString() : undefined,
@@ -274,19 +274,19 @@ function ItemRowDetails({
 			)}
 
 			{shouldRenderProductionYear && (
-				<XStack gap='$2'>
-					<Text color={'$borderColor'} lineBreakStrategyIOS='standard' numberOfLines={1}>
+				<XStack gap='2'>
+					<Text color={'borderColor'} lineBreakStrategyIOS='standard' numberOfLines={1}>
 						{item.ProductionYear?.toString() ?? 'Unknown Year'}
 					</Text>
 
-					<Text color={'$borderColor'}>•</Text>
+					<Text color={'borderColor'}>•</Text>
 
 					<RunTimeTicks>{item.RunTimeTicks}</RunTimeTicks>
 				</XStack>
 			)}
 
 			{shouldRenderGenres && item.Genres && (
-				<Text color={'$borderColor'} lineBreakStrategyIOS='standard' numberOfLines={1}>
+				<Text color={'borderColor'} lineBreakStrategyIOS='standard' numberOfLines={1}>
 					{item.Genres?.join(', ') ?? ''}
 				</Text>
 			)}
@@ -311,7 +311,7 @@ function HideableArtwork({
 	}))
 	return (
 		<Animated.View style={style} onLayout={onLayout}>
-			<XStack marginHorizontal={'$2'} marginVertical={'auto'} alignItems='center'>
+			<XStack marginHorizontal='2' marginVertical={'auto'} alignItems='center'>
 				<ItemImage
 					item={item}
 					height={'$4'}
@@ -333,7 +333,7 @@ function SlidingTextArea({
 	children: React.ReactNode
 }): React.JSX.Element {
 	const { tx, rightWidth } = useSwipeableRowContext()
-	const tokenValue = getToken('$2', 'space')
+	const tokenValue = getToken('2', 'space')
 	const spacingValue = typeof tokenValue === 'number' ? tokenValue : parseFloat(`${tokenValue}`)
 	const quickActionBuffer = Number.isFinite(spacingValue) ? spacingValue : 8
 	const style = useAnimatedStyle(() => {

@@ -16,19 +16,19 @@ export default function DeletePlaylist({ route }: LibraryDeletePlaylistProps): R
 	const { bottom } = useSafeAreaInsets()
 
 	return (
-		<YStack margin={'$4'} gap={'$4'} justifyContent='space-between' marginBottom={bottom}>
+		<YStack margin='4' gap='4' justifyContent='space-between' marginBottom={bottom}>
 			<Text bold textAlign='center'>
 				{`Delete playlist ${route.params.playlist.Name ?? 'Untitled Playlist'}?`}
 			</Text>
-			<XStack justifyContent='space-evenly' gap={'$2'}>
+			<XStack justifyContent='space-evenly' gap='2'>
 				<Button
 					onPress={() => libraryStackNavigation.goBack()}
 					flex={1}
 					borderWidth={'$1'}
-					borderColor={'$borderColor'}
-					icon={() => <Icon name='chevron-left' small color={'$borderColor'} />}
+					borderColor={'borderColor'}
+					icon={() => <Icon name='chevron-left' small color={'borderColor'} />}
 				>
-					<Text bold color={'$borderColor'}>
+					<Text bold color={'borderColor'}>
 						Cancel
 					</Text>
 				</Button>
@@ -36,18 +36,18 @@ export default function DeletePlaylist({ route }: LibraryDeletePlaylistProps): R
 					danger
 					flex={1}
 					borderWidth={'$1'}
-					borderColor={'$warning'}
+					borderColor={'warning'}
 					onPress={() => deletePlaylist.mutate(route.params.playlist)}
 					icon={
 						!deletePlaylist.isPending ? (
-							<Icon name='trash-can-outline' small color={'$warning'} />
+							<Icon name='trash-can-outline' small color={'warning'} />
 						) : undefined
 					}
 				>
 					{deletePlaylist.isPending ? (
-						<Spinner color={'$warning'} />
+						<Spinner color='warning' />
 					) : (
-						<Text bold color={'$warning'}>
+						<Text bold color={'warning'}>
 							Delete
 						</Text>
 					)}

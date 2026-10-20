@@ -37,7 +37,7 @@ export default function MultipleArtists({
 	))
 
 	return (
-		<YGroup marginBottom={bottom} marginTop={'$4'}>
+		<YGroup marginBottom={bottom} marginTop='4'>
 			{artistItemRows}
 		</YGroup>
 	)

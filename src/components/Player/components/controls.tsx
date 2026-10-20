@@ -21,7 +21,7 @@ export default function Controls({
 			{!onLyricsScreen && (
 				<Icon
 					small
-					color={shuffled ? '$primary' : '$color'}
+					color={shuffled ? 'primary' : 'color'}
 					name='shuffle'
 					onPress={async () => await toggleShuffle()}
 				/>
@@ -31,18 +31,18 @@ export default function Controls({
 
 			<Icon
 				name='skip-previous'
-				color='$primary'
+				color='primary'
 				onPress={async () => await previous()}
 				large
 				testID='previous-button-test-id'
 			/>
 
 			{/* I really wanted a big clunky play button */}
-			<PlayPauseButton size={getToken('$13') - getToken('$9')} />
+			<PlayPauseButton size={getToken('13') - getToken('9')} />
 
 			<Icon
 				name='skip-next'
-				color='$primary'
+				color='primary'
 				onPress={async () => await skip(undefined)}
 				large
 				testID='skip-button-test-id'
@@ -53,7 +53,7 @@ export default function Controls({
 			{!onLyricsScreen && (
 				<Icon
 					small
-					color={repeatMode === 'off' ? '$color' : '$primary'}
+					color={repeatMode === 'off' ? 'color' : 'primary'}
 					name={repeatMode === 'track' ? 'repeat-once' : 'repeat'}
 					onPress={toggleRepeatMode}
 				/>

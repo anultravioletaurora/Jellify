@@ -1,4 +1,4 @@
-import { fonts } from '@tamagui/config/v4'
+import { fonts } from '@tamagui/config/v5'
 import { createFont } from 'tamagui'
 
 const figtreeFace = {

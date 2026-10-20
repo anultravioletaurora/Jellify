@@ -46,29 +46,29 @@ export default function SignOutModal(): React.JSX.Element {
 	}
 
 	return (
-		<YStack margin={'$6'}>
+		<YStack margin='6'>
 			<H5>{`Sign out of ${server?.name ?? 'Jellyfin'}?`}</H5>
-			<XStack gap={'$2'}>
+			<XStack gap='2'>
 				<Button
 					testID='sign-out-cancel-button'
-					icon={() => <Icon name='chevron-left' small color={'$borderColor'} />}
+					icon={() => <Icon name='chevron-left' small color={'borderColor'} />}
 					borderWidth={'$1'}
-					borderColor={'$borderColor'}
+					borderColor={'borderColor'}
 					flex={1}
 					onPress={settingsStackNavigation.goBack}
 				>
-					<Text bold color={'$borderColor'}>
+					<Text bold color={'borderColor'}>
 						Cancel
 					</Text>
 				</Button>
 				<Button
 					testID='sign-out-button'
 					flex={1}
-					icon={() => <Icon name='logout' small color={'$danger'} />}
-					borderColor={'$danger'}
+					icon={() => <Icon name='logout' small color={'danger'} />}
+					borderColor={'danger'}
 					onPress={onSignOut}
 				>
-					<Text bold color={'$danger'}>
+					<Text bold color={'danger'}>
 						Sign out
 					</Text>
 				</Button>

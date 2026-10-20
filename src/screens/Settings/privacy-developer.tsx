@@ -36,7 +36,7 @@ export default function PrivacyDeveloperScreen(): React.JSX.Element {
 	}
 
 	return (
-		<YStack flex={1} backgroundColor='$background' testID='settings-screen-privacy-developer'>
+		<YStack flex={1} backgroundColor='background' testID='settings-screen-privacy-developer'>
 			<ScrollView
 				contentContainerStyle={{ paddingBottom: Math.max(bottom, 16) + 16 }}
 				showsVerticalScrollIndicator={false}
@@ -44,7 +44,7 @@ export default function PrivacyDeveloperScreen(): React.JSX.Element {
 				<SettingsSection
 					title='Privacy'
 					icon='shield-account'
-					iconColor='$success'
+					iconColor='success'
 					defaultExpanded
 					collapsible={false}
 				>
@@ -52,10 +52,10 @@ export default function PrivacyDeveloperScreen(): React.JSX.Element {
 
 					<XStack alignItems='center' justifyContent='space-between'>
 						<YStack flex={1}>
-							<SizableText size='$4' fontWeight={'$6'}>
+							<SizableText size='4' fontWeight='6'>
 								Reduce Haptics
 							</SizableText>
-							<SizableText size='$2' color='$borderColor'>
+							<SizableText size='2' color='borderColor'>
 								Reduce haptic feedback intensity
 							</SizableText>
 						</YStack>
@@ -70,16 +70,16 @@ export default function PrivacyDeveloperScreen(): React.JSX.Element {
 				<SettingsSection
 					title='Developer'
 					icon='code-braces'
-					iconColor='$borderColor'
+					iconColor='borderColor'
 					defaultExpanded
 					collapsible={false}
 				>
 					<XStack alignItems='center' justifyContent='space-between'>
 						<YStack flex={1}>
-							<SizableText size='$4' fontWeight='$6'>
+							<SizableText size='4' fontWeight='6'>
 								Developer Options
 							</SizableText>
-							<SizableText size='$2' color='$borderColor'>
+							<SizableText size='2' color='borderColor'>
 								Enable advanced developer features
 							</SizableText>
 						</YStack>
@@ -92,11 +92,11 @@ export default function PrivacyDeveloperScreen(): React.JSX.Element {
 					</XStack>
 
 					{developerOptionsEnabled && (
-						<YStack gap='$2' paddingTop='$1'>
-							<SizableText size='$2' color='$borderColor'>
+						<YStack gap='2' paddingTop='1'>
+							<SizableText size='2' color='borderColor'>
 								Enter PR ID to test pull request builds
 							</SizableText>
-							<XStack gap='$2' alignItems='center'>
+							<XStack gap='2' alignItems='center'>
 								<Input
 									placeholder='Enter PR ID'
 									value={localPrId}
@@ -105,15 +105,15 @@ export default function PrivacyDeveloperScreen(): React.JSX.Element {
 									size='$3'
 								/>
 								<Button
-									size='$3'
-									backgroundColor='$primary'
+									size='sm'
+									backgroundColor='primary'
 									onPress={handleSubmitPr}
 									circular
-									icon={<Icon name='check' color='$background' small />}
+									icon={<Icon name='check' color='background' small />}
 								/>
 							</XStack>
 							{prId && (
-								<SizableText color='$success' size='$2'>
+								<SizableText color='success' size='2'>
 									Current PR ID: {prId}
 								</SizableText>
 							)}

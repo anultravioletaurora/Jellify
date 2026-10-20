@@ -46,7 +46,7 @@ export default function PublicPlaylists(): React.JSX.Element {
 					})
 				}}
 			>
-				<H5 marginLeft={'$2'} lineBreakStrategyIOS='standard' maxWidth={width * 0.8}>
+				<H5 marginLeft='2' maxWidth={width * 0.8} lineBreakStrategyIOS='standard'>
 					Playlists on {server?.name ?? 'Jellyfin'}
 				</H5>
 				<Icon name='arrow-right' />

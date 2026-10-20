@@ -41,7 +41,7 @@ const InternetConnectionWatcher = () => {
 
 	const animateBannerIn = () => {
 		bannerHeight.set(
-			withSpring(getTokenValue('$8'), {
+			withSpring(getTokenValue('8'), {
 				duration: 300,
 			}),
 		)
@@ -115,14 +115,12 @@ const InternetConnectionWatcher = () => {
 	return (
 		<Animated.View style={[{ overflow: 'hidden' }, animatedStyle]}>
 			<YStack
-				height={'$1.5'}
+				height='1-5'
 				justifyContent='center'
 				alignContent='center'
-				backgroundColor={
-					networkStatus === networkStatusTypes.ONLINE ? '$success' : '$warning'
-				}
+				backgroundColor={`${networkStatus === networkStatusTypes.ONLINE ? 'success' : 'warning'}`}
 			>
-				<Paragraph fontWeight={'$6'} textAlign='center' color='$background'>
+				<Paragraph fontWeight='6' textAlign='center' color='background'>
 					{networkStatus === networkStatusTypes.ONLINE
 						? internetConnectionWatcher.BACK_ONLINE
 						: internetConnectionWatcher.NO_INTERNET}

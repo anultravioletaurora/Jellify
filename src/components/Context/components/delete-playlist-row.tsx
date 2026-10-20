@@ -13,8 +13,9 @@ export default function DeletePlaylistRow({
 	return (
 		<ListItem
 			backgroundColor={'transparent'}
-			gap={'$2.5'}
+			gap='2-5'
 			justifyContent='flex-start'
+			opacity='press:0.5'
 			onPress={() => {
 				navigationRef.dispatch(
 					StackActions.push('DeletePlaylist', {
@@ -23,9 +24,8 @@ export default function DeletePlaylistRow({
 					}),
 				)
 			}}
-			pressStyle={{ opacity: 0.5 }}
 		>
-			<Icon small name='delete' color='$warning' />
+			<Icon small name='delete' color='warning' />
 
 			<Text bold>Delete Playlist</Text>
 		</ListItem>

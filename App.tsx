@@ -5,7 +5,7 @@ import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client
 import Jellify from './src/components/jellify'
 import { TamaguiProvider } from 'tamagui'
 import { LogBox, StyleSheet } from 'react-native'
-import jellifyConfig from './src/configs/styling/tamagui'
+import jellifyConfig from './src/configs/styling/tamagui.config'
 import { queryClient } from './src/constants/query-client'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'

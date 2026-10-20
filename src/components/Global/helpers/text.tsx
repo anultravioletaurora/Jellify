@@ -19,19 +19,19 @@ interface LabelProps {
 
 export function Label(props: LabelProps): React.JSX.Element {
 	return (
-		<TamaguiLabel fontWeight={'$6'} htmlFor={props.htmlFor} justifyContent='flex-end'>
+		<TamaguiLabel fontWeight='6' justifyContent='flex-end' htmlFor={props.htmlFor}>
 			{props.children}
 		</TamaguiLabel>
 	)
 }
 
 export function H1({ children }: { children: string }): React.JSX.Element {
-	return <TamaguiH1 marginBottom={'$2'}>{children}</TamaguiH1>
+	return <TamaguiH1 marginBottom='2'>{children}</TamaguiH1>
 }
 
 export function H2(props: TamaguiTextProps): React.JSX.Element {
 	return (
-		<TamaguiH2 marginVertical={'$0.75'} {...props}>
+		<TamaguiH2 marginVertical='0-75' {...props}>
 			{props.children}
 		</TamaguiH2>
 	)
@@ -39,7 +39,7 @@ export function H2(props: TamaguiTextProps): React.JSX.Element {
 
 export function H3(props: TamaguiTextProps): React.JSX.Element {
 	return (
-		<TamaguiH3 marginVertical={'$0.5'} {...props}>
+		<TamaguiH3 marginVertical='0-5' {...props}>
 			{props.children}
 		</TamaguiH3>
 	)
@@ -47,7 +47,7 @@ export function H3(props: TamaguiTextProps): React.JSX.Element {
 
 export function H4(props: TamaguiTextProps): React.JSX.Element {
 	return (
-		<TamaguiH4 marginVertical={'$0.25'} {...props}>
+		<TamaguiH4 marginVertical='0-25' {...props}>
 			{props.children}
 		</TamaguiH4>
 	)
@@ -55,7 +55,7 @@ export function H4(props: TamaguiTextProps): React.JSX.Element {
 
 export function H5(props: TamaguiTextProps): React.JSX.Element {
 	return (
-		<TamaguiH5 {...props} marginVertical={'$0.25'}>
+		<TamaguiH5 {...props} marginVertical='0-25'>
 			{props.children}
 		</TamaguiH5>
 	)
@@ -71,9 +71,9 @@ export function Text(props: TextProps): React.JSX.Element {
 	return (
 		<Paragraph
 			{...props}
-			fontWeight={props.bold ? '$6' : '$4'}
-			fontSize='$4'
-			lineHeight={'$1'}
+			fontWeight={`${props.bold ? '6' : '4'}`}
+			fontSize='4'
+			lineHeight='1'
 			userSelect='none'
 			textShadowColor={props.textOutline === 'strong' ? 'rgba(0, 0, 0, 0.9)' : 'transparent'}
 			textShadowOffset={

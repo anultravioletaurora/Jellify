@@ -62,7 +62,7 @@ export default function ArtistHeader(): React.JSX.Element {
 				imageOptions={backdropImageOptions}
 			/>
 
-			<YStack paddingHorizontal={'$2'}>
+			<YStack paddingHorizontal='2'>
 				<XStack alignItems='flex-end' justifyContent='flex-start' flex={1}>
 					<XStack alignItems='center' flex={1} justifyContent='space-between'>
 						<H5 flexGrow={1} fontWeight={'$6'}>
@@ -72,16 +72,16 @@ export default function ArtistHeader(): React.JSX.Element {
 				</XStack>
 
 				<XStack alignItems='center' justifyContent='space-between' flex={1}>
-					<XStack alignItems='center' gap={'$3'} flex={1}>
+					<XStack alignItems='center' gap='3' flex={1}>
 						<FavoriteButton item={artist} />
 
 						<InstantMixIconButton item={artist} navigation={navigation} />
 					</XStack>
 
-					<XStack alignItems='center' justifyContent='flex-end' gap={'$3'} flex={1}>
+					<XStack alignItems='center' justifyContent='flex-end' gap='3' flex={1}>
 						<Icon
 							small
-							color='$primary'
+							color='primary'
 							name='shuffle'
 							onPress={() => playArtist(true)}
 						/>
@@ -93,16 +93,16 @@ export default function ArtistHeader(): React.JSX.Element {
 					alignItems='center'
 					flex={1}
 					justifyContent='flex-start'
-					marginVertical={'$2'}
+					marginVertical='2'
+					{...ICON_PRESS_STYLES}
 					onPress={() =>
 						navigation.navigate('Tracks', {
 							tracksInfiniteQuery,
 							showAlphabeticalSelector: true,
 						})
 					}
-					{...ICON_PRESS_STYLES}
 				>
-					<Paragraph fontWeight={'$6'} fontSize={'$4'}>
+					<Paragraph fontWeight='6' fontSize='4'>
 						{`View Tracks`}
 					</Paragraph>
 

@@ -10,16 +10,16 @@ export default function ViewInstantMixMenuRow({ item }: { item: BaseItemDto }): 
 		<ListItem
 			backgroundColor={'transparent'}
 			flex={1}
-			gap={'$2.5'}
+			gap='2-5'
 			justifyContent='flex-start'
+			{...ICON_PRESS_STYLES}
 			onPress={() => {
 				goToScreenFromContextSheet('InstantMix', { item })
 			}}
-			{...ICON_PRESS_STYLES}
 		>
-			<Icon small color='$success' name='access-point' />
+			<Icon small color='success' name='access-point' />
 
-			<Paragraph fontWeight={'$6'}>{`Go to ${getItemName(item)} Mix`}</Paragraph>
+			<Paragraph fontWeight='6'>{`Go to ${getItemName(item)} Mix`}</Paragraph>
 		</ListItem>
 	)
 }

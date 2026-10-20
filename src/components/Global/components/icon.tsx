@@ -57,9 +57,9 @@ export default function Icon({
 
 	const animation = onPress || onPressIn ? 'quick' : props.transition
 
-	const pressStyle = onPress || onPressIn ? { opacity: 0.6 } : undefined
+	const pressOpacity = onPress || onPressIn ? { press: 0.6 } : undefined
 
-	// Tamagui theme keys are unprefixed (e.g. "primary" not "$primary"); resolve for token strings
+	// Tamagui theme keys are unprefixed (e.g. "primary" not "primary"); resolve for token strings
 	const themeColorKey =
 		color && typeof color === 'string' && color.startsWith('$') ? color.slice(1) : color
 	const resolvedColor =
@@ -72,7 +72,7 @@ export default function Icon({
 	return (
 		<YStack
 			transition={animation}
-			pressStyle={pressStyle}
+			opacity={pressOpacity}
 			alignContent='center'
 			justifyContent='center'
 			onPress={onPress}

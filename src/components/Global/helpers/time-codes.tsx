@@ -13,7 +13,7 @@ export function RunTimeSeconds({
 }): React.JSX.Element {
 	return (
 		<Paragraph
-			fontWeight={'$6'}
+			fontWeight='6'
 			color={color}
 			textAlign={alignment}
 			fontVariant={['tabular-nums']}
@@ -35,7 +35,7 @@ export function RunTimeTicks({
 	const time = calculateRunTimeFromTicks(children)
 
 	return (
-		<Paragraph {...props} color='$borderColor' fontVariant={['tabular-nums']}>
+		<Paragraph {...props} color='borderColor' fontVariant={['tabular-nums']}>
 			{time}
 		</Paragraph>
 	)

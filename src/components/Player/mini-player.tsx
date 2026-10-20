@@ -87,7 +87,7 @@ export default function Miniplayer(): React.JSX.Element | null {
 		return (
 			<YStack
 				backgroundColor={theme.background.val}
-				padding={'$2'}
+				padding='2'
 				alignItems='center'
 				justifyContent='center'
 			>
@@ -111,7 +111,7 @@ export default function Miniplayer(): React.JSX.Element | null {
 					{...ICON_PRESS_STYLES}
 				>
 					<MiniPlayerProgress />
-					<XStack alignItems='center' padding={'$2'}>
+					<XStack alignItems='center' padding='2'>
 						<YStack justify='center' alignItems='center'>
 							<Animated.View
 								entering={FadeIn.easing(Easing.in(Easing.ease))}
@@ -132,7 +132,7 @@ export default function Miniplayer(): React.JSX.Element | null {
 						<YStack
 							alignContent='flex-start'
 							justifyContent='center'
-							marginHorizontal={'$2'}
+							marginHorizontal='2'
 							flex={1}
 						>
 							<Animated.View
@@ -197,7 +197,7 @@ function MiniPlayerProgress(): React.JSX.Element {
 	}))
 
 	return (
-		<YStack height={'$0.25'} backgroundColor={'$borderColor'} width={'100%'}>
+		<YStack height='0-25' backgroundColor='borderColor' width={'100%'}>
 			<Animated.View
 				style={[
 					animatedStyle,

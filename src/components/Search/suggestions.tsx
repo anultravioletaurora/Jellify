@@ -62,9 +62,9 @@ const PLACEHOLDER = pickRandomItemFromArray(SEARCH_PLACEHOLDERS)
 
 function EmptyState({ isFetching }: EmptyStateProps): React.JSX.Element {
 	return (
-		<YStack alignContent='center' gap={'$2'} justifyContent='center'>
+		<YStack alignContent='center' gap='2' justifyContent='center'>
 			<Text textAlign='center'>{PLACEHOLDER}</Text>
-			{isFetching && <Spinner color={'$primary'} />}
+			{isFetching && <Spinner color='primary' />}
 		</YStack>
 	)
 }
@@ -101,7 +101,7 @@ export default function Suggestions(): React.JSX.Element {
 			// Artists are displayed in the header, so we'll filter them out here
 			data={filteredSuggestions}
 			contentContainerStyle={{
-				marginVertical: getTokenValue('$size.2'),
+				marginVertical: getTokenValue('2'),
 				flex: 1,
 			}}
 			ListHeaderComponent={<SuggestionsHeader suggestions={suggestions} />}

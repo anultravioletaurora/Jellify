@@ -74,22 +74,22 @@ function QuickConnectDisplay({
 	}, [secret, quickConnectData?.data.Authenticated, refetchQuickConnectData])
 
 	return (
-		<YStack justifyContent='flex-start' alignContent='center' flex={1} gap={'$4'}>
+		<YStack justifyContent='flex-start' alignContent='center' flex={1} gap='4'>
 			<XStack
 				alignItems={'center'}
 				justifyContent='center'
 				flexShrink={1}
-				onPress={onCodePress}
 				{...BUTTON_PRESS_STYLES}
-				gap={'$1'}
+				gap='1'
+				onPress={onCodePress}
 			>
-				<Icon small name={copyIconName} color='$primary' />
+				<Icon small name={copyIconName} color='primary' />
 
-				<Paragraph fontSize={'$8'} fontWeight={'$6'} color={'$primary'}>
+				<Paragraph fontSize='8' fontWeight='6' color='primary'>
 					{code}
 				</Paragraph>
 			</XStack>
-			{isAuthenticating ? <Spinner color={'$primary'} /> : <Spacer />}
+			{isAuthenticating ? <Spinner color='primary' /> : <Spacer />}
 		</YStack>
 	)
 }
@@ -118,8 +118,8 @@ export default function QuickConnectInitiator() {
 			<XStack alignItems='center' flexShrink={1}>
 				<Button
 					marginVertical={0}
+					borderRadius='4'
 					icon={() => <Icon name='chevron-left' small />}
-					borderRadius={'$4'}
 					onPress={() => {
 						navigation.navigate('ServerAuthentication', undefined, {
 							merge: true,
@@ -127,13 +127,13 @@ export default function QuickConnectInitiator() {
 						})
 					}}
 				>
-					<Paragraph fontWeight={'$6'}>Sign in Manually</Paragraph>
+					<Paragraph fontWeight='6'>Sign in Manually</Paragraph>
 				</Button>
 			</XStack>
 
 			<YStack
-				marginHorizontal={'$4'}
-				gap={'$3'}
+				marginHorizontal='4'
+				gap='3'
 				flex={1}
 				justifyContent='center'
 				alignContent='center'
@@ -144,16 +144,16 @@ export default function QuickConnectInitiator() {
 					exiting={FadeOut.springify()}
 					style={styles.headerSection}
 				>
-					<H3 marginHorizontal={'$2'} textAlign='center' testID='quick_connect_title'>
+					<H3 marginHorizontal='2' textAlign='center' testID='quick_connect_title'>
 						Quick Connect
 					</H3>
 
-					<Paragraph fontSize={'$6'} fontWeight={'$6'} textAlign='center' margin={'$2'}>
+					<Paragraph fontSize='6' fontWeight='6' textAlign='center' margin='2'>
 						Enter the code in another session
 					</Paragraph>
 				</Animated.View>
 
-				<YStack flex={2} justifyContent='flex-start' gap={'$4'}>
+				<YStack flex={2} justifyContent='flex-start' gap='4'>
 					{quickConnectData?.data.Secret && quickConnectData?.data.Code ? (
 						<QuickConnectDisplay
 							secret={quickConnectData.data.Secret}

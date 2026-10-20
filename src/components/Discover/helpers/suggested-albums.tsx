@@ -26,12 +26,12 @@ export default function SuggestedAlbums() {
 		<AnimatedRow testID='discover-suggested-albums'>
 			<XStack
 				alignItems='center'
+				marginLeft='2'
 				onPress={() => {
 					navigation.navigate('Albums', {
 						type: DiscoverAlbumScreenType.Suggested,
 					})
 				}}
-				marginLeft={'$2'}
 			>
 				<H5>More from the Vault</H5>
 				<Icon name='arrow-right' />

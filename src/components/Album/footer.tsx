@@ -33,10 +33,10 @@ export default function AlbumTrackListFooter({
 
 	return (
 		<Freeze freeze={freeze}>
-			<YStack gap={'$3'} marginVertical={'$2'} flex={1}>
+			<YStack gap='3' marginVertical='2' flex={1}>
 				{album.ArtistItems && album.ArtistItems.length > 1 && (
 					<YStack>
-						<Text marginHorizontal={'$2'} fontWeight='bold'>
+						<Text marginHorizontal='2' fontWeight='bold'>
 							Featuring
 						</Text>
 
@@ -66,7 +66,7 @@ export default function AlbumTrackListFooter({
 						exiting={FadeOut.easing(Easing.out(Easing.ease))}
 						style={{ flex: 1 }}
 					>
-						<Text marginHorizontal={'$2'} fontWeight='bold'>
+						<Text marginHorizontal='2' fontWeight='bold'>
 							Similar Albums
 						</Text>
 						<HorizontalCardList
@@ -92,7 +92,7 @@ export default function AlbumTrackListFooter({
 							ListEmptyComponent={
 								<YStack alignContent='center'>
 									{isLoadingSuggestions ? (
-										<Spinner alignSelf='center' color={'$primary'} />
+										<Spinner alignSelf='center' color='primary' />
 									) : (
 										<Text justifyContent='center' textAlign='center'>
 											No similar albums found

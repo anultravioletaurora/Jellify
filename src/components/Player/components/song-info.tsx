@@ -77,7 +77,7 @@ export default function SongInfo(): React.JSX.Element {
 
 	return (
 		<XStack>
-			<YStack justifyContent='flex-start' flex={1} gap={'$1'}>
+			<YStack justifyContent='flex-start' flex={1} gap='1'>
 				<Animated.View
 					entering={FadeIn.easing(Easing.in(Easing.ease))}
 					exiting={FadeOut.easing(Easing.out(Easing.ease))}
@@ -88,10 +88,10 @@ export default function SongInfo(): React.JSX.Element {
 						key={`${currentTrack?.id ?? 'no-track'}-title`}
 					>
 						<Paragraph
-							fontWeight={'$6'}
-							fontSize={'$6'}
-							onPress={handleTrackPress}
+							fontWeight='6'
+							fontSize='6'
 							{...ICON_PRESS_STYLES}
+							onPress={handleTrackPress}
 						>
 							{trackTitle}
 						</Paragraph>
@@ -101,23 +101,19 @@ export default function SongInfo(): React.JSX.Element {
 						{...TextTickerConfig}
 						key={`${currentTrack?.id ?? 'no-track'}-artist`}
 					>
-						<Paragraph
-							fontSize={'$6'}
-							onPress={handleArtistPress}
-							{...ICON_PRESS_STYLES}
-						>
+						<Paragraph fontSize='6' {...ICON_PRESS_STYLES} onPress={handleArtistPress}>
 							{currentTrack?.artist ?? 'Unknown Artist'}
 						</Paragraph>
 						{isExplicit(item) && (
-							<XStack alignSelf='center' paddingTop={5.3} paddingLeft='$1'>
-								<Icon name='alpha-e-box-outline' color={'$color'} xsmall />
+							<XStack alignSelf='center' paddingTop={5.3} paddingLeft='1'>
+								<Icon name='alpha-e-box-outline' color={'color'} xsmall />
 							</XStack>
 						)}
 					</TextTicker>
 				</Animated.View>
 			</YStack>
 
-			<XStack justifyContent='flex-end' alignItems='center' flexShrink={1} gap={'$3'}>
+			<XStack justifyContent='flex-end' alignItems='center' flexShrink={1} gap='3'>
 				{currentTrack && item && <FavoriteButton item={item} />}
 
 				<Icon name='dots-horizontal-circle-outline' onPress={openContextMenu} />

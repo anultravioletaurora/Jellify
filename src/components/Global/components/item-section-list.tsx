@@ -53,7 +53,7 @@ export default function ItemSectionList({
 				onScrollBeginDrag={closeAllSwipeableRows}
 				ListEmptyComponent={
 					<YStack flex={1} justify='center' alignItems='center'>
-						<Paragraph marginVertical='auto' color={'$borderColor'}>
+						<Paragraph marginVertical='auto' color='borderColor'>
 							No items
 						</Paragraph>
 					</YStack>

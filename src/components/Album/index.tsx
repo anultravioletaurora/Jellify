@@ -61,35 +61,25 @@ export function Album({ album }: { album: BaseItemDto }): React.JSX.Element {
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerRight: () => (
-				<XStack gap={'$2'} justifyContent='center' alignContent='center'>
+				<XStack gap='2' justifyContent='center' alignContent='center'>
 					{albumTrackList &&
 						(isDownloaded ? (
 							<Icon
-								color='$warning'
+								color='warning'
 								name='broom'
 								onPress={handleDeleteDownload}
 								transition={'quick'}
-								enterStyle={{
-									opacity: 0,
-								}}
-								exitStyle={{
-									opacity: 0,
-								}}
+								opacity={{ enter: 0, exit: 0 }}
 							/>
 						) : downloadTracks.isPending ? (
-							<Spinner justifyContent='center' color={'$neutral'} />
+							<Spinner justifyContent='center' color='neutral' />
 						) : (
 							<Icon
-								color='$success'
+								color='success'
 								name='download-circle-outline'
 								onPress={handleDownload}
 								transition={'quick'}
-								enterStyle={{
-									opacity: 0,
-								}}
-								exitStyle={{
-									opacity: 0,
-								}}
+								opacity={{ enter: 0, exit: 0 }}
 							/>
 						))}
 					<FavoriteButton item={album} />
@@ -119,8 +109,8 @@ export function Album({ album }: { album: BaseItemDto }): React.JSX.Element {
 						width='100%'
 						justifyContent={hasMultipleSections ? 'space-between' : 'flex-end'}
 						alignItems='center'
-						backgroundColor={'$background'}
-						paddingHorizontal={'$2'}
+						backgroundColor='background'
+						paddingHorizontal='2'
 					>
 						<Text padding={'$2'} bold>{`Disc ${section.title}`}</Text>
 					</XStack>
@@ -144,9 +134,9 @@ export function Album({ album }: { album: BaseItemDto }): React.JSX.Element {
 			}}
 			ListFooterComponent={<AlbumTrackListFooter album={album} freeze={isPending} />}
 			ListEmptyComponent={() => (
-				<YStack flex={1} alignContent='center' margin={'$4'}>
+				<YStack flex={1} alignContent='center' margin='4'>
 					{isPending ? null : (
-						<Text textAlign='center' color='$borderColor'>
+						<Text textAlign='center' color='borderColor'>
 							No album tracks
 						</Text>
 					)}

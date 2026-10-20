@@ -55,7 +55,7 @@ export default function Playlists({
 			onScrollBeginDrag={closeAllSwipeableRows}
 			ListEmptyComponent={
 				<YStack flex={1} justify='center' alignItems='center'>
-					<Paragraph marginVertical='auto' color={'$borderColor'}>
+					<Paragraph marginVertical='auto' color='borderColor'>
 						No playlists
 					</Paragraph>
 				</YStack>

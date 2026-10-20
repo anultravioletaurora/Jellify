@@ -123,16 +123,16 @@ export default function Root(): React.JSX.Element {
 
 function ContextSheetHeader(item: BaseItemDto): React.JSX.Element {
 	return (
-		<YStack gap={'$1'} marginTop={'$4'} alignItems='center'>
+		<YStack gap='1' marginTop='4' alignItems='center'>
 			<TextTicker {...TextTickerConfig}>
-				<Paragraph fontWeight={'$6'} fontSize={'$6'}>
+				<Paragraph fontWeight='6' fontSize='6'>
 					{getItemName(item)}
 				</Paragraph>
 			</TextTicker>
 
 			{(item.ArtistItems?.length ?? 0) > 0 && (
 				<TextTicker {...TextTickerConfig}>
-					<Paragraph fontWeight={'$6'} fontSize={'$4'}>
+					<Paragraph fontWeight='6' fontSize='4'>
 						{`${formatArtistNames(item.ArtistItems?.map((artist) => getItemName(artist)) ?? [])}`}
 					</Paragraph>
 				</TextTicker>

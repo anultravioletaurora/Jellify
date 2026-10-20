@@ -18,7 +18,7 @@ export function InstantMixIconButton({
 	return (
 		<Icon
 			name='access-point'
-			color={'$success'}
+			color={'success'}
 			onPress={() =>
 				navigation.navigate('InstantMix', {
 					item,
@@ -38,7 +38,7 @@ export function InstantMixButton({
 	return (
 		<Button
 			borderRadius={'$4'}
-			icon={<Icon name='access-point' color='$success' small />}
+			icon={<Icon name='access-point' color='success' small />}
 			onPress={() =>
 				navigation.dispatch(
 					CommonActions.navigate('InstantMix', {
@@ -47,11 +47,11 @@ export function InstantMixButton({
 				)
 			}
 			flex={1}
-			borderColor={'$success'}
+			borderColor={'success'}
 			borderWidth={'$1'}
 			{...BUTTON_PRESS_STYLES}
 		>
-			<Paragraph fontWeight={'$6'} color={'$success'}>
+			<Paragraph fontWeight='6' color='success'>
 				Mix
 			</Paragraph>
 		</Button>

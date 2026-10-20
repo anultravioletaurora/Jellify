@@ -35,14 +35,14 @@ export default function RemoveFromPlaylistRow({
 		<ListItem
 			transition={'quick'}
 			backgroundColor={'transparent'}
-			disabled={isPending}
 			flex={1}
-			gap={'$2.5'}
+			gap='2-5'
 			justifyContent='flex-start'
+			opacity='press:0.5'
+			disabled={isPending}
 			onPress={() => removeTrack()}
-			pressStyle={{ opacity: 0.5 }}
 		>
-			<Icon small color='$warning' name='playlist-remove' />
+			<Icon small color='warning' name='playlist-remove' />
 
 			<Text bold>Remove from Playlist</Text>
 		</ListItem>

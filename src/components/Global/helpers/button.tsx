@@ -13,7 +13,7 @@ export default function Button(props: ButtonProps): React.JSX.Element {
 		<TamaguiButton
 			opacity={props.disabled ? 0.5 : 1}
 			{...props}
-			marginVertical={'$2'}
+			marginVertical='2'
 			{...BUTTON_PRESS_STYLES}
 		/>
 	)

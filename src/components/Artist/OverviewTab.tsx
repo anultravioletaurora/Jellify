@@ -60,7 +60,7 @@ export default function ArtistOverviewTab(): React.JSX.Element {
 
 	const renderSectionHeader = ({ section }: { section: SectionListData<BaseItemDto> }) =>
 		section.data.length > 0 ? (
-			<Text padding={'$2'} fontSize={'$6'} bold backgroundColor={'$background'}>
+			<Text padding={'$2'} fontSize={'$6'} bold backgroundColor={'background'}>
 				{section.title}
 			</Text>
 		) : null
@@ -74,9 +74,9 @@ export default function ArtistOverviewTab(): React.JSX.Element {
 	const ListEmptyComponent = (
 		<YStack justifyContent='center' alignContent='center'>
 			{fetchingAlbums ? (
-				<Spinner color={'$primary'} flex={1} />
+				<Spinner color='primary' flex={1} />
 			) : (
-				<Text color={'$neutral'}>No albums</Text>
+				<Text color={'neutral'}>No albums</Text>
 			)}
 		</YStack>
 	)

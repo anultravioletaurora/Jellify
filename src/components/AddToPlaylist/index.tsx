@@ -1,7 +1,7 @@
 import { useMutation, InfiniteData } from '@tanstack/react-query'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { addManyToPlaylist } from '../../api/mutations/playlist/utils/playlists'
-import { YStack, XStack, Spacer, Spinner, View } from 'tamagui'
+import { YStack, XStack, Spacer, Spinner, View, useTheme } from 'tamagui'
 import Icon from '../Global/components/icon'
 import { AddToPlaylistMutation } from './types'
 import { Text } from '../Global/helpers/text'
@@ -45,10 +45,24 @@ export default function AddToPlaylist({
 
 	const { bottom } = useSafeAreaInsets()
 
+	const { darkBackground75 } = useTheme()
+
+	const headerShadowStyle = {
+		boxShadow: [
+			{
+				offsetY: 2,
+				offsetX: 0,
+				blurRadius: 4,
+				spreadDistance: 1,
+				color: darkBackground75.val,
+			},
+		],
+	}
+
 	return (
 		<View flex={1}>
 			{(source ?? tracks[0]) && (
-				<XStack gap={'$2'} margin={'$2'} elevation={'$4'}>
+				<XStack gap='2' margin='2' style={headerShadowStyle}>
 					<ItemImage
 						item={source ?? tracks[0]}
 						width={'$6'}
@@ -149,12 +163,11 @@ function AddToPlaylistRow({
 	return (
 		<XStack
 			transition={'quick'}
-			disabled={isInPlaylist}
 			alignItems='center'
-			gap={'$2'}
-			margin={'$2'}
-			opacity={isInPlaylist ? 0.5 : 1}
-			pressStyle={{ opacity: 0.6 }}
+			gap='2'
+			margin='2'
+			opacity={`${isInPlaylist ? 0.5 : 1} press:0.6`}
+			disabled={isInPlaylist}
 			onPress={() => {
 				if (!isInPlaylist) {
 					useAddToPlaylist.mutate({
@@ -174,23 +187,18 @@ function AddToPlaylistRow({
 			<YStack alignItems='flex-start' justifyContent='space-evenly' flexGrow={1}>
 				<Text bold>{playlist.Name ?? 'Untitled Playlist'}</Text>
 
-				<Text color={'$neutral'}>{`${playlistTracks?.length ?? 0} tracks`}</Text>
+				<Text color={'neutral'}>{`${playlistTracks?.length ?? 0} tracks`}</Text>
 			</YStack>
 
 			{isInPlaylist ? (
 				<Icon
 					name='check-circle-outline'
-					color={'$success'}
+					color={'success'}
 					transition={'quick'}
-					enterStyle={{
-						opacity: 0,
-					}}
-					exitStyle={{
-						opacity: 0,
-					}}
+					opacity={{ enter: 0, exit: 0 }}
 				/>
 			) : fetchingPlaylistTracks || useAddToPlaylist.isPending ? (
-				<Spinner color={'$primary'} />
+				<Spinner color='primary' />
 			) : (
 				<Spacer flex={1} />
 			)}

@@ -20,8 +20,8 @@ export default function PlaylistTracklistHeader(): React.JSX.Element {
 	const { playlist, playlistTracks, editing, newName, setNewName } = usePlaylistContext()
 
 	return (
-		<YStack paddingTop={'$1'} marginBottom={'$2'} gap={'$2'}>
-			<XStack justifyContent='center' alignContent='center' padding={'$2'}>
+		<YStack paddingTop='1' marginBottom='2' gap='2'>
+			<XStack justifyContent='center' alignContent='center' padding='2'>
 				<ItemImage item={playlist} width={'$15'} height={'$15'} elevate />
 			</XStack>
 
@@ -47,7 +47,7 @@ export default function PlaylistTracklistHeader(): React.JSX.Element {
 					entering={FadeInDown.easing(Easing.in(Easing.ease))}
 					exiting={FadeOutDown.easing(Easing.out(Easing.ease))}
 				>
-					<YStack alignItems='center' gap={'$2'}>
+					<YStack alignItems='center' gap='2'>
 						<H5 lineBreakStrategyIOS='standard' textAlign='center' numberOfLines={5}>
 							{newName ?? 'Untitled Playlist'}
 						</H5>
@@ -70,7 +70,7 @@ export default function PlaylistTracklistHeader(): React.JSX.Element {
 					/>
 				</Animated.View>
 			) : (
-				<Spacer size='$6' />
+				<Spacer size='6' />
 			)}
 		</YStack>
 	)
@@ -100,28 +100,28 @@ function PlaylistHeaderControls({
 	}
 
 	return (
-		<XStack justifyContent='center' marginHorizontal={'$2'} gap={'$2'}>
+		<XStack justifyContent='center' marginHorizontal='2' gap='2'>
 			<Button
 				flex={1}
-				backgroundColor={'$primary'}
+				backgroundColor={'primary'}
 				onPress={async () => await playPlaylist(false)}
-				icon={<Icon name='play' color='$background' small />}
+				icon={<Icon name='play' color='background' small />}
 				{...BUTTON_PRESS_STYLES}
 			>
-				<Text bold color={'$background'}>
+				<Text bold color={'background'}>
 					Play
 				</Text>
 			</Button>
 
 			<Button
 				flex={1}
-				borderColor={'$primary'}
+				borderColor={'primary'}
 				borderWidth={'$1'}
 				onPress={async () => await playPlaylist(true)}
-				icon={<Icon name='shuffle' color='$primary' small />}
+				icon={<Icon name='shuffle' color='primary' small />}
 				{...BUTTON_PRESS_STYLES}
 			>
-				<Text bold color={'$primary'}>
+				<Text bold color={'primary'}>
 					Shuffle
 				</Text>
 			</Button>
