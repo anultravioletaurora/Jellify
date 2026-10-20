@@ -115,7 +115,7 @@ export default function ItemContext({
 	}, [item?.Id])
 
 	return (
-		<YGroup marginBottom={bottom}>
+		<YGroup marginHorizontal='2' marginBottom={bottom} gap='3'>
 			<FavoriteContextMenuRow item={item} />
 
 			{renderDeletePlaylistRow && <DeletePlaylistRow playlist={item} />}
@@ -170,7 +170,7 @@ function AddToPlaylistRow({
 		<ListItem
 			backgroundColor={'transparent'}
 			flex={1}
-			gap='2-5'
+			gap='3'
 			justifyContent='flex-start'
 			{...ICON_PRESS_STYLES}
 			onPress={() => {
@@ -200,7 +200,7 @@ function AddToQueueMenuRow({ tracks }: { tracks: BaseItemDto[] }): React.JSX.Ele
 			<ListItem
 				backgroundColor={'transparent'}
 				flex={1}
-				gap='2-5'
+				gap='3'
 				justifyContent='flex-start'
 				{...ICON_PRESS_STYLES}
 				onPress={async () => {
@@ -219,7 +219,7 @@ function AddToQueueMenuRow({ tracks }: { tracks: BaseItemDto[] }): React.JSX.Ele
 			<ListItem
 				backgroundColor={'transparent'}
 				flex={1}
-				gap='2-5'
+				gap='3'
 				justifyContent='flex-start'
 				{...ICON_PRESS_STYLES}
 				onPress={() => {
@@ -258,7 +258,7 @@ function DownloadMenuRow({ items }: { items: BaseItemDto[] }): React.JSX.Element
 		<ListItem
 			disabled
 			backgroundColor={'transparent'}
-			gap='4'
+			gap='3'
 			justifyContent='flex-start'
 			{...ICON_PRESS_STYLES}
 		>
@@ -273,7 +273,7 @@ function DownloadMenuRow({ items }: { items: BaseItemDto[] }): React.JSX.Element
 	const downloadListItem = (
 		<ListItem
 			backgroundColor={'transparent'}
-			gap='2-5'
+			gap='3'
 			justifyContent='flex-start'
 			{...ICON_PRESS_STYLES}
 			onPress={() => download(items)}
@@ -291,7 +291,7 @@ function DownloadMenuRow({ items }: { items: BaseItemDto[] }): React.JSX.Element
 	const removeDownloadsListItem = (
 		<ListItem
 			backgroundColor={'transparent'}
-			gap='2-5'
+			gap='3'
 			justifyContent='flex-start'
 			{...ICON_PRESS_STYLES}
 			onPress={handleRemoveDownloads}
@@ -365,8 +365,6 @@ function ViewArtistMenuRow({
 	artistId: string | null | undefined
 	stackNavigation: StackNavigation | undefined
 }): React.JSX.Element {
-	const api = getApi()
-
 	const { data: artist } = useArtist(artistId)
 
 	const goToArtist = (artist: BaseItemDto) => {
@@ -409,7 +407,7 @@ function StatsRow({
 	return (
 		<ListItem
 			backgroundColor={'transparent'}
-			gap='2-5'
+			gap='3'
 			justifyContent='flex-start'
 			{...ICON_PRESS_STYLES}
 			onPress={() => {

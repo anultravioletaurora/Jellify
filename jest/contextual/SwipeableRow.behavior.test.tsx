@@ -5,7 +5,7 @@ import SwipeableRow, {
 	type SwipeAction,
 } from '../../src/components/Global/components/SwipeableRow'
 import { TamaguiProvider, Theme, SizableText } from 'tamagui'
-import config from '../../src/configs/styling/tamagui.config'
+import config from '../../src/configs/tamagui.config'
 
 /**
  * Expectation-driven tests for SwipeableRow.

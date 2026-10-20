@@ -1,6 +1,6 @@
 import ItemRow from '../Global/components/item-row'
 import { getTokenValue, SizableText, Spinner, YStack } from 'tamagui'
-import ItemCard from '../Global/components/item-card'
+import ItemCard from '../Global/components/Card'
 import HorizontalCardList from '../Global/components/horizontal-list'
 import SearchParamList from '../../screens/Search/types'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'

@@ -10,7 +10,7 @@ export default function ViewInstantMixMenuRow({ item }: { item: BaseItemDto }): 
 		<ListItem
 			backgroundColor={'transparent'}
 			flex={1}
-			gap='2-5'
+			gap='3'
 			justifyContent='flex-start'
 			{...ICON_PRESS_STYLES}
 			onPress={() => {

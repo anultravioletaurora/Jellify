@@ -1,7 +1,7 @@
 import React from 'react'
-import { H5, XStack } from 'tamagui'
+import { H4, H5, XStack } from 'tamagui'
 import { RootStackParamList } from '../../../screens/types'
-import ItemCard from '../../Global/components/item-card'
+import ItemCard from '../../Global/components/Card'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import HorizontalCardList from '../../../components/Global/components/horizontal-list'
 import Icon from '../../Global/components/icon'
@@ -49,7 +49,7 @@ export default function RecentArtists(): React.JSX.Element {
 	return recentArtistsInfiniteQuery.data ? (
 		<AnimatedRow testID='home-recent-artists'>
 			<XStack alignItems='center' onPress={handleHeaderPress}>
-				<H5 marginLeft='2'>Recent Artists</H5>
+				<H4 marginLeft='2'>Recent Artists</H4>
 				<Icon name='arrow-right' />
 			</XStack>
 

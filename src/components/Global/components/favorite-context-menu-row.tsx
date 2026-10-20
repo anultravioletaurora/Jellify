@@ -34,7 +34,7 @@ function AddFavoriteContextMenuRow({ item }: { item: BaseItemDto }): React.JSX.E
 				exiting={FadeOut.easing(Easing.out(Easing.ease))}
 				key={`${item.Id}-favorite-row`}
 			>
-				<XStack alignItems='center' justifyContent='flex-start' gap='2-5'>
+				<XStack alignItems='center' justifyContent='flex-start' gap='3'>
 					<Icon small name={'heart-outline'} color={'primary'} />
 
 					<SizableText fontWeight='bold'>Add to favorites</SizableText>
@@ -63,7 +63,7 @@ function RemoveFavoriteContextMenuRow({ item }: { item: BaseItemDto }): React.JS
 				exiting={FadeOut.easing(Easing.out(Easing.ease))}
 				key={`${item.Id}-favorite-row`}
 			>
-				<XStack alignItems='center' justifyContent='flex-start' gap='2-5'>
+				<XStack alignItems='center' justifyContent='flex-start' gap='3'>
 					<Icon small name={'heart'} color={'primary'} />
 
 					<SizableText fontWeight='bold'>Remove from favorites</SizableText>
