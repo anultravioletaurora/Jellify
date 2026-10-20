@@ -60,9 +60,9 @@ export default function ServerAuthentication(): React.JSX.Element {
 			<XStack alignItems='center' flexShrink={1}>
 				<Button
 					icon={() => <Icon name='chevron-left' small />}
-					borderRadius={'$4'}
+					borderRadius={'4'}
 					onPress={onSignInPress}
-					fontWeight='$6'
+					fontWeight='6'
 					{...ICON_PRESS_STYLES}
 				>
 					{'Switch Server'}
@@ -146,7 +146,7 @@ export default function ServerAuthentication(): React.JSX.Element {
 						testID='sign_in_button'
 						onPress={onSubmitEditing}
 						color='background'
-						fontWeight='$6'
+						fontWeight='6'
 						{...BUTTON_PRESS_STYLES}
 					>
 						{isPending ? <Spinner color='background' /> : 'Sign in'}
@@ -156,10 +156,10 @@ export default function ServerAuthentication(): React.JSX.Element {
 
 					<XStack alignItems='center' justifyContent='center'>
 						<Button
-							borderRadius={'$2'}
+							borderRadius={'2'}
 							onPress={() => navigation.navigate('QuickConnect')}
 							color='primary'
-							fontWeight='$6'
+							fontWeight='6'
 							{...ICON_PRESS_STYLES}
 						>
 							{'Use Quick Connect'}

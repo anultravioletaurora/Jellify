@@ -27,7 +27,7 @@ export default function SuggestedArtists(): React.JSX.Element {
 		<ItemCard
 			caption={item.Name}
 			subCaption={pickFirstGenre(item.Genres)}
-			size={'$10'}
+			size={'10'}
 			item={item}
 			onPress={() => {
 				navigation.navigate('Artist', {

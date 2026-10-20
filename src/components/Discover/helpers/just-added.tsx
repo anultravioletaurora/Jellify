@@ -41,7 +41,7 @@ export default function RecentlyAdded(): React.JSX.Element {
 						caption={item.Name}
 						subCaption={`${item.Artists?.join(', ')}`}
 						squared
-						size={'$11'}
+						size={'11'}
 						item={item}
 						onPress={() => {
 							navigation.navigate('Album', {
@@ -54,7 +54,7 @@ export default function RecentlyAdded(): React.JSX.Element {
 								navigation,
 							})
 						}}
-						gap={'$1'}
+						gap={'1'}
 						captionAlign='left'
 					/>
 				)}

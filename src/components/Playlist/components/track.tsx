@@ -38,7 +38,7 @@ export default function PlaylistTrack({ item: track, index }: ListRenderItemInfo
 	return editing ? (
 		<XStack alignItems='center' backgroundColor='background' marginHorizontal='3'>
 			<DraxHandle style={styles.handle}>
-				<Icon hitSlop={20} marginRight={'$2'} small name='drag-horizontal-variant' />
+				<Icon hitSlop={20} marginRight={'2'} small name='drag-horizontal-variant' />
 			</DraxHandle>
 
 			<Track

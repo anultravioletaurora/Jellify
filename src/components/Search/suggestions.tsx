@@ -32,14 +32,14 @@ function SuggestionsHeader({ suggestions }: SuggestionsHeaderProps): React.JSX.E
 					artist: suggestedArtist,
 				})
 			}}
-			size={'$8'}
+			size={'8'}
 			caption={formatArtistName(suggestedArtist.Name)}
 		/>
 	)
 
 	return (
 		<YStack accessibilityLabel='Suggested artists'>
-			<Text bold fontSize={'$6'}>
+			<Text bold fontSize={'6'}>
 				Suggestions
 			</Text>
 

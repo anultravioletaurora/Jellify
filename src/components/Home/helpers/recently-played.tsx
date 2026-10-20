@@ -59,7 +59,7 @@ export default function RecentlyPlayed(): React.JSX.Element {
 				}
 				renderItem={({ index, item }) => (
 					<ItemCard
-						size={'$11'}
+						size={'11'}
 						caption={item.Name}
 						subCaption={`${item.Artists?.join(', ')}`}
 						squared
@@ -72,7 +72,7 @@ export default function RecentlyPlayed(): React.JSX.Element {
 								navigation,
 							})
 						}}
-						marginHorizontal={'$1'}
+						marginHorizontal={'1'}
 						captionAlign='left'
 					/>
 				)}

@@ -36,7 +36,7 @@ export default function FrequentArtists(): React.JSX.Element {
 					navigation,
 				})
 			}}
-			size={'$10'}
+			size={'10'}
 		/>
 	)
 

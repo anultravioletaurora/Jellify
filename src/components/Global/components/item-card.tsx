@@ -199,12 +199,12 @@ function ItemCardComponentFooter({ type }: ItemCardComponentFooterProps) {
 
 const offsets = {
 	cassette: {
-		x: '$-4',
+		x: '-4',
 		y: '$',
 	},
 	disc: {
-		x: '$-4',
-		y: '$0',
+		x: '-4',
+		y: '0',
 	},
 }
 

@@ -32,7 +32,7 @@ export default function ListGroup({
 								<Spacer />
 								<YStack justifyContent='center' flex={1}>
 									<XStack>
-										<Text bold fontSize={'$7'}>
+										<Text bold fontSize={'7'}>
 											{item.Name ?? 'Untitled'}
 										</Text>
 										<Text>{item.RecursiveItemCount?.toString() ?? ''}</Text>
@@ -60,7 +60,7 @@ export default function ListGroup({
 							<Icon name='arrow-right-bottom' large />
 
 							<Spacer />
-							<Text bold fontSize={'$7'} margin={'$1'} marginTop={'$2.5'}>
+							<Text bold fontSize={'7'} margin={'1'} marginTop={'2-5'}>
 								See More
 							</Text>
 						</XStack>

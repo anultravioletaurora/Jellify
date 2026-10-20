@@ -131,7 +131,7 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 			// Section header
 			return (
 				<YStack paddingVertical='2' paddingHorizontal='4' backgroundColor='background75'>
-					<Text bold fontSize='$5'>
+					<Text bold fontSize='5'>
 						{item}
 					</Text>
 				</YStack>
@@ -150,7 +150,7 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 				transition='quick'
 				onPress={() => toggleGenre(item.Id!)}
 			>
-				<ItemImage item={item} width='$11' height='$3' />
+				<ItemImage item={item} width='11' height='3' />
 				<YStack flex={1}>
 					<Text bold>{genreName}</Text>
 					{item.SongCount !== undefined && (
@@ -192,7 +192,7 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 				<Button variant='outlined' size='sm' onPress={libraryStackNavigation.goBack}>
 					Cancel
 				</Button>
-				<Text bold fontSize='$6'>
+				<Text bold fontSize='6'>
 					Select Genres
 				</Text>
 				<Button
@@ -231,7 +231,7 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 					borderTopColor='borderColor'
 				>
 					<Text
-						fontSize='$3'
+						fontSize='3'
 						bold
 						color='primary'
 					>{`${selectedGenreIds.length} selected`}</Text>

@@ -112,7 +112,7 @@ export function Album({ album }: { album: BaseItemDto }): React.JSX.Element {
 						backgroundColor='background'
 						paddingHorizontal='2'
 					>
-						<Text padding={'$2'} bold>{`Disc ${section.title}`}</Text>
+						<Text padding={'2'} bold>{`Disc ${section.title}`}</Text>
 					</XStack>
 				) : null
 			}}

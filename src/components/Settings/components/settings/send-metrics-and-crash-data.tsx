@@ -15,7 +15,7 @@ export default function SendMetricsAndCrashDataSetting(): React.JSX.Element {
 					Send usage and crash data
 				</SizableText>
 			</YStack>
-			<SwitchWithLabel checked={sendMetrics} onCheckedChange={setSendMetrics} size='$2' />
+			<SwitchWithLabel checked={sendMetrics} onCheckedChange={setSendMetrics} size='2' />
 		</XStack>
 	)
 }

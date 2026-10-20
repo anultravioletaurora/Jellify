@@ -62,7 +62,7 @@ export default function PrivacyDeveloperScreen(): React.JSX.Element {
 						<SwitchWithLabel
 							checked={reducedHaptics}
 							onCheckedChange={setReducedHaptics}
-							size='$2'
+							size='2'
 						/>
 					</XStack>
 				</SettingsSection>
@@ -87,7 +87,7 @@ export default function PrivacyDeveloperScreen(): React.JSX.Element {
 							testID='developer-options-switch'
 							checked={developerOptionsEnabled}
 							onCheckedChange={setDeveloperOptionsEnabled}
-							size='$2'
+							size='2'
 						/>
 					</XStack>
 
@@ -102,7 +102,7 @@ export default function PrivacyDeveloperScreen(): React.JSX.Element {
 									value={localPrId}
 									onChangeText={setLocalPrId}
 									keyboardType='numeric'
-									size='$3'
+									size='3'
 								/>
 								<Button
 									size='sm'

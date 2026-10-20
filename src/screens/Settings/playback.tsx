@@ -87,22 +87,22 @@ export default function PlaybackScreen(): React.JSX.Element {
 							}
 						>
 							<RadioGroupItemWithLabel
-								size='$3'
+								size='3'
 								value={StreamingQuality.Original}
 								label='Original Quality'
 							/>
 							<RadioGroupItemWithLabel
-								size='$3'
+								size='3'
 								value={StreamingQuality.High}
 								label='High (320kbps)'
 							/>
 							<RadioGroupItemWithLabel
-								size='$3'
+								size='3'
 								value={StreamingQuality.Medium}
 								label='Medium (192kbps)'
 							/>
 							<RadioGroupItemWithLabel
-								size='$3'
+								size='3'
 								value={StreamingQuality.Low}
 								label='Low (128kbps)'
 							/>
@@ -121,7 +121,7 @@ export default function PlaybackScreen(): React.JSX.Element {
 						<SwitchWithLabel
 							checked={enableAudioNormalization}
 							onCheckedChange={setEnableAudioNormalization}
-							size='$2'
+							size='2'
 						/>
 					</XStack>
 
@@ -137,7 +137,7 @@ export default function PlaybackScreen(): React.JSX.Element {
 						<SwitchWithLabel
 							checked={displayAudioQualityBadge}
 							onCheckedChange={setDisplayAudioQualityBadge}
-							size='$2'
+							size='2'
 						/>
 					</XStack>
 

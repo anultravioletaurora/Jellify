@@ -19,14 +19,14 @@ export default function AddPlaylist(): React.JSX.Element {
 
 	return (
 		<View margin='4' flex={1}>
-			<Label size='$2' htmlFor='name'>
+			<Label size='2' htmlFor='name'>
 				Name
 			</Label>
 			<Input id='name' onChangeText={setName} />
 			<XStack justifyContent='space-evenly' gap='2'>
 				<Button
 					danger
-					borderWidth={'$1'}
+					borderWidth={'1'}
 					borderColor={'borderColor'}
 					onPress={libraryStackNavigation.goBack}
 					flex={1}
@@ -39,7 +39,7 @@ export default function AddPlaylist(): React.JSX.Element {
 				<Button
 					onPress={() => addPlaylist.mutate({ name })}
 					flex={1}
-					borderWidth={'$1'}
+					borderWidth={'1'}
 					borderColor={'primary'}
 					icon={
 						!addPlaylist.isPending ? (

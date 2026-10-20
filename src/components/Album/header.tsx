@@ -46,8 +46,8 @@ export default function AlbumTrackListHeader({ album }: { album: BaseItemDto }):
 			<XStack justifyContent='center'>
 				<ItemImage
 					item={album}
-					width={'$15'}
-					height={'$15'}
+					width={'15'}
+					height={'15'}
 					imageOptions={{
 						maxHeight: 750,
 						maxWidth: 750,
@@ -105,9 +105,9 @@ export default function AlbumTrackListHeader({ album }: { album: BaseItemDto }):
 						<Button
 							flex={1}
 							icon={() => <Icon small name='play' color='background' />}
-							borderRadius={'$4'}
+							borderRadius={'4'}
 							backgroundColor={'primary'}
-							paddingRight={'$5'}
+							paddingRight={'5'}
 							onPress={() => playAlbum(false)}
 							{...BUTTON_PRESS_STYLES}
 						>
@@ -118,8 +118,8 @@ export default function AlbumTrackListHeader({ album }: { album: BaseItemDto }):
 
 						<Button
 							icon={() => <Icon small name='shuffle' color='primary' />}
-							borderWidth={'$1'}
-							borderRadius={'$4'}
+							borderWidth={'1'}
+							borderRadius={'4'}
 							borderColor={'primary'}
 							flex={1}
 							onPress={() => playAlbum(true)}

@@ -165,7 +165,7 @@ export default function AppearanceScreen(): React.JSX.Element {
 						<SwitchWithLabel
 							checked={hideRunTimes}
 							onCheckedChange={setHideRunTimes}
-							size='$2'
+							size='2'
 						/>
 					</XStack>
 
@@ -181,7 +181,7 @@ export default function AppearanceScreen(): React.JSX.Element {
 						<SwitchWithLabel
 							checked={hideItemIndicators}
 							onCheckedChange={setHideItemIndicators}
-							size='$2'
+							size='2'
 						/>
 					</XStack>
 				</YStack>

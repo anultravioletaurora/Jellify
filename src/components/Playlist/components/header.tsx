@@ -22,7 +22,7 @@ export default function PlaylistTracklistHeader(): React.JSX.Element {
 	return (
 		<YStack paddingTop='1' marginBottom='2' gap='2'>
 			<XStack justifyContent='center' alignContent='center' padding='2'>
-				<ItemImage item={playlist} width={'$15'} height={'$15'} elevate />
+				<ItemImage item={playlist} width={'15'} height={'15'} elevate />
 			</XStack>
 
 			{editing ? (
@@ -36,10 +36,10 @@ export default function PlaylistTracklistHeader(): React.JSX.Element {
 						onChangeText={setNewName}
 						placeholder='Playlist Name'
 						textAlign='center'
-						fontSize={'$8'}
+						fontSize={'8'}
 						fontWeight='bold'
 						clearButtonMode='while-editing'
-						marginHorizontal={'$4'}
+						marginHorizontal={'4'}
 					/>
 				</Animated.View>
 			) : (
@@ -116,7 +116,7 @@ function PlaylistHeaderControls({
 			<Button
 				flex={1}
 				borderColor={'primary'}
-				borderWidth={'$1'}
+				borderWidth={'1'}
 				onPress={async () => await playPlaylist(true)}
 				icon={<Icon name='shuffle' color='primary' small />}
 				{...BUTTON_PRESS_STYLES}

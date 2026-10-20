@@ -60,7 +60,7 @@ export default function ArtistOverviewTab(): React.JSX.Element {
 
 	const renderSectionHeader = ({ section }: { section: SectionListData<BaseItemDto> }) =>
 		section.data.length > 0 ? (
-			<Text padding={'$2'} fontSize={'$6'} bold backgroundColor={'background'}>
+			<Text padding={'2'} fontSize={'6'} bold backgroundColor={'background'}>
 				{section.title}
 			</Text>
 		) : null

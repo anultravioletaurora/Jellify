@@ -190,7 +190,7 @@ function NoLibrariesMessage(): React.JSX.Element {
 			<Text color='warning' textAlign='center'>
 				No music libraries found
 			</Text>
-			<Text color='borderColor' textAlign='center' fontSize={'$3'}>
+			<Text color='borderColor' textAlign='center' fontSize={'3'}>
 				Please create a music library in Jellyfin to continue
 			</Text>
 		</YStack>

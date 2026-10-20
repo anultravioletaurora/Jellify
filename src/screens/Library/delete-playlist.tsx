@@ -24,7 +24,7 @@ export default function DeletePlaylist({ route }: LibraryDeletePlaylistProps): R
 				<Button
 					onPress={() => libraryStackNavigation.goBack()}
 					flex={1}
-					borderWidth={'$1'}
+					borderWidth={'1'}
 					borderColor={'borderColor'}
 					icon={() => <Icon name='chevron-left' small color={'borderColor'} />}
 				>
@@ -35,7 +35,7 @@ export default function DeletePlaylist({ route }: LibraryDeletePlaylistProps): R
 				<Button
 					danger
 					flex={1}
-					borderWidth={'$1'}
+					borderWidth={'1'}
 					borderColor={'warning'}
 					onPress={() => deletePlaylist.mutate(route.params.playlist)}
 					icon={

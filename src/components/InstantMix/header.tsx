@@ -13,8 +13,8 @@ export default function MixTrackListHeader() {
 			<XStack justifyContent='center'>
 				<ItemImage
 					item={item}
-					width={'$15'}
-					height={'$15'}
+					width={'15'}
+					height={'15'}
 					imageOptions={{
 						maxHeight: 750,
 						maxWidth: 750,

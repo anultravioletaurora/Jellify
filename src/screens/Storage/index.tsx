@@ -568,7 +568,7 @@ const DownloadSettingsSection = ({
 					Download tracks as they are played
 				</SizableText>
 			</YStack>
-			<SwitchWithLabel checked={autoDownload} onCheckedChange={setAutoDownload} size='$2' />
+			<SwitchWithLabel checked={autoDownload} onCheckedChange={setAutoDownload} size='2' />
 		</XStack>
 
 		<YStack gap='2'>
@@ -580,10 +580,10 @@ const DownloadSettingsSection = ({
 				value={downloadQuality}
 				onValueChange={(value) => setDownloadQuality(value as DownloadQuality)}
 			>
-				<RadioGroupItemWithLabel size='$3' value='original' label='Original Quality' />
-				<RadioGroupItemWithLabel size='$3' value='high' label='High (320kbps)' />
-				<RadioGroupItemWithLabel size='$3' value='medium' label='Medium (192kbps)' />
-				<RadioGroupItemWithLabel size='$3' value='low' label='Low (128kbps)' />
+				<RadioGroupItemWithLabel size='3' value='original' label='Original Quality' />
+				<RadioGroupItemWithLabel size='3' value='high' label='High (320kbps)' />
+				<RadioGroupItemWithLabel size='3' value='medium' label='Medium (192kbps)' />
+				<RadioGroupItemWithLabel size='3' value='low' label='Low (128kbps)' />
 			</RadioGroup>
 		</YStack>
 	</SettingsSection>

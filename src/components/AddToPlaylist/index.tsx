@@ -65,14 +65,14 @@ export default function AddToPlaylist({
 				<XStack gap='2' margin='2' style={headerShadowStyle}>
 					<ItemImage
 						item={source ?? tracks[0]}
-						width={'$6'}
-						height={'$6'}
+						width={'6'}
+						height={'6'}
 						imageOptions={{ maxWidth: 50, maxHeight: 50, quality: 90 }}
 					/>
 
 					<YStack justifyContent='space-evenly'>
 						<TextTicker {...TextTickerConfig}>
-							<Text bold fontSize={'$6'}>
+							<Text bold fontSize={'6'}>
 								{getItemName(source ?? tracks[0])}
 							</Text>
 						</TextTicker>
@@ -179,8 +179,8 @@ function AddToPlaylistRow({
 		>
 			<ItemImage
 				item={playlist}
-				height={'$4'}
-				width={'$4'}
+				height={'4'}
+				width={'4'}
 				imageOptions={{ maxWidth: 140, maxHeight: 140, quality: 90 }}
 			/>
 

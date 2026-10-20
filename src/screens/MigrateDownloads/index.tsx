@@ -71,8 +71,8 @@ export default function MigrateDownloadsScreen({
 			<XStack marginTop='4' gap='4'>
 				<Button
 					borderColor={'warning'}
-					borderWidth={'$1'}
-					borderRadius={'$4'}
+					borderWidth={'1'}
+					borderRadius={'4'}
 					onPress={async () => await handleRemove()}
 				>
 					<Paragraph fontSize='4' fontWeight={'bold'} color='warning' fontFamily='body'>
@@ -82,8 +82,8 @@ export default function MigrateDownloadsScreen({
 
 				<Button
 					borderColor={'success'}
-					borderWidth={'$1'}
-					borderRadius={'$4'}
+					borderWidth={'1'}
+					borderRadius={'4'}
 					onPress={async () => await handleDownload()}
 				>
 					<Paragraph fontSize='4' fontWeight={'bold'} color='success' fontFamily='body'>

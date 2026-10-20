@@ -115,8 +115,8 @@ export default function TrackRowContent({
 					<HideableArtwork>
 						<ItemImage
 							item={track}
-							width={'$4'}
-							height={'$4'}
+							width={'4'}
+							height={'4'}
 							elevate
 							imageOptions={{ maxWidth: 70, maxHeight: 70, quality: 90 }}
 						/>
@@ -125,7 +125,7 @@ export default function TrackRowContent({
 					<Text
 						key={`${track.Id}-number`}
 						marginHorizontal={'auto'}
-						minWidth={'$3'}
+						minWidth={'3'}
 						color={textColor}
 						textAlign='center'
 						fontVariant={['tabular-nums']}
@@ -144,7 +144,7 @@ export default function TrackRowContent({
 							color={textColor}
 							lineBreakStrategyIOS='standard'
 							numberOfLines={1}
-							fontSize={'$4'}
+							fontSize={'4'}
 						>
 							{trackName}
 						</Text>
@@ -157,8 +157,8 @@ export default function TrackRowContent({
 							lineBreakStrategyIOS='standard'
 							numberOfLines={1}
 							color={'borderColor'}
-							fontSize={'$2'}
-							marginVertical={'$-1.5'}
+							fontSize={'2'}
+							marginVertical={'-1-5'}
 						>
 							{artistsText}
 						</Text>

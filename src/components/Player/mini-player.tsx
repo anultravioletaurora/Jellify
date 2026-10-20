@@ -121,8 +121,8 @@ export default function Miniplayer(): React.JSX.Element | null {
 									key={item.AlbumId} // Without this, a failed image load means all image loading stops
 									item={item!}
 									customBlurhash={customBlurhash}
-									width={'$3'}
-									height={'$3'}
+									width={'3'}
+									height={'3'}
 									imageOptions={{ maxWidth: 120, maxHeight: 120 }}
 									elevate
 								/>
@@ -145,7 +145,7 @@ export default function Miniplayer(): React.JSX.Element | null {
 								</TextTicker>
 
 								<TextTicker {...TextTickerConfig}>
-									<Text height={'$0.5'}>
+									<Text height={'0-5'}>
 										{nowPlaying.artist ?? 'Unknown Artist'}
 									</Text>
 								</TextTicker>

@@ -1634,7 +1634,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - react-native-vector-icons-material-design-icons (13.1.5)
+  - react-native-vector-icons-material-design-icons (14.0.0)
   - React-NativeModulesApple (0.87.1):
     - hermes-engine
     - React-bridging
@@ -2756,7 +2756,7 @@ SPEC CHECKSUMS:
   react-native-quick-base64: 2dae6dfe4f0e5d631cba762516a760063ef26d6c
   react-native-safe-area-context: f2bf5d3db254014a48910436c4a58ab0c4e2fe1f
   react-native-turbo-image: cbf4df37ce4eda4fdbc3b21630e5f7ec0afd8090
-  react-native-vector-icons-material-design-icons: 8d696a2371e2bd5bb5254370c33b5ffbc503e840
+  react-native-vector-icons-material-design-icons: 811f6c4447a60d8a66394644093dcffdc546772f
   React-NativeModulesApple: adb1dd8361dff80e9f6652fb3fdbf033cfbe2a89
   React-networking: c00b437c4408f0640ba0d4158357133488521eca
   React-oscompat: 3175a287dd7175d1a20fdce5048a4b9e11f4b915

@@ -135,7 +135,7 @@ export default function YearSelectionScreen({ route }: YearSelectionProps): Reac
 				<Button variant='outlined' size='md' onPress={libraryStackNavigation.goBack}>
 					Cancel
 				</Button>
-				<Text bold fontSize='$6'>
+				<Text bold fontSize='6'>
 					Year range
 				</Text>
 				<Button variant='outlined' size='md' onPress={handleClear} disabled={!hasSelection}>
@@ -144,7 +144,7 @@ export default function YearSelectionScreen({ route }: YearSelectionProps): Reac
 			</XStack>
 
 			<YStack flex={1} padding='4' gap='2'>
-				<Text bold fontSize='$5' marginBottom='$2'>
+				<Text bold fontSize='5' marginBottom='2'>
 					Min year
 				</Text>
 				<Pressable onPress={handleOpenMin}>
@@ -162,7 +162,7 @@ export default function YearSelectionScreen({ route }: YearSelectionProps): Reac
 					</XStack>
 				</Pressable>
 
-				<Text bold fontSize='$5' marginBottom='$2' marginTop='$3'>
+				<Text bold fontSize='5' marginBottom='2' marginTop='3'>
 					Max year
 				</Text>
 				<Pressable onPress={handleOpenMax}>
@@ -204,7 +204,7 @@ export default function YearSelectionScreen({ route }: YearSelectionProps): Reac
 							padding='4'
 							maxHeight='100%'
 						>
-							<Text bold fontSize='$5' marginBottom='$3'>
+							<Text bold fontSize='5' marginBottom='3'>
 								{picking === 'min' ? 'Select min year' : 'Select max year'}
 							</Text>
 							<ScrollView
@@ -263,7 +263,7 @@ export default function YearSelectionScreen({ route }: YearSelectionProps): Reac
 					borderTopWidth={1}
 					borderTopColor='borderColor'
 				>
-					<Text fontSize='$3' bold color='primary'>
+					<Text fontSize='3' bold color='primary'>
 						{rangeLabel ?? ''}
 					</Text>
 					<Button variant='outlined' borderColor='primary' size='md' onPress={handleSave}>

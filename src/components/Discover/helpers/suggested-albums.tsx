@@ -43,7 +43,7 @@ export default function SuggestedAlbums() {
 						squared
 						caption={item.Name}
 						subCaption={formatArtistNames(item.Artists)}
-						size={'$10'}
+						size={'10'}
 						item={item}
 						onPress={() => {
 							navigation.navigate('Album', {

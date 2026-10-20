@@ -56,7 +56,7 @@ export default function ArtistHeader(): React.JSX.Element {
 		<YStack flex={1}>
 			<ItemImage
 				item={artist}
-				height={'$14'}
+				height={'14'}
 				type={ImageType.Backdrop}
 				cornered
 				imageOptions={backdropImageOptions}
@@ -65,7 +65,7 @@ export default function ArtistHeader(): React.JSX.Element {
 			<YStack paddingHorizontal='2'>
 				<XStack alignItems='flex-end' justifyContent='flex-start' flex={1}>
 					<XStack alignItems='center' flex={1} justifyContent='space-between'>
-						<H5 flexGrow={1} fontWeight={'$6'}>
+						<H5 flexGrow={1} fontWeight={'6'}>
 							{artist.Name}
 						</H5>
 					</XStack>

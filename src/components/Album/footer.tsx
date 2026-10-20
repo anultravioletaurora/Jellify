@@ -73,7 +73,7 @@ export default function AlbumTrackListFooter({
 							data={suggestions}
 							renderItem={({ item: album }) => (
 								<ItemCard
-									size={'$8'}
+									size={'8'}
 									item={album}
 									squared
 									caption={album.Name ?? 'Unknown Album'}

@@ -23,7 +23,7 @@ const JellifyActiveSliderTrack = styled(Slider.TrackActive, {
 const JellifySliderThumb = styled(Slider.Thumb, {
 	backgroundColor: 'primary',
 	borderColor: 'primary',
-	shadowColor: '$purpleDark',
+	shadowColor: 'purpleDark',
 	shadowOffset: { width: 0, height: 1 },
 	shadowOpacity: 0.25,
 	shadowRadius: 2,

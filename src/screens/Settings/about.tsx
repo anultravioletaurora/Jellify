@@ -53,7 +53,7 @@ export default function AboutScreen(): React.JSX.Element {
 			<ScrollView
 				contentContainerStyle={{
 					paddingBottom: Math.max(bottom, 16) + 16,
-					paddingHorizontal: '$2',
+					paddingHorizontal: '2',
 				}}
 				showsVerticalScrollIndicator={false}
 			>

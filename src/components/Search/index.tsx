@@ -117,7 +117,7 @@ export default function Search(): React.JSX.Element {
 												}),
 											)
 										}}
-										size={'$8'}
+										size={'8'}
 										caption={formatArtistName(artistResult.Name)}
 									/>
 								)}

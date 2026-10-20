@@ -95,7 +95,7 @@ export default function SortOptions({
 	return (
 		<YStack padding='4' marginBottom={bottom} gap='4'>
 			<YStack gap='2'>
-				<Text bold fontSize={'$6'} marginBottom={'$2'}>
+				<Text bold fontSize={'6'} marginBottom={'2'}>
 					Sort By
 				</Text>
 				<RadioGroup value={effectiveSortBy} onValueChange={handleSortByChange}>
@@ -103,7 +103,7 @@ export default function SortOptions({
 						{sortByOptions.map((option) => (
 							<RadioGroupItemWithLabel
 								key={option.value}
-								size={'$4'}
+								size={'4'}
 								value={option.value}
 								label={option.label}
 							/>
@@ -113,7 +113,7 @@ export default function SortOptions({
 			</YStack>
 
 			<YStack gap='2'>
-				<Text bold fontSize={'$6'} marginBottom={'$2'}>
+				<Text bold fontSize={'6'} marginBottom={'2'}>
 					Sort Order
 				</Text>
 				<RadioGroup
@@ -122,12 +122,12 @@ export default function SortOptions({
 				>
 					<YStack gap='2'>
 						<RadioGroupItemWithLabel
-							size={'$4'}
+							size={'4'}
 							value='ascending'
 							label={sortOrderLabels.ascending}
 						/>
 						<RadioGroupItemWithLabel
-							size={'$4'}
+							size={'4'}
 							value='descending'
 							label={sortOrderLabels.descending}
 						/>

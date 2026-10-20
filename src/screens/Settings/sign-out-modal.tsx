@@ -52,7 +52,7 @@ export default function SignOutModal(): React.JSX.Element {
 				<Button
 					testID='sign-out-cancel-button'
 					icon={() => <Icon name='chevron-left' small color={'borderColor'} />}
-					borderWidth={'$1'}
+					borderWidth={'1'}
 					borderColor={'borderColor'}
 					flex={1}
 					onPress={settingsStackNavigation.goBack}

@@ -58,7 +58,7 @@ export default function PublicPlaylists(): React.JSX.Element {
 						caption={item.Name}
 						subCaption={`${item.Genres?.join(', ')}`}
 						squared
-						size={'$10'}
+						size={'10'}
 						item={item}
 						onPress={() => {
 							navigation.navigate('Playlist', { playlist: item, canEdit: false })

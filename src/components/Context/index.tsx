@@ -330,8 +330,8 @@ function ViewAlbumMenuRow({ album: album, stackNavigation }: MenuRowProps): Reac
 		>
 			<ItemImage
 				item={album}
-				height={'$2'}
-				width={'$2'}
+				height={'2'}
+				width={'2'}
 				imageOptions={{ maxWidth: 50, maxHeight: 50, quality: 100 }}
 			/>
 
@@ -385,8 +385,8 @@ function ViewArtistMenuRow({
 			<ItemImage
 				circular
 				item={artist}
-				height={'$2'}
-				width={'$2'}
+				height={'2'}
+				width={'2'}
 				imageOptions={{ maxWidth: 50, maxHeight: 50, quality: 100 }}
 			/>
 
