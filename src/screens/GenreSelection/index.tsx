@@ -1,8 +1,7 @@
 import React, { useMemo, useState } from 'react'
-import { YStack, XStack, Button, Spinner, Paragraph } from 'tamagui'
+import { YStack, XStack, Button, Spinner, Paragraph, SizableText } from 'tamagui'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client'
 import { useGenres } from '../../api/queries/genre'
-import { Text } from '../../components/Global/helpers/text'
 import ItemImage from '../../components/Global/components/image'
 import Icon from '../../components/Global/components/icon'
 import useLibraryStore from '../../stores/library'
@@ -114,9 +113,9 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 			onPress={handleSelectAll}
 		>
 			<YStack flex={1}>
-				<Text bold>Select all</Text>
+				<SizableText fontWeight='bold'>Select all</SizableText>
 				{genres != null && (
-					<Text color='borderColor'>{`${allLoadedGenreIds.length} genres`}</Text>
+					<SizableText color='borderColor'>{`${allLoadedGenreIds.length} genres`}</SizableText>
 				)}
 			</YStack>
 			<Icon
@@ -131,9 +130,9 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 			// Section header
 			return (
 				<YStack paddingVertical='2' paddingHorizontal='4' backgroundColor='background75'>
-					<Text bold fontSize='5'>
+					<SizableText fontWeight='bold' size='5'>
 						{item}
-					</Text>
+					</SizableText>
 				</YStack>
 			)
 		}
@@ -152,9 +151,9 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 			>
 				<ItemImage item={item} width='11' height='3' />
 				<YStack flex={1}>
-					<Text bold>{genreName}</Text>
+					<SizableText fontWeight='bold'>{genreName}</SizableText>
 					{item.SongCount !== undefined && (
-						<Text color='borderColor'>{`${item.SongCount} tracks`}</Text>
+						<SizableText color='borderColor'>{`${item.SongCount} tracks`}</SizableText>
 					)}
 				</YStack>
 				<Icon
@@ -192,9 +191,9 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 				<Button variant='outlined' size='sm' onPress={libraryStackNavigation.goBack}>
 					Cancel
 				</Button>
-				<Text bold fontSize='6'>
+				<SizableText fontWeight='bold' size='6'>
 					Select Genres
-				</Text>
+				</SizableText>
 				<Button
 					variant='outlined'
 					size='sm'
@@ -217,7 +216,7 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 				}}
 				ListEmptyComponent={
 					<YStack flex={1} justifyContent='center' alignItems='center' padding='4'>
-						<Text color='borderColor'>No genres found</Text>
+						<SizableText color='borderColor'>No genres found</SizableText>
 					</YStack>
 				}
 			/>
@@ -230,11 +229,11 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 					borderTopWidth={1}
 					borderTopColor='borderColor'
 				>
-					<Text
-						fontSize='3'
-						bold
+					<SizableText
+						size='3'
+						fontWeight='bold'
 						color='primary'
-					>{`${selectedGenreIds.length} selected`}</Text>
+					>{`${selectedGenreIds.length} selected`}</SizableText>
 					<Button variant='outlined' borderColor='primary' size='sm' onPress={handleSave}>
 						<Paragraph fontWeight='6' color='primary'>
 							Apply

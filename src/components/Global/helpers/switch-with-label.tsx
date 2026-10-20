@@ -1,5 +1,4 @@
-import { SizeTokens, XStack, Separator, Switch, styled } from 'tamagui'
-import { Label } from './text'
+import { SizeTokens, XStack, Separator, Switch, styled, Label } from 'tamagui'
 import { triggerHaptic } from '../../../hooks/use-haptic-feedback'
 
 interface SwitchWithLabelProps {

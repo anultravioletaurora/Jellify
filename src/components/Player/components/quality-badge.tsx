@@ -1,5 +1,4 @@
-import { Square } from 'tamagui'
-import { Text } from '../../Global/helpers/text'
+import { SizableText, Square } from 'tamagui'
 import navigationRef from '../../../screens/navigation'
 import { parseBitrateFromTranscodingUrl } from '../../../utils/parsing/url'
 import { BaseItemDto, MediaSourceInfo } from '@jellyfin/sdk/lib/generated-client'
@@ -39,9 +38,14 @@ export default function QualityBadge({
 				})
 			}}
 		>
-			<Text bold color={'background'} textAlign='center' fontVariant={['tabular-nums']}>
+			<SizableText
+				fontWeight='bold'
+				color={'background'}
+				textAlign='center'
+				fontVariant={['tabular-nums']}
+			>
 				{`${Math.floor(bitrate / 1000)}kbps ${formatContainerName(bitrate, container)}`}
-			</Text>
+			</SizableText>
 		</Square>
 	) : (
 		<></>

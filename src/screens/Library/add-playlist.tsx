@@ -1,7 +1,6 @@
-import { Label, Text } from '../../components/Global/helpers/text'
 import Input from '../../components/Global/helpers/input'
 import React, { useState } from 'react'
-import { Spinner, View, XStack } from 'tamagui'
+import { Label, Spinner, View, XStack, SizableText } from 'tamagui'
 import Button from '../../components/Global/helpers/button'
 import Icon from '../../components/Global/components/icon'
 import { isEmpty } from 'lodash'
@@ -19,7 +18,7 @@ export default function AddPlaylist(): React.JSX.Element {
 
 	return (
 		<View margin='4' flex={1}>
-			<Label size='2' htmlFor='name'>
+			<Label size='2' htmlFor='name' fontWeight='bold' justifyContent='flex-end'>
 				Name
 			</Label>
 			<Input id='name' onChangeText={setName} />
@@ -32,9 +31,9 @@ export default function AddPlaylist(): React.JSX.Element {
 					flex={1}
 					icon={() => <Icon name='chevron-left' small color={'borderColor'} />}
 				>
-					<Text bold color={'borderColor'}>
+					<SizableText fontWeight='bold' color={'borderColor'}>
 						Cancel
-					</Text>
+					</SizableText>
 				</Button>
 				<Button
 					onPress={() => addPlaylist.mutate({ name })}
@@ -51,9 +50,9 @@ export default function AddPlaylist(): React.JSX.Element {
 					{addPlaylist.isPending ? (
 						<Spinner color='primary' />
 					) : (
-						<Text bold color={'primary'}>
+						<SizableText fontWeight='bold' color={'primary'}>
 							Save
-						</Text>
+						</SizableText>
 					)}
 				</Button>
 			</XStack>

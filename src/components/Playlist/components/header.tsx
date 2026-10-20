@@ -9,7 +9,7 @@ import ItemImage from '../../Global/components/image'
 import Input from '../../Global/helpers/input'
 import Animated, { Easing, FadeInDown, FadeOutDown } from 'react-native-reanimated'
 import Button from '../../Global/helpers/button'
-import { Text } from '../../Global/helpers/text'
+import { SizableText } from 'tamagui'
 import { RunTimeTicks } from '../../Global/helpers/time-codes'
 import { BUTTON_PRESS_STYLES } from '../../../configs/styling/elements'
 import { loadNewQueue } from '../../../player/queuing'
@@ -108,9 +108,9 @@ function PlaylistHeaderControls({
 				icon={<Icon name='play' color='background' small />}
 				{...BUTTON_PRESS_STYLES}
 			>
-				<Text bold color={'background'}>
+				<SizableText fontWeight='bold' color={'background'}>
 					Play
-				</Text>
+				</SizableText>
 			</Button>
 
 			<Button
@@ -121,9 +121,9 @@ function PlaylistHeaderControls({
 				icon={<Icon name='shuffle' color='primary' small />}
 				{...BUTTON_PRESS_STYLES}
 			>
-				<Text bold color={'primary'}>
+				<SizableText fontWeight='bold' color={'primary'}>
 					Shuffle
-				</Text>
+				</SizableText>
 			</Button>
 
 			<InstantMixButton item={playlist} navigation={navigation} />

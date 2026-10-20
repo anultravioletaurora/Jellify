@@ -1,6 +1,5 @@
 import { BaseItemDto, BaseItemKind } from '@jellyfin/sdk/lib/generated-client/models'
-import { XStack, YStack, getToken } from 'tamagui'
-import { Text } from '../helpers/text'
+import { XStack, YStack, getToken, SizableText } from 'tamagui'
 import Icon from './icon'
 import { QueuingType } from '../../../enums/queuing-type'
 import { RunTimeTicks } from '../helpers/time-codes'
@@ -183,9 +182,9 @@ function ItemRow({
 					{renderRunTime ? (
 						<RunTimeTicks>{item.RunTimeTicks}</RunTimeTicks>
 					) : item.Type === 'Playlist' ? (
-						<Text color={'borderColor'}>
+						<SizableText color={'borderColor'}>
 							{`${playlistTrackCount ?? 0} ${playlistTrackCount === 1 ? 'Track' : 'Tracks'}`}
-						</Text>
+						</SizableText>
 					) : null}
 					<FavoriteIcon item={item} />
 
@@ -227,9 +226,9 @@ function ItemRow({
 					{renderRunTime ? (
 						<RunTimeTicks>{item.RunTimeTicks}</RunTimeTicks>
 					) : item.Type === 'Playlist' ? (
-						<Text color={'borderColor'}>
+						<SizableText color={'borderColor'}>
 							{`${playlistTrackCount ?? 0} ${playlistTrackCount === 1 ? 'Track' : 'Tracks'}`}
-						</Text>
+						</SizableText>
 					) : null}
 					<FavoriteIcon item={item} />
 
@@ -260,35 +259,47 @@ function ItemRowDetails({
 
 	return (
 		<YStack alignContent='center' justifyContent='center' flexGrow={1}>
-			<Text bold lineBreakStrategyIOS='standard' numberOfLines={1}>
+			<SizableText fontWeight='bold' lineBreakStrategyIOS='standard' numberOfLines={1}>
 				{item.Name ?? ''}
-			</Text>
+			</SizableText>
 
 			{shouldRenderArtistName && (
-				<Text color={'borderColor'} lineBreakStrategyIOS='standard' numberOfLines={1}>
+				<SizableText
+					color={'borderColor'}
+					lineBreakStrategyIOS='standard'
+					numberOfLines={1}
+				>
 					{formatArtistName(
 						item.AlbumArtist,
 						sortingByReleasedDate ? item.ProductionYear?.toString() : undefined,
 					)}
-				</Text>
+				</SizableText>
 			)}
 
 			{shouldRenderProductionYear && (
 				<XStack gap='2'>
-					<Text color={'borderColor'} lineBreakStrategyIOS='standard' numberOfLines={1}>
+					<SizableText
+						color={'borderColor'}
+						lineBreakStrategyIOS='standard'
+						numberOfLines={1}
+					>
 						{item.ProductionYear?.toString() ?? 'Unknown Year'}
-					</Text>
+					</SizableText>
 
-					<Text color={'borderColor'}>•</Text>
+					<SizableText color={'borderColor'}>•</SizableText>
 
 					<RunTimeTicks>{item.RunTimeTicks}</RunTimeTicks>
 				</XStack>
 			)}
 
 			{shouldRenderGenres && item.Genres && (
-				<Text color={'borderColor'} lineBreakStrategyIOS='standard' numberOfLines={1}>
+				<SizableText
+					color={'borderColor'}
+					lineBreakStrategyIOS='standard'
+					numberOfLines={1}
+				>
 					{item.Genres?.join(', ') ?? ''}
-				</Text>
+				</SizableText>
 			)}
 		</YStack>
 	)

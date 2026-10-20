@@ -1,8 +1,7 @@
 import React from 'react'
-import { Spacer, Square, CardProps as TamaguiCardProps, useTheme, View } from 'tamagui'
+import { SizableText, Spacer, Square, CardProps as TamaguiCardProps, useTheme, View } from 'tamagui'
 import { Card as TamaguiCard, YStack } from 'tamagui'
 import { BaseItemDto, BaseItemKind } from '@jellyfin/sdk/lib/generated-client/models'
-import { Text } from '../helpers/text'
 import ItemImage from './image'
 import useItemContext from '../../../hooks/use-item-context'
 import { usePerformanceMonitor } from '../../../hooks/use-performance-monitor'
@@ -82,9 +81,8 @@ export default function ItemCard({
 	)
 
 	return (
-		<YStack alignItems='center' padding='1' gap='1'>
+		<YStack alignItems='center' padding='1'>
 			<TamaguiCard
-				size={'12'}
 				height={resolvedSize}
 				width={resolvedSize}
 				borderRadius={`${squared ? '1' : '12'}`}
@@ -123,25 +121,27 @@ function ItemCardComponentCaption({
 
 	return (
 		<YStack maxWidth={size}>
-			<Text
-				bold
+			<SizableText
+				fontWeight={'6'}
 				lineBreakStrategyIOS='standard'
 				width={size}
 				numberOfLines={1}
 				textAlign={captionAlign}
+				fontSize={'3'}
 			>
 				{caption}
-			</Text>
+			</SizableText>
 
 			{subCaption && (
-				<Text
+				<SizableText
 					lineBreakStrategyIOS='standard'
 					width={size}
 					numberOfLines={1}
 					textAlign={captionAlign}
+					fontSize={'3'}
 				>
 					{subCaption}
-				</Text>
+				</SizableText>
 			)}
 		</YStack>
 	)

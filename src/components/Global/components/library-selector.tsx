@@ -1,6 +1,5 @@
-import { H3, Paragraph, Spinner, ToggleGroup, XStack, YStack } from 'tamagui'
+import { H3, Paragraph, SizableText, Spinner, ToggleGroup, XStack, YStack } from 'tamagui'
 import React, { useEffect, useState } from 'react'
-import { Text } from '../helpers/text'
 import Button from '../helpers/button'
 import { BaseItemDto, CollectionType } from '@jellyfin/sdk/lib/generated-client/models'
 import Icon from './icon'
@@ -118,9 +117,9 @@ export default function LibrarySelector({
 					entering={FadeInUp.easing(Easing.in(Easing.ease))}
 					exiting={FadeOutUp.easing(Easing.out(Easing.ease))}
 				>
-					<Text color='borderColor' textAlign='center'>
+					<SizableText color='borderColor' textAlign='center'>
 						Only one music library is available
-					</Text>
+					</SizableText>
 				</Animated.View>
 			)}
 
@@ -177,9 +176,9 @@ export default function LibrarySelector({
 
 function LoadErrorMessage(): React.JSX.Element {
 	return (
-		<Text color='warning' textAlign='center'>
+		<SizableText color='warning' textAlign='center'>
 			Unable to load libraries
-		</Text>
+		</SizableText>
 	)
 }
 
@@ -187,12 +186,12 @@ function NoLibrariesMessage(): React.JSX.Element {
 	return (
 		<YStack alignItems='center' gap='2'>
 			<Icon name='alert' color='warning' />
-			<Text color='warning' textAlign='center'>
+			<SizableText color='warning' textAlign='center'>
 				No music libraries found
-			</Text>
-			<Text color='borderColor' textAlign='center' fontSize={'3'}>
+			</SizableText>
+			<SizableText color='borderColor' textAlign='center' size={'3'}>
 				Please create a music library in Jellyfin to continue
-			</Text>
+			</SizableText>
 		</YStack>
 	)
 }

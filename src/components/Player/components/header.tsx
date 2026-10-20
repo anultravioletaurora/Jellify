@@ -1,5 +1,4 @@
-import { XStack, YStack, Spacer, useTheme, getTokenValue } from 'tamagui'
-import { Text } from '../../Global/helpers/text'
+import { XStack, YStack, Spacer, useTheme, getTokenValue, SizableText } from 'tamagui'
 import React from 'react'
 import ItemImage from '../../Global/components/image'
 import Animated, {
@@ -50,11 +49,11 @@ export default function PlayerHeader(): React.JSX.Element {
 				/>
 
 				<YStack alignItems='center' flexGrow={1}>
-					<Text>Playing from</Text>
+					<SizableText>Playing from</SizableText>
 					<TextTicker {...TextTickerConfig}>
-						<Text bold numberOfLines={1}>
+						<SizableText fontWeight='bold' numberOfLines={1}>
 							{playingFrom}
-						</Text>
+						</SizableText>
 					</TextTicker>
 				</YStack>
 

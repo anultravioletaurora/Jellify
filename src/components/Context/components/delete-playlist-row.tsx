@@ -1,9 +1,8 @@
 import navigationRef from '../../../screens/navigation'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client'
 import { StackActions } from '@react-navigation/native'
-import { ListItem } from 'tamagui'
+import { ListItem, SizableText } from 'tamagui'
 import Icon from '../../Global/components/icon'
-import { Text } from '../../Global/helpers/text'
 
 export default function DeletePlaylistRow({
 	playlist,
@@ -27,7 +26,7 @@ export default function DeletePlaylistRow({
 		>
 			<Icon small name='delete' color='warning' />
 
-			<Text bold>Delete Playlist</Text>
+			<SizableText fontWeight='bold'>Delete Playlist</SizableText>
 		</ListItem>
 	)
 }

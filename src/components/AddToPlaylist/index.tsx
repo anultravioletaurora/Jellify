@@ -1,10 +1,9 @@
 import { useMutation, InfiniteData } from '@tanstack/react-query'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { addManyToPlaylist } from '../../api/mutations/playlist/utils/playlists'
-import { YStack, XStack, Spacer, Spinner, View, useTheme } from 'tamagui'
+import { YStack, XStack, Spacer, Spinner, View, useTheme, SizableText } from 'tamagui'
 import Icon from '../Global/components/icon'
 import { AddToPlaylistMutation } from './types'
-import { Text } from '../Global/helpers/text'
 import ItemImage from '../Global/components/image'
 import TextTicker from 'react-native-text-ticker'
 import { TextTickerConfig } from '../Player/component.config'
@@ -72,16 +71,16 @@ export default function AddToPlaylist({
 
 					<YStack justifyContent='space-evenly'>
 						<TextTicker {...TextTickerConfig}>
-							<Text bold fontSize={'6'}>
+							<SizableText fontWeight='bold' size={'6'}>
 								{getItemName(source ?? tracks[0])}
-							</Text>
+							</SizableText>
 						</TextTicker>
 
 						{(source ?? tracks[0])?.ArtistItems && (
 							<TextTicker {...TextTickerConfig}>
-								<Text bold>
+								<SizableText fontWeight='bold'>
 									{`${(source ?? tracks[0])!.ArtistItems?.map((artist) => getItemName(artist)).join(', ')}`}
-								</Text>
+								</SizableText>
 							</TextTicker>
 						)}
 					</YStack>
@@ -185,9 +184,11 @@ function AddToPlaylistRow({
 			/>
 
 			<YStack alignItems='flex-start' justifyContent='space-evenly' flexGrow={1}>
-				<Text bold>{playlist.Name ?? 'Untitled Playlist'}</Text>
+				<SizableText fontWeight='bold'>{playlist.Name ?? 'Untitled Playlist'}</SizableText>
 
-				<Text color={'neutral'}>{`${playlistTracks?.length ?? 0} tracks`}</Text>
+				<SizableText
+					color={'neutral'}
+				>{`${playlistTracks?.length ?? 0} tracks`}</SizableText>
 			</YStack>
 
 			{isInPlaylist ? (

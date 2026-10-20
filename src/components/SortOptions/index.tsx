@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { YStack } from 'tamagui'
-import { Text } from '../Global/helpers/text'
+import { SizableText, YStack } from 'tamagui'
 import { RadioGroup } from 'tamagui'
 import { RadioGroupItemWithLabel } from '../Global/helpers/radio-group-item-with-label'
 import useLibraryStore, { LibraryTab } from '../../stores/library'
@@ -95,9 +94,9 @@ export default function SortOptions({
 	return (
 		<YStack padding='4' marginBottom={bottom} gap='4'>
 			<YStack gap='2'>
-				<Text bold fontSize={'6'} marginBottom={'2'}>
+				<SizableText fontWeight='bold' size={'6'} marginBottom={'2'}>
 					Sort By
-				</Text>
+				</SizableText>
 				<RadioGroup value={effectiveSortBy} onValueChange={handleSortByChange}>
 					<YStack gap='2'>
 						{sortByOptions.map((option) => (
@@ -113,9 +112,9 @@ export default function SortOptions({
 			</YStack>
 
 			<YStack gap='2'>
-				<Text bold fontSize={'6'} marginBottom={'2'}>
+				<SizableText fontWeight='bold' size={'6'} marginBottom={'2'}>
 					Sort Order
-				</Text>
+				</SizableText>
 				<RadioGroup
 					value={sortDescending ? 'descending' : 'ascending'}
 					onValueChange={handleSortOrderChange}

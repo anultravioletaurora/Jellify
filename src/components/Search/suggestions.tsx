@@ -1,6 +1,5 @@
 import ItemRow from '../Global/components/item-row'
-import { Text } from '../Global/helpers/text'
-import { getTokenValue, Spinner, YStack } from 'tamagui'
+import { getTokenValue, SizableText, Spinner, YStack } from 'tamagui'
 import ItemCard from '../Global/components/item-card'
 import HorizontalCardList from '../Global/components/horizontal-list'
 import SearchParamList from '../../screens/Search/types'
@@ -39,9 +38,9 @@ function SuggestionsHeader({ suggestions }: SuggestionsHeaderProps): React.JSX.E
 
 	return (
 		<YStack accessibilityLabel='Suggested artists'>
-			<Text bold fontSize={'6'}>
+			<SizableText fontWeight='bold' size={'6'}>
 				Suggestions
-			</Text>
+			</SizableText>
 
 			<HorizontalCardList data={suggestedArtists} renderItem={renderItem} />
 		</YStack>
@@ -63,7 +62,7 @@ const PLACEHOLDER = pickRandomItemFromArray(SEARCH_PLACEHOLDERS)
 function EmptyState({ isFetching }: EmptyStateProps): React.JSX.Element {
 	return (
 		<YStack alignContent='center' gap='2' justifyContent='center'>
-			<Text textAlign='center'>{PLACEHOLDER}</Text>
+			<SizableText textAlign='center'>{PLACEHOLDER}</SizableText>
 			{isFetching && <Spinner color='primary' />}
 		</YStack>
 	)

@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react'
-import { YStack, XStack, Button, Spinner, Paragraph } from 'tamagui'
+import { YStack, XStack, Button, Spinner, Paragraph, SizableText } from 'tamagui'
 import { Modal, ScrollView, Pressable } from 'react-native'
-import { Text } from '../../components/Global/helpers/text'
 import Icon from '../../components/Global/components/icon'
 import useLibraryStore from '../../stores/library'
 import { useLibraryYears } from '../../api/queries/years'
@@ -111,7 +110,7 @@ export default function YearSelectionScreen({ route }: YearSelectionProps): Reac
 	if (isError) {
 		return (
 			<YStack flex={1} alignItems='center' justifyContent='center' padding='4'>
-				<Text color='borderColor'>Could not load years</Text>
+				<SizableText color='borderColor'>Could not load years</SizableText>
 				<Button marginTop='4' onPress={libraryStackNavigation.goBack}>
 					Go back
 				</Button>
@@ -135,18 +134,18 @@ export default function YearSelectionScreen({ route }: YearSelectionProps): Reac
 				<Button variant='outlined' size='md' onPress={libraryStackNavigation.goBack}>
 					Cancel
 				</Button>
-				<Text bold fontSize='6'>
+				<SizableText size='6' fontWeight='700'>
 					Year range
-				</Text>
+				</SizableText>
 				<Button variant='outlined' size='md' onPress={handleClear} disabled={!hasSelection}>
 					Clear
 				</Button>
 			</XStack>
 
 			<YStack flex={1} padding='4' gap='2'>
-				<Text bold fontSize='5' marginBottom='2'>
+				<SizableText size='5' fontWeight='600' marginBottom='2'>
 					Min year
-				</Text>
+				</SizableText>
 				<Pressable onPress={handleOpenMin}>
 					<XStack
 						alignItems='center'
@@ -157,14 +156,14 @@ export default function YearSelectionScreen({ route }: YearSelectionProps): Reac
 						borderWidth={1}
 						borderColor='borderColor'
 					>
-						<Text>{minLabel}</Text>
+						<SizableText>{minLabel}</SizableText>
 						<Icon name='chevron-down' color='borderColor' />
 					</XStack>
 				</Pressable>
 
-				<Text bold fontSize='5' marginBottom='2' marginTop='3'>
+				<SizableText size='5' fontWeight='600' marginBottom='2' marginTop='3'>
 					Max year
-				</Text>
+				</SizableText>
 				<Pressable onPress={handleOpenMax}>
 					<XStack
 						alignItems='center'
@@ -175,7 +174,7 @@ export default function YearSelectionScreen({ route }: YearSelectionProps): Reac
 						borderWidth={1}
 						borderColor='borderColor'
 					>
-						<Text>{maxLabel}</Text>
+						<SizableText>{maxLabel}</SizableText>
 						<Icon name='chevron-down' color='borderColor' />
 					</XStack>
 				</Pressable>
@@ -204,9 +203,9 @@ export default function YearSelectionScreen({ route }: YearSelectionProps): Reac
 							padding='4'
 							maxHeight='100%'
 						>
-							<Text bold fontSize='5' marginBottom='3'>
+							<SizableText size='5' fontWeight='600' marginBottom='3'>
 								{picking === 'min' ? 'Select min year' : 'Select max year'}
-							</Text>
+							</SizableText>
 							<ScrollView
 								style={{ maxHeight: 330 }}
 								showsVerticalScrollIndicator
@@ -222,11 +221,11 @@ export default function YearSelectionScreen({ route }: YearSelectionProps): Reac
 										backgroundColor={`${currentValue === ANY ? 'background75' : 'transparent'}`}
 										borderRadius='2'
 									>
-										<Text
+										<SizableText
 											fontWeight={currentValue === ANY ? 'bold' : undefined}
 										>
 											Any
-										</Text>
+										</SizableText>
 									</XStack>
 								</Pressable>
 								{pickerOptions.map((y) => (
@@ -241,11 +240,11 @@ export default function YearSelectionScreen({ route }: YearSelectionProps): Reac
 											backgroundColor={`${currentValue === y ? 'background75' : 'transparent'}`}
 											borderRadius='2'
 										>
-											<Text
+											<SizableText
 												fontWeight={currentValue === y ? 'bold' : undefined}
 											>
 												{String(y)}
-											</Text>
+											</SizableText>
 										</XStack>
 									</Pressable>
 								))}
@@ -263,9 +262,9 @@ export default function YearSelectionScreen({ route }: YearSelectionProps): Reac
 					borderTopWidth={1}
 					borderTopColor='borderColor'
 				>
-					<Text fontSize='3' bold color='primary'>
+					<SizableText size='3' fontWeight='700' color='primary'>
 						{rangeLabel ?? ''}
-					</Text>
+					</SizableText>
 					<Button variant='outlined' borderColor='primary' size='md' onPress={handleSave}>
 						<Paragraph color='primary' fontWeight='6'>
 							Apply

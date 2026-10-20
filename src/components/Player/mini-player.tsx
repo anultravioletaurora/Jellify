@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import { useTheme, XStack, YStack } from 'tamagui'
+import { useTheme, XStack, YStack, SizableText } from 'tamagui'
 import { useNavigation } from '@react-navigation/native'
-import { Text } from '../Global/helpers/text'
 import TextTicker from 'react-native-text-ticker'
 import { PlayPauseIcon } from './components/buttons'
 import { TextTickerConfig } from './component.config'
@@ -91,7 +90,7 @@ export default function Miniplayer(): React.JSX.Element | null {
 				alignItems='center'
 				justifyContent='center'
 			>
-				<Text> </Text>
+				<SizableText> </SizableText>
 			</YStack>
 		)
 	}
@@ -141,13 +140,15 @@ export default function Miniplayer(): React.JSX.Element | null {
 								key={`${nowPlaying!.id}-mini-player-song-info`}
 							>
 								<TextTicker {...TextTickerConfig}>
-									<Text bold>{nowPlaying.title ?? 'Nothing Playing'}</Text>
+									<SizableText fontWeight='bold'>
+										{nowPlaying.title ?? 'Nothing Playing'}
+									</SizableText>
 								</TextTicker>
 
 								<TextTicker {...TextTickerConfig}>
-									<Text height={'0-5'}>
+									<SizableText height={'0-5'}>
 										{nowPlaying.artist ?? 'Unknown Artist'}
-									</Text>
+									</SizableText>
 								</TextTicker>
 							</Animated.View>
 						</YStack>

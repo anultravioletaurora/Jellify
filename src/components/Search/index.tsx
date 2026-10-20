@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Input from '../Global/helpers/input'
-import { H5, Text } from '../Global/helpers/text'
 import ItemRow from '../Global/components/item-row'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { getToken, H3, Spinner, YStack } from 'tamagui'
+import { getToken, H3, H5, SizableText, Spinner, YStack } from 'tamagui'
 import Suggestions from './suggestions'
 import { isEmpty } from 'lodash'
 import HorizontalCardList from '../Global/components/horizontal-list'
@@ -147,9 +146,9 @@ export default function Search(): React.JSX.Element {
 							paddingHorizontal='4'
 						>
 							<H5>No Results</H5>
-							<Text textAlign='center'>
+							<SizableText textAlign='center'>
 								{`No results found for "${searchString}". Try a different search term.`}
-							</Text>
+							</SizableText>
 						</YStack>
 					)
 				}

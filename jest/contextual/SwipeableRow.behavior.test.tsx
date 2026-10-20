@@ -4,8 +4,7 @@ import SwipeableRow, {
 	type QuickAction,
 	type SwipeAction,
 } from '../../src/components/Global/components/SwipeableRow'
-import { Text } from '../../src/components/Global/helpers/text'
-import { TamaguiProvider, Theme } from 'tamagui'
+import { TamaguiProvider, Theme, SizableText } from 'tamagui'
 import config from '../../src/configs/styling/tamagui.config'
 
 /**
@@ -50,7 +49,7 @@ function Row({
 						rightAction={rightAction ?? undefined}
 						rightActions={rightActions ?? undefined}
 					>
-						<Text testID={testID}>Row</Text>
+						<SizableText testID={testID}>Row</SizableText>
 					</SwipeableRow>
 				</Theme>
 			</TamaguiProvider>

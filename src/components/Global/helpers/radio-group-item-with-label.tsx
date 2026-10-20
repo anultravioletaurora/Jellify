@@ -1,5 +1,4 @@
-import { SizeTokens, XStack, RadioGroup } from 'tamagui'
-import { Label } from './text'
+import { SizeTokens, XStack, RadioGroup, Label } from 'tamagui'
 
 export function RadioGroupItemWithLabel(props: { size: SizeTokens; value: string; label: string }) {
 	const id = `radiogroup-${props.value}`

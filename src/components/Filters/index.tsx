@@ -1,6 +1,5 @@
 import React from 'react'
-import { YStack, XStack, Button } from 'tamagui'
-import { Text } from '../Global/helpers/text'
+import { YStack, XStack, Button, SizableText } from 'tamagui'
 import { CheckboxWithLabel } from '../Global/helpers/checkbox-with-label'
 import useLibraryStore from '../../stores/library'
 import { FiltersProps } from './types'
@@ -86,9 +85,9 @@ export default function Filters({ currentTab }: FiltersProps): React.JSX.Element
 
 	return (
 		<YStack padding='4' gap='1' marginBottom={bottom}>
-			<Text bold fontSize={'6'} marginBottom={'2'}>
+			<SizableText fontWeight='bold' size={'6'} marginBottom={'2'}>
 				Filter Options
-			</Text>
+			</SizableText>
 
 			<YStack>
 				<XStack alignItems='center' justifyContent='space-between'>
@@ -138,7 +137,7 @@ export default function Filters({ currentTab }: FiltersProps): React.JSX.Element
 							onPress={handleGenreSelect}
 							disabled={isDownloaded}
 						>
-							<Text
+							<SizableText
 								color={
 									isDownloaded
 										? 'borderColor'
@@ -148,7 +147,7 @@ export default function Filters({ currentTab }: FiltersProps): React.JSX.Element
 								}
 							>
 								{`Genres ${hasGenresSelected ? `(${selectedGenreIds.length})` : ''}`}
-							</Text>
+							</SizableText>
 							<Icon
 								name={hasGenresSelected ? 'filter-variant' : 'filter'}
 								color={hasGenresSelected ? 'primary' : 'borderColor'}
@@ -169,7 +168,7 @@ export default function Filters({ currentTab }: FiltersProps): React.JSX.Element
 							onPress={handleYearRangeSelect}
 							disabled={isTracksTab && isDownloaded}
 						>
-							<Text
+							<SizableText
 								color={
 									isTracksTab && isDownloaded
 										? 'borderColor'
@@ -179,7 +178,7 @@ export default function Filters({ currentTab }: FiltersProps): React.JSX.Element
 								}
 							>
 								{hasYearRange ? `Year range ${yearRangeLabel}` : 'Year range'}
-							</Text>
+							</SizableText>
 							<Icon
 								name={hasYearRange ? 'filter-variant' : 'filter'}
 								color={hasYearRange ? 'primary' : 'borderColor'}

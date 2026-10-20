@@ -1,6 +1,5 @@
-import { XStack, YStack } from 'tamagui'
+import { H5, SizableText, XStack, YStack } from 'tamagui'
 import { SettingsStackParamList } from './types'
-import { H5, Text } from '../../components/Global/helpers/text'
 import Button from '../../components/Global/helpers/button'
 import Icon from '../../components/Global/components/icon'
 import { useJellifyServer } from '../../stores/auth'
@@ -57,9 +56,9 @@ export default function SignOutModal(): React.JSX.Element {
 					flex={1}
 					onPress={settingsStackNavigation.goBack}
 				>
-					<Text bold color={'borderColor'}>
+					<SizableText fontWeight='bold' color={'borderColor'}>
 						Cancel
-					</Text>
+					</SizableText>
 				</Button>
 				<Button
 					testID='sign-out-button'
@@ -68,9 +67,9 @@ export default function SignOutModal(): React.JSX.Element {
 					borderColor={'danger'}
 					onPress={onSignOut}
 				>
-					<Text bold color={'danger'}>
+					<SizableText fontWeight='bold' color={'danger'}>
 						Sign out
-					</Text>
+					</SizableText>
 				</Button>
 			</XStack>
 		</YStack>

@@ -1,6 +1,5 @@
 import React from 'react'
-import { Theme, XStack, YStack } from 'tamagui'
-import { Text } from '../../helpers/text'
+import { SizableText, Theme, XStack, YStack } from 'tamagui'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import Icon from '../icon'
 import ItemImage from '../image'
@@ -122,7 +121,7 @@ export default function TrackRowContent({
 						/>
 					</HideableArtwork>
 				) : (
-					<Text
+					<SizableText
 						key={`${track.Id}-number`}
 						marginHorizontal={'auto'}
 						minWidth={'3'}
@@ -131,37 +130,37 @@ export default function TrackRowContent({
 						fontVariant={['tabular-nums']}
 					>
 						{indexNumber}
-					</Text>
+					</SizableText>
 				)}
 			</XStack>
 
 			<SlidingTextArea leftGapWidth={artworkAreaWidth} hasArtwork={!!showArtwork}>
 				<YStack alignItems='flex-start' justifyContent='center' gap='0'>
 					<XStack alignItems='center'>
-						<Text
+						<SizableText
 							key={`${track.Id}-name`}
-							bold
+							fontWeight='bold'
 							color={textColor}
 							lineBreakStrategyIOS='standard'
 							numberOfLines={1}
-							fontSize={'4'}
+							size={'4'}
 						>
 							{trackName}
-						</Text>
+						</SizableText>
 					</XStack>
 
 					<XStack alignItems='center' gap='1'>
 						<DownloadedIcon item={track} size='xxsmall' />
-						<Text
+						<SizableText
 							key={`${track.Id}-artists`}
 							lineBreakStrategyIOS='standard'
 							numberOfLines={1}
 							color={'borderColor'}
-							fontSize={'2'}
+							size={'2'}
 							marginVertical={'-1-5'}
 						>
 							{artistsText}
-						</Text>
+						</SizableText>
 						{isExplicit(track) && (
 							<XStack alignSelf='center' paddingTop='0.5'>
 								<Icon name='alpha-e-box-outline' color={'borderColor'} xxxsmall />

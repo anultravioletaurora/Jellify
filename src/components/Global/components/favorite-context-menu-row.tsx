@@ -1,7 +1,6 @@
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
-import { ListItem, XStack } from 'tamagui'
+import { ListItem, SizableText, XStack } from 'tamagui'
 import Icon from './icon'
-import { Text } from '../helpers/text'
 import Animated, { Easing, FadeIn, FadeOut } from 'react-native-reanimated'
 import { useIsFavorite } from '../../../api/queries/user-data'
 import { useAddFavorite, useRemoveFavorite } from '../../../api/mutations/favorite'
@@ -38,7 +37,7 @@ function AddFavoriteContextMenuRow({ item }: { item: BaseItemDto }): React.JSX.E
 				<XStack alignItems='center' justifyContent='flex-start' gap='2-5'>
 					<Icon small name={'heart-outline'} color={'primary'} />
 
-					<Text bold>Add to favorites</Text>
+					<SizableText fontWeight='bold'>Add to favorites</SizableText>
 				</XStack>
 			</Animated.View>
 		</ListItem>
@@ -67,7 +66,7 @@ function RemoveFavoriteContextMenuRow({ item }: { item: BaseItemDto }): React.JS
 				<XStack alignItems='center' justifyContent='flex-start' gap='2-5'>
 					<Icon small name={'heart'} color={'primary'} />
 
-					<Text bold>Remove from favorites</Text>
+					<SizableText fontWeight='bold'>Remove from favorites</SizableText>
 				</XStack>
 			</Animated.View>
 		</ListItem>

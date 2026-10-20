@@ -1,8 +1,7 @@
 import { BaseItemDto, MediaSourceInfo } from '@jellyfin/sdk/lib/generated-client'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { ListItem, View, YGroup, YStack } from 'tamagui'
+import { ListItem, SizableText, View, YGroup, YStack } from 'tamagui'
 import Icon from '../Global/components/icon'
-import { Text } from '../Global/helpers/text'
 import { RootStackParamList } from '../../screens/types'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useEffect } from 'react'
@@ -55,7 +54,7 @@ function MediaSourceInfoView({
 	return (
 		<YGroup>
 			<ListItem justifyContent='flex-start'>
-				<Text bold>{`${capitalize(type)} Specs`}</Text>
+				<SizableText fontWeight='bold'>{`${capitalize(type)} Specs`}</SizableText>
 			</ListItem>
 			<ListItem gap='2' justifyContent='flex-start'>
 				<Icon
@@ -64,23 +63,23 @@ function MediaSourceInfoView({
 					color='primary'
 				/>
 
-				<Text bold>
+				<SizableText fontWeight='bold'>
 					{type === 'download'
 						? 'Downloaded File'
 						: TranscodingUrl
 							? 'Transcoded Stream'
 							: 'Direct Stream'}
-				</Text>
+				</SizableText>
 			</ListItem>
 			{bitrate && (
 				<YGroup.Item>
 					<ListItem gap='2' justifyContent='flex-start'>
 						<Icon small name='sine-wave' color={'primary'} />
 
-						<Text
-							bold
+						<SizableText
+							fontWeight='bold'
 							fontVariant={['tabular-nums']}
-						>{`${Math.floor(bitrate / 1000)}kbps`}</Text>
+						>{`${Math.floor(bitrate / 1000)}kbps`}</SizableText>
 					</ListItem>
 				</YGroup.Item>
 			)}
@@ -90,7 +89,7 @@ function MediaSourceInfoView({
 					<ListItem gap='2' justifyContent='flex-start'>
 						<Icon small name='music-box-outline' color={'primary'} />
 
-						<Text bold>{container.toUpperCase()}</Text>
+						<SizableText fontWeight='bold'>{container.toUpperCase()}</SizableText>
 					</ListItem>
 				</YGroup.Item>
 			)}

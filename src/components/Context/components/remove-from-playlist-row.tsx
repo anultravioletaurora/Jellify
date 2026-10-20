@@ -1,7 +1,6 @@
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
-import { ListItem } from 'tamagui'
+import { ListItem, SizableText } from 'tamagui'
 import Icon from '../../Global/components/icon'
-import { Text } from '../../Global/helpers/text'
 import { useMutation } from '@tanstack/react-query'
 import { removeFromPlaylist } from '../../../api/mutations/playlist/utils/playlists'
 import { useApi } from '../../../stores/auth'
@@ -44,7 +43,7 @@ export default function RemoveFromPlaylistRow({
 		>
 			<Icon small color='warning' name='playlist-remove' />
 
-			<Text bold>Remove from Playlist</Text>
+			<SizableText fontWeight='bold'>Remove from Playlist</SizableText>
 		</ListItem>
 	)
 }

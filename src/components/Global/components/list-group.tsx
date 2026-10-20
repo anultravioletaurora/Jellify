@@ -1,8 +1,7 @@
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
-import { ListItem, Separator, Spacer, XStack, YGroup, YStack } from 'tamagui'
+import { H5, ListItem, Separator, SizableText, Spacer, XStack, YGroup, YStack } from 'tamagui'
 import ItemImage from './image'
 import Icon from './icon'
-import { H5, Text } from '../helpers/text'
 
 interface ListGroupProps {
 	items: BaseItemDto[] | undefined
@@ -32,14 +31,18 @@ export default function ListGroup({
 								<Spacer />
 								<YStack justifyContent='center' flex={1}>
 									<XStack>
-										<Text bold fontSize={'7'}>
+										<SizableText fontWeight='bold' size={'7'}>
 											{item.Name ?? 'Untitled'}
-										</Text>
-										<Text>{item.RecursiveItemCount?.toString() ?? ''}</Text>
+										</SizableText>
+										<SizableText>
+											{item.RecursiveItemCount?.toString() ?? ''}
+										</SizableText>
 									</XStack>
 
 									{item.Genres && (
-										<Text>{item.Genres.slice(0, 1).join(', ') ?? ''}</Text>
+										<SizableText>
+											{item.Genres.slice(0, 1).join(', ') ?? ''}
+										</SizableText>
 									)}
 								</YStack>
 								<Spacer />
@@ -60,9 +63,14 @@ export default function ListGroup({
 							<Icon name='arrow-right-bottom' large />
 
 							<Spacer />
-							<Text bold fontSize={'7'} margin={'1'} marginTop={'2-5'}>
+							<SizableText
+								fontWeight='bold'
+								size={'7'}
+								margin={'1'}
+								marginTop={'2-5'}
+							>
 								See More
-							</Text>
+							</SizableText>
 						</XStack>
 					</ListItem>
 				</YGroup.Item>

@@ -1,5 +1,4 @@
-import { YStack, XStack, Spinner, useTheme } from 'tamagui'
-import { Text } from '../Global/helpers/text'
+import { YStack, XStack, Spinner, useTheme, SizableText } from 'tamagui'
 import { RefreshControl, SectionList } from 'react-native'
 import Track from '../Global/components/Track'
 import FavoriteButton from '../Global/components/favorite-button'
@@ -112,7 +111,10 @@ export function Album({ album }: { album: BaseItemDto }): React.JSX.Element {
 						backgroundColor='background'
 						paddingHorizontal='2'
 					>
-						<Text padding={'2'} bold>{`Disc ${section.title}`}</Text>
+						<SizableText
+							padding={'2'}
+							fontWeight='bold'
+						>{`Disc ${section.title}`}</SizableText>
 					</XStack>
 				) : null
 			}}
@@ -136,9 +138,9 @@ export function Album({ album }: { album: BaseItemDto }): React.JSX.Element {
 			ListEmptyComponent={() => (
 				<YStack flex={1} alignContent='center' margin='4'>
 					{isPending ? null : (
-						<Text textAlign='center' color='borderColor'>
+						<SizableText textAlign='center' color='borderColor'>
 							No album tracks
-						</Text>
+						</SizableText>
 					)}
 				</YStack>
 			)}
