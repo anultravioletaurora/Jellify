@@ -49,9 +49,9 @@ export default function PlayerHeader(): React.JSX.Element {
 				/>
 
 				<YStack alignItems='center' flexGrow={1}>
-					<SizableText>Playing from</SizableText>
+					<SizableText fontSize={'3'}>Playing from</SizableText>
 					<TextTicker {...TextTickerConfig}>
-						<SizableText fontWeight='bold' numberOfLines={1}>
+						<SizableText fontWeight='bold' numberOfLines={1} fontSize='3'>
 							{playingFrom}
 						</SizableText>
 					</TextTicker>
