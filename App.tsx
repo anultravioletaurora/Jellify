@@ -9,10 +9,10 @@ import jellifyConfig from './src/configs/tamagui.config'
 import { queryClient } from './src/constants/query-client'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { KeyboardProvider } from 'react-native-keyboard-controller'
 import ErrorBoundary from './src/components/ErrorBoundary'
 import { usePerformanceMonitor } from './src/hooks/use-performance-monitor'
 import QueryPersistenceConfig from './src/configs/querying/persistence.config'
-import { ReducedMotionConfig, ReduceMotion } from 'react-native-reanimated'
 import { useOtaUpdate } from './src/hooks/ota'
 
 LogBox.ignoreAllLogs()
@@ -46,9 +46,11 @@ export default function App(): React.JSX.Element {
 function Container(): React.JSX.Element {
 	return (
 		<GestureHandlerRootView style={styles.gestureHandlerRootView}>
-			<TamaguiProvider config={jellifyConfig} defaultTheme={'purple_dark'}>
-				<Jellify />
-			</TamaguiProvider>
+			<KeyboardProvider>
+				<TamaguiProvider config={jellifyConfig} defaultTheme={'purple_dark'}>
+					<Jellify />
+				</TamaguiProvider>
+			</KeyboardProvider>
 		</GestureHandlerRootView>
 	)
 }

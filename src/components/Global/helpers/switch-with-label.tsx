@@ -1,3 +1,4 @@
+import { StyleSheet } from 'react-native'
 import { applyHapticFeedback } from '../../../utils/haptics'
 import { SizeTokens, XStack, Separator, Switch, styled, Label } from 'tamagui'
 
@@ -62,29 +63,33 @@ export function SwitchWithLabel(props: SwitchWithLabelProps) {
 				height={trackHeight}
 				borderRadius={trackHeight / 2}
 				padding={THUMB_INSET_PX}
-				backgroundColor='borderColor'
-				borderColor='borderColor'
 				checked={props.checked}
 				onCheckedChange={handleCheckedChange}
-				activeStyle={{
-					backgroundColor: 'success',
-				}}
+				activeStyle={styles.active}
+				style={styles.background}
+				backgroundColor={'borderColor'}
 			>
 				<JellifySliderThumb
 					width={thumbSize}
 					height={thumbSize}
 					borderRadius={thumbSize / 2}
-					transition='bouncy'
+					transition='quick'
 				/>
 			</Switch>
-			{label ? (
-				<>
-					<Separator minHeight={20} borderColor='borderColor' vertical />
-					<Label size={props.size} htmlFor={id}>
-						{label}
-					</Label>
-				</>
-			) : null}
+			{label && (
+				<Label size={props.size} htmlFor={id}>
+					{label}
+				</Label>
+			)}
 		</XStack>
 	)
 }
+
+const styles = StyleSheet.create({
+	active: {
+		backgroundColor: 'success',
+	},
+	background: {
+		borderColor: 'borderColor',
+	},
+})

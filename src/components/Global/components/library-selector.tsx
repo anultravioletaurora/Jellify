@@ -159,7 +159,7 @@ export default function LibrarySelector({
 				<Button
 					variant='outlined'
 					borderColor={'primary'}
-					opacity={!selectedLibraryId ? 0.5 : 1}
+					disabled={!selectedLibraryId}
 					icon={() => <Icon name={primaryButtonIcon} small color='primary' />}
 					onPress={handleLibrarySelection}
 					testID='let_s_go_button'
