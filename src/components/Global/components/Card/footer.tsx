@@ -39,16 +39,17 @@ export default function ItemCardFooter({ type }: ItemCardComponentFooterProps) {
 			<Spacer flexGrow={1} />
 
 			<Square
-				x='6'
-				y='6'
+				x='8'
+				y='10'
 				backgroundColor='primary'
-				size={'6'}
+				width={'8'}
+				height={'8'}
 				rotate='45deg'
 				style={footerShadowStyle}
 			>
 				<View rotate='-45deg' {...offsets[iconName]}>
 					<MaterialDesignIcons
-						size={24}
+						size={26}
 						color={theme.background.val}
 						name={iconName}
 						style={styles[iconName]}
@@ -62,11 +63,11 @@ export default function ItemCardFooter({ type }: ItemCardComponentFooterProps) {
 const offsets = {
 	cassette: {
 		x: '-4',
-		y: '$',
+		y: '0',
 	},
 	disc: {
 		x: '-4',
-		y: '0',
+		y: '-4',
 	},
 }
 

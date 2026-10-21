@@ -16,7 +16,7 @@ export default function ItemCardCaption({
 	if (!caption) return null
 
 	return (
-		<YStack width={width}>
+		<YStack width={width} backgroundColor={'background'}>
 			<SizableText
 				fontWeight={'6'}
 				lineBreakStrategyIOS='standard'

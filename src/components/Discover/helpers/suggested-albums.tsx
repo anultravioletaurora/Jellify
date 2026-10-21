@@ -2,7 +2,7 @@ import navigationRef from '../../../screens/navigation'
 import { formatArtistNames } from '../../../utils/formatting/artist-names'
 import ItemCard from '../../Global/components/Card'
 import HorizontalCardList from '../../Global/components/horizontal-list'
-import { H5, XStack } from 'tamagui'
+import { H4, H5, XStack } from 'tamagui'
 import Icon from '../../Global/components/icon'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
@@ -32,7 +32,7 @@ export default function SuggestedAlbums() {
 					})
 				}}
 			>
-				<H5>More from the Vault</H5>
+				<H4>More from the Vault</H4>
 				<Icon name='arrow-right' />
 			</XStack>
 			<HorizontalCardList

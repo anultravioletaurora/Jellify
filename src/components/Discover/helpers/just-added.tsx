@@ -1,7 +1,7 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import HorizontalCardList from '../../../components/Global/components/horizontal-list'
 import ItemCard from '../../Global/components/Card'
-import { H5, XStack } from 'tamagui'
+import { H4, XStack } from 'tamagui'
 import Icon from '../../Global/components/icon'
 import { useNavigation } from '@react-navigation/native'
 import DiscoverStackParamList, { DiscoverAlbumScreenType } from '../../../screens/Discover/types'
@@ -30,7 +30,7 @@ export default function RecentlyAdded(): React.JSX.Element {
 					})
 				}}
 			>
-				<H5 marginLeft='2'>Recently Added</H5>
+				<H4 marginLeft='2'>Recently Added</H4>
 				<Icon name='arrow-right' />
 			</XStack>
 

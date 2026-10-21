@@ -70,8 +70,8 @@ export default function ItemCard({
 				onPress={onPress}
 				onPressIn={handlePressIn}
 			>
-				<ItemCardFooter type={item.Type ?? BaseItemKind.Audio} />
 				<ItemCardBackground item={item} squared={squared} />
+				<ItemCardFooter type={item.Type ?? BaseItemKind.Audio} />
 			</TamaguiCard>
 			<ItemCardCaption
 				captionAlign={captionAlign}

@@ -1,4 +1,4 @@
-import { H5, XStack } from 'tamagui'
+import { H4, H5, XStack } from 'tamagui'
 import Icon from '../../Global/components/icon'
 import HorizontalCardList from '../../Global/components/horizontal-list'
 import ItemCard from '../../Global/components/Card'
@@ -51,7 +51,7 @@ export default function SuggestedArtists(): React.JSX.Element {
 				marginLeft='2'
 				onPress={() => navigation.navigate('SuggestedArtists')}
 			>
-				<H5>Artists for You</H5>
+				<H4>Artists for You</H4>
 				<Icon name='arrow-right' />
 			</XStack>
 			<HorizontalCardList
