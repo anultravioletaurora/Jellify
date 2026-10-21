@@ -72,7 +72,6 @@ export default function MigrateDownloadsScreen({
 				<Button
 					borderColor={'warning'}
 					borderWidth={'1'}
-					borderRadius={'4'}
 					onPress={async () => await handleRemove()}
 				>
 					<Paragraph fontWeight={'bold'} color='warning' fontFamily='body'>
@@ -83,7 +82,6 @@ export default function MigrateDownloadsScreen({
 				<Button
 					borderColor={'success'}
 					borderWidth={'1'}
-					borderRadius={'4'}
 					onPress={async () => await handleDownload()}
 				>
 					<Paragraph fontWeight={'bold'} color='success' fontFamily='body'>

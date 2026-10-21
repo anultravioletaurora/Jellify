@@ -118,7 +118,6 @@ export default function QuickConnectInitiator() {
 			<XStack alignItems='center' flexShrink={1}>
 				<Button
 					marginVertical={0}
-					borderRadius='4'
 					icon={() => <Icon name='chevron-left' small />}
 					onPress={() => {
 						navigation.navigate('ServerAuthentication', undefined, {

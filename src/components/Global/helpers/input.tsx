@@ -93,6 +93,8 @@ export default function Input(props: InputProps): React.JSX.Element {
 					onChangeText={onChangeText}
 					testID={testID}
 					clearButtonMode={resolvedClearButtonMode}
+					borderRadius={'2'}
+					height={'3'}
 					{...inputProps}
 				/>
 

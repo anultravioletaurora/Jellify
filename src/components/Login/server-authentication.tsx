@@ -59,8 +59,7 @@ export default function ServerAuthentication(): React.JSX.Element {
 		<YStack flex={1}>
 			<XStack alignItems='center' flexShrink={1}>
 				<Button
-					icon={() => <Icon name='chevron-left' small />}
-					borderRadius={'4'}
+					icon={<Icon name='chevron-left' small />}
 					onPress={onSignInPress}
 					fontWeight='6'
 					{...ICON_PRESS_STYLES}
@@ -156,7 +155,6 @@ export default function ServerAuthentication(): React.JSX.Element {
 
 					<XStack alignItems='center' justifyContent='center'>
 						<Button
-							borderRadius={'2'}
 							onPress={() => navigation.navigate('QuickConnect')}
 							color='primary'
 							fontWeight='6'

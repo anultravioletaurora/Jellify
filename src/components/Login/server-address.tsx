@@ -1,21 +1,22 @@
-import { Button, H3, Paragraph, Spinner, YStack } from 'tamagui'
+import { H3, Paragraph, Spinner, YStack } from 'tamagui'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import LoginStackParamList from '../../screens/Login/types'
 import { useEffect, useState } from 'react'
 import { useSignOut } from '../../stores/auth'
-import { isEmpty, isUndefined } from 'lodash'
+import { isEmpty } from 'lodash'
 import useConnectToServer from '../../api/mutations/public-system-info'
 import { IS_MAESTRO_BUILD } from '../../configs/config'
 import { JellyfinServer } from '../../types/JellyfinServer'
 import { sleepify } from '../../utils/sleep'
 import Toast from 'react-native-toast-message'
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated'
-import { GestureResponderEvent, StyleSheet } from 'react-native'
+import { KeyboardAvoidingView, Platform, StyleSheet } from 'react-native'
 import AnimatedJellifyLogo from '../Branding/animated-logo'
 import SendMetricsAndCrashDataSetting from '../Settings/components/settings/send-metrics-and-crash-data'
 import Input from '../Global/helpers/input'
 import { BUTTON_PRESS_STYLES } from '../../configs/styling/elements'
+import Button from '../Global/helpers/button'
 
 export default function ServerAddress(): React.JSX.Element {
 	const navigation = useNavigation<NativeStackNavigationProp<LoginStackParamList>>()
@@ -74,20 +75,23 @@ export default function ServerAddress(): React.JSX.Element {
 					onSubmitEditing={connectWithAddress}
 					title='Jellyfin Server Address'
 					tabIndex={0}
+					borderColor={'borderColor'}
 				/>
 
 				<SendMetricsAndCrashDataSetting />
 
-				<Button
-					backgroundColor={`${isEmpty(serverAddress) || isPending ? 'neutral' : 'primary'}`}
-					color='background'
-					fontWeight='6'
-					{...BUTTON_PRESS_STYLES}
-					onPress={connectWithAddress}
-					testID='connect_button'
-				>
-					{isPending ? <Spinner color='background' /> : 'Connect'}
-				</Button>
+				<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+					<Button
+						backgroundColor={`${isEmpty(serverAddress) || isPending ? 'neutral' : 'primary'}`}
+						color='background'
+						fontWeight='6'
+						{...BUTTON_PRESS_STYLES}
+						onPress={connectWithAddress}
+						testID='connect_button'
+					>
+						{isPending ? <Spinner color='background' /> : 'Connect'}
+					</Button>
+				</KeyboardAvoidingView>
 			</YStack>
 		</YStack>
 	)
