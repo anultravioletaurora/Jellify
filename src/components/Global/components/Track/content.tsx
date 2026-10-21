@@ -135,7 +135,7 @@ export default function TrackRowContent({
 			</XStack>
 
 			<SlidingTextArea leftGapWidth={artworkAreaWidth} hasArtwork={!!showArtwork}>
-				<YStack alignItems='flex-start' justifyContent='center' gap='0'>
+				<YStack alignItems='flex-start' justifyContent='center' gap={5}>
 					<XStack alignItems='center'>
 						<SizableText
 							key={`${track.Id}-name`}
