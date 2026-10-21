@@ -89,7 +89,7 @@ export default function SongInfo(): React.JSX.Element {
 					>
 						<Paragraph
 							fontWeight='6'
-							fontSize='6'
+							fontSize='3'
 							{...ICON_PRESS_STYLES}
 							onPress={handleTrackPress}
 						>
@@ -101,7 +101,7 @@ export default function SongInfo(): React.JSX.Element {
 						{...TextTickerConfig}
 						key={`${currentTrack?.id ?? 'no-track'}-artist`}
 					>
-						<Paragraph fontSize='6' {...ICON_PRESS_STYLES} onPress={handleArtistPress}>
+						<Paragraph fontSize='3' {...ICON_PRESS_STYLES} onPress={handleArtistPress}>
 							{currentTrack?.artist ?? 'Unknown Artist'}
 						</Paragraph>
 						{isExplicit(item) && (

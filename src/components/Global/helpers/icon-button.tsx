@@ -1,5 +1,5 @@
 import React from 'react'
-import { Square, SizableText, useTheme } from 'tamagui'
+import { Square, SizableText, useTheme, Circle } from 'tamagui'
 import Icon from '../components/icon'
 import { BUTTON_PRESS_STYLES } from '../../../configs/styling/elements'
 import { MaterialDesignIconsIconName } from '@react-native-vector-icons/material-design-icons'
@@ -39,19 +39,18 @@ export default function IconButton({
 		],
 	}
 
+	const Shape = circular ? Circle : Square
+
 	return (
-		<Square
-			borderRadius={`${!circular ? '4' : undefined}`}
+		<Shape
 			{...BUTTON_PRESS_STYLES}
-			width={size}
-			height={size}
+			size={size}
 			alignContent='center'
 			justifyContent='center'
 			backgroundColor={'transparent'}
-			borderWidth='1-5'
+			borderWidth={5}
 			borderColor='primary'
 			padding='1'
-			circular={circular}
 			style={shadowStyle}
 			onPress={onPress}
 			testID={testID ?? undefined}
@@ -69,6 +68,6 @@ export default function IconButton({
 					{title}
 				</SizableText>
 			)}
-		</Square>
+		</Shape>
 	)
 }

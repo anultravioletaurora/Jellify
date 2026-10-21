@@ -66,7 +66,7 @@ export default function AlbumTrackListHeader({ album }: { album: BaseItemDto }):
 						fontWeight='6'
 						color='primary'
 						textAlign='center'
-						fontSize='6'
+						fontSize='3'
 						paddingBottom='2'
 						{...ICON_PRESS_STYLES}
 						onPress={() =>

@@ -15,7 +15,11 @@ const figtreeFace = {
 
 export const bodyFont = createFont({
 	family: 'Figtree',
-	size: fonts.body.size,
+	size: {
+		1: 12,
+		2: 14,
+		3: 15,
+	},
 	lineHeight: fonts.body.lineHeight,
 	weight: {
 		4: '300',

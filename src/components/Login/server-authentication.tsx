@@ -88,7 +88,7 @@ export default function ServerAuthentication(): React.JSX.Element {
 					>
 						{`Sign in to ${server?.name ?? 'Jellyfin'}`}
 					</H3>
-					<Paragraph fontSize='6' fontWeight='6' textAlign='center' margin='2'>
+					<Paragraph fontSize='3' fontWeight='6' textAlign='center' margin='2'>
 						{server?.version ?? 'Unknown Jellyfin version'}
 					</Paragraph>
 				</Animated.View>

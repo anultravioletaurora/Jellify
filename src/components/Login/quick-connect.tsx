@@ -148,7 +148,7 @@ export default function QuickConnectInitiator() {
 						Quick Connect
 					</H3>
 
-					<Paragraph fontSize='6' fontWeight='6' textAlign='center' margin='2'>
+					<Paragraph fontSize='3' fontWeight='6' textAlign='center' margin='2'>
 						Enter the code in another session
 					</Paragraph>
 				</Animated.View>

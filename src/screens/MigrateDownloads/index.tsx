@@ -60,11 +60,11 @@ export default function MigrateDownloadsScreen({
 				There are some downloads from a previous version of Jellify
 			</Paragraph>
 
-			<Paragraph textAlign='center' fontSize='6' fontWeight='6'>
+			<Paragraph textAlign='center' fontSize='3' fontWeight='6'>
 				Would you like to migrate them?
 			</Paragraph>
 
-			<Paragraph textAlign='center' fontSize='6' fontStyle='italic'>
+			<Paragraph textAlign='center' fontSize='3' fontStyle='italic'>
 				This will start downloading the tracks again in the background.
 			</Paragraph>
 
@@ -75,7 +75,7 @@ export default function MigrateDownloadsScreen({
 					borderRadius={'4'}
 					onPress={async () => await handleRemove()}
 				>
-					<Paragraph fontSize='4' fontWeight={'bold'} color='warning' fontFamily='body'>
+					<Paragraph fontWeight={'bold'} color='warning' fontFamily='body'>
 						No, remove them
 					</Paragraph>
 				</Button>
@@ -86,7 +86,7 @@ export default function MigrateDownloadsScreen({
 					borderRadius={'4'}
 					onPress={async () => await handleDownload()}
 				>
-					<Paragraph fontSize='4' fontWeight={'bold'} color='success' fontFamily='body'>
+					<Paragraph fontWeight={'bold'} color='success' fontFamily='body'>
 						Yes, download them
 					</Paragraph>
 				</Button>

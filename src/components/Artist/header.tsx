@@ -101,7 +101,7 @@ export default function ArtistHeader(): React.JSX.Element {
 						})
 					}
 				>
-					<Paragraph fontWeight='6' fontSize='4'>
+					<Paragraph fontWeight='6' fontSize='3'>
 						{`View Tracks`}
 					</Paragraph>
 

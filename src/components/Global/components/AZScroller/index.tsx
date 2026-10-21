@@ -174,7 +174,7 @@ export default function AZScroller({
 			flex={1}
 			userSelect='none'
 			color='borderColor'
-			fontSize='6'
+			fontSize='3'
 			fontWeight='6'
 			textAlign='center'
 			key={letter}

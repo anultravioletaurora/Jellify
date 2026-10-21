@@ -22,7 +22,6 @@ export default function ItemCardCaption({
 				lineBreakStrategyIOS='standard'
 				numberOfLines={1}
 				textAlign={captionAlign}
-				fontSize={'3'}
 			>
 				{caption}
 			</SizableText>
@@ -32,7 +31,6 @@ export default function ItemCardCaption({
 					lineBreakStrategyIOS='standard'
 					numberOfLines={1}
 					textAlign={captionAlign}
-					fontSize={'3'}
 				>
 					{subCaption}
 				</SizableText>
