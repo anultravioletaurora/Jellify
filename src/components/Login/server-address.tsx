@@ -48,27 +48,25 @@ export default function ServerAddress(): React.JSX.Element {
 	const keyboard = useAnimatedKeyboard()
 
 	const containerStyle = useAnimatedStyle(() => ({
-		marginBottom: keyboard.height.get(),
+		marginBottom: keyboard.height.get() ?? 20,
 	}))
 
 	return (
 		<Animated.View style={[styles.container, containerStyle]}>
-			<YStack marginHorizontal='4' flex={1} alignContent='center'>
+			<YStack gap='4'>
 				<AnimatedJellifyLogo rotateColor />
 				<Animated.View
 					entering={FadeIn.easing(Easing.ease)}
 					exiting={FadeOut.easing(Easing.ease)}
 					style={styles.headerSection}
 				>
-					<H3 textAlign='center' margin='2' testID='server_address_title'>
+					<H3 textAlign='center' testID='server_address_title'>
 						Welcome!
 					</H3>
 
 					<H5 textAlign='center'>Let&apos;s get connected to Jellyfin</H5>
 				</Animated.View>
-			</YStack>
 
-			<YStack gap='4' flex={1} justifyContent='flex-start'>
 				<Input
 					onChangeText={setServerAddress}
 					autoCapitalize='none'
@@ -86,24 +84,24 @@ export default function ServerAddress(): React.JSX.Element {
 				/>
 
 				<SendMetricsAndCrashDataSetting />
+
+				<Button
+					backgroundColor={`${isEmpty(serverAddress) || isPending ? 'neutral' : 'primary'}`}
+					color='background'
+					onPress={connectWithAddress}
+					testID='connect_button'
+				>
+					{isPending ? <Spinner color='background' /> : 'Connect'}
+				</Button>
 			</YStack>
-			<Button
-				backgroundColor={`${isEmpty(serverAddress) || isPending ? 'neutral' : 'primary'}`}
-				color='background'
-				fontWeight='6'
-				{...BUTTON_PRESS_STYLES}
-				onPress={connectWithAddress}
-				testID='connect_button'
-			>
-				{isPending ? <Spinner color='background' /> : 'Connect'}
-			</Button>
 		</Animated.View>
 	)
 }
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
+		flexShrink: 1,
+		justifyContent: 'space-between',
 		marginHorizontal: 10,
 	},
 	headerSection: {

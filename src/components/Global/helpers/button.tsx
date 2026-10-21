@@ -15,6 +15,7 @@ export default function Button({ children, ...props }: ButtonProps): React.JSX.E
 			opacity={props.disabled ? 0.5 : 1}
 			paddingVertical='2'
 			borderRadius={'2'}
+			fontWeight='6'
 			{...BUTTON_PRESS_STYLES}
 		>
 			{children}
