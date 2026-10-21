@@ -1,5 +1,5 @@
 import TextTicker from 'react-native-text-ticker'
-import { Paragraph, XStack, YStack } from 'tamagui'
+import { H6, Paragraph, XStack, YStack } from 'tamagui'
 import { TextTickerConfig } from '../component.config'
 import React from 'react'
 import FavoriteButton from '../../Global/components/favorite-button'
@@ -77,43 +77,46 @@ export default function SongInfo(): React.JSX.Element {
 
 	return (
 		<XStack>
-			<YStack justifyContent='flex-start' flex={1} gap='1'>
+			<YStack justifyContent='flex-start' flex={1}>
 				<Animated.View
 					entering={FadeIn.easing(Easing.in(Easing.ease))}
 					exiting={FadeOut.easing(Easing.out(Easing.ease))}
 					key={`${currentTrack?.id ?? 'unknown-track'}-song-info`}
 				>
-					<TextTicker
-						{...TextTickerConfig}
-						key={`${currentTrack?.id ?? 'no-track'}-title`}
-					>
-						<Paragraph
-							fontWeight='6'
-							fontSize='3'
-							{...ICON_PRESS_STYLES}
-							onPress={handleTrackPress}
+					<YStack gap={'1'}>
+						<TextTicker
+							{...TextTickerConfig}
+							key={`${currentTrack?.id ?? 'no-track'}-title`}
 						>
-							{trackTitle}
-						</Paragraph>
-					</TextTicker>
+							<H6 fontWeight='6' {...ICON_PRESS_STYLES} onPress={handleTrackPress}>
+								{trackTitle}
+							</H6>
+						</TextTicker>
 
-					<TextTicker
-						{...TextTickerConfig}
-						key={`${currentTrack?.id ?? 'no-track'}-artist`}
-					>
-						<Paragraph fontSize='3' {...ICON_PRESS_STYLES} onPress={handleArtistPress}>
-							{currentTrack?.artist ?? 'Unknown Artist'}
-						</Paragraph>
-						{isExplicit(item) && (
-							<XStack alignSelf='center' paddingTop={5.3} paddingLeft='1'>
-								<Icon name='alpha-e-box-outline' color={'color'} xsmall />
-							</XStack>
-						)}
-					</TextTicker>
+						<TextTicker
+							{...TextTickerConfig}
+							key={`${currentTrack?.id ?? 'no-track'}-artist`}
+						>
+							<H6 {...ICON_PRESS_STYLES} onPress={handleArtistPress}>
+								{currentTrack?.artist ?? 'Unknown Artist'}
+							</H6>
+							{isExplicit(item) && (
+								<XStack alignSelf='center' paddingTop={5.3} paddingLeft='1'>
+									<Icon name='alpha-e-box-outline' color={'color'} xsmall />
+								</XStack>
+							)}
+						</TextTicker>
+					</YStack>
 				</Animated.View>
 			</YStack>
 
-			<XStack justifyContent='flex-end' alignItems='center' flexShrink={1} gap='3'>
+			<XStack
+				justifyContent='flex-end'
+				alignItems='center'
+				flexShrink={1}
+				gap='3'
+				paddingLeft={'1'}
+			>
 				{currentTrack && item && <FavoriteButton item={item} />}
 
 				<Icon name='dots-horizontal-circle-outline' onPress={openContextMenu} />
