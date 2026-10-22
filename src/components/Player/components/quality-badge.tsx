@@ -39,6 +39,7 @@ export default function QualityBadge({
 			}}
 		>
 			<SizableText
+				fontSize='2'
 				fontWeight='bold'
 				color={'background'}
 				textAlign='center'

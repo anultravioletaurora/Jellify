@@ -4,7 +4,7 @@ import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import Icon from '../icon'
 import ItemImage from '../image'
 import FavoriteIcon from '../favorite-icon'
-import DownloadedIcon from '../downloaded-icon'
+import DownloadIndicator from '../DownloadIndicator'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import { useSwipeableRowContext } from '../SwipeableRow/context'
 import { isExplicit } from '../../../../utils/trackDetails'
@@ -98,7 +98,7 @@ export default function TrackRowContent({
 			alignItems='center'
 			flex={1}
 			gap='1'
-			paddingVertical='2'
+			paddingVertical='1'
 			paddingHorizontal='2'
 			transition={'quick'}
 			opacity='press:0.5'
@@ -137,20 +137,20 @@ export default function TrackRowContent({
 							color={textColor}
 							lineBreakStrategyIOS='standard'
 							numberOfLines={1}
-							fontSize={'3'}
+							fontSize={'2'}
 						>
 							{trackName}
 						</SizableText>
 					</XStack>
 
 					<XStack alignItems='center' gap='1'>
-						<DownloadedIcon item={track} size='xxsmall' />
+						<DownloadIndicator item={track} size='4' />
 						<SizableText
 							key={`${track.Id}-artists`}
 							lineBreakStrategyIOS='standard'
 							numberOfLines={1}
 							color={'borderColor'}
-							fontSize={'3'}
+							fontSize={'2'}
 						>
 							{artistsText}
 						</SizableText>

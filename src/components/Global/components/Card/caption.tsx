@@ -22,7 +22,7 @@ export default function ItemCardCaption({
 				fontWeight={'6'}
 				lineBreakStrategyIOS='standard'
 				numberOfLines={1}
-				fontSize={'3'}
+				fontSize={'2'}
 				textAlign={captionAlign}
 			>
 				{caption}
@@ -30,7 +30,7 @@ export default function ItemCardCaption({
 
 			{subCaption ? (
 				<SizableText
-					fontSize={'3'}
+					fontSize={'2'}
 					lineBreakStrategyIOS='standard'
 					numberOfLines={1}
 					textAlign={captionAlign}
