@@ -95,6 +95,7 @@ export default function Input(props: InputProps): React.JSX.Element {
 					clearButtonMode={resolvedClearButtonMode}
 					borderRadius={'2'}
 					height={'3'}
+					borderColor={'borderColor'}
 					{...inputProps}
 				/>
 

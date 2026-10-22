@@ -48,7 +48,7 @@ export default function IconButton({
 			alignContent='center'
 			justifyContent='center'
 			backgroundColor={'transparent'}
-			borderWidth={5}
+			borderWidth={4}
 			borderColor='primary'
 			padding='1'
 			style={shadowStyle}

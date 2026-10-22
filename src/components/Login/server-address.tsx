@@ -18,6 +18,7 @@ import SendMetricsAndCrashDataSetting from '../Settings/components/settings/send
 import Input from '../Global/helpers/input'
 import { BUTTON_PRESS_STYLES } from '../../configs/styling/elements'
 import Button from '../Global/helpers/button'
+import { loginStyles } from './styles'
 
 export default function ServerAddress(): React.JSX.Element {
 	const navigation = useNavigation<NativeStackNavigationProp<LoginStackParamList>>()
@@ -52,13 +53,13 @@ export default function ServerAddress(): React.JSX.Element {
 	}))
 
 	return (
-		<Animated.View style={[styles.container, containerStyle]}>
+		<Animated.View style={[loginStyles.container, containerStyle]}>
 			<YStack gap='4'>
 				<AnimatedJellifyLogo rotateColor />
 				<Animated.View
 					entering={FadeIn.easing(Easing.ease)}
 					exiting={FadeOut.easing(Easing.ease)}
-					style={styles.headerSection}
+					style={loginStyles.headerSection}
 				>
 					<H3 textAlign='center' testID='server_address_title'>
 						Welcome!
@@ -97,15 +98,3 @@ export default function ServerAddress(): React.JSX.Element {
 		</Animated.View>
 	)
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flexShrink: 1,
-		justifyContent: 'space-between',
-		marginHorizontal: 10,
-	},
-	headerSection: {
-		justifyContent: 'flex-end',
-		alignItems: 'center',
-	},
-})

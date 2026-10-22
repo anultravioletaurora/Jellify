@@ -3,12 +3,11 @@ import useAuthenticateWithQuickConnect, {
 	useInitiateQuickConnect,
 } from '../../api/mutations/quickconnect'
 import useGetQuickConnectState from '../../api/queries/quickconnect'
-import { Spinner, Button, YStack, XStack, Paragraph, H3, Spacer } from 'tamagui'
+import { Spinner, Button, YStack, XStack, Paragraph, H3, Spacer, View, H5, H6 } from 'tamagui'
 import { useNavigation } from '@react-navigation/native'
 import LoginStackParamList from '@/src/screens/Login/types'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import Icon from '../Global/components/icon'
-import { StyleSheet } from 'react-native'
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated'
 import Toast from 'react-native-toast-message'
 import Clipboard from '@react-native-clipboard/clipboard'
@@ -16,6 +15,7 @@ import AnimatedJellifyLogo from '../Branding/animated-logo'
 import { BUTTON_PRESS_STYLES } from '../../configs/styling/elements'
 import { applyHapticFeedback } from '../../utils/haptics'
 import { MaterialDesignIconsIconName } from '@react-native-vector-icons/material-design-icons'
+import { loginStyles } from './styles'
 
 // Handles polling, code display, error, and authentication
 function QuickConnectDisplay({
@@ -74,7 +74,7 @@ function QuickConnectDisplay({
 	}, [secret, quickConnectData?.data.Authenticated, refetchQuickConnectData])
 
 	return (
-		<YStack justifyContent='flex-start' alignContent='center' flex={1} gap='4'>
+		<YStack justifyContent='center' alignContent='center' flex={1} gap='4'>
 			<XStack
 				alignItems={'center'}
 				justifyContent='center'
@@ -85,9 +85,9 @@ function QuickConnectDisplay({
 			>
 				<Icon small name={copyIconName} color='primary' />
 
-				<Paragraph fontSize='8' fontWeight='6' color='primary'>
+				<H6 fontWeight='6' color='primary'>
 					{code}
-				</Paragraph>
+				</H6>
 			</XStack>
 			{isAuthenticating ? <Spinner color='primary' /> : <Spacer />}
 		</YStack>
@@ -114,10 +114,9 @@ export default function QuickConnectInitiator() {
 	}, [])
 
 	return (
-		<YStack flex={1}>
+		<View flex={1}>
 			<XStack alignItems='center' flexShrink={1}>
 				<Button
-					marginVertical={0}
 					icon={() => <Icon name='chevron-left' small />}
 					onPress={() => {
 						navigation.navigate('ServerAuthentication', undefined, {
@@ -141,15 +140,13 @@ export default function QuickConnectInitiator() {
 				<Animated.View
 					entering={FadeIn.springify()}
 					exiting={FadeOut.springify()}
-					style={styles.headerSection}
+					style={loginStyles.headerSection}
 				>
 					<H3 marginHorizontal='2' textAlign='center' testID='quick_connect_title'>
 						Quick Connect
 					</H3>
 
-					<Paragraph fontSize='3' fontWeight='6' textAlign='center' margin='2'>
-						Enter the code in another session
-					</Paragraph>
+					<H5 textAlign={'center'}>Enter the code in another session</H5>
 				</Animated.View>
 
 				<YStack flex={2} justifyContent='flex-start' gap='4'>
@@ -165,19 +162,6 @@ export default function QuickConnectInitiator() {
 					)}
 				</YStack>
 			</YStack>
-		</YStack>
+		</View>
 	)
 }
-
-const styles = StyleSheet.create({
-	headerSection: {
-		flexShrink: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	quickConnectSection: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-})
