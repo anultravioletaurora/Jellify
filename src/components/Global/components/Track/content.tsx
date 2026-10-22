@@ -105,37 +105,30 @@ export default function TrackRowContent({
 			backgroundColor='background'
 			testID={testID ?? undefined}
 		>
-			<XStack
-				alignContent='center'
-				justifyContent='center'
-				onLayout={(e) => setArtworkAreaWidth(e.nativeEvent.layout.width)}
-			>
-				{showArtwork ? (
-					<HideableArtwork>
-						<ItemImage
-							item={track}
-							width={'4'}
-							height={'4'}
-							elevate
-							imageOptions={{ maxWidth: 70, maxHeight: 70, quality: 90 }}
-						/>
-					</HideableArtwork>
-				) : (
-					<SizableText
-						key={`${track.Id}-number`}
-						marginHorizontal={'auto'}
-						minWidth={'3'}
-						color={textColor}
-						textAlign='center'
-						fontVariant={['tabular-nums']}
-					>
-						{indexNumber}
-					</SizableText>
-				)}
-			</XStack>
+			{showArtwork ? (
+				<HideableArtwork>
+					<ItemImage
+						item={track}
+						width={'4'}
+						height={'4'}
+						elevate
+						imageOptions={{ maxWidth: 70, maxHeight: 70, quality: 90 }}
+					/>
+				</HideableArtwork>
+			) : (
+				<SizableText
+					key={`${track.Id}-number`}
+					minWidth={'3'}
+					color={textColor}
+					textAlign='center'
+					fontVariant={['tabular-nums']}
+				>
+					{indexNumber}
+				</SizableText>
+			)}
 
 			<SlidingTextArea leftGapWidth={artworkAreaWidth} hasArtwork={!!showArtwork}>
-				<YStack alignItems='flex-start' justifyContent='center' gap={5}>
+				<YStack alignItems='flex-start' justifyContent='center' gap={'1'}>
 					<XStack alignItems='center'>
 						<SizableText
 							key={`${track.Id}-name`}
