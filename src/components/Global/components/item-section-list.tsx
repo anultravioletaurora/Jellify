@@ -2,7 +2,7 @@ import { SectionList, SectionListProps, SectionListRef } from '@legendapp/list/s
 import { UseInfiniteQueryResult } from '@tanstack/react-query'
 import { JSX, RefObject } from 'react'
 import { LibrarySectionListData, LibrarySectionListRenderItemInfo } from '../types'
-import { Paragraph, useTheme, XStack, YStack } from 'tamagui'
+import { Paragraph, SizableText, useTheme, XStack, YStack } from 'tamagui'
 import { RefreshControl } from 'react-native'
 import { closeAllSwipeableRows } from './SwipeableRow/registery'
 import AZScroller from './AZScroller'
@@ -53,9 +53,9 @@ export default function ItemSectionList({
 				onScrollBeginDrag={closeAllSwipeableRows}
 				ListEmptyComponent={
 					<YStack flex={1} justify='center' alignItems='center'>
-						<Paragraph marginVertical='auto' color='borderColor'>
+						<SizableText fontSize='2' marginVertical='auto' color='borderColor'>
 							No items
-						</Paragraph>
+						</SizableText>
 					</YStack>
 				}
 			/>

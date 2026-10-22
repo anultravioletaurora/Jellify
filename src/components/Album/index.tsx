@@ -11,10 +11,10 @@ import { BaseStackParamList } from '../../screens/types'
 import { closeAllSwipeableRows } from '../Global/components/SwipeableRow/registery'
 import AlbumTrackListFooter from './footer'
 import AlbumTrackListHeader from './header'
-import Animated, { Easing, FadeIn, FadeOut, LinearTransition } from 'react-native-reanimated'
 import { useAreAllDownloaded } from '../../hooks/downloads'
 import useDownloadTracks, { useDeleteDownloads } from '../../hooks/downloads/mutations'
 import { useAlbumDiscs } from '../../api/queries/album'
+import { ItemKeyExtractor } from '../../utils/parsing/key-extractor'
 
 /**
  * The screen for an Album's track list
@@ -98,9 +98,12 @@ export function Album({ album }: { album: BaseItemDto }): React.JSX.Element {
 	return (
 		<SectionList
 			contentInsetAdjustmentBehavior='automatic'
-			contentContainerStyle={{ flexGrow: 1 }}
+			contentContainerStyle={{
+				flexGrow: 1,
+				paddingHorizontal: 2,
+			}}
 			sections={sections}
-			keyExtractor={(item, index) => item.Id! + index}
+			keyExtractor={ItemKeyExtractor}
 			maxToRenderPerBatch={50}
 			renderSectionHeader={({ section }) => {
 				return !isPending && hasMultipleSections ? (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Square, SizableText, useTheme, Circle, FontSizeTokens } from 'tamagui'
+import { Square, SizableText, useTheme, Circle, FontSizeTokens, getFontSize } from 'tamagui'
 import Icon from '../components/icon'
 import { BUTTON_PRESS_STYLES } from '../../../configs/styling/elements'
 import { MaterialDesignIconsIconName } from '@react-native-vector-icons/material-design-icons'
@@ -54,7 +54,12 @@ export default function IconButton({
 			onPress={onPress}
 			testID={testID ?? undefined}
 		>
-			<Icon size={size} name={name} disabled={disabled} color={'primary'} />
+			<Icon
+				size={getFontSize(size) + getFontSize('2')}
+				name={name}
+				disabled={disabled}
+				color={'primary'}
+			/>
 
 			{title && (
 				<SizableText textAlign='center' fontSize={'3'}>

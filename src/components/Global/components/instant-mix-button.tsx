@@ -51,7 +51,7 @@ export function InstantMixButton({
 			borderWidth={'1'}
 			{...BUTTON_PRESS_STYLES}
 		>
-			<SizableText fontSize={'3'} fontWeight='6' color='success'>
+			<SizableText fontSize={'2'} fontWeight='6' color='success'>
 				Mix
 			</SizableText>
 		</Button>

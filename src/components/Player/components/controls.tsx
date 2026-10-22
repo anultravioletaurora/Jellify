@@ -38,7 +38,7 @@ export default function Controls({
 			/>
 
 			{/* I really wanted a big clunky play button */}
-			<PlayPauseButton size={getToken('13') - getToken('9')} />
+			<PlayPauseButton />
 
 			<Icon
 				name='skip-next'

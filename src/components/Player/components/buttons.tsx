@@ -7,29 +7,24 @@ import { togglePlayback } from '../../../player/controls/playback'
 import { useNowPlaying } from 'react-native-nitro-player'
 
 export default function PlayPauseButton({
-	size,
 	flex,
 }: {
-	size?: number | undefined
 	flex?: number | undefined
 }): React.JSX.Element {
 	const { currentState } = useNowPlaying()
-
-	const largeIcon = isUndefined(size) || size >= 24
 
 	const iconName = currentState === 'playing' ? 'pause' : 'play'
 
 	return (
 		<View justifyContent='center' alignItems='center' flex={flex}>
 			{currentState === 'buffering' ? (
-				<Circle size={size} borderWidth='1-5' borderColor='primary' disabled>
+				<Circle size={'7'} borderWidth='1-5' borderColor='primary' disabled>
 					<Spinner margin={10} size='small' color='primary' />
 				</Circle>
 			) : (
 				<IconButton
 					circular
-					largeIcon={largeIcon}
-					size={size}
+					size={'7'}
 					name={iconName}
 					testID='play-button-test-id'
 					onPress={togglePlayback}

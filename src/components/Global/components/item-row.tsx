@@ -208,10 +208,8 @@ function ItemRow({
 				width={'100%'}
 				transition={'quick'}
 				opacity={pressOpacity}
-				paddingVertical='2'
-				paddingRight='2'
+				margin='2'
 				backgroundColor='background'
-				borderRadius='2'
 				testID={testID ?? (item.Id ? `item-row-${item.Id}` : undefined)}
 				onPressIn={onPressIn}
 				onPress={onPressCallback}
@@ -226,7 +224,7 @@ function ItemRow({
 					{renderRunTime ? (
 						<RunTimeTicks>{item.RunTimeTicks}</RunTimeTicks>
 					) : item.Type === 'Playlist' ? (
-						<SizableText color={'borderColor'}>
+						<SizableText fontSize='2' color={'borderColor'}>
 							{`${playlistTrackCount ?? 0} ${playlistTrackCount === 1 ? 'Track' : 'Tracks'}`}
 						</SizableText>
 					) : null}
@@ -259,7 +257,12 @@ function ItemRowDetails({
 
 	return (
 		<YStack alignContent='center' justifyContent='center' flexGrow={1}>
-			<SizableText fontWeight='bold' lineBreakStrategyIOS='standard' numberOfLines={1}>
+			<SizableText
+				fontSize='2'
+				fontWeight='bold'
+				lineBreakStrategyIOS='standard'
+				numberOfLines={1}
+			>
 				{item.Name ?? ''}
 			</SizableText>
 
@@ -268,6 +271,7 @@ function ItemRowDetails({
 					color={'borderColor'}
 					lineBreakStrategyIOS='standard'
 					numberOfLines={1}
+					fontSize='2'
 				>
 					{formatArtistName(
 						item.AlbumArtist,
@@ -279,6 +283,7 @@ function ItemRowDetails({
 			{shouldRenderProductionYear && (
 				<XStack gap='2'>
 					<SizableText
+						fontSize='2'
 						color={'borderColor'}
 						lineBreakStrategyIOS='standard'
 						numberOfLines={1}
@@ -286,7 +291,9 @@ function ItemRowDetails({
 						{item.ProductionYear?.toString() ?? 'Unknown Year'}
 					</SizableText>
 
-					<SizableText color={'borderColor'}>•</SizableText>
+					<SizableText fontSize='2' color={'borderColor'}>
+						•
+					</SizableText>
 
 					<RunTimeTicks>{item.RunTimeTicks}</RunTimeTicks>
 				</XStack>
@@ -294,6 +301,7 @@ function ItemRowDetails({
 
 			{shouldRenderGenres && item.Genres && (
 				<SizableText
+					fontSize='2'
 					color={'borderColor'}
 					lineBreakStrategyIOS='standard'
 					numberOfLines={1}

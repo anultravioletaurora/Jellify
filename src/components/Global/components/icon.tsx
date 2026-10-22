@@ -40,7 +40,7 @@ export default function Icon({
 
 	const animation = onPress || onPressIn ? 'quick' : props.transition
 
-	const pressOpacity = onPress || onPressIn ? { press: 0.6 } : undefined
+	const pressOpacity = onPress || onPressIn ? '1 press: 0.6 hover: 0.8' : undefined
 
 	// Tamagui theme keys are unprefixed (e.g. "primary" not "primary"); resolve for token strings
 	const themeColorKey =
