@@ -25,7 +25,7 @@ export default function DeletePlaylist({ route }: LibraryDeletePlaylistProps): R
 					flex={1}
 					borderWidth={'1'}
 					borderColor={'borderColor'}
-					icon={() => <Icon name='chevron-left' small color={'borderColor'} />}
+					icon={() => <Icon name='chevron-left' size='7' color={'borderColor'} />}
 				>
 					<SizableText fontWeight='bold' color={'borderColor'}>
 						Cancel
@@ -39,7 +39,7 @@ export default function DeletePlaylist({ route }: LibraryDeletePlaylistProps): R
 					onPress={() => deletePlaylist.mutate(route.params.playlist)}
 					icon={
 						!deletePlaylist.isPending ? (
-							<Icon name='trash-can-outline' small color={'warning'} />
+							<Icon name='trash-can-outline' size='7' color={'warning'} />
 						) : undefined
 					}
 				>

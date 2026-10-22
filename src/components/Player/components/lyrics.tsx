@@ -582,7 +582,7 @@ export default function Lyrics(): React.JSX.Element {
 								onPress={() => handleBackPress()}
 								hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
 							>
-								<Icon small name='chevron-left' />
+								<Icon size='7' name='chevron-left' />
 							</XStack>
 							<YStack>
 								<Text

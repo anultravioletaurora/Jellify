@@ -50,7 +50,7 @@ export default function SignOutModal(): React.JSX.Element {
 			<XStack gap='2'>
 				<Button
 					testID='sign-out-cancel-button'
-					icon={() => <Icon name='chevron-left' small color={'borderColor'} />}
+					icon={() => <Icon name='chevron-left' size='7' color={'borderColor'} />}
 					borderWidth={'1'}
 					borderColor={'borderColor'}
 					flex={1}
@@ -63,7 +63,7 @@ export default function SignOutModal(): React.JSX.Element {
 				<Button
 					testID='sign-out-button'
 					flex={1}
-					icon={() => <Icon name='logout' small color={'danger'} />}
+					icon={() => <Icon name='logout' size='7' color={'danger'} />}
 					borderColor={'danger'}
 					onPress={onSignOut}
 				>

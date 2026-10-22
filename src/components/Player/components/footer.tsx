@@ -23,7 +23,7 @@ export default function Footer(): React.JSX.Element {
 		<XStack justifyContent='center' alignItems='center' gap='3'>
 			<XStack alignItems='center' justifyContent='flex-start' flex={1}>
 				<Icon
-					small
+					size='7'
 					testID='queue-button-test-id'
 					name='playlist-music'
 					onPress={() => setPage(1)}
@@ -35,7 +35,7 @@ export default function Footer(): React.JSX.Element {
 
 			{lyrics && (
 				<Icon
-					small
+					size='7'
 					name='message-text-outline'
 					onPress={() => navigation.navigate('LyricsScreen', { lyrics: lyrics })}
 					{...ICON_PRESS_STYLES}
@@ -68,7 +68,7 @@ interface CastIconProps {
 function CastIcon({ isCasting }: CastIconProps) {
 	const color = isCasting ? 'primary' : 'color'
 
-	return <Icon name='cast-audio' small color={color} />
+	return <Icon name='cast-audio' size='7' color={color} />
 }
 
 const styles = StyleSheet.create({

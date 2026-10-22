@@ -148,7 +148,7 @@ export default function LibrarySelector({
 				{showCancelButton && (
 					<Button
 						variant='outlined'
-						icon={() => <Icon name={cancelButtonIcon} small />}
+						icon={() => <Icon name={cancelButtonIcon} size='7' />}
 						onPress={onCancel}
 						flex={1}
 					>
@@ -160,7 +160,7 @@ export default function LibrarySelector({
 					variant='outlined'
 					borderColor={'primary'}
 					disabled={!selectedLibraryId}
-					icon={() => <Icon name={primaryButtonIcon} small color='primary' />}
+					icon={() => <Icon name={primaryButtonIcon} size='7' color='primary' />}
 					onPress={handleLibrarySelection}
 					testID='let_s_go_button'
 					flex={1}

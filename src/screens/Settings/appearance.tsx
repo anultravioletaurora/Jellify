@@ -57,11 +57,11 @@ function ThemeOptionCard({
 			flex={1}
 			minWidth='45%'
 		>
-			<Icon small name={option.icon} color={isSelected ? 'primary' : 'borderColor'} />
+			<Icon size='7' name={option.icon} color={isSelected ? 'primary' : 'borderColor'} />
 			<SizableText size='3' fontWeight='600' flex={1}>
 				{option.label}
 			</SizableText>
-			{isSelected && <Icon small name='check-circle-outline' color='primary' />}
+			{isSelected && <Icon size='7' name='check-circle-outline' color='primary' />}
 		</XStack>
 	)
 }
@@ -95,7 +95,7 @@ function ColorPresetCard({
 			<SizableText size='3' fontWeight='600' flex={1}>
 				{preset.label}
 			</SizableText>
-			{isSelected && <Icon small name='check-circle-outline' color='primary' />}
+			{isSelected && <Icon size='7' name='check-circle-outline' color='primary' />}
 		</XStack>
 	)
 }

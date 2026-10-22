@@ -263,7 +263,7 @@ const StorageSummaryCard = ({
 						borderColor='warning'
 						borderWidth={1}
 						onPress={onDeleteAll}
-						icon={() => <Icon name='broom' color='background' small />}
+						icon={() => <Icon name='broom' color='background' size='7' />}
 					>
 						<Paragraph fontWeight='6' color='background'>
 							Clear All
@@ -498,7 +498,7 @@ const SelectionReviewBanner = ({
 				size='sm'
 				borderColor='warning'
 				borderWidth={1}
-				icon={() => <Icon small name='broom' color='warning' />}
+				icon={() => <Icon size='7' name='broom' color='warning' />}
 				onPress={onDelete}
 			>
 				<Paragraph

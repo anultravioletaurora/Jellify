@@ -83,7 +83,7 @@ function QuickConnectDisplay({
 				gap='1'
 				onPress={onCodePress}
 			>
-				<Icon small name={copyIconName} color='primary' />
+				<Icon size={'7'} name={copyIconName} color='primary' />
 
 				<H6 fontWeight='6' color='primary'>
 					{code}
@@ -117,7 +117,7 @@ export default function QuickConnectInitiator() {
 		<View flex={1}>
 			<XStack alignItems='center' flexShrink={1}>
 				<Button
-					icon={() => <Icon name='chevron-left' small />}
+					icon={() => <Icon name='chevron-left' size={'7'} />}
 					onPress={() => {
 						navigation.navigate('ServerAuthentication', undefined, {
 							merge: true,

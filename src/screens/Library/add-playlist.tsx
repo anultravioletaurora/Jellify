@@ -29,7 +29,7 @@ export default function AddPlaylist(): React.JSX.Element {
 					borderColor={'borderColor'}
 					onPress={libraryStackNavigation.goBack}
 					flex={1}
-					icon={() => <Icon name='chevron-left' small color={'borderColor'} />}
+					icon={() => <Icon name='chevron-left' size='7' color={'borderColor'} />}
 				>
 					<SizableText fontWeight='bold' color={'borderColor'}>
 						Cancel
@@ -42,7 +42,7 @@ export default function AddPlaylist(): React.JSX.Element {
 					borderColor={'primary'}
 					icon={
 						!addPlaylist.isPending ? (
-							<Icon name='content-save' small color={'primary'} />
+							<Icon name='content-save' size='7' color={'primary'} />
 						) : undefined
 					}
 					disabled={isEmpty(name) || addPlaylist.isPending}

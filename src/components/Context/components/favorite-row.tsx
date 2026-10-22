@@ -1,6 +1,6 @@
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models'
 import { ListItem, SizableText, XStack } from 'tamagui'
-import Icon from './icon'
+import Icon from '../../Global/components/icon'
 import Animated, { Easing, FadeIn, FadeOut } from 'react-native-reanimated'
 import { useIsFavorite } from '../../../api/queries/user-data'
 import { useAddFavorite, useRemoveFavorite } from '../../../api/mutations/favorite'
@@ -35,9 +35,11 @@ function AddFavoriteContextMenuRow({ item }: { item: BaseItemDto }): React.JSX.E
 				key={`${item.Id}-favorite-row`}
 			>
 				<XStack alignItems='center' justifyContent='flex-start' gap='3'>
-					<Icon small name={'heart-outline'} color={'primary'} />
+					<Icon size={'3'} name={'heart-outline'} color={'primary'} />
 
-					<SizableText fontWeight='bold'>Add to favorites</SizableText>
+					<SizableText fontSize={'3'} fontWeight='bold'>
+						Add to favorites
+					</SizableText>
 				</XStack>
 			</Animated.View>
 		</ListItem>
@@ -64,9 +66,11 @@ function RemoveFavoriteContextMenuRow({ item }: { item: BaseItemDto }): React.JS
 				key={`${item.Id}-favorite-row`}
 			>
 				<XStack alignItems='center' justifyContent='flex-start' gap='3'>
-					<Icon small name={'heart'} color={'primary'} />
+					<Icon size={'7'} name={'heart'} color={'primary'} />
 
-					<SizableText fontWeight='bold'>Remove from favorites</SizableText>
+					<SizableText fontSize={'3'} fontWeight='bold'>
+						Remove from favorites
+					</SizableText>
 				</XStack>
 			</Animated.View>
 		</ListItem>

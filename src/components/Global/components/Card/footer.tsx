@@ -1,8 +1,9 @@
 import { useAppSettingsStore } from '../../../../stores/settings/app'
 import { BaseItemKind } from '@jellyfin/sdk/lib/generated-client'
-import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons'
 import { StyleSheet } from 'react-native'
-import { useTheme, Spacer, Square, Card, View } from 'tamagui'
+import { Spacer, Square, Card, View } from 'tamagui'
+import Icon from '../icon'
+import { CardSizeToken } from './types'
 
 const footerTypesNeedingIndicating: BaseItemKind[] = [
 	BaseItemKind.MusicAlbum,
@@ -11,64 +12,33 @@ const footerTypesNeedingIndicating: BaseItemKind[] = [
 
 interface ItemCardComponentFooterProps {
 	type: BaseItemKind
+	size: CardSizeToken
 }
 
-export default function ItemCardFooter({ type }: ItemCardComponentFooterProps) {
-	const theme = useTheme()
-
+export default function ItemCardFooter({ size, type }: ItemCardComponentFooterProps) {
 	const { hideItemIndicators } = useAppSettingsStore()
 
 	const displayFooter = footerTypesNeedingIndicating.includes(type) && !hideItemIndicators
 
 	const iconName: 'cassette' | 'disc' = type === BaseItemKind.Playlist ? 'cassette' : 'disc'
 
-	const footerShadowStyle = {
-		boxShadow: [
-			{
-				offsetY: 3,
-				offsetX: 0,
-				blurRadius: 6,
-				spreadDistance: 1,
-				color: theme.darkBackground75.val,
-			},
-		],
-	}
-
 	return displayFooter ? (
 		<Card.Footer overflow='hidden'>
 			<Spacer flexGrow={1} />
 
 			<Square
-				x='8'
-				y='10'
 				backgroundColor='primary'
-				width={'8'}
-				height={'8'}
-				rotate='45deg'
-				style={footerShadowStyle}
+				size={size}
+				style={styles.shadow}
+				overflow={'hidden'}
+				transform={[{ rotate: '45deg' }, { translateX: '50%' }, { translateY: '20%' }]}
 			>
-				<View rotate='-45deg' {...offsets[iconName]}>
-					<MaterialDesignIcons
-						size={26}
-						color={theme.background.val}
-						name={iconName}
-						style={styles[iconName]}
-					/>
+				<View rotate='-45deg' y={-size} x={-size}>
+					<Icon color={'background'} name={iconName} style={styles[iconName]} />
 				</View>
 			</Square>
 		</Card.Footer>
 	) : null
-}
-
-const offsets = {
-	cassette: {
-		x: '-4',
-		y: '0',
-	},
-	disc: {
-		x: '-4',
-		y: '-4',
-	},
 }
 
 const styles = StyleSheet.create({
@@ -80,6 +50,11 @@ const styles = StyleSheet.create({
 			height: 3,
 			width: 0,
 		},
+		transform: [
+			{
+				translate: [-10, -20],
+			},
+		],
 	},
 	disc: {
 		shadowColor: 'black',
@@ -89,5 +64,21 @@ const styles = StyleSheet.create({
 			height: 3,
 			width: 0,
 		},
+		transform: [
+			{
+				translate: [-10, -25],
+			},
+		],
+	},
+	shadow: {
+		boxShadow: [
+			{
+				offsetY: 3,
+				offsetX: 0,
+				blurRadius: 6,
+				spreadDistance: 1,
+				color: 'black',
+			},
+		],
 	},
 })

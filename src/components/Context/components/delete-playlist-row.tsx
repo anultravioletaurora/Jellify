@@ -24,9 +24,11 @@ export default function DeletePlaylistRow({
 				)
 			}}
 		>
-			<Icon small name='delete' color='warning' />
+			<Icon size={'7'} name='delete' color='warning' />
 
-			<SizableText fontWeight='bold'>Delete Playlist</SizableText>
+			<SizableText fontSize={'3'} fontWeight='bold'>
+				Delete Playlist
+			</SizableText>
 		</ListItem>
 	)
 }

@@ -44,7 +44,7 @@ export default function AccountScreen(): React.JSX.Element {
 							<Avatar.Image src={userAvatarUrl} />
 							<Avatar.Fallback>
 								<YStack alignItems='center' justifyContent='center' flex={1}>
-									<Icon large name='account-music' color='background' />
+									<Icon size='10' name='account-music' color='background' />
 								</YStack>
 							</Avatar.Fallback>
 						</Avatar>
@@ -83,7 +83,7 @@ export default function AccountScreen(): React.JSX.Element {
 								alignItems='center'
 								justifyContent='center'
 							>
-								<Icon name='music-box-multiple' color='background' small />
+								<Icon name='music-box-multiple' color='background' size='7' />
 							</YStack>
 							<YStack flex={1}>
 								<SizableText size='4' fontWeight='6'>
@@ -101,7 +101,7 @@ export default function AccountScreen(): React.JSX.Element {
 							borderColor='borderColor'
 							borderWidth={1}
 							onPress={() => navigation.navigate('LibrarySelection')}
-							icon={<Icon name='swap-horizontal' color='color' small />}
+							icon={<Icon name='swap-horizontal' color='color' size='7' />}
 						>
 							<SizableText size='3'>Change</SizableText>
 						</Button>
@@ -126,7 +126,7 @@ export default function AccountScreen(): React.JSX.Element {
 								alignItems='center'
 								justifyContent='center'
 							>
-								<Icon name='server' color='background' small />
+								<Icon name='server' color='background' size='7' />
 							</YStack>
 							<YStack flex={1}>
 								<SizableText size='4' fontWeight='600'>
@@ -179,7 +179,7 @@ function ServerInfoChip({
 			backgroundColor='background-focus'
 			borderRadius='3'
 		>
-			<Icon name={icon} color={color} small />
+			<Icon name={icon} color={color} size='7' />
 			<YStack flex={1}>
 				<SizableText size='3' fontWeight='600' numberOfLines={1}>
 					{value}

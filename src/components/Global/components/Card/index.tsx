@@ -7,6 +7,7 @@ import { usePerformanceMonitor } from '../../../../hooks/use-performance-monitor
 import ItemCardBackground from './background'
 import ItemCardCaption from './caption'
 import ItemCardFooter from './footer'
+import { CardSizeToken } from './types'
 
 interface CardProps extends Omit<TamaguiCardProps, 'size'> {
 	caption?: string | null | undefined
@@ -15,7 +16,7 @@ interface CardProps extends Omit<TamaguiCardProps, 'size'> {
 	squared?: boolean
 	captionAlign?: 'center' | 'left' | 'right'
 	/** Single source of truth for the card's width/height; the caption is capped to the same width */
-	size?: Exclude<SizeTokens, boolean>
+	size?: CardSizeToken
 }
 
 /**
@@ -41,8 +42,6 @@ export default function ItemCard({
 
 	const { darkBackground75 } = useTheme()
 
-	const cardSize = getTokenValue(size as Token, 'size')
-
 	const cardShadowStyle = {
 		boxShadow: [
 			{
@@ -58,10 +57,10 @@ export default function ItemCard({
 	const handlePressIn = () => (item.Type !== 'Audio' ? warmContext(item) : undefined)
 
 	return (
-		<YStack alignItems='center' margin='1' width={cardSize}>
+		<YStack alignItems='center' paddingHorizontal='1'>
 			<TamaguiCard
-				width={cardSize}
-				height={cardSize}
+				width={size}
+				height={size}
 				borderRadius={squared ? '1' : '12'}
 				transition='bouncy'
 				scale={'1 hover:0.925 press: 0.875'}
@@ -71,13 +70,13 @@ export default function ItemCard({
 				onPressIn={handlePressIn}
 			>
 				<ItemCardBackground item={item} squared={squared} />
-				<ItemCardFooter type={item.Type ?? BaseItemKind.Audio} />
+				<ItemCardFooter type={item.Type ?? BaseItemKind.Audio} size={size} />
 			</TamaguiCard>
 			<ItemCardCaption
 				captionAlign={captionAlign}
 				caption={caption}
 				subCaption={subCaption}
-				width={cardSize}
+				width={size}
 			/>
 		</YStack>
 	)

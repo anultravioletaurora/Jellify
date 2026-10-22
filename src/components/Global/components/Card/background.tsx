@@ -9,7 +9,7 @@ interface ItemCardBackgroundProps {
 
 export default function ItemCardBackground({ item, squared }: ItemCardBackgroundProps) {
 	return (
-		<Card.Background width='100%'>
+		<Card.Background height='100%' width='100%'>
 			<ItemImage
 				item={item}
 				circular={!squared}

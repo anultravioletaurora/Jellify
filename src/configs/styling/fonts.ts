@@ -18,7 +18,14 @@ export const bodyFont = createFont({
 	size: {
 		1: 12,
 		2: 14,
-		3: 15,
+		3: 16,
+		4: 18,
+		5: 20,
+		6: 24,
+		7: 28,
+		8: 34,
+		9: 40,
+		10: 44,
 	},
 	lineHeight: fonts.body.lineHeight,
 	weight: {

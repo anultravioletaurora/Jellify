@@ -60,7 +60,7 @@ export default function ListGroup({
 				<YGroup.Item>
 					<ListItem onPress={seeMore}>
 						<XStack alignItems='center' height='6' marginHorizontal='2-5'>
-							<Icon name='arrow-right-bottom' large />
+							<Icon name='arrow-right-bottom' size='10' />
 
 							<Spacer />
 							<SizableText

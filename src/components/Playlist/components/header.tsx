@@ -105,7 +105,7 @@ function PlaylistHeaderControls({
 				flex={1}
 				backgroundColor={'primary'}
 				onPress={async () => await playPlaylist(false)}
-				icon={<Icon name='play' color='background' small />}
+				icon={<Icon name='play' color='background' size='7' />}
 				{...BUTTON_PRESS_STYLES}
 			>
 				<SizableText fontWeight='bold' color={'background'}>
@@ -118,7 +118,7 @@ function PlaylistHeaderControls({
 				borderColor={'primary'}
 				borderWidth={'1'}
 				onPress={async () => await playPlaylist(true)}
-				icon={<Icon name='shuffle' color='primary' small />}
+				icon={<Icon name='shuffle' color='primary' size='7' />}
 				{...BUTTON_PRESS_STYLES}
 			>
 				<SizableText fontWeight='bold' color={'primary'}>

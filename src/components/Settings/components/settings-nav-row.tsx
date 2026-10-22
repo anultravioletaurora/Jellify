@@ -55,7 +55,7 @@ export default function SettingsNavRow({
 						</SizableText>
 					)}
 				</XStack>
-				<Icon name='chevron-right' color='borderColor' small />
+				<Icon name='chevron-right' color='borderColor' size='7' />
 			</XStack>
 		</Card>
 	)

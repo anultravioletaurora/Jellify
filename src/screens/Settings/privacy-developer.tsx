@@ -109,7 +109,7 @@ export default function PrivacyDeveloperScreen(): React.JSX.Element {
 									backgroundColor='primary'
 									onPress={handleSubmitPr}
 									circular
-									icon={<Icon name='check' color='background' small />}
+									icon={<Icon name='check' color='background' size='7' />}
 								/>
 							</XStack>
 							{prId && (

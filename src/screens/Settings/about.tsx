@@ -92,7 +92,7 @@ export default function AboutScreen(): React.JSX.Element {
 							onPress={() => Linking.openURL('https://github.com/Jellify-Music/App')}
 							testID='jellify-source-link'
 						>
-							<Icon name='code-tags' small color='borderColor' />
+							<Icon name='code-tags' size='7' color='borderColor' />
 							<SizableText>View Source</SizableText>
 						</XStack>
 						<XStack
@@ -101,7 +101,7 @@ export default function AboutScreen(): React.JSX.Element {
 							{...ICON_PRESS_STYLES}
 							onPress={() => downloadUpdate(true)}
 						>
-							<Icon name='cellphone-arrow-down' small color='success' />
+							<Icon name='cellphone-arrow-down' size='7' color='success' />
 							<SizableText>Update</SizableText>
 						</XStack>
 					</XStack>
@@ -120,7 +120,7 @@ export default function AboutScreen(): React.JSX.Element {
 								}
 								testID='jellify-report-issue'
 							>
-								<Icon name='github' small color='warning' />
+								<Icon name='github' size='7' color='warning' />
 								<SizableText>Report Issue</SizableText>
 							</XStack>
 							<XStack
@@ -130,7 +130,7 @@ export default function AboutScreen(): React.JSX.Element {
 								onPress={() => Linking.openURL('https://discord.gg/yf8fBatktn')}
 								testID='jellify-join-discord'
 							>
-								<Icon name='chat' small color='secondary' />
+								<Icon name='chat' size='7' color='secondary' />
 								<SizableText>Join Discord</SizableText>
 							</XStack>
 						</XStack>
@@ -160,7 +160,7 @@ export default function AboutScreen(): React.JSX.Element {
 							}
 							testID='jellify-sponsors-link'
 						>
-							<Icon name='github' small color='primary' />
+							<Icon name='github' size='7' color='primary' />
 							<SizableText>Sponsors</SizableText>
 						</XStack>
 						<XStack
@@ -172,7 +172,7 @@ export default function AboutScreen(): React.JSX.Element {
 							}
 							testID='jellify-patreon-link'
 						>
-							<Icon name='patreon' small color='danger' />
+							<Icon name='patreon' size='7' color='danger' />
 							<SizableText>Patreon</SizableText>
 						</XStack>
 						<XStack
@@ -182,7 +182,7 @@ export default function AboutScreen(): React.JSX.Element {
 							onPress={() => Linking.openURL('https://ko-fi.com/jellify')}
 							testID='jellify-ko-fi-link'
 						>
-							<Icon name='coffee-outline' small color='warning' />
+							<Icon name='coffee-outline' size='7' color='warning' />
 							<SizableText>Ko-fi</SizableText>
 						</XStack>
 					</XStack>

@@ -28,7 +28,7 @@ export default function CastDialog(): React.JSX.Element {
 function CastDialogNoDevices() {
 	return (
 		<YStack justifyContent='center' alignContent='center'>
-			<Icon large name='speaker-off' />
+			<Icon size='10' name='speaker-off' />
 			<Paragraph fontWeight='6'>Use the Cast button to pick a device</Paragraph>
 		</YStack>
 	)

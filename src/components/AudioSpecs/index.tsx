@@ -58,7 +58,7 @@ function MediaSourceInfoView({
 			</ListItem>
 			<ListItem gap='2' justifyContent='flex-start'>
 				<Icon
-					small
+					size='7'
 					name={type === 'download' ? 'file-music' : 'radio-tower'}
 					color='primary'
 				/>
@@ -74,7 +74,7 @@ function MediaSourceInfoView({
 			{bitrate && (
 				<YGroup.Item>
 					<ListItem gap='2' justifyContent='flex-start'>
-						<Icon small name='sine-wave' color={'primary'} />
+						<Icon size='7' name='sine-wave' color={'primary'} />
 
 						<SizableText
 							fontWeight='bold'
@@ -87,7 +87,7 @@ function MediaSourceInfoView({
 			{container && (
 				<YGroup.Item>
 					<ListItem gap='2' justifyContent='flex-start'>
-						<Icon small name='music-box-outline' color={'primary'} />
+						<Icon size='7' name='music-box-outline' color={'primary'} />
 
 						<SizableText fontWeight='bold'>{container.toUpperCase()}</SizableText>
 					</ListItem>

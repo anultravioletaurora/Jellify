@@ -42,7 +42,7 @@ export default function ServerLibrary(): React.JSX.Element {
 					marginVertical={0}
 					borderRadius='4'
 					{...ICON_PRESS_STYLES}
-					icon={() => <Icon name='chevron-left' small />}
+					icon={() => <Icon name='chevron-left' size='7' />}
 					onPress={() => {
 						navigation.navigate('ServerAuthentication', undefined, {
 							merge: true,

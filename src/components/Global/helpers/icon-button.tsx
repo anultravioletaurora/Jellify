@@ -1,5 +1,5 @@
 import React from 'react'
-import { Square, SizableText, useTheme, Circle } from 'tamagui'
+import { Square, SizableText, useTheme, Circle, FontSizeTokens } from 'tamagui'
 import Icon from '../components/icon'
 import { BUTTON_PRESS_STYLES } from '../../../configs/styling/elements'
 import { MaterialDesignIconsIconName } from '@react-native-vector-icons/material-design-icons'
@@ -9,7 +9,7 @@ interface IconButtonProps {
 	name: MaterialDesignIconsIconName
 	title?: string | undefined
 	circular?: boolean | undefined
-	size?: number
+	size?: FontSizeTokens
 	largeIcon?: boolean | undefined
 	disabled?: boolean | undefined
 	testID?: string | undefined
@@ -22,7 +22,6 @@ export default function IconButton({
 	circular,
 	testID,
 	size,
-	largeIcon,
 	disabled,
 }: IconButtonProps): React.JSX.Element {
 	const { darkBackground75 } = useTheme()
@@ -55,16 +54,10 @@ export default function IconButton({
 			onPress={onPress}
 			testID={testID ?? undefined}
 		>
-			<Icon
-				large={largeIcon}
-				small={!largeIcon}
-				name={name}
-				disabled={disabled}
-				color={'primary'}
-			/>
+			<Icon size={size} name={name} disabled={disabled} color={'primary'} />
 
 			{title && (
-				<SizableText textAlign='center' size={'2'}>
+				<SizableText textAlign='center' fontSize={'3'}>
 					{title}
 				</SizableText>
 			)}

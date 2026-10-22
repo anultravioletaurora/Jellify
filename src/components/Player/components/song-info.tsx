@@ -102,7 +102,7 @@ export default function SongInfo(): React.JSX.Element {
 							</H6>
 							{isExplicit(item) && (
 								<XStack alignSelf='center' paddingTop={5.3} paddingLeft='1'>
-									<Icon name='alpha-e-box-outline' color={'color'} xsmall />
+									<Icon name='alpha-e-box-outline' color={'color'} size='5' />
 								</XStack>
 							)}
 						</TextTicker>

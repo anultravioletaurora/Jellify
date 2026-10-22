@@ -60,7 +60,7 @@ export default function ServerAuthentication(): React.JSX.Element {
 		<Animated.View style={loginStyles.container}>
 			<XStack alignItems='center' flexShrink={1}>
 				<Button
-					icon={<Icon name='chevron-left' small />}
+					icon={<Icon name='chevron-left' size='7' />}
 					onPress={onSignInPress}
 					fontWeight='6'
 					{...ICON_PRESS_STYLES}

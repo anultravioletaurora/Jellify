@@ -41,7 +41,7 @@ export default function RemoveFromPlaylistRow({
 			disabled={isPending}
 			onPress={() => removeTrack()}
 		>
-			<Icon small color='warning' name='playlist-remove' />
+			<Icon fontSize={'7'} color='warning' name='playlist-remove' />
 
 			<SizableText fontWeight='bold'>Remove from Playlist</SizableText>
 		</ListItem>

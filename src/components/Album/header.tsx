@@ -104,7 +104,7 @@ export default function AlbumTrackListHeader({ album }: { album: BaseItemDto }):
 					>
 						<Button
 							flex={1}
-							icon={() => <Icon small name='play' color='background' />}
+							icon={() => <Icon size='7' name='play' color='background' />}
 							borderRadius={'4'}
 							backgroundColor={'primary'}
 							paddingRight={'5'}
@@ -117,7 +117,7 @@ export default function AlbumTrackListHeader({ album }: { album: BaseItemDto }):
 						</Button>
 
 						<Button
-							icon={() => <Icon small name='shuffle' color='primary' />}
+							icon={() => <Icon size='7' name='shuffle' color='primary' />}
 							borderWidth={'1'}
 							borderRadius={'4'}
 							borderColor={'primary'}

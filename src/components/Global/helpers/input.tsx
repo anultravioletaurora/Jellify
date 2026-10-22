@@ -117,7 +117,7 @@ export default function Input(props: InputProps): React.JSX.Element {
 						paddingLeft='2'
 						hitSlop={10}
 					>
-						<Icon small name='close-circle' color={'neutral'} />
+						<Icon size={'7'} name='close-circle' color={'neutral'} />
 					</YStack>
 				)}
 			</XStack>

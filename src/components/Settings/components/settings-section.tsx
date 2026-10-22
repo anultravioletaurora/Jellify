@@ -58,7 +58,7 @@ export default function SettingsSection({
 					<Icon
 						name={expanded ? 'chevron-up' : 'chevron-down'}
 						color='borderColor'
-						small
+						size='7'
 					/>
 				)}
 			</XStack>

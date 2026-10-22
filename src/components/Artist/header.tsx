@@ -79,7 +79,7 @@ export default function ArtistHeader(): React.JSX.Element {
 
 					<XStack alignItems='center' justifyContent='flex-end' gap='3' flex={1}>
 						<Icon
-							small
+							size='7'
 							color='primary'
 							name='shuffle'
 							onPress={() => playArtist(true)}
@@ -105,7 +105,7 @@ export default function ArtistHeader(): React.JSX.Element {
 						{`View Tracks`}
 					</Paragraph>
 
-					<Icon name='chevron-right' small />
+					<Icon name='chevron-right' size='7' />
 				</XStack>
 			</YStack>
 		</YStack>

@@ -22,7 +22,7 @@ export default function QueueListHeader() {
 			{Platform.OS === 'android' ? (
 				<Icon
 					width={24}
-					small
+					size='7'
 					name='chevron-up'
 					style={styles.icon}
 					onPress={onPressUpIcon}

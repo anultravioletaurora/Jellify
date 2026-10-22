@@ -62,7 +62,7 @@ export default function VerticalSettings(): React.JSX.Element {
 								<Icon
 									name={isSecure ? 'lock' : 'lock-open'}
 									color={isSecure ? 'background' : 'warning'}
-									small
+									size='7'
 								/>
 								<SizableText size='3' color='background'>
 									{server?.name ?? 'Unknown Server'}

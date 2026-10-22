@@ -3,9 +3,9 @@ import {
 	BaseItemKind,
 	MediaSourceInfo,
 } from '@jellyfin/sdk/lib/generated-client/models'
-import { ListItem, Paragraph, View, YGroup } from 'tamagui'
+import { ListItem, Paragraph, SizableText, View, YGroup } from 'tamagui'
 import { StackNavigation } from '../../screens/types'
-import FavoriteContextMenuRow from '../Global/components/favorite-context-menu-row'
+import FavoriteContextMenuRow from './components/favorite-row'
 import Icon from '../Global/components/icon'
 import { useQuery } from '@tanstack/react-query'
 import { QueryKeys } from '../../enums/query-keys'
@@ -115,7 +115,7 @@ export default function ItemContext({
 	}, [item?.Id])
 
 	return (
-		<YGroup marginHorizontal='2' marginBottom={bottom} gap='3'>
+		<YGroup marginHorizontal='3' marginBottom={bottom} gap='3'>
 			<FavoriteContextMenuRow item={item} />
 
 			{renderDeletePlaylistRow && <DeletePlaylistRow playlist={item} />}
@@ -183,9 +183,11 @@ function AddToPlaylistRow({
 				)
 			}}
 		>
-			<Icon small color='primary' name='plus-circle-outline' />
+			<Icon size={'7'} color='primary' name='plus-circle-outline' />
 
-			<Paragraph fontWeight='6'>Add to Playlist</Paragraph>
+			<SizableText fontSize={'3'} fontWeight='6'>
+				Add to Playlist
+			</SizableText>
 		</ListItem>
 	)
 }
@@ -211,9 +213,11 @@ function AddToQueueMenuRow({ tracks }: { tracks: BaseItemDto[] }): React.JSX.Ele
 				}}
 			>
 				{/* Use same icon as swipe Add to Queue for consistency */}
-				<Icon small color='primary' name='playlist-play' />
+				<Icon size={'7'} color='primary' name='playlist-play' />
 
-				<Paragraph fontWeight='6'>Play Next</Paragraph>
+				<SizableText fontSize={'3'} fontWeight='6'>
+					Play Next
+				</SizableText>
 			</ListItem>
 
 			<ListItem
@@ -230,9 +234,11 @@ function AddToQueueMenuRow({ tracks }: { tracks: BaseItemDto[] }): React.JSX.Ele
 				}}
 			>
 				{/* Consistent Add to Queue icon */}
-				<Icon small color='primary' name='playlist-play' />
+				<Icon size={'7'} color='primary' name='playlist-play' />
 
-				<Paragraph fontWeight='6'>Add to Queue</Paragraph>
+				<SizableText fontSize={'3'} fontWeight='6'>
+					Add to Queue
+				</SizableText>
 			</ListItem>
 		</>
 	)
@@ -264,9 +270,9 @@ function DownloadMenuRow({ items }: { items: BaseItemDto[] }): React.JSX.Element
 		>
 			<CircularProgressIndicator progress={overallProgress} size={24} strokeWidth={4} />
 
-			<Paragraph fontWeight='6' color='borderColor'>
+			<SizableText fontSize={'3'} fontWeight='6' color='borderColor'>
 				Download Queued
-			</Paragraph>
+			</SizableText>
 		</ListItem>
 	)
 
@@ -279,12 +285,14 @@ function DownloadMenuRow({ items }: { items: BaseItemDto[] }): React.JSX.Element
 			onPress={() => download(items)}
 		>
 			<Icon
-				small
+				size={'7'}
 				color='primary'
 				name={items.length > 1 ? 'download-multiple' : 'download'}
 			/>
 
-			<Paragraph fontWeight='6'>Download</Paragraph>
+			<SizableText fontSize={'3'} fontWeight='6'>
+				Download
+			</SizableText>
 		</ListItem>
 	)
 
@@ -296,9 +304,11 @@ function DownloadMenuRow({ items }: { items: BaseItemDto[] }): React.JSX.Element
 			{...ICON_PRESS_STYLES}
 			onPress={handleRemoveDownloads}
 		>
-			<Icon small color='warning' name='broom' />
+			<Icon size={'7'} color='warning' name='broom' />
 
-			<Paragraph fontWeight='6'>Remove Download</Paragraph>
+			<SizableText fontSize={'3'} fontWeight='6'>
+				Remove Download
+			</SizableText>
 		</ListItem>
 	)
 
@@ -336,7 +346,10 @@ function ViewAlbumMenuRow({ album: album, stackNavigation }: MenuRowProps): Reac
 			/>
 
 			<TextTicker {...TextTickerConfig}>
-				<Paragraph fontWeight='6'>{`Go to ${getItemName(album)}`}</Paragraph>
+				<SizableText
+					fontSize={'3'}
+					fontWeight='6'
+				>{`Go to ${getItemName(album)}`}</SizableText>
 			</TextTicker>
 		</ListItem>
 	)
@@ -388,7 +401,10 @@ function ViewArtistMenuRow({
 				imageOptions={{ maxWidth: 50, maxHeight: 50, quality: 100 }}
 			/>
 
-			<Paragraph fontWeight='6'>{`Go to ${getItemName(artist)}`}</Paragraph>
+			<SizableText
+				fontSize={'3'}
+				fontWeight='6'
+			>{`Go to ${getItemName(artist)}`}</SizableText>
 		</ListItem>
 	) : (
 		<></>
@@ -419,9 +435,11 @@ function StatsRow({
 				})
 			}}
 		>
-			<Icon small name='sine-wave' color='primary' />
+			<Icon size={'7'} name='sine-wave' color='primary' />
 
-			<Paragraph fontWeight='6'>Open Audio Specs</Paragraph>
+			<SizableText fontSize={'3'} fontWeight='6'>
+				Open Audio Specs
+			</SizableText>
 		</ListItem>
 	)
 }

@@ -29,7 +29,7 @@ export default function ActionChip({
 			paddingHorizontal='2-5'
 			size='xs'
 			borderRadius='10'
-			icon={<Icon name={icon} color={active ? 'background' : 'color'} small />}
+			icon={<Icon name={icon} color={active ? 'background' : 'color'} size='7' />}
 		>
 			<SizableText color={`${active ? 'background' : 'color'}`} size='2'>
 				{label}

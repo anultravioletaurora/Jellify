@@ -122,13 +122,14 @@ export default function TrackRowContent({
 					color={textColor}
 					textAlign='center'
 					fontVariant={['tabular-nums']}
+					fontSize={'3'}
 				>
 					{indexNumber}
 				</SizableText>
 			)}
 
 			<SlidingTextArea leftGapWidth={artworkAreaWidth} hasArtwork={!!showArtwork}>
-				<YStack alignItems='flex-start' justifyContent='center' gap={'1'}>
+				<YStack alignItems='flex-start' justifyContent='center'>
 					<XStack alignItems='center'>
 						<SizableText
 							key={`${track.Id}-name`}
@@ -136,7 +137,7 @@ export default function TrackRowContent({
 							color={textColor}
 							lineBreakStrategyIOS='standard'
 							numberOfLines={1}
-							size={'4'}
+							fontSize={'3'}
 						>
 							{trackName}
 						</SizableText>
@@ -149,14 +150,13 @@ export default function TrackRowContent({
 							lineBreakStrategyIOS='standard'
 							numberOfLines={1}
 							color={'borderColor'}
-							size={'2'}
-							marginVertical={'-1-5'}
+							fontSize={'3'}
 						>
 							{artistsText}
 						</SizableText>
 						{isExplicit(track) && (
 							<XStack alignSelf='center' paddingTop='0.5'>
-								<Icon name='alpha-e-box-outline' color={'borderColor'} xxxsmall />
+								<Icon name='alpha-e-box-outline' color={'borderColor'} size='3' />
 							</XStack>
 						)}
 					</XStack>

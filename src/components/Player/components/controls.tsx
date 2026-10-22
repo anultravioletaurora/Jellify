@@ -20,7 +20,7 @@ export default function Controls({
 		<XStack alignItems='center' justifyContent='space-between'>
 			{!onLyricsScreen && (
 				<Icon
-					small
+					size='7'
 					color={shuffled ? 'primary' : 'color'}
 					name='shuffle'
 					onPress={async () => await toggleShuffle()}
@@ -33,7 +33,7 @@ export default function Controls({
 				name='skip-previous'
 				color='primary'
 				onPress={async () => await previous()}
-				large
+				size='10'
 				testID='previous-button-test-id'
 			/>
 
@@ -44,7 +44,7 @@ export default function Controls({
 				name='skip-next'
 				color='primary'
 				onPress={async () => await skip(undefined)}
-				large
+				size='10'
 				testID='skip-button-test-id'
 			/>
 
@@ -52,7 +52,7 @@ export default function Controls({
 
 			{!onLyricsScreen && (
 				<Icon
-					small
+					size='7'
 					color={repeatMode === 'off' ? 'color' : 'primary'}
 					name={repeatMode === 'track' ? 'repeat-once' : 'repeat'}
 					onPress={toggleRepeatMode}

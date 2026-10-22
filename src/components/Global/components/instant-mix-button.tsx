@@ -6,7 +6,7 @@ import { BaseStackParamList } from '../../../screens/types'
 import Button from '../helpers/button'
 import { CommonActions } from '@react-navigation/native'
 import { BUTTON_PRESS_STYLES } from '../../../configs/styling/elements'
-import { Paragraph, Text } from 'tamagui'
+import { Paragraph, SizableText, Text } from 'tamagui'
 
 export function InstantMixIconButton({
 	item,
@@ -38,7 +38,7 @@ export function InstantMixButton({
 	return (
 		<Button
 			borderRadius={'4'}
-			icon={<Icon name='access-point' color='success' small />}
+			icon={<Icon name='access-point' color='success' size={'7'} />}
 			onPress={() =>
 				navigation.dispatch(
 					CommonActions.navigate('InstantMix', {
@@ -51,9 +51,9 @@ export function InstantMixButton({
 			borderWidth={'1'}
 			{...BUTTON_PRESS_STYLES}
 		>
-			<Paragraph fontWeight='6' color='success'>
+			<SizableText fontSize={'3'} fontWeight='6' color='success'>
 				Mix
-			</Paragraph>
+			</SizableText>
 		</Button>
 	)
 }
