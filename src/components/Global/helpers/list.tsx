@@ -9,16 +9,31 @@ type ListProps<T extends ListType> = Omit<LegendListProps<T>, 'keyExtractor' | '
 	ref?: Ref<LegendListRef>
 }
 
-export default function List<T extends ListType>(props: ListProps<T>) {
+/**
+ * A generic list component that wraps the {@link LegendList} component and provides
+ * default key extraction from the {@link ItemKeyExtractor} and recycling behavior.
+ *
+ * This list component automatically applies flex and margin styles for vertical lists only, ensuring that
+ * horizontal lists are not affected by these styles and behave as expected.
+ *
+ * @param param0 The props for the list component
+ * @returns The rendered list component
+ */
+export default function List<T extends ListType>({ horizontal, ...props }: ListProps<T>) {
+	const contentContainerStyle = horizontal
+		? undefined
+		: {
+				margin: 4,
+				flex: 1,
+			}
+
 	return (
 		<LegendList<T>
+			horizontal={horizontal}
 			{...props}
 			keyExtractor={ItemKeyExtractor}
 			recycleItems
-			contentContainerStyle={{
-				margin: 4,
-				flex: 1,
-			}}
+			contentContainerStyle={contentContainerStyle}
 		/>
 	)
 }
