@@ -98,7 +98,7 @@ export default function TrackRowContent({
 			alignItems='center'
 			flex={1}
 			gap='1'
-			marginVertical='1'
+			margin='1'
 			transition={'quick'}
 			opacity='press:0.5'
 			backgroundColor='background'

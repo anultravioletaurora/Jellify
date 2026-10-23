@@ -164,10 +164,8 @@ function ItemRow({
 				width={'100%'}
 				transition={'quick'}
 				opacity={pressOpacity}
-				paddingVertical='2'
-				paddingRight='2'
+				padding='1'
 				backgroundColor='background'
-				borderRadius='2'
 				testID={testID ?? (item.Id ? `item-row-${item.Id}` : undefined)}
 				onPressIn={onPressIn}
 				onPress={onPressCallback}
@@ -182,7 +180,7 @@ function ItemRow({
 					{renderRunTime ? (
 						<RunTimeTicks>{item.RunTimeTicks}</RunTimeTicks>
 					) : item.Type === 'Playlist' ? (
-						<SizableText color={'borderColor'}>
+						<SizableText fontSize='2' color={'borderColor'}>
 							{`${playlistTrackCount ?? 0} ${playlistTrackCount === 1 ? 'Track' : 'Tracks'}`}
 						</SizableText>
 					) : null}
@@ -223,16 +221,16 @@ function ItemRow({
 				<XStack justifyContent='flex-end' alignItems='center' flexShrink={1}>
 					{renderRunTime ? (
 						<RunTimeTicks>{item.RunTimeTicks}</RunTimeTicks>
-					) : item.Type === 'Playlist' ? (
-						<SizableText fontSize='2' color={'borderColor'}>
-							{`${playlistTrackCount ?? 0} ${playlistTrackCount === 1 ? 'Track' : 'Tracks'}`}
-						</SizableText>
-					) : null}
+					) : (
+						item.Type === 'Playlist' && (
+							<SizableText fontSize='2' color={'borderColor'}>
+								{`${playlistTrackCount ?? 0} ${playlistTrackCount === 1 ? 'Track' : 'Tracks'}`}
+							</SizableText>
+						)
+					)}
 					<FavoriteIcon item={item} />
 
-					{item.Type === 'Audio' || item.Type === 'MusicAlbum' ? (
-						<Icon name='dots-horizontal' onPress={onLongPress} />
-					) : null}
+					<Icon name='dots-horizontal' onPress={onLongPress} />
 				</XStack>
 			</XStack>
 		</SwipeableRow>
@@ -333,8 +331,8 @@ function HideableArtwork({
 			<XStack marginHorizontal='2' marginVertical={'auto'} alignItems='center'>
 				<ItemImage
 					item={item}
-					height={'4'}
-					width={'4'}
+					height={'3'}
+					width={'3'}
 					elevate
 					circular={item.Type === 'MusicArtist' || circular}
 					imageOptions={{ maxWidth: 140, maxHeight: 140, quality: 90 }}

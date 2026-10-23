@@ -15,6 +15,7 @@ import { useAreAllDownloaded } from '../../hooks/downloads'
 import useDownloadTracks, { useDeleteDownloads } from '../../hooks/downloads/mutations'
 import { useAlbumDiscs } from '../../api/queries/album'
 import { ItemKeyExtractor } from '../../utils/parsing/key-extractor'
+import AlbumSectionHeader from './section-header'
 
 /**
  * The screen for an Album's track list
@@ -100,27 +101,15 @@ export function Album({ album }: { album: BaseItemDto }): React.JSX.Element {
 			contentInsetAdjustmentBehavior='automatic'
 			contentContainerStyle={{
 				flexGrow: 1,
-				paddingHorizontal: 2,
+				padding: 8,
 			}}
 			sections={sections}
 			keyExtractor={ItemKeyExtractor}
 			maxToRenderPerBatch={50}
-			renderSectionHeader={({ section }) => {
-				return !isPending && hasMultipleSections ? (
-					<XStack
-						width='100%'
-						justifyContent={hasMultipleSections ? 'space-between' : 'flex-end'}
-						alignItems='center'
-						backgroundColor='background'
-						paddingHorizontal='2'
-					>
-						<SizableText
-							padding={'2'}
-							fontWeight='bold'
-						>{`Disc ${section.title}`}</SizableText>
-					</XStack>
-				) : null
-			}}
+			renderSectionHeader={({ section }) =>
+				!isPending &&
+				hasMultipleSections && <AlbumSectionHeader discNumber={section.title} />
+			}
 			ListHeaderComponent={<AlbumTrackListHeader album={album} />}
 			renderItem={({ item: track, index }) => {
 				const trackIndexInAlbum =

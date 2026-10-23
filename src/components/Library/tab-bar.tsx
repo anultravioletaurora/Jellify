@@ -1,6 +1,6 @@
 import { MaterialTopTabBar, MaterialTopTabBarProps } from '@react-navigation/material-top-tabs'
 import React from 'react'
-import { XStack, YStack, Paragraph, useTheme } from 'tamagui'
+import { XStack, YStack, useTheme, SizableText } from 'tamagui'
 import Icon from '../Global/components/icon'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import useLibraryStore from '../../stores/library'
@@ -85,9 +85,9 @@ function LibraryTabBar(props: MaterialTopTabBarProps) {
 						>
 							<Icon name={'plus-circle-outline'} color={'primary'} />
 
-							<Paragraph fontWeight='6' color='primary'>
+							<SizableText fontSize='2' fontWeight='6' color='primary'>
 								Create Playlist
-							</Paragraph>
+							</SizableText>
 						</XStack>
 					)}
 
@@ -100,9 +100,9 @@ function LibraryTabBar(props: MaterialTopTabBarProps) {
 						>
 							<Icon name={'shuffle'} color={'borderColor'} />
 
-							<Paragraph fontWeight='6' color='borderColor'>
+							<SizableText fontSize='2' fontWeight='6' color='borderColor'>
 								All
-							</Paragraph>
+							</SizableText>
 						</XStack>
 					)}
 
@@ -121,9 +121,9 @@ function LibraryTabBar(props: MaterialTopTabBarProps) {
 							>
 								<Icon name={'sort'} color={'borderColor'} />
 
-								<Paragraph fontWeight='6' color='borderColor'>
+								<SizableText fontSize='2' fontWeight='6' color='borderColor'>
 									Sort
-								</Paragraph>
+								</SizableText>
 							</XStack>
 
 							<XStack
@@ -142,12 +142,13 @@ function LibraryTabBar(props: MaterialTopTabBarProps) {
 									color={hasActiveFilters ? 'primary' : 'borderColor'}
 								/>
 
-								<Paragraph
+								<SizableText
+									fontSize='2'
 									fontWeight='6'
 									color={`${hasActiveFilters ? 'primary' : 'borderColor'}`}
 								>
 									Filter
-								</Paragraph>
+								</SizableText>
 							</XStack>
 						</>
 					)}
@@ -186,9 +187,9 @@ function LibraryTabBar(props: MaterialTopTabBarProps) {
 							>
 								<Icon name={'filter-remove'} color={'borderColor'} />
 
-								<Paragraph fontWeight='6' color='borderColor'>
+								<SizableText fontSize='2' fontWeight='6' color='borderColor'>
 									Clear
-								</Paragraph>
+								</SizableText>
 							</XStack>
 						)}
 				</XStack>

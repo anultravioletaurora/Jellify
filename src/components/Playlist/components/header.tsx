@@ -14,7 +14,6 @@ import { RunTimeTicks } from '../../Global/helpers/time-codes'
 import { BUTTON_PRESS_STYLES } from '../../../configs/styling/elements'
 import { loadNewQueue } from '../../../player/queuing'
 import { usePlaylistContext } from '../../../providers/Playlist'
-import { LayoutChangeEvent } from 'react-native'
 
 export default function PlaylistTracklistHeader(): React.JSX.Element {
 	const { playlist, playlistTracks, editing, newName, setNewName } = usePlaylistContext()
@@ -100,15 +99,14 @@ function PlaylistHeaderControls({
 	}
 
 	return (
-		<XStack justifyContent='center' marginHorizontal='2' gap='2'>
+		<XStack justifyContent='center' gap='2'>
 			<Button
 				flex={1}
 				backgroundColor={'primary'}
 				onPress={async () => await playPlaylist(false)}
 				icon={<Icon name='play' color='background' size='7' />}
-				{...BUTTON_PRESS_STYLES}
 			>
-				<SizableText fontWeight='bold' color={'background'}>
+				<SizableText fontSize='2' fontWeight='bold' color={'background'}>
 					Play
 				</SizableText>
 			</Button>
@@ -119,9 +117,8 @@ function PlaylistHeaderControls({
 				borderWidth={'1'}
 				onPress={async () => await playPlaylist(true)}
 				icon={<Icon name='shuffle' color='primary' size='7' />}
-				{...BUTTON_PRESS_STYLES}
 			>
-				<SizableText fontWeight='bold' color={'primary'}>
+				<SizableText fontSize='2' fontWeight='bold' color={'primary'}>
 					Shuffle
 				</SizableText>
 			</Button>
