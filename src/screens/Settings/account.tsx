@@ -49,10 +49,10 @@ export default function AccountScreen(): React.JSX.Element {
 							</Avatar.Fallback>
 						</Avatar>
 						<YStack alignItems='center' gap='1'>
-							<SizableText size='7' fontWeight='6' color='background'>
+							<SizableText size='3' fontWeight='6' color='background'>
 								{user?.name ?? 'Unknown User'}
 							</SizableText>
-							<SizableText size='3' color='background'>
+							<SizableText size='2' color='background'>
 								Jellyfin User
 							</SizableText>
 						</YStack>
@@ -86,24 +86,24 @@ export default function AccountScreen(): React.JSX.Element {
 								<Icon name='music-box-multiple' color='background' size='7' />
 							</YStack>
 							<YStack flex={1}>
-								<SizableText size='4' fontWeight='6'>
+								<SizableText size='2' fontWeight='6'>
 									{library?.musicLibraryName ?? 'Unknown Library'}
 								</SizableText>
-								<SizableText size='2' color='borderColor'>
+								<SizableText size='1' color='borderColor'>
 									Current library
 								</SizableText>
 							</YStack>
 						</XStack>
 						<Button
 							testID='account-change-library-button'
-							size='sm'
 							backgroundColor='transparent'
 							borderColor='borderColor'
 							borderWidth={1}
+							paddingHorizontal='2'
 							onPress={() => navigation.navigate('LibrarySelection')}
 							icon={<Icon name='swap-horizontal' color='color' size='7' />}
 						>
-							<SizableText size='3'>Change</SizableText>
+							<SizableText size='2'>Change</SizableText>
 						</Button>
 					</XStack>
 				</SettingsSection>
@@ -129,10 +129,10 @@ export default function AccountScreen(): React.JSX.Element {
 								<Icon name='server' color='background' size='7' />
 							</YStack>
 							<YStack flex={1}>
-								<SizableText size='4' fontWeight='600'>
+								<SizableText size='2' fontWeight='600'>
 									{server?.name ?? 'Unknown Server'}
 								</SizableText>
-								<SizableText size='2' color='borderColor'>
+								<SizableText size='1' color='borderColor'>
 									{server?.url ?? 'Unknown Address'}
 								</SizableText>
 							</YStack>
@@ -181,7 +181,7 @@ function ServerInfoChip({
 		>
 			<Icon name={icon} color={color} size='7' />
 			<YStack flex={1}>
-				<SizableText size='3' fontWeight='600' numberOfLines={1}>
+				<SizableText size='2' fontWeight='600' numberOfLines={1}>
 					{value}
 				</SizableText>
 				<SizableText size='1' color='borderColor'>

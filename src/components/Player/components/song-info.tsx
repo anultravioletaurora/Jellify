@@ -88,7 +88,12 @@ export default function SongInfo(): React.JSX.Element {
 							{...TextTickerConfig}
 							key={`${currentTrack?.id ?? 'no-track'}-title`}
 						>
-							<H6 fontWeight='6' {...ICON_PRESS_STYLES} onPress={handleTrackPress}>
+							<H6
+								fontSize='4'
+								fontWeight='6'
+								{...ICON_PRESS_STYLES}
+								onPress={handleTrackPress}
+							>
 								{trackTitle}
 							</H6>
 						</TextTicker>
@@ -97,7 +102,7 @@ export default function SongInfo(): React.JSX.Element {
 							{...TextTickerConfig}
 							key={`${currentTrack?.id ?? 'no-track'}-artist`}
 						>
-							<H6 {...ICON_PRESS_STYLES} onPress={handleArtistPress}>
+							<H6 fontSize='4' {...ICON_PRESS_STYLES} onPress={handleArtistPress}>
 								{currentTrack?.artist ?? 'Unknown Artist'}
 							</H6>
 							{isExplicit(item) && (

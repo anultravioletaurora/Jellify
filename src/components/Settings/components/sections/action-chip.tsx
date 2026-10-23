@@ -26,12 +26,12 @@ export default function ActionChip({
 			onPress={onPress}
 			borderColor={active ? 'success' : 'borderColor'}
 			borderWidth={1}
-			paddingHorizontal='2-5'
+			padding='2'
 			size='xs'
-			borderRadius='10'
+			borderRadius={Infinity}
 			icon={<Icon name={icon} color={active ? 'background' : 'color'} size='7' />}
 		>
-			<SizableText color={`${active ? 'background' : 'color'}`} size='2'>
+			<SizableText fontWeight={'6'} color={`${active ? 'background' : 'color'}`} size='2'>
 				{label}
 			</SizableText>
 		</Button>

@@ -55,7 +55,7 @@ export default function VerticalSettings(): React.JSX.Element {
 							</Avatar.Fallback>
 						</Avatar>
 						<YStack flex={1}>
-							<SizableText size='6' fontWeight='6' color='background'>
+							<SizableText fontSize='2' fontWeight='6' color='background'>
 								{user?.name ?? 'Unknown User'}
 							</SizableText>
 							<XStack alignItems='center' gap='1-5'>
@@ -64,7 +64,7 @@ export default function VerticalSettings(): React.JSX.Element {
 									color={isSecure ? 'background' : 'warning'}
 									size='7'
 								/>
-								<SizableText size='3' color='background'>
+								<SizableText size='2' color='background'>
 									{server?.name ?? 'Unknown Server'}
 								</SizableText>
 							</XStack>

@@ -73,10 +73,10 @@ export default function PlaybackScreen(): React.JSX.Element {
 				>
 					<YStack gap='3'>
 						<YStack gap='1'>
-							<SizableText size='4' fontWeight='6'>
+							<SizableText size='2' fontWeight='6'>
 								Streaming Quality
 							</SizableText>
-							<SizableText size='2' color='borderColor'>
+							<SizableText size='1' color='borderColor'>
 								Changes apply to new tracks
 							</SizableText>
 						</YStack>

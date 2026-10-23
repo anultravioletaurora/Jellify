@@ -18,7 +18,7 @@ function PatronsList({ patrons }: { patrons: { fullName: string }[] | undefined 
 		<XStack flexWrap='wrap' gap='2' marginTop='2'>
 			{patrons.map((patron, index) => (
 				<XStack key={index} alignItems='flex-start' maxWidth='20'>
-					<SizableText numberOfLines={1} lineBreakStrategyIOS='standard'>
+					<SizableText fontSize='2' numberOfLines={1} lineBreakStrategyIOS='standard'>
 						{patron.fullName}
 					</SizableText>
 				</XStack>
@@ -32,7 +32,7 @@ function SpecialThanksList() {
 		<XStack flexWrap='wrap' gap='2' marginTop='2'>
 			{SPECIAL_THANKS.map((awesomePerson) => (
 				<XStack key={awesomePerson} alignItems='flex-start' maxWidth='20'>
-					<SizableText numberOfLines={1} lineBreakStrategyIOS='standard'>
+					<SizableText fontSize='2' numberOfLines={1} lineBreakStrategyIOS='standard'>
 						{awesomePerson}
 					</SizableText>
 				</XStack>
@@ -66,17 +66,17 @@ export default function AboutScreen(): React.JSX.Element {
 					<YStack gap='1'>
 						<XStack alignItems='center' gap='2' testID='jellify-version-text'>
 							<Icon name='jellyfish' color='primary' />
-							<SizableText size='6' fontWeight='6'>
+							<SizableText size='2' fontWeight='6'>
 								Jellify {version}
 							</SizableText>
 						</XStack>
 						{caption && (
-							<SizableText size='2' color='borderColor'>
+							<SizableText size='1' color='borderColor'>
 								{caption}
 							</SizableText>
 						)}
 						{otaVersion && (
-							<SizableText size='2' color='borderColor'>
+							<SizableText size='1' color='borderColor'>
 								OTA Version: {otaVersion}
 							</SizableText>
 						)}
@@ -93,7 +93,7 @@ export default function AboutScreen(): React.JSX.Element {
 							testID='jellify-source-link'
 						>
 							<Icon name='code-tags' size='7' color='borderColor' />
-							<SizableText>View Source</SizableText>
+							<SizableText fontSize='2'>View Source</SizableText>
 						</XStack>
 						<XStack
 							alignItems='center'
@@ -102,12 +102,12 @@ export default function AboutScreen(): React.JSX.Element {
 							onPress={() => downloadUpdate(true)}
 						>
 							<Icon name='cellphone-arrow-down' size='7' color='success' />
-							<SizableText>Update</SizableText>
+							<SizableText fontSize='2'>Update</SizableText>
 						</XStack>
 					</XStack>
 
 					<YStack gap='2'>
-						<SizableText size='4' fontWeight='600'>
+						<SizableText size='2' fontWeight='600'>
 							Caught a bug?
 						</SizableText>
 						<XStack gap='4' flexWrap='wrap'>
@@ -121,7 +121,7 @@ export default function AboutScreen(): React.JSX.Element {
 								testID='jellify-report-issue'
 							>
 								<Icon name='github' size='7' color='warning' />
-								<SizableText>Report Issue</SizableText>
+								<SizableText fontSize='2'>Report Issue</SizableText>
 							</XStack>
 							<XStack
 								alignItems='center'
@@ -131,7 +131,7 @@ export default function AboutScreen(): React.JSX.Element {
 								testID='jellify-join-discord'
 							>
 								<Icon name='chat' size='7' color='secondary' />
-								<SizableText>Join Discord</SizableText>
+								<SizableText fontSize='2'>Join Discord</SizableText>
 							</XStack>
 						</XStack>
 					</YStack>
@@ -147,7 +147,7 @@ export default function AboutScreen(): React.JSX.Element {
 					borderWidth='1'
 					testID='jellify-wall-of-fame'
 				>
-					<SizableText size='4' fontWeight='600'>
+					<SizableText size='2' fontWeight='600'>
 						Wall of Fame
 					</SizableText>
 					<XStack gap='4' flexWrap='wrap'>
@@ -161,7 +161,7 @@ export default function AboutScreen(): React.JSX.Element {
 							testID='jellify-sponsors-link'
 						>
 							<Icon name='github' size='7' color='primary' />
-							<SizableText>Sponsors</SizableText>
+							<SizableText fontSize='2'>Sponsors</SizableText>
 						</XStack>
 						<XStack
 							alignItems='center'
@@ -173,7 +173,7 @@ export default function AboutScreen(): React.JSX.Element {
 							testID='jellify-patreon-link'
 						>
 							<Icon name='patreon' size='7' color='danger' />
-							<SizableText>Patreon</SizableText>
+							<SizableText fontSize='2'>Patreon</SizableText>
 						</XStack>
 						<XStack
 							alignItems='center'
@@ -183,7 +183,7 @@ export default function AboutScreen(): React.JSX.Element {
 							testID='jellify-ko-fi-link'
 						>
 							<Icon name='coffee-outline' size='7' color='warning' />
-							<SizableText>Ko-fi</SizableText>
+							<SizableText fontSize='2'>Ko-fi</SizableText>
 						</XStack>
 					</XStack>
 					<PatronsList patrons={patrons} />
@@ -199,7 +199,7 @@ export default function AboutScreen(): React.JSX.Element {
 					borderWidth='1'
 				>
 					<YStack gap='1'>
-						<SizableText size='4' fontWeight='6'>
+						<SizableText size='2' fontWeight='6'>
 							Special Thanks
 						</SizableText>
 						<SpecialThanksList />
