@@ -37,8 +37,8 @@ function SuggestionsHeader({ suggestions }: SuggestionsHeaderProps): React.JSX.E
 	)
 
 	return (
-		<YStack accessibilityLabel='Suggested artists'>
-			<SizableText fontWeight='bold' size={'6'}>
+		<YStack accessibilityLabel='Suggested artists' marginTop='2'>
+			<SizableText fontWeight='bold' size={'4'}>
 				Suggestions
 			</SizableText>
 
@@ -62,7 +62,9 @@ const PLACEHOLDER = pickRandomItemFromArray(SEARCH_PLACEHOLDERS)
 function EmptyState({ isFetching }: EmptyStateProps): React.JSX.Element {
 	return (
 		<YStack alignContent='center' gap='2' justifyContent='center'>
-			<SizableText textAlign='center'>{PLACEHOLDER}</SizableText>
+			<SizableText fontSize='3' textAlign='center'>
+				{PLACEHOLDER}
+			</SizableText>
 			{isFetching && <Spinner color='primary' />}
 		</YStack>
 	)
@@ -99,10 +101,6 @@ export default function Suggestions(): React.JSX.Element {
 		<List
 			// Artists are displayed in the header, so we'll filter them out here
 			data={filteredSuggestions}
-			contentContainerStyle={{
-				marginVertical: getTokenValue('2'),
-				flex: 1,
-			}}
 			ListHeaderComponent={<SuggestionsHeader suggestions={suggestions} />}
 			ListEmptyComponent={<EmptyState isFetching={fetchingSuggestions} />}
 			onScrollBeginDrag={handleScrollBeginDrag}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Input from '../Global/helpers/input'
 import ItemRow from '../Global/components/item-row'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { getToken, H3, H5, SizableText, Spinner, YStack } from 'tamagui'
+import { H3, H5, SizableText, Spinner, YStack } from 'tamagui'
 import Suggestions from './suggestions'
 import { isEmpty } from 'lodash'
 import HorizontalCardList from '../Global/components/horizontal-list'
@@ -77,12 +77,9 @@ export default function Search(): React.JSX.Element {
 
 	return (
 		<List
-			contentContainerStyle={{
-				margin: getToken('4'),
-			}}
 			contentInsetAdjustmentBehavior='automatic'
 			ListHeaderComponent={
-				<YStack paddingTop='2'>
+				<YStack marginTop='2'>
 					<Input
 						placeholder={placeholder}
 						onChangeText={handleSearchStringUpdate}
@@ -116,7 +113,7 @@ export default function Search(): React.JSX.Element {
 												}),
 											)
 										}}
-										size={'8'}
+										size={'10'}
 										caption={formatArtistName(artistResult.Name)}
 									/>
 								)}
@@ -146,7 +143,7 @@ export default function Search(): React.JSX.Element {
 							paddingHorizontal='4'
 						>
 							<H5>No Results</H5>
-							<SizableText textAlign='center'>
+							<SizableText fontSize='2' textAlign='center'>
 								{`No results found for "${searchString}". Try a different search term.`}
 							</SizableText>
 						</YStack>

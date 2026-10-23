@@ -10,5 +10,15 @@ type ListProps<T extends ListType> = Omit<LegendListProps<T>, 'keyExtractor' | '
 }
 
 export default function List<T extends ListType>(props: ListProps<T>) {
-	return <LegendList<T> {...props} keyExtractor={ItemKeyExtractor} recycleItems />
+	return (
+		<LegendList<T>
+			{...props}
+			keyExtractor={ItemKeyExtractor}
+			recycleItems
+			contentContainerStyle={{
+				margin: 4,
+				flex: 1,
+			}}
+		/>
+	)
 }
