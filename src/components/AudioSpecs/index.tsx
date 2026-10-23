@@ -54,7 +54,7 @@ function MediaSourceInfoView({
 	return (
 		<YGroup>
 			<ListItem justifyContent='flex-start'>
-				<SizableText fontWeight='bold'>{`${capitalize(type)} Specs`}</SizableText>
+				<SizableText fontWeight='6'>{`${capitalize(type)} Specs`}</SizableText>
 			</ListItem>
 			<ListItem gap='2' justifyContent='flex-start'>
 				<Icon
@@ -63,7 +63,7 @@ function MediaSourceInfoView({
 					color='primary'
 				/>
 
-				<SizableText fontWeight='bold'>
+				<SizableText fontWeight='6'>
 					{type === 'download'
 						? 'Downloaded File'
 						: TranscodingUrl
@@ -77,7 +77,7 @@ function MediaSourceInfoView({
 						<Icon size='7' name='sine-wave' color={'primary'} />
 
 						<SizableText
-							fontWeight='bold'
+							fontWeight='6'
 							fontVariant={['tabular-nums']}
 						>{`${Math.floor(bitrate / 1000)}kbps`}</SizableText>
 					</ListItem>
@@ -89,7 +89,7 @@ function MediaSourceInfoView({
 					<ListItem gap='2' justifyContent='flex-start'>
 						<Icon size='7' name='music-box-outline' color={'primary'} />
 
-						<SizableText fontWeight='bold'>{container.toUpperCase()}</SizableText>
+						<SizableText fontWeight='6'>{container.toUpperCase()}</SizableText>
 					</ListItem>
 				</YGroup.Item>
 			)}

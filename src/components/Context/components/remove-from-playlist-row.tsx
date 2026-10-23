@@ -43,7 +43,7 @@ export default function RemoveFromPlaylistRow({
 		>
 			<Icon fontSize={'7'} color='warning' name='playlist-remove' />
 
-			<SizableText fontWeight='bold'>Remove from Playlist</SizableText>
+			<SizableText fontWeight='6'>Remove from Playlist</SizableText>
 		</ListItem>
 	)
 }

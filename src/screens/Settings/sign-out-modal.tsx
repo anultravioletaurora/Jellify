@@ -56,7 +56,7 @@ export default function SignOutModal(): React.JSX.Element {
 					flex={1}
 					onPress={settingsStackNavigation.goBack}
 				>
-					<SizableText fontWeight='bold' color={'borderColor'}>
+					<SizableText fontWeight='6' color={'borderColor'}>
 						Cancel
 					</SizableText>
 				</Button>
@@ -67,7 +67,7 @@ export default function SignOutModal(): React.JSX.Element {
 					borderColor={'danger'}
 					onPress={onSignOut}
 				>
-					<SizableText fontWeight='bold' color={'danger'}>
+					<SizableText fontWeight='6' color={'danger'}>
 						Sign out
 					</SizableText>
 				</Button>

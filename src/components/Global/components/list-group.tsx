@@ -31,7 +31,7 @@ export default function ListGroup({
 								<Spacer />
 								<YStack justifyContent='center' flex={1}>
 									<XStack>
-										<SizableText fontWeight='bold' size={'7'}>
+										<SizableText fontWeight='6' size={'7'}>
 											{item.Name ?? 'Untitled'}
 										</SizableText>
 										<SizableText>
@@ -63,12 +63,7 @@ export default function ListGroup({
 							<Icon name='arrow-right-bottom' size='10' />
 
 							<Spacer />
-							<SizableText
-								fontWeight='bold'
-								size={'7'}
-								margin={'1'}
-								marginTop={'2-5'}
-							>
+							<SizableText fontWeight='6' size={'7'} margin={'1'} marginTop={'2-5'}>
 								See More
 							</SizableText>
 						</XStack>

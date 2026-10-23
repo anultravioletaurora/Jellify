@@ -85,7 +85,7 @@ export default function Filters({ currentTab }: FiltersProps): React.JSX.Element
 
 	return (
 		<YStack padding='4' gap='1' marginBottom={bottom}>
-			<SizableText fontWeight='bold' size={'6'} marginBottom={'2'}>
+			<SizableText fontWeight='6' size={'6'} marginBottom={'2'}>
 				Filter Options
 			</SizableText>
 

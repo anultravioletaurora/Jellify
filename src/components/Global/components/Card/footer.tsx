@@ -56,6 +56,11 @@ export default function ItemCardFooter({ size, type }: ItemCardComponentFooterPr
 	)
 }
 
+/**
+ * Footer Icon styles
+ *
+ * FWIW - I hate these random-ass numbers, we should make this more better
+ */
 const styles = StyleSheet.create({
 	cassette: {
 		shadowColor: 'black',
@@ -67,7 +72,10 @@ const styles = StyleSheet.create({
 		},
 		transform: [
 			{
-				translate: [-10, -20],
+				translate: [-13, -17],
+			},
+			{
+				scale: 0.75,
 			},
 		],
 	},
@@ -81,7 +89,7 @@ const styles = StyleSheet.create({
 		},
 		transform: [
 			{
-				translate: [-10, -25],
+				translate: [-10, -22],
 			},
 		],
 	},

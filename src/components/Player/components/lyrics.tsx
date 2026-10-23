@@ -585,12 +585,7 @@ export default function Lyrics(): React.JSX.Element {
 								<Icon size='7' name='chevron-left' />
 							</XStack>
 							<YStack>
-								<Text
-									fontSize={16}
-									fontWeight='bold'
-									color={color}
-									textAlign='center'
-								>
+								<Text fontSize={16} fontWeight='6' color={color} textAlign='center'>
 									{nowPlaying?.title}
 								</Text>
 								<Text fontSize={14} color={color} textAlign='center'>

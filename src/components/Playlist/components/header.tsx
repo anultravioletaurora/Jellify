@@ -36,7 +36,7 @@ export default function PlaylistTracklistHeader(): React.JSX.Element {
 						placeholder='Playlist Name'
 						textAlign='center'
 						fontSize={'8'}
-						fontWeight='bold'
+						fontWeight='6'
 						clearButtonMode='while-editing'
 						marginHorizontal={'4'}
 					/>
@@ -106,7 +106,7 @@ function PlaylistHeaderControls({
 				onPress={async () => await playPlaylist(false)}
 				icon={<Icon name='play' color='background' size='7' />}
 			>
-				<SizableText fontSize='2' fontWeight='bold' color={'background'}>
+				<SizableText fontSize='2' fontWeight='6' color={'background'}>
 					Play
 				</SizableText>
 			</Button>
@@ -118,7 +118,7 @@ function PlaylistHeaderControls({
 				onPress={async () => await playPlaylist(true)}
 				icon={<Icon name='shuffle' color='primary' size='7' />}
 			>
-				<SizableText fontSize='2' fontWeight='bold' color={'primary'}>
+				<SizableText fontSize='2' fontWeight='6' color={'primary'}>
 					Shuffle
 				</SizableText>
 			</Button>

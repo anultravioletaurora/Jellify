@@ -107,7 +107,7 @@ export default function AboutScreen(): React.JSX.Element {
 					</XStack>
 
 					<YStack gap='2'>
-						<SizableText size='2' fontWeight='600'>
+						<SizableText size='2' fontWeight='6'>
 							Caught a bug?
 						</SizableText>
 						<XStack gap='4' flexWrap='wrap'>
@@ -147,7 +147,7 @@ export default function AboutScreen(): React.JSX.Element {
 					borderWidth='1'
 					testID='jellify-wall-of-fame'
 				>
-					<SizableText size='2' fontWeight='600'>
+					<SizableText size='2' fontWeight='6'>
 						Wall of Fame
 					</SizableText>
 					<XStack gap='4' flexWrap='wrap'>

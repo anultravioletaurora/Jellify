@@ -163,7 +163,7 @@ function ItemRow({
 				width={'100%'}
 				transition={'quick'}
 				opacity={pressOpacity}
-				padding='1'
+				paddingVertical='1'
 				backgroundColor='background'
 				testID={testID ?? (item.Id ? `item-row-${item.Id}` : undefined)}
 				onPressIn={onPressIn}
@@ -205,7 +205,7 @@ function ItemRow({
 				width={'100%'}
 				transition={'quick'}
 				opacity={pressOpacity}
-				margin='2'
+				paddingVertical='1'
 				backgroundColor='background'
 				testID={testID ?? (item.Id ? `item-row-${item.Id}` : undefined)}
 				onPressIn={onPressIn}
@@ -256,7 +256,7 @@ function ItemRowDetails({
 		<YStack alignContent='center' justifyContent='center' flexGrow={1}>
 			<SizableText
 				fontSize='2'
-				fontWeight='bold'
+				fontWeight='6'
 				lineBreakStrategyIOS='standard'
 				numberOfLines={1}
 			>
@@ -327,7 +327,7 @@ function HideableArtwork({
 	}))
 	return (
 		<Animated.View style={style} onLayout={onLayout}>
-			<XStack marginHorizontal='2' marginVertical={'auto'} alignItems='center'>
+			<XStack marginRight='2' marginVertical={'auto'} alignItems='center'>
 				<ItemImage
 					item={item}
 					height={'3'}

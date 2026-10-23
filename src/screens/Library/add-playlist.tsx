@@ -18,7 +18,7 @@ export default function AddPlaylist(): React.JSX.Element {
 
 	return (
 		<View margin='4' flex={1}>
-			<Label size='2' htmlFor='name' fontWeight='bold' justifyContent='flex-end'>
+			<Label size='2' htmlFor='name' fontWeight='6' justifyContent='flex-end'>
 				Name
 			</Label>
 			<Input id='name' onChangeText={setName} />
@@ -31,7 +31,7 @@ export default function AddPlaylist(): React.JSX.Element {
 					flex={1}
 					icon={() => <Icon name='chevron-left' size='7' color={'borderColor'} />}
 				>
-					<SizableText fontWeight='bold' color={'borderColor'}>
+					<SizableText fontWeight='6' color={'borderColor'}>
 						Cancel
 					</SizableText>
 				</Button>
@@ -50,7 +50,7 @@ export default function AddPlaylist(): React.JSX.Element {
 					{addPlaylist.isPending ? (
 						<Spinner color='primary' />
 					) : (
-						<SizableText fontWeight='bold' color={'primary'}>
+						<SizableText fontWeight='6' color={'primary'}>
 							Save
 						</SizableText>
 					)}

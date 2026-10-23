@@ -37,7 +37,7 @@ function AddFavoriteContextMenuRow({ item }: { item: BaseItemDto }): React.JSX.E
 				<XStack alignItems='center' justifyContent='flex-start' gap='3'>
 					<Icon size={'3'} name={'heart-outline'} color={'primary'} />
 
-					<SizableText fontSize={'3'} fontWeight='bold'>
+					<SizableText fontSize={'3'} fontWeight='6'>
 						Add to favorites
 					</SizableText>
 				</XStack>
@@ -68,7 +68,7 @@ function RemoveFavoriteContextMenuRow({ item }: { item: BaseItemDto }): React.JS
 				<XStack alignItems='center' justifyContent='flex-start' gap='3'>
 					<Icon size={'7'} name={'heart'} color={'primary'} />
 
-					<SizableText fontSize={'3'} fontWeight='bold'>
+					<SizableText fontSize={'3'} fontWeight='6'>
 						Remove from favorites
 					</SizableText>
 				</XStack>

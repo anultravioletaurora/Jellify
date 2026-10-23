@@ -36,7 +36,7 @@ export default function AlbumTrackListFooter({
 			<YStack gap='3' marginVertical='2' flex={1}>
 				{album.ArtistItems && album.ArtistItems.length > 1 && (
 					<YStack>
-						<Text marginHorizontal='2' fontWeight='bold'>
+						<Text marginHorizontal='2' fontWeight='6'>
 							Featuring
 						</Text>
 
@@ -66,7 +66,7 @@ export default function AlbumTrackListFooter({
 						exiting={FadeOut.easing(Easing.out(Easing.ease))}
 						style={{ flex: 1 }}
 					>
-						<Text marginHorizontal='2' fontWeight='bold'>
+						<Text marginHorizontal='2' fontWeight='6'>
 							Similar Albums
 						</Text>
 						<HorizontalCardList

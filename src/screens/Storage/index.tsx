@@ -351,7 +351,7 @@ const DownloadRow = ({
 			)}
 
 			<YStack flex={1} gap='1'>
-				<SizableText size='4' fontWeight='600'>
+				<SizableText size='4' fontWeight='6'>
 					{download.originalTrack.title ?? 'Unknown track'}
 				</SizableText>
 				<SizableText fontSize='2' color='borderColor'>
@@ -377,7 +377,7 @@ const DownloadRow = ({
 
 const EmptyState = ({ onRefresh }: { onRefresh: () => void }) => (
 	<YStack padding='6' alignItems='center' gap='3'>
-		<SizableText size='6' fontWeight='600'>
+		<SizableText size='6' fontWeight='6'>
 			No offline music yet
 		</SizableText>
 		<SizableText fontSize='2' color='borderColor' textAlign='center'>
@@ -480,7 +480,7 @@ const StatChip = ({ label, value }: { label: string; value: string }) => (
 		padding='3'
 		backgroundColor='background'
 	>
-		<SizableText size='2' fontWeight='700'>
+		<SizableText size='2' fontWeight='8'>
 			{value}
 		</SizableText>
 		<SizableText fontSize='2' color='borderColor'>

@@ -20,7 +20,7 @@ export default function SimilarArtists(): React.JSX.Element {
 				<SizableText
 					margin={'2'}
 					size={'6'}
-					fontWeight='bold'
+					fontWeight='6'
 				>{`Similar to ${artist.Name ?? 'Unknown Artist'}`}</SizableText>
 
 				<List

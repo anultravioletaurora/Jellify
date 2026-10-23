@@ -15,7 +15,7 @@ export default function AlbumSectionHeader({
 			backgroundColor='background'
 			paddingHorizontal='2'
 		>
-			<SizableText padding={'2'} fontWeight='bold'>{`Disc ${discNumber}`}</SizableText>
+			<SizableText padding={'2'} fontWeight='6'>{`Disc ${discNumber}`}</SizableText>
 		</XStack>
 	)
 }

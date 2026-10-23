@@ -113,7 +113,7 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 			onPress={handleSelectAll}
 		>
 			<YStack flex={1}>
-				<SizableText fontWeight='bold'>Select all</SizableText>
+				<SizableText fontWeight='6'>Select all</SizableText>
 				{genres != null && (
 					<SizableText color='borderColor'>{`${allLoadedGenreIds.length} genres`}</SizableText>
 				)}
@@ -130,7 +130,7 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 			// Section header
 			return (
 				<YStack paddingVertical='2' paddingHorizontal='4' backgroundColor='background75'>
-					<SizableText fontWeight='bold' size='5'>
+					<SizableText fontWeight='6' size='5'>
 						{item}
 					</SizableText>
 				</YStack>
@@ -151,7 +151,7 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 			>
 				<ItemImage item={item} width='11' height='3' />
 				<YStack flex={1}>
-					<SizableText fontWeight='bold'>{genreName}</SizableText>
+					<SizableText fontWeight='6'>{genreName}</SizableText>
 					{item.SongCount !== undefined && (
 						<SizableText color='borderColor'>{`${item.SongCount} tracks`}</SizableText>
 					)}
@@ -191,7 +191,7 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 				<Button variant='outlined' size='sm' onPress={libraryStackNavigation.goBack}>
 					Cancel
 				</Button>
-				<SizableText fontWeight='bold' size='6'>
+				<SizableText fontWeight='6' size='6'>
 					Select Genres
 				</SizableText>
 				<Button
@@ -231,7 +231,7 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 				>
 					<SizableText
 						size='3'
-						fontWeight='bold'
+						fontWeight='6'
 						color='primary'
 					>{`${selectedGenreIds.length} selected`}</SizableText>
 					<Button variant='outlined' borderColor='primary' size='sm' onPress={handleSave}>

@@ -38,7 +38,7 @@ function SuggestionsHeader({ suggestions }: SuggestionsHeaderProps): React.JSX.E
 
 	return (
 		<YStack accessibilityLabel='Suggested artists' marginTop='2'>
-			<SizableText fontWeight='bold' size={'4'}>
+			<SizableText fontWeight='6' size={'4'}>
 				Suggestions
 			</SizableText>
 

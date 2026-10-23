@@ -33,7 +33,7 @@ export default function GesturesScreen(): React.JSX.Element {
 					<Separator borderColor='borderColor' />
 
 					<YStack gap='3'>
-						<SizableText size='2' fontWeight='600'>
+						<SizableText size='2' fontWeight='6'>
 							Swipe Left
 						</SizableText>
 						<XStack gap='2' flexWrap='wrap'>
@@ -69,7 +69,7 @@ export default function GesturesScreen(): React.JSX.Element {
 					</YStack>
 
 					<YStack gap='3'>
-						<SizableText size='4' fontWeight='600'>
+						<SizableText size='4' fontWeight='6'>
 							Swipe Right
 						</SizableText>
 						<XStack gap='2' flexWrap='wrap'>

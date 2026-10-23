@@ -58,7 +58,7 @@ function ThemeOptionCard({
 			minWidth='45%'
 		>
 			<Icon size='7' name={option.icon} color={isSelected ? 'primary' : 'borderColor'} />
-			<SizableText size='2' fontWeight='600' flex={1}>
+			<SizableText size='2' fontWeight='6' flex={1}>
 				{option.label}
 			</SizableText>
 			{isSelected && <Icon size='7' name='check-circle-outline' color='primary' />}
@@ -92,7 +92,7 @@ function ColorPresetCard({
 			minWidth='45%'
 		>
 			<YStack width={20} height={20} borderRadius={10} backgroundColor={palette.primary} />
-			<SizableText size='2' fontWeight='600' flex={1}>
+			<SizableText size='2' fontWeight='6' flex={1}>
 				{preset.label}
 			</SizableText>
 			{isSelected && <Icon size='7' name='check-circle-outline' color='primary' />}

@@ -98,7 +98,7 @@ export default function TrackRowContent({
 			alignItems='center'
 			flex={1}
 			gap='1'
-			margin='1'
+			paddingVertical='1'
 			transition={'quick'}
 			opacity='1 press:0.5'
 			backgroundColor='background'
@@ -132,7 +132,7 @@ export default function TrackRowContent({
 					<XStack alignItems='center'>
 						<SizableText
 							key={`${track.Id}-name`}
-							fontWeight='bold'
+							fontWeight='6'
 							color={textColor}
 							lineBreakStrategyIOS='standard'
 							numberOfLines={1}

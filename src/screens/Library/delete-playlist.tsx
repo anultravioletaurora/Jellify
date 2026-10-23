@@ -16,7 +16,7 @@ export default function DeletePlaylist({ route }: LibraryDeletePlaylistProps): R
 
 	return (
 		<YStack margin='4' gap='4' justifyContent='space-between' marginBottom={bottom}>
-			<SizableText fontWeight='bold' textAlign='center'>
+			<SizableText fontWeight='6' textAlign='center'>
 				{`Delete playlist ${route.params.playlist.Name ?? 'Untitled Playlist'}?`}
 			</SizableText>
 			<XStack justifyContent='space-evenly' gap='2'>
@@ -27,7 +27,7 @@ export default function DeletePlaylist({ route }: LibraryDeletePlaylistProps): R
 					borderColor={'borderColor'}
 					icon={() => <Icon name='chevron-left' size='7' color={'borderColor'} />}
 				>
-					<SizableText fontWeight='bold' color={'borderColor'}>
+					<SizableText fontWeight='6' color={'borderColor'}>
 						Cancel
 					</SizableText>
 				</Button>
@@ -46,7 +46,7 @@ export default function DeletePlaylist({ route }: LibraryDeletePlaylistProps): R
 					{deletePlaylist.isPending ? (
 						<Spinner color='warning' />
 					) : (
-						<SizableText fontWeight='bold' color={'warning'}>
+						<SizableText fontWeight='6' color={'warning'}>
 							Delete
 						</SizableText>
 					)}

@@ -71,14 +71,14 @@ export default function AddToPlaylist({
 
 					<YStack justifyContent='space-evenly'>
 						<TextTicker {...TextTickerConfig}>
-							<SizableText fontWeight='bold' size={'6'}>
+							<SizableText fontWeight='6' size={'6'}>
 								{getItemName(source ?? tracks[0])}
 							</SizableText>
 						</TextTicker>
 
 						{(source ?? tracks[0])?.ArtistItems && (
 							<TextTicker {...TextTickerConfig}>
-								<SizableText fontWeight='bold'>
+								<SizableText fontWeight='6'>
 									{`${(source ?? tracks[0])!.ArtistItems?.map((artist) => getItemName(artist)).join(', ')}`}
 								</SizableText>
 							</TextTicker>
@@ -184,7 +184,7 @@ function AddToPlaylistRow({
 			/>
 
 			<YStack alignItems='flex-start' justifyContent='space-evenly' flexGrow={1}>
-				<SizableText fontWeight='bold'>{playlist.Name ?? 'Untitled Playlist'}</SizableText>
+				<SizableText fontWeight='6'>{playlist.Name ?? 'Untitled Playlist'}</SizableText>
 
 				<SizableText
 					color={'neutral'}

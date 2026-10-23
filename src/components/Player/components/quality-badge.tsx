@@ -40,7 +40,7 @@ export default function QualityBadge({
 		>
 			<SizableText
 				fontSize='2'
-				fontWeight='bold'
+				fontWeight='6'
 				color={'background'}
 				textAlign='center'
 				fontVariant={['tabular-nums']}

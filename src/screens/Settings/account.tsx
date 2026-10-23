@@ -129,7 +129,7 @@ export default function AccountScreen(): React.JSX.Element {
 								<Icon name='server' color='background' size='7' />
 							</YStack>
 							<YStack flex={1}>
-								<SizableText size='2' fontWeight='600'>
+								<SizableText size='2' fontWeight='6'>
 									{server?.name ?? 'Unknown Server'}
 								</SizableText>
 								<SizableText size='1' color='borderColor'>
@@ -181,7 +181,7 @@ function ServerInfoChip({
 		>
 			<Icon name={icon} color={color} size='7' />
 			<YStack flex={1}>
-				<SizableText size='2' fontWeight='600' numberOfLines={1}>
+				<SizableText size='2' fontWeight='6' numberOfLines={1}>
 					{value}
 				</SizableText>
 				<SizableText size='1' color='borderColor'>

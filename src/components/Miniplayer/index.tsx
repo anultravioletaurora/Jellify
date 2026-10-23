@@ -125,7 +125,7 @@ export default function Miniplayer(): React.JSX.Element | null {
 								key={`${nowPlaying!.id}-mini-player-song-info`}
 							>
 								<TextTicker {...TextTickerConfig}>
-									<SizableText fontWeight='bold' fontSize='2'>
+									<SizableText fontWeight='6' fontSize='2'>
 										{nowPlaying.title ?? 'Nothing Playing'}
 									</SizableText>
 								</TextTicker>
