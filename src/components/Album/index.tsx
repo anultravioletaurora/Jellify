@@ -69,7 +69,7 @@ export function Album({ album }: { album: BaseItemDto }): React.JSX.Element {
 								name='broom'
 								onPress={handleDeleteDownload}
 								transition={'quick'}
-								opacity={{ enter: 0, exit: 0 }}
+								opacity='1 enter:0 exit:0'
 							/>
 						) : downloadTracks.isPending ? (
 							<Spinner justifyContent='center' color='neutral' />
@@ -79,7 +79,7 @@ export function Album({ album }: { album: BaseItemDto }): React.JSX.Element {
 								name='download-circle-outline'
 								onPress={handleDownload}
 								transition={'quick'}
-								opacity={{ enter: 0, exit: 0 }}
+								opacity='1 enter:0 exit:0'
 							/>
 						))}
 					<FavoriteButton item={album} />

@@ -46,7 +46,7 @@ function ThemeOptionCard({
 	return (
 		<XStack
 			onPress={onPress}
-			scale='press:0.97'
+			scale='1 press:0.97'
 			borderWidth={1}
 			borderColor={`${isSelected ? 'primary' : 'borderColor'}`}
 			backgroundColor={`${isSelected ? 'background25' : 'background'}`}
@@ -80,7 +80,7 @@ function ColorPresetCard({
 	return (
 		<XStack
 			onPress={onPress}
-			scale='press:0.97'
+			scale='1 press:0.97'
 			borderWidth={1}
 			borderColor={`${isSelected ? 'primary' : 'borderColor'}`}
 			backgroundColor={`${isSelected ? 'background25' : 'background'}`}

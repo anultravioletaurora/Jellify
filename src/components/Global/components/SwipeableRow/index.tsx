@@ -430,7 +430,7 @@ export default function SwipeableRow({
 										justifyContent='center'
 										backgroundColor={action.color}
 										borderRadius={0}
-										opacity='press:0.8'
+										opacity='1 press:0.8'
 										role='button'
 										aria-label={`Left quick action ${action.icon}`}
 										onPress={() => {
@@ -513,7 +513,7 @@ export default function SwipeableRow({
 										justifyContent='center'
 										backgroundColor={action.color}
 										borderRadius={0}
-										opacity='press:0.8'
+										opacity='1 press:0.8'
 										role='button'
 										aria-label={`Right quick action ${action.icon}`}
 										onPress={() => {

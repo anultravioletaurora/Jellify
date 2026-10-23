@@ -180,7 +180,7 @@ function LibraryTabBar(props: MaterialTopTabBarProps) {
 											.setArtistsFilters({ isFavorites: undefined })
 									}
 								}}
-								opacity='press:0.6'
+								opacity='1 press:0.6'
 								transition='quick'
 								alignItems={'center'}
 								justifyContent={'center'}

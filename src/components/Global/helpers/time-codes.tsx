@@ -1,4 +1,4 @@
-import { Paragraph, SizableText, TextProps } from 'tamagui'
+import { SizableText, TextProps } from 'tamagui'
 import { convertRunTimeTicksToSeconds } from '../../../utils/mapping/ticks-to-seconds'
 import React from 'react'
 
@@ -30,8 +30,8 @@ export function RunTimeTicks({
 }: {
 	children?: number | null | undefined
 	props?: TextProps | undefined
-}): React.JSX.Element {
-	if (!children) return <Paragraph>0:00</Paragraph>
+}): React.JSX.Element | null {
+	if (!children) return null
 
 	const time = calculateRunTimeFromTicks(children)
 

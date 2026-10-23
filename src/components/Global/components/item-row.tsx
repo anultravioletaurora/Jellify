@@ -154,9 +154,8 @@ function ItemRow({
 		artworkAreaWidth.value = width
 	}
 
-	const pressOpacity = {
-		press: 0.5,
-	}
+	// The resting value is required - without it, a cancelled press animates opacity to null and crashes Reanimated
+	const pressOpacity = '1 press:0.5'
 	if (!isAudio) {
 		return (
 			<XStack

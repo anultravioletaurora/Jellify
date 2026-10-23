@@ -35,7 +35,7 @@ export default function SettingsNavRow({
 			marginHorizontal='3'
 			marginVertical='1-5'
 			padding='0'
-			opacity='press:0.7'
+			opacity='1 press:0.7'
 			borderRadius='4'
 			onPress={() => navigation.navigate(route)}
 		>

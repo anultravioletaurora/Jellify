@@ -196,7 +196,7 @@ function AddToPlaylistRow({
 					name='check-circle-outline'
 					color={'success'}
 					transition={'quick'}
-					opacity={{ enter: 0, exit: 0 }}
+					opacity='1 enter:0 exit:0'
 				/>
 			) : fetchingPlaylistTracks || useAddToPlaylist.isPending ? (
 				<Spinner color='primary' />

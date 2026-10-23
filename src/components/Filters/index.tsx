@@ -130,7 +130,7 @@ export default function Filters({ currentTab }: FiltersProps): React.JSX.Element
 						<Button
 							variant='outlined'
 							size='md'
-							opacity='press:0.6'
+							opacity='1 press:0.6'
 							transition='quick'
 							flex={1}
 							justifyContent='space-between'
@@ -161,7 +161,7 @@ export default function Filters({ currentTab }: FiltersProps): React.JSX.Element
 						<Button
 							variant='outlined'
 							size='md'
-							opacity='press:0.6'
+							opacity='1 press:0.6'
 							transition='quick'
 							flex={1}
 							justifyContent='space-between'

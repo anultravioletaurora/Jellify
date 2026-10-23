@@ -107,7 +107,7 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 			alignItems='center'
 			padding='3'
 			gap='3'
-			opacity='press:0.6'
+			opacity='1 press:0.6'
 			transition='quick'
 			backgroundColor='background75'
 			onPress={handleSelectAll}
@@ -145,7 +145,7 @@ export default function GenreSelectionScreen(): React.JSX.Element {
 				alignItems='center'
 				padding='3'
 				gap='3'
-				opacity='press:0.6'
+				opacity='1 press:0.6'
 				transition='quick'
 				onPress={() => toggleGenre(item.Id!)}
 			>

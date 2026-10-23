@@ -42,7 +42,7 @@ export default function VerticalSettings(): React.JSX.Element {
 					paddingHorizontal='4'
 					paddingVertical='4'
 					marginBottom='2'
-					opacity='press:0.8'
+					opacity='1 press:0.8'
 					onPress={() => navigation.navigate('Account')}
 				>
 					<XStack alignItems='center' gap='3'>

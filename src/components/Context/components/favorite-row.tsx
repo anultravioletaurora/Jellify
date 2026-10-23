@@ -23,7 +23,7 @@ function AddFavoriteContextMenuRow({ item }: { item: BaseItemDto }): React.JSX.E
 			transition={'quick'}
 			backgroundColor={'transparent'}
 			justifyContent='flex-start'
-			opacity='press:0.5'
+			opacity='1 press:0.5'
 			onPress={() => {
 				mutate({ item })
 			}}
@@ -54,7 +54,7 @@ function RemoveFavoriteContextMenuRow({ item }: { item: BaseItemDto }): React.JS
 			transition={'quick'}
 			backgroundColor={'transparent'}
 			justifyContent='flex-start'
-			opacity='press:0.5'
+			opacity='1 press:0.5'
 			onPress={() => {
 				mutate({ item })
 			}}

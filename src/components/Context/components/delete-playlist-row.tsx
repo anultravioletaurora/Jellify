@@ -14,7 +14,7 @@ export default function DeletePlaylistRow({
 			backgroundColor={'transparent'}
 			gap='2-5'
 			justifyContent='flex-start'
-			opacity='press:0.5'
+			opacity='1 press:0.5'
 			onPress={() => {
 				navigationRef.dispatch(
 					StackActions.push('DeletePlaylist', {

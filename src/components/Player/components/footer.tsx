@@ -39,7 +39,7 @@ export default function Footer(): React.JSX.Element {
 					name='message-text-outline'
 					onPress={() => navigation.navigate('LyricsScreen', { lyrics: lyrics })}
 					{...ICON_PRESS_STYLES}
-					opacity={{ hover: 0.8, press: 0.6, enter: 0, exit: 0 }}
+					opacity='1 hover:0.8 press:0.6 enter:0 exit:0'
 					transition={'quick'}
 				/>
 			)}

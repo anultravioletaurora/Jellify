@@ -75,7 +75,7 @@ export default function LibrarySelector({
 				value={library.Id!}
 				aria-label={library.Name!}
 				width='100%'
-				scale='hover:0.925 press:0.875'
+				scale='1 hover:0.925 press:0.875'
 				transition={'quick'}
 				backgroundColor={`${isSelected ? 'primary' : 'background'}`}
 				borderWidth={hasMultipleLibraries ? 1 : 0}
@@ -124,7 +124,7 @@ export default function LibrarySelector({
 			)}
 
 			{isPending ? (
-				<Spinner size='large' opacity='enter:1 exit:0' />
+				<Spinner size='large' opacity='1 enter:1 exit:0' />
 			) : isError ? (
 				<LoadErrorMessage />
 			) : musicLibraries.length === 0 ? (

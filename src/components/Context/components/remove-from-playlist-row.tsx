@@ -37,7 +37,7 @@ export default function RemoveFromPlaylistRow({
 			flex={1}
 			gap='2-5'
 			justifyContent='flex-start'
-			opacity='press:0.5'
+			opacity='1 press:0.5'
 			disabled={isPending}
 			onPress={() => removeTrack()}
 		>

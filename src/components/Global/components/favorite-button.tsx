@@ -34,6 +34,7 @@ function AddFavoriteButton({ item, onToggle }: FavoriteButtonProps): React.JSX.E
 			exiting={FadeOut.easing(Easing.out(Easing.ease))}
 		>
 			<Icon
+				size='8'
 				name={'heart'}
 				color={'primary'}
 				onPress={() =>

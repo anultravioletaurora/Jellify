@@ -1,5 +1,5 @@
 import TextTicker from 'react-native-text-ticker'
-import { H6, Paragraph, XStack, YStack } from 'tamagui'
+import { H6, Paragraph, SizableText, XStack, YStack } from 'tamagui'
 import { TextTickerConfig } from '../component.config'
 import React from 'react'
 import FavoriteButton from '../../Global/components/favorite-button'
@@ -88,23 +88,27 @@ export default function SongInfo(): React.JSX.Element {
 							{...TextTickerConfig}
 							key={`${currentTrack?.id ?? 'no-track'}-title`}
 						>
-							<H6
+							<SizableText
 								fontSize='4'
 								fontWeight='6'
 								{...ICON_PRESS_STYLES}
 								onPress={handleTrackPress}
 							>
 								{trackTitle}
-							</H6>
+							</SizableText>
 						</TextTicker>
 
 						<TextTicker
 							{...TextTickerConfig}
 							key={`${currentTrack?.id ?? 'no-track'}-artist`}
 						>
-							<H6 fontSize='4' {...ICON_PRESS_STYLES} onPress={handleArtistPress}>
+							<SizableText
+								fontSize='4'
+								{...ICON_PRESS_STYLES}
+								onPress={handleArtistPress}
+							>
 								{currentTrack?.artist ?? 'Unknown Artist'}
-							</H6>
+							</SizableText>
 							{isExplicit(item) && (
 								<XStack alignSelf='center' paddingTop={5.3} paddingLeft='1'>
 									<Icon name='alpha-e-box-outline' color={'color'} size='5' />

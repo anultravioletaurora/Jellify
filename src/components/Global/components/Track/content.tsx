@@ -100,7 +100,7 @@ export default function TrackRowContent({
 			gap='1'
 			margin='1'
 			transition={'quick'}
-			opacity='press:0.5'
+			opacity='1 press:0.5'
 			backgroundColor='background'
 			testID={testID ?? undefined}
 		>

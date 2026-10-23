@@ -1,7 +1,15 @@
 import { useAppSettingsStore } from '../../../../stores/settings/app'
 import { BaseItemKind } from '@jellyfin/sdk/lib/generated-client'
 import { StyleSheet } from 'react-native'
-import { Spacer, Square, Card, View } from 'tamagui'
+import {
+	Spacer,
+	Square,
+	Card,
+	View,
+	FontSizeTokens,
+	getFontSizeToken,
+	getTokenValue,
+} from 'tamagui'
 import Icon from '../icon'
 import { CardSizeToken } from './types'
 
@@ -35,7 +43,12 @@ export default function ItemCardFooter({ size, type }: ItemCardComponentFooterPr
 					transform={[{ rotate: '45deg' }, { translateX: '50%' }, { translateY: '20%' }]}
 				>
 					<View rotate='-45deg' y={-size} x={-size}>
-						<Icon color={'background'} name={iconName} style={styles[iconName]} />
+						<Icon
+							size={getTokenValue(size)}
+							color={'background'}
+							name={iconName}
+							style={styles[iconName]}
+						/>
 					</View>
 				</Square>
 			</Card.Footer>

@@ -29,7 +29,7 @@ const JellifySliderThumb = styled(Slider.Thumb, {
 	shadowRadius: 2,
 	elevate: true,
 	// Improve performance when pressing
-	scale: 'press:1.2',
+	scale: '1 press:1.2',
 	// Optimize for better touch response
 	borderWidth: 2,
 })
