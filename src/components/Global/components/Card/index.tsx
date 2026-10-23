@@ -68,6 +68,7 @@ export default function ItemCard({
 				style={cardShadowStyle}
 				onPress={onPress}
 				onPressIn={handlePressIn}
+				overflow={'hidden'}
 			>
 				<ItemCardBackground item={item} squared={squared} />
 				<ItemCardFooter type={item.Type ?? BaseItemKind.Audio} size={size} />

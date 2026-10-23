@@ -20,6 +20,7 @@ import {
 } from '../utils/navigating/form-sheet'
 import { createStaticNavigation } from '@react-navigation/native'
 import navigationRef from './navigation'
+import { navigationIntegration } from '../utils/logging/sentry'
 import { getJellifyNavTheme } from '../components/theme'
 import { useColorPresetSetting, useThemeSetting } from '../stores/settings/app'
 import { useColorScheme } from 'react-native'
@@ -117,7 +118,11 @@ export default function Root(): React.JSX.Element {
 	const resolvedMode = theme === 'system' ? (isDarkMode ? 'dark' : 'light') : theme
 
 	return (
-		<RootNavigation ref={navigationRef} theme={getJellifyNavTheme(colorPreset, resolvedMode)} />
+		<RootNavigation
+			ref={navigationRef}
+			theme={getJellifyNavTheme(colorPreset, resolvedMode)}
+			onReady={() => navigationIntegration.registerNavigationContainer(navigationRef)}
+		/>
 	)
 }
 
