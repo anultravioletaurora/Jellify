@@ -52,10 +52,10 @@ export default function PrivacyDeveloperScreen(): React.JSX.Element {
 
 					<XStack alignItems='center' justifyContent='space-between'>
 						<YStack flex={1}>
-							<SizableText size='4' fontWeight='6'>
+							<SizableText size='2' fontWeight='6'>
 								Reduce Haptics
 							</SizableText>
-							<SizableText size='2' color='borderColor'>
+							<SizableText size='1' color='borderColor'>
 								Reduce haptic feedback intensity
 							</SizableText>
 						</YStack>
@@ -76,10 +76,10 @@ export default function PrivacyDeveloperScreen(): React.JSX.Element {
 				>
 					<XStack alignItems='center' justifyContent='space-between'>
 						<YStack flex={1}>
-							<SizableText size='4' fontWeight='6'>
+							<SizableText size='2' fontWeight='6'>
 								Developer Options
 							</SizableText>
-							<SizableText size='2' color='borderColor'>
+							<SizableText size='1' color='borderColor'>
 								Enable advanced developer features
 							</SizableText>
 						</YStack>
@@ -93,7 +93,7 @@ export default function PrivacyDeveloperScreen(): React.JSX.Element {
 
 					{developerOptionsEnabled && (
 						<YStack gap='2' paddingTop='1'>
-							<SizableText size='2' color='borderColor'>
+							<SizableText size='1' color='borderColor'>
 								Enter PR ID to test pull request builds
 							</SizableText>
 							<XStack gap='2' alignItems='center'>
@@ -102,18 +102,16 @@ export default function PrivacyDeveloperScreen(): React.JSX.Element {
 									value={localPrId}
 									onChangeText={setLocalPrId}
 									keyboardType='numeric'
-									size='3'
 								/>
 								<Button
-									size='sm'
+									circular
 									backgroundColor='primary'
 									onPress={handleSubmitPr}
-									circular
-									icon={<Icon name='check' color='background' size='7' />}
+									icon={<Icon name='check' color='background' size='6' />}
 								/>
 							</XStack>
 							{prId && (
-								<SizableText color='success' size='2'>
+								<SizableText color='success' fontSize='2'>
 									Current PR ID: {prId}
 								</SizableText>
 							)}

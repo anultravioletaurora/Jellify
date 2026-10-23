@@ -55,14 +55,14 @@ export default function VerticalSettings(): React.JSX.Element {
 							</Avatar.Fallback>
 						</Avatar>
 						<YStack flex={1}>
-							<SizableText fontSize='2' fontWeight='6' color='background'>
+							<SizableText fontSize='3' fontWeight='6' color='background'>
 								{user?.name ?? 'Unknown User'}
 							</SizableText>
-							<XStack alignItems='center' gap='1-5'>
+							<XStack alignItems='center'>
 								<Icon
 									name={isSecure ? 'lock' : 'lock-open'}
 									color={isSecure ? 'background' : 'warning'}
-									size='7'
+									size='4'
 								/>
 								<SizableText size='2' color='background'>
 									{server?.name ?? 'Unknown Server'}

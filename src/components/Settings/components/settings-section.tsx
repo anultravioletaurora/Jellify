@@ -32,12 +32,12 @@ export default function SettingsSection({
 
 	return (
 		<Card
-			borderWidth={1}
+			borderWidth={'1'}
 			borderColor='borderColor'
 			backgroundColor='background'
-			marginHorizontal='3'
 			marginVertical='1-5'
 			padding='0'
+			borderRadius='4'
 		>
 			<XStack
 				paddingHorizontal='3'

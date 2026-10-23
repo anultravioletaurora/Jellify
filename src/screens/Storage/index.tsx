@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Pressable, Alert } from 'react-native'
-import { Card, Paragraph, RadioGroup, SizableText, Spinner, XStack, YStack, Image } from 'tamagui'
+import { Card, RadioGroup, SizableText, Spinner, XStack, YStack, Image } from 'tamagui'
 
 import { useStorageContext, CleanupSuggestion } from '../../providers/Storage'
 import Icon from '../../components/Global/components/icon'
@@ -180,9 +180,9 @@ export default function StorageManagementScreen({
 									borderRadius='4'
 									backgroundColor='background75'
 								>
-									<Paragraph fontWeight='600'>
+									<SizableText fontSize='2' fontWeight='6'>
 										{selectedIds.length} selected
-									</Paragraph>
+									</SizableText>
 								</Card>
 							)}
 						</XStack>
@@ -243,54 +243,58 @@ const StorageSummaryCard = ({
 			backgroundColor='background75'
 			padding='4'
 			borderRadius='6'
-			borderWidth={1}
+			borderWidth={'1'}
 			borderColor='borderColor'
 		>
 			<XStack justifyContent='space-between' alignItems='center' marginBottom='3'>
-				<SizableText size='5' fontWeight='600'>
+				<SizableText size='2' fontWeight='6'>
 					Storage overview
 				</SizableText>
 				<XStack gap='2'>
 					<Icon
+						size='6'
 						name='refresh'
 						color='color'
 						onPress={onRefresh}
 						aria-label='Refresh storage overview'
 					/>
 					<Button
-						size='md'
 						backgroundColor='warning'
 						borderColor='warning'
 						borderWidth={1}
 						onPress={onDeleteAll}
 						icon={() => <Icon name='broom' color='background' size='7' />}
 					>
-						<Paragraph fontWeight='6' color='background'>
+						<SizableText fontSize='2' fontWeight='6' color='background'>
 							Clear All
-						</Paragraph>
+						</SizableText>
 					</Button>
 				</XStack>
 			</XStack>
 			{summary ? (
 				<YStack gap='4'>
 					<YStack gap='1'>
-						<SizableText size='8' fontWeight='700'>
+						<SizableText size='2' fontWeight='8'>
 							{formatBytes(summary.usedByDownloads)}
 						</SizableText>
-						<Paragraph color='borderColor'>
+						<SizableText fontSize='2' color='borderColor'>
 							Used by offline music · {formatBytes(summary.freeSpace)} free on device
-						</Paragraph>
+						</SizableText>
 					</YStack>
 					<YStack gap='2'>
 						<ProgressBar progress={summary.usedPercentage} />
-						<Paragraph color='borderColor'>{summary.downloadCount} downloads</Paragraph>
+						<SizableText fontSize='2' color='borderColor'>
+							{summary.downloadCount} downloads
+						</SizableText>
 					</YStack>
 					<StatGrid summary={summary} />
 				</YStack>
 			) : (
 				<YStack gap='2'>
 					<Spinner />
-					<Paragraph color='borderColor'>Calculating storage usage…</Paragraph>
+					<SizableText fontSize='2' color='borderColor'>
+						Calculating storage usage…
+					</SizableText>
 				</YStack>
 			)}
 		</Card>
@@ -307,70 +311,6 @@ const ProgressBar = ({ progress }: { progress: number }) => (
 		/>
 	</YStack>
 )
-
-const CleanupSuggestionsRow = ({
-	suggestions,
-	onApply,
-	busySuggestionId,
-}: {
-	suggestions: CleanupSuggestion[]
-	onApply: (suggestion: CleanupSuggestion) => void
-	busySuggestionId: string | null
-}) => {
-	if (!suggestions.length) return null
-
-	return (
-		<YStack gap='3'>
-			<SizableText size='5' fontWeight='600'>
-				Cleanup ideas
-			</SizableText>
-			<XStack gap='3' flexWrap='wrap'>
-				{suggestions.map((suggestion) => (
-					<Card
-						key={suggestion.id}
-						padding='3'
-						borderRadius='4'
-						backgroundColor='background75'
-						borderWidth={1}
-						borderColor='borderColor'
-						flexGrow={1}
-						flexBasis='48%'
-					>
-						<YStack gap='2'>
-							<SizableText size='4' fontWeight='600'>
-								{suggestion.title}
-							</SizableText>
-							<Paragraph color='borderColor'>
-								{suggestion.count} items · {formatBytes(suggestion.freedBytes)}
-							</Paragraph>
-							<Paragraph color='borderColor'>{suggestion.description}</Paragraph>
-							<Button
-								size='sm'
-								width='100%'
-								backgroundColor='primary'
-								borderColor='primary'
-								borderWidth={1}
-								disabled={busySuggestionId === suggestion.id}
-								icon={() =>
-									busySuggestionId === suggestion.id ? (
-										<Spinner size='small' color='background' />
-									) : (
-										<Icon name='broom' color='background' />
-									)
-								}
-								onPress={() => onApply(suggestion)}
-							>
-								<Paragraph fontWeight='6' color='background'>
-									Free {formatBytes(suggestion.freedBytes)}
-								</Paragraph>
-							</Button>
-						</YStack>
-					</Card>
-				))}
-			</XStack>
-		</YStack>
-	)
-}
 
 const DownloadRow = ({
 	download,
@@ -414,10 +354,10 @@ const DownloadRow = ({
 				<SizableText size='4' fontWeight='600'>
 					{download.originalTrack.title ?? 'Unknown track'}
 				</SizableText>
-				<Paragraph color='borderColor'>
+				<SizableText fontSize='2' color='borderColor'>
 					{download.originalTrack.album ?? 'Unknown album'} ·{' '}
 					{formatBytes(getDownloadSize(download))}
-				</Paragraph>
+				</SizableText>
 			</YStack>
 			<Button
 				size='sm'
@@ -440,9 +380,9 @@ const EmptyState = ({ onRefresh }: { onRefresh: () => void }) => (
 		<SizableText size='6' fontWeight='600'>
 			No offline music yet
 		</SizableText>
-		<Paragraph color='borderColor' textAlign='center'>
+		<SizableText fontSize='2' color='borderColor' textAlign='center'>
 			Downloaded tracks will show up here so you can reclaim storage any time.
-		</Paragraph>
+		</SizableText>
 		<Button
 			borderColor='borderColor'
 			borderWidth={1}
@@ -476,16 +416,15 @@ const SelectionReviewBanner = ({
 		<YStack gap='3'>
 			<XStack justifyContent='space-between' alignItems='center'>
 				<YStack>
-					<SizableText size='5' fontWeight='600'>
+					<SizableText size='2' fontWeight='6'>
 						Ready to clean up?
 					</SizableText>
-					<Paragraph color='borderColor'>
+					<SizableText fontSize='2' color='borderColor'>
 						{selectedCount} {selectedCount === 1 ? 'track' : 'tracks'} ·{' '}
 						{formatBytes(selectedBytes)}
-					</Paragraph>
+					</SizableText>
 				</YStack>
 				<Button
-					size='xs'
 					borderColor='borderColor'
 					borderWidth={1}
 					backgroundColor='background'
@@ -501,10 +440,9 @@ const SelectionReviewBanner = ({
 				icon={() => <Icon size='7' name='broom' color='warning' />}
 				onPress={onDelete}
 			>
-				<Paragraph
-					fontWeight='6'
-					color='warning'
-				>{`Clear ${formatBytes(selectedBytes)}`}</Paragraph>
+				<SizableText fontSize='2' fontWeight='6' color='warning'>
+					{`Clear ${formatBytes(selectedBytes)}`}
+				</SizableText>
 			</Button>
 		</YStack>
 	</Card>
@@ -512,12 +450,12 @@ const SelectionReviewBanner = ({
 
 const DownloadsSectionHeading = ({ count }: { count: number }) => (
 	<XStack alignItems='center' justifyContent='space-between'>
-		<SizableText size='5' fontWeight='600'>
+		<SizableText size='2' fontWeight='2'>
 			Offline library
 		</SizableText>
-		<Paragraph color='borderColor'>
+		<SizableText fontSize='2' color='borderColor'>
 			{count} {count === 1 ? 'item' : 'items'} cached
-		</Paragraph>
+		</SizableText>
 	</XStack>
 )
 
@@ -542,10 +480,12 @@ const StatChip = ({ label, value }: { label: string; value: string }) => (
 		padding='3'
 		backgroundColor='background'
 	>
-		<SizableText size='6' fontWeight='700'>
+		<SizableText size='2' fontWeight='700'>
 			{value}
 		</SizableText>
-		<Paragraph color='borderColor'>{label}</Paragraph>
+		<SizableText fontSize='2' color='borderColor'>
+			{label}
+		</SizableText>
 	</YStack>
 )
 
@@ -563,20 +503,25 @@ const DownloadSettingsSection = ({
 	<SettingsSection title='Download Settings' icon='cog' iconColor='primary' defaultExpanded>
 		<XStack alignItems='center' justifyContent='space-between'>
 			<YStack flex={1}>
-				<SizableText size='4'>Auto-Download Tracks</SizableText>
-				<SizableText size='2' color='borderColor'>
+				<SizableText fontSize='2' fontWeight={'6'}>
+					Auto-Download Tracks
+				</SizableText>
+				<SizableText fontSize='2' color='borderColor'>
 					Download tracks as they are played
 				</SizableText>
 			</YStack>
 			<SwitchWithLabel checked={autoDownload} onCheckedChange={setAutoDownload} size='2' />
 		</XStack>
 
-		<YStack gap='2'>
-			<SizableText size='4'>Download Quality</SizableText>
+		<YStack>
+			<SizableText size='2' fontWeight={'6'}>
+				Download Quality
+			</SizableText>
 			<SizableText size='2' color='borderColor'>
 				Quality used when downloading tracks
 			</SizableText>
 			<RadioGroup
+				marginTop='2'
 				value={downloadQuality}
 				onValueChange={(value) => setDownloadQuality(value as DownloadQuality)}
 			>

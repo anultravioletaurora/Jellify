@@ -1,4 +1,4 @@
-import { tokens as TamaguiTokens, media, shorthands } from '@tamagui/config/v5'
+import { tokens as TamaguiTokens, media, shorthands, defaultSizing } from '@tamagui/config/v5'
 import { animations } from '@tamagui/config/animations-reanimated'
 import { createTamagui, createTokens } from 'tamagui' // or '@tamagui/core'
 import { headingFont, bodyFont } from './styling/fonts'
@@ -393,6 +393,7 @@ for (const preset of presetNames) {
 }
 
 const jellifyConfig = createTamagui({
+	sizing: defaultSizing,
 	animations,
 	fonts: {
 		heading: headingFont,

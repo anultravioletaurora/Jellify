@@ -2,8 +2,8 @@ import React from 'react'
 import { ScrollView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { Button, Card, Paragraph, Separator, SizableText, Spinner, XStack, YStack } from 'tamagui'
-
+import { Card, Separator, SizableText, Spinner, XStack, YStack } from 'tamagui'
+import Button from '../../components/Global/helpers/button'
 import Icon from '../../components/Global/components/icon'
 import { SettingsStackParamList } from './types'
 import { useStorageContext } from '../../providers/Storage'
@@ -59,18 +59,16 @@ export default function StorageSelectionModal({
 			<XStack justifyContent='space-between' alignItems='center'>
 				<Button
 					variant='outlined'
-					size='md'
 					icon={<Icon name='chevron-left' color='color' />}
 					onPress={handleClose}
 				>
 					Close
 				</Button>
-				<SizableText size='6' fontWeight='700'>
+				<SizableText size='2' fontWeight='6'>
 					Review selection
 				</SizableText>
 				<Button
 					variant='outlined'
-					size='xs'
 					icon={<Icon name='broom' color='color' />}
 					onPress={clearSelection}
 					disabled={!hasSelection}
@@ -82,13 +80,13 @@ export default function StorageSelectionModal({
 			{hasSelection ? (
 				<YStack gap='4' flex={1}>
 					<Card borderWidth={1} borderColor='borderColor' borderRadius='6' padding='4'>
-						<SizableText size='7' fontWeight='700'>
+						<SizableText fontSize='2' fontWeight='6'>
 							{formatBytes(selectedBytes)}
 						</SizableText>
-						<Paragraph color='borderColor'>
+						<SizableText fontSize='2' color='borderColor'>
 							{selectedDownloads.length}{' '}
 							{selectedDownloads.length === 1 ? 'track' : 'tracks'} ready to remove
-						</Paragraph>
+						</SizableText>
 					</Card>
 
 					<Card borderWidth={1} borderColor='borderColor' borderRadius='6' flex={1}>
@@ -96,16 +94,16 @@ export default function StorageSelectionModal({
 							{selectedDownloads.map((download, index) => (
 								<YStack key={download.trackId as string}>
 									<YStack padding='3' gap='1'>
-										<SizableText fontWeight='600'>
+										<SizableText fontSize='2' fontWeight='6'>
 											{download.originalTrack.title ?? 'Unknown track'}
 										</SizableText>
-										<Paragraph color='borderColor'>
+										<SizableText fontSize='2' color='borderColor'>
 											{download.originalTrack.album} ·{' '}
 											{formatBytes(download.fileSize)}
-										</Paragraph>
-										<Paragraph color='borderColor'>
+										</SizableText>
+										<SizableText fontSize='2' color='borderColor'>
 											Saved {formatSavedAt(download.downloadedAt)}
-										</Paragraph>
+										</SizableText>
 									</YStack>
 									{index < selectedDownloads.length - 1 && <Separator />}
 								</YStack>
@@ -119,19 +117,19 @@ export default function StorageSelectionModal({
 						disabled={isDeleting}
 						backgroundColor='danger'
 					>
-						<Paragraph fontWeight='6' color='background'>
+						<SizableText fontSize='2' fontWeight='6' color='background'>
 							Delete downloads
-						</Paragraph>
+						</SizableText>
 					</Button>
 				</YStack>
 			) : (
 				<Card borderWidth={1} borderColor='borderColor' borderRadius='6' padding='4'>
-					<SizableText size='5' fontWeight='600'>
+					<SizableText fontSize='2' fontWeight='6'>
 						No tracks selected
 					</SizableText>
-					<Paragraph color='borderColor'>
+					<SizableText fontSize='2' color='borderColor'>
 						Select some downloads to clean up storage.
-					</Paragraph>
+					</SizableText>
 				</Card>
 			)}
 		</YStack>

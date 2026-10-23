@@ -29,13 +29,14 @@ export default function SettingsNavRow({
 	return (
 		<Card
 			testID={testID}
-			borderWidth={1}
+			borderWidth={'1'}
 			borderColor='borderColor'
 			backgroundColor='background'
 			marginHorizontal='3'
 			marginVertical='1-5'
 			padding='0'
 			opacity='press:0.7'
+			borderRadius='4'
 			onPress={() => navigation.navigate(route)}
 		>
 			<XStack

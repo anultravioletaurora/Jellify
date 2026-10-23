@@ -1,6 +1,6 @@
 import { BUTTON_PRESS_STYLES } from '../../../configs/styling/elements'
 import { GestureResponderEvent } from 'react-native'
-import { Button as TamaguiButton, ButtonProps as TamaguiButtonProps } from 'tamagui'
+import { SizableText, Button as TamaguiButton, ButtonProps as TamaguiButtonProps } from 'tamagui'
 
 interface ButtonProps extends Omit<TamaguiButtonProps, 'opacity' | 'marginVertical'> {
 	onPress?: ((event: GestureResponderEvent) => void) | undefined
@@ -13,12 +13,14 @@ export default function Button({ children, ...props }: ButtonProps): React.JSX.E
 		<TamaguiButton
 			{...props}
 			opacity={props.disabled ? 0.5 : 1}
-			paddingVertical='2'
-			borderRadius={'2'}
+			padding='1'
+			borderRadius={props.circular ? undefined : '2'}
 			fontWeight='6'
 			{...BUTTON_PRESS_STYLES}
 		>
-			{children}
+			<SizableText fontSize='2' fontWeight={'6'}>
+				{children}
+			</SizableText>
 		</TamaguiButton>
 	)
 }

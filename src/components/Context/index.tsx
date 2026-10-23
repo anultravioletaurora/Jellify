@@ -115,7 +115,7 @@ export default function ItemContext({
 	}, [item?.Id])
 
 	return (
-		<YGroup marginHorizontal='3' marginBottom={bottom} gap='3'>
+		<YGroup marginBottom={bottom}>
 			<FavoriteContextMenuRow item={item} />
 
 			{renderDeletePlaylistRow && <DeletePlaylistRow playlist={item} />}
