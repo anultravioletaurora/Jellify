@@ -12,7 +12,7 @@ import { useSearchSuggestions } from '../../api/queries/suggestions'
 import { pickRandomItemFromArray } from '../../utils/parsing/random'
 import { SEARCH_PLACEHOLDERS } from '../../configs/messaging/search'
 import { formatArtistName } from '../../utils/formatting/artist-names'
-import List from '../Global/helpers/list'
+import List from '../Global/components/Lists/utils'
 
 interface SuggestionsHeaderProps {
 	suggestions?: BaseItemDto[]

@@ -3,7 +3,7 @@ import { SizableText, useTheme } from 'tamagui'
 import { closeAllSwipeableRows } from '../Global/components/SwipeableRow/registery'
 import useInstantMix from '../../api/queries/instant-mix'
 import { RefreshControl } from 'react-native'
-import List from '../Global/helpers/list'
+import List from '../Global/components/Lists/utils'
 import MixTrackListHeader from './header'
 
 export default function InstantMix(): React.JSX.Element {

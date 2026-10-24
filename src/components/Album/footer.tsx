@@ -13,7 +13,7 @@ import Animated, { Easing, FadeIn, FadeOut } from 'react-native-reanimated'
 import ItemRow from '../Global/components/item-row'
 import { formatArtistNames } from '../../utils/formatting/artist-names'
 import { Freeze } from 'react-freeze'
-import List from '../Global/helpers/list'
+import List from '../Global/components/Lists/utils'
 
 export default function AlbumTrackListFooter({
 	album,

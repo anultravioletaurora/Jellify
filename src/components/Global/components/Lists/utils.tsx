@@ -1,4 +1,4 @@
-import { ItemKeyExtractor } from '../../../utils/parsing/key-extractor'
+import { ItemKeyExtractor } from '../../../../utils/parsing/key-extractor'
 import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client'
 import { LegendList, LegendListProps, LegendListRef } from '@legendapp/list/react-native'
 import { Ref } from 'react'
@@ -24,7 +24,6 @@ export default function List<T extends ListType>({ horizontal, ...props }: ListP
 		? undefined
 		: {
 				margin: 4,
-				flex: 1,
 			}
 
 	return (

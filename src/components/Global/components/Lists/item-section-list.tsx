@@ -1,12 +1,12 @@
 import { SectionList, SectionListRef } from '@legendapp/list/section-list'
 import { UseInfiniteQueryResult } from '@tanstack/react-query'
 import { JSX, RefObject } from 'react'
-import { LibrarySectionListData, LibrarySectionListRenderItemInfo } from '../types'
+import { LibrarySectionListData, LibrarySectionListRenderItemInfo } from '../../types'
 import { SizableText, useTheme, View, XStack, YStack } from 'tamagui'
-import { RefreshControl, SectionListRenderItemInfo } from 'react-native'
-import { closeAllSwipeableRows } from './SwipeableRow/registery'
-import AZScroller from './AZScroller'
-import ListStickyHeader from '../helpers/list-sticky-header'
+import { RefreshControl } from 'react-native'
+import { closeAllSwipeableRows } from '../SwipeableRow/registery'
+import AZScroller from '../AZScroller'
+import ListStickyHeader from '../../helpers/list-sticky-header'
 
 interface ItemSectionListProps {
 	ref: RefObject<SectionListRef | null>
@@ -62,9 +62,6 @@ export default function ItemSectionList({
 						</SizableText>
 					</YStack>
 				}
-				contentContainerStyle={{
-					flex: 1,
-				}}
 			/>
 
 			<AZScroller query={query} reverseOrder={sortDescending} sectionListRef={ref} />

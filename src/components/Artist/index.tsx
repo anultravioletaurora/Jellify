@@ -11,7 +11,7 @@ import { BaseItemDto } from '@jellyfin/sdk/lib/generated-client'
 import ItemRow from '../Global/components/item-row'
 import ArtistHeader from './header'
 import SimilarArtists from './similar'
-import { Spinner, useTheme, YStack, SizableText } from 'tamagui'
+import { Spinner, useTheme, YStack, SizableText, View } from 'tamagui'
 import {
 	filterForAlbums,
 	filterForEPs,
@@ -19,7 +19,7 @@ import {
 	filterForUnknown,
 } from '../../configs/categorizing/albums.config'
 
-export default function ArtistOverviewTab(): React.JSX.Element {
+export default function Artist(): React.JSX.Element {
 	const { featuredOn, albums, fetchingAlbums, refresh } = useArtistContext()
 
 	const theme = useTheme()
@@ -59,23 +59,27 @@ export default function ArtistOverviewTab(): React.JSX.Element {
 
 	const renderSectionHeader = ({ section }: { section: SectionListData<BaseItemDto> }) =>
 		section.data.length > 0 ? (
-			<SizableText padding={'2'} size={'6'} fontWeight='6' backgroundColor={'background'}>
+			<SizableText padding={'2'} size={'3'} fontWeight='6' backgroundColor={'background'}>
 				{section.title}
 			</SizableText>
 		) : null
 
 	const renderItem = ({
 		item,
-	}: SectionListRenderItemInfo<BaseItemDto, SectionBase<BaseItemDto>>) => {
-		return <ItemRow item={item} />
-	}
+	}: SectionListRenderItemInfo<BaseItemDto, SectionBase<BaseItemDto>>) => (
+		<View marginHorizontal='2'>
+			<ItemRow item={item} />
+		</View>
+	)
 
 	const ListEmptyComponent = (
 		<YStack justifyContent='center' alignContent='center'>
 			{fetchingAlbums ? (
 				<Spinner color='primary' flex={1} />
 			) : (
-				<SizableText color={'neutral'}>No albums</SizableText>
+				<SizableText fontSize='3' color={'neutral'}>
+					No albums
+				</SizableText>
 			)}
 		</YStack>
 	)

@@ -98,7 +98,7 @@ export default function TrackRowContent({
 			alignItems='center'
 			flex={1}
 			gap='1'
-			paddingVertical='1'
+			paddingVertical='2'
 			transition={'quick'}
 			opacity='1 press:0.5'
 			backgroundColor='background'
@@ -108,8 +108,8 @@ export default function TrackRowContent({
 				<HideableArtwork>
 					<ItemImage
 						item={track}
-						width={'3'}
-						height={'3'}
+						width={'4'}
+						height={'4'}
 						elevate
 						imageOptions={{ maxWidth: 70, maxHeight: 70, quality: 90 }}
 					/>

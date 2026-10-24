@@ -163,7 +163,7 @@ function ItemRow({
 				width={'100%'}
 				transition={'quick'}
 				opacity={pressOpacity}
-				paddingVertical='1'
+				paddingVertical='2'
 				backgroundColor='background'
 				testID={testID ?? (item.Id ? `item-row-${item.Id}` : undefined)}
 				onPressIn={onPressIn}
@@ -205,7 +205,7 @@ function ItemRow({
 				width={'100%'}
 				transition={'quick'}
 				opacity={pressOpacity}
-				paddingVertical='1'
+				paddingVertical='2'
 				backgroundColor='background'
 				testID={testID ?? (item.Id ? `item-row-${item.Id}` : undefined)}
 				onPressIn={onPressIn}
@@ -330,8 +330,8 @@ function HideableArtwork({
 			<XStack marginRight='2' marginVertical={'auto'} alignItems='center'>
 				<ItemImage
 					item={item}
-					height={'3'}
-					width={'3'}
+					height={'4'}
+					width={'4'}
 					elevate
 					circular={item.Type === 'MusicArtist' || circular}
 					imageOptions={{ maxWidth: 140, maxHeight: 140, quality: 90 }}

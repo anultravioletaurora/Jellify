@@ -15,7 +15,7 @@ import { useState } from 'react'
 import { queryClient } from '../../constants/query-client'
 import { PlaylistTracksQueryKey } from '../../api/queries/playlist/keys'
 import { ViewToken } from '@legendapp/list/react-native'
-import List from '../Global/helpers/list'
+import List from '../Global/components/Lists/utils'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function AddToPlaylist({

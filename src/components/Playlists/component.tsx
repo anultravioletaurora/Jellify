@@ -6,7 +6,7 @@ import { FetchNextPageOptions } from '@tanstack/react-query'
 import { closeAllSwipeableRows } from '../Global/components/SwipeableRow/registery'
 import { RefreshControl } from 'react-native'
 import { LegendListRenderItemProps } from '@legendapp/list/react-native'
-import List from '../Global/helpers/list'
+import List from '../Global/components/Lists/utils'
 
 export interface PlaylistsProps {
 	canEdit?: boolean | undefined

@@ -17,7 +17,7 @@ import { pickRandomItemFromArray } from '../../utils/parsing/random'
 import { SEARCH_PLACEHOLDERS } from '../../configs/messaging/search'
 import { formatArtistName } from '../../utils/formatting/artist-names'
 import useSearchResults from '../../api/queries/search'
-import List from '../Global/helpers/list'
+import List from '../Global/components/Lists/utils'
 
 export default function Search(): React.JSX.Element {
 	const navigation = useNavigation<NativeStackNavigationProp<SearchParamList>>()
@@ -79,7 +79,7 @@ export default function Search(): React.JSX.Element {
 		<List
 			contentInsetAdjustmentBehavior='automatic'
 			ListHeaderComponent={
-				<YStack marginTop='2'>
+				<YStack flex={1}>
 					<Input
 						placeholder={placeholder}
 						onChangeText={handleSearchStringUpdate}
@@ -91,7 +91,7 @@ export default function Search(): React.JSX.Element {
 					/>
 
 					{!isEmpty(artistResults) && (
-						<YStack accessibilityLabel='Artist results'>
+						<YStack accessibilityLabel='Artist results' flex={1}>
 							<H3>Results</H3>
 
 							<HorizontalCardList

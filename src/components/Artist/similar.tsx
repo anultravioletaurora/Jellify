@@ -7,7 +7,7 @@ import { SizableText, YStack } from 'tamagui'
 import ItemRow from '../Global/components/item-row'
 import React from 'react'
 import { Freeze } from 'react-freeze'
-import List from '../Global/helpers/list'
+import List from '../Global/components/Lists/utils'
 
 export default function SimilarArtists(): React.JSX.Element {
 	const navigation = useNavigation<NativeStackNavigationProp<BaseStackParamList>>()
@@ -16,10 +16,9 @@ export default function SimilarArtists(): React.JSX.Element {
 
 	return (
 		<Freeze freeze={fetchingAlbums && !albums}>
-			<YStack flex={1}>
+			<YStack flex={1} margin={'2'}>
 				<SizableText
-					margin={'2'}
-					size={'6'}
+					size={'3'}
 					fontWeight='6'
 				>{`Similar to ${artist.Name ?? 'Unknown Artist'}`}</SizableText>
 
@@ -39,7 +38,12 @@ export default function SimilarArtists(): React.JSX.Element {
 						fetchingSimilarArtists ? (
 							<ActivityIndicator />
 						) : (
-							<SizableText justify={'center'} textAlign='center'>
+							<SizableText
+								fontSize='3'
+								color={'neutral'}
+								justify={'center'}
+								textAlign='center'
+							>
 								No similar artists
 							</SizableText>
 						)
